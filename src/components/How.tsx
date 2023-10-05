@@ -13,19 +13,19 @@ export default function How() {
           <h2>How it works</h2>
           <div style={{ height: "1.375rem" }} />
           <p>
-            TLSVerifier leverages the widely-used TLS (Transport Layer Security) protocol to securely and privately prove a transcript of communications took place with a webserver.
+            TLSNotary leverages the widely-used TLS (Transport Layer Security) protocol to securely and privately prove a transcript of communications took place with a webserver.
           </p>
           <br />
           <p>
-            The core of the TLSVerifier protocol involves splitting TLS session keys between two parties, the Prover and the Verifier. Through secure multi-party computation (MPC), the Prover's requests to a TLS-enabled webserver are encrypted and authenticated.
+            The core of the TLSNotary protocol involves splitting TLS session keys between two parties, the Prover and the Verifier. Through secure multi-party computation (MPC), the Prover's requests to a TLS-enabled webserver are encrypted and authenticated.
           </p>
           <br />
           <p>
-            During the protocol neither the Prover nor Verifier are in possession of the full TLS session keys, they only hold a share of those keys. This ensures the security assumptions of TLS while enabling the Prover to prove the authenticity of the communication to the Verifier.
+            During the protocol neither the Prover nor Verifier are in possession of the full TLS session keys, they only hold respective shares of those keys. This preserves the security properties of TLS while enabling the Prover to prove the authenticity of the communication to the Verifier.
           </p>
           <br />
           <p>
-            All of this is achieved while maintaining full privacy. The Verifier remains unaware of which webserver is being queried, and the Verifier never has access to the unencrypted communications.
+            All of this is achieved while maintaining full privacy. The unencrypted communications remain hidden to the Verifier, and optionally the identity of the server can remain private as well.
           </p>
           <br />
           <p>
