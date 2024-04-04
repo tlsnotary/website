@@ -10,6 +10,15 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "TLSNotary",
   description: "Proof of data authenticity",
+  openGraph: {
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 800,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
