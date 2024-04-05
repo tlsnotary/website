@@ -21,10 +21,7 @@ export default function Home() {
         </div>
       </AppContainer>
 
-      <Banner
-        title={LABELS.HOMEPAGE.INTRO.TITLE}
-        description={LABELS.HOMEPAGE.INTRO.DESCRIPTION}
-      />
+      <Banner title={LABELS.HOMEPAGE.INTRO.TITLE} description={LABELS.HOMEPAGE.INTRO.DESCRIPTION} />
 
       <AppContainer className="py-[120px] ">
         <div className="flex flex-col gap-10 md:gap-16">
@@ -34,9 +31,7 @@ export default function Home() {
                 <Card.Base className="appear" shadow key={index}>
                   <div className="flex flex-col gap-14 items-center">
                     {icon}
-                    <span className=" text-primary text-xl font-semibold leading-6">
-                      {title}
-                    </span>
+                    <span className=" text-primary text-xl font-semibold leading-6">{title}</span>
                   </div>
                 </Card.Base>
               );
