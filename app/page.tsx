@@ -1,11 +1,11 @@
-import { AppContainer } from "@/components/AppContainer";
-import { Banner } from "@/components/ui/Banner";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
-import { Label } from "@/components/ui/Label";
-import { LABELS } from "@/content";
-import { COMMON_CONTENT } from "@/content/common";
-import { WHAT_WE_DO } from "@/content/whatWeDo";
+import { AppContainer } from "../components/AppContainer";
+import { Banner } from "../components/ui/Banner";
+import { Button } from "../components/ui/Button";
+import { Card } from "../components/ui/Card";
+import { Label } from "../components/ui/Label";
+import { LABELS } from "../content";
+import { COMMON_CONTENT } from "../content/common";
+import { WHAT_WE_DO } from "../content/whatWeDo";
 
 export default function Home() {
   return (

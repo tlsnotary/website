@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { AppContainer } from "./AppContainer";
 import { Icons } from "./Icons";
-import { LINKS, NAVIGATION, SOCIALS_HEADER } from "@/app/settings";
+import { LINKS, NAVIGATION, SOCIALS_HEADER } from "../app/settings";
 import { classed } from "@tw-classed/react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { cn } from "@/shared/utils";
-import { LABELS } from "@/content";
+import { cn } from "../shared/utils";
+import { LABELS } from "../content";
 
 const NavLabel = classed.span("text-lg font-semibold hover:text-gold duration-300", {
   variants: {

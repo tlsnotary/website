@@ -1,8 +1,8 @@
-import { AppContainer } from "@/components/AppContainer";
-import { Section } from "@/components/Section";
-import { Accordion } from "@/components/ui/Accordion";
-import { LABELS } from "@/content";
-import { FAQS } from "@/content/faq";
+import { AppContainer } from "../../components/AppContainer";
+import { Section } from "../../components/Section";
+import { Accordion } from "../../components/ui/Accordion";
+import { LABELS } from "../../content";
+import { FAQS } from "../../content/faq";
 import React from "react";
 
 export default function FAQPage() {

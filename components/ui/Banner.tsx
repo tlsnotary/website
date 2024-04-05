@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { AppContainer } from "../AppContainer";
 import type * as Classed from "@tw-classed/react";
 import { classed } from "@tw-classed/react";
-import { cn } from "@/shared/utils";
+import { cn } from "../../shared/utils";
 
 const BannerTitle = classed.h4("text-gold", {
   variants: {
@@ -52,14 +52,7 @@ const BannerImage = ({ inverse }: Pick<BannerProps, "inverse">) => {
   );
 };
 
-export const Banner = ({
-  title,
-  description,
-  inverse = false,
-  children,
-  actions,
-  titleSize,
-}: BannerProps) => {
+export const Banner = ({ title, description, inverse = false, children, actions, titleSize }: BannerProps) => {
   return (
     <div className="bg-primary py-10 md:py-0 md:bg-transparent relative md:h-[600px]">
       <BannerImage inverse={inverse} />
@@ -73,9 +66,7 @@ export const Banner = ({
           <div className="flex flex-col gap-6">
             <BannerTitle titleSize={titleSize}>{title}</BannerTitle>
             {description && (
-              <span className="text-white font-medium text-lg md:text-xl md:leading-6">
-                {description}
-              </span>
+              <span className="text-white font-medium text-lg md:text-xl md:leading-6">{description}</span>
             )}
           </div>
           {actions}

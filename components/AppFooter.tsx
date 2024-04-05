@@ -1,9 +1,9 @@
 import { AppContainer } from "./AppContainer";
 import { Icons } from "./Icons";
 import { classed } from "@tw-classed/react";
-import { NAVIGATION, SOCIALS_FOOTER } from "@/app/settings";
+import { NAVIGATION, SOCIALS_FOOTER } from "../app/settings";
 import Link from "next/link";
-import { LABELS } from "@/content";
+import { LABELS } from "../content";
 
 const NavLabel = classed.span("flex gap-2 items-center font-sans text-white-100 text-sm duration-300", {
   variants: {
