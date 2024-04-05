@@ -10,17 +10,14 @@ import { useState } from "react";
 import { cn } from "@/shared/utils";
 import { LABELS } from "@/content";
 
-const NavLabel = classed.span(
-  "text-lg font-semibold hover:text-gold duration-300",
-  {
-    variants: {
-      active: {
-        false: "text-primary",
-        true: "text-gold",
-      },
+const NavLabel = classed.span("text-lg font-semibold hover:text-gold duration-300", {
+  variants: {
+    active: {
+      false: "text-primary",
+      true: "text-gold",
     },
-  }
-);
+  },
+});
 
 const AppMobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,11 +28,7 @@ const AppMobileNav = () => {
         <Link href="/" type="button" aria-label="logo">
           <Icons.Logo className="text-primary" size={48} />
         </Link>
-        <button
-          type="button"
-          aria-label="burgher menu"
-          onClick={() => setIsOpen(true)}
-        >
+        <button type="button" aria-label="burgher menu" onClick={() => setIsOpen(true)}>
           <Icons.Burgher className="text-primary dark:text-white" />
         </button>
       </AppContainer>
@@ -55,11 +48,7 @@ const AppMobileNav = () => {
         )}
       >
         <div className="flex justify-end p-6">
-          <button
-            type="button"
-            onClick={() => setIsOpen(false)}
-            aria-label="toggle menu"
-          >
+          <button type="button" onClick={() => setIsOpen(false)} aria-label="toggle menu">
             <Icons.Close className="text-primary dark:text-white" />
           </button>
         </div>
@@ -92,9 +81,7 @@ const AppMobileNav = () => {
               );
             })}
           </div>
-          <span className="text-center font-sans text-primary text-sm">
-            {LABELS.COMMON.FOOTER.TITLE}
-          </span>
+          <span className="text-center font-sans text-primary text-sm">{LABELS.COMMON.FOOTER.TITLE}</span>
         </div>
       </div>
     </div>
@@ -115,16 +102,10 @@ const AppDesktopNav = () => {
           const isHome = pathname === "/" && href === "/";
 
           // is home or the first part of the path matches the first part of the href
-          const isActive =
-            isHome ||
-            (pathname !== null && pathParts[0] === pathname.split("/")[1]);
+          const isActive = isHome || (pathname !== null && pathParts[0] === pathname.split("/")[1]);
 
           return (
-            <Link
-              key={index}
-              href={href}
-              target={external ? "_blank" : undefined}
-            >
+            <Link key={index} href={href} target={external ? "_blank" : undefined}>
               <NavLabel active={isActive}>{label}</NavLabel>
             </Link>
           );

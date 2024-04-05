@@ -5,16 +5,13 @@ import { NAVIGATION, SOCIALS_FOOTER } from "@/app/settings";
 import Link from "next/link";
 import { LABELS } from "@/content";
 
-const NavLabel = classed.span(
-  "flex gap-2 items-center font-sans text-white-100 text-sm duration-300",
-  {
-    variants: {
-      hover: {
-        true: "hover:text-gold",
-      },
+const NavLabel = classed.span("flex gap-2 items-center font-sans text-white-100 text-sm duration-300", {
+  variants: {
+    hover: {
+      true: "hover:text-gold",
     },
-  }
-);
+  },
+});
 
 export const AppFooter = () => {
   return (
@@ -30,12 +27,7 @@ export const AppFooter = () => {
           <div className="flex flex-col gap-6">
             {NAVIGATION.map(({ label, href, external }, index) => {
               return (
-                <Link
-                  className="uppercase"
-                  key={index}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                >
+                <Link className="uppercase" key={index} href={href} target={external ? "_blank" : undefined}>
                   <NavLabel hover>{label}</NavLabel>
                 </Link>
               );
@@ -44,12 +36,7 @@ export const AppFooter = () => {
           <div className="flex flex-col gap-6">
             {SOCIALS_FOOTER.map(({ label, href, external, icon }, index) => {
               return (
-                <Link
-                  className="uppercase"
-                  key={index}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                >
+                <Link className="uppercase" key={index} href={href} target={external ? "_blank" : undefined}>
                   <NavLabel hover>
                     {icon}
                     {label}
