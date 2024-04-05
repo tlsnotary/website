@@ -13,7 +13,10 @@ jobs:
 
     steps:
       - name: Checkout 🛒
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
+        uses: ./.github/workflows/setup-node
 
       - name: Setup Pages ⚙️
         uses: actions/configure-pages@v4
