@@ -30,7 +30,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
           branch: gh-pages
-          folder: ./out
+          folder: out
 
       # - name: Push to Web3.storage
       #   uses: web3-storage/add-to-web3@v2
