@@ -133,7 +133,7 @@ const AppDesktopNav = () => {
 
 export const AppHeader = () => {
   return (
-    <header className="sticky right-0 left-0 top-0 backdrop-blur-xl z-10">
+    <header className="sticky right-0 left-0 top-0 bg-white backdrop-blur-xl z-10">
       <AppDesktopNav />
       <AppMobileNav />
     </header>
