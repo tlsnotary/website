@@ -11,6 +11,11 @@ const createMarkdownElement = (tag: keyof JSX.IntrinsicElements, props: any) =>
 
 // Styling for HTML attributes for markdown component
 const REACT_MARKDOWN_CONFIG: Components = {
+  img: ({ node, ...props }) =>
+    createMarkdownElement("img", {
+      className: "py-10 w-full",
+      ...props,
+    }),
   a: ({ node, ...props }) =>
     createMarkdownElement("a", {
       className: "text-orange",

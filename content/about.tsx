@@ -13,8 +13,10 @@ export const ABOUT_CONTENT = {
   },
   HOW_IT_WORKS: {
     TITLE: "How it works",
-    DESCRIPTION:
-      "TLSNotary is a protocol which allows people to export data from any web application and prove facts about it to a third-party in a privacy-preserving way by leveraging secure multi-party computation (MPC) to authenticate data communicated between a Prover and a TLS-enabled web server.",
+    DESCRIPTION: `TLSNotary is a protocol which allows people to export data from any web application and prove facts about it to a third-party in a privacy-preserving way by leveraging secure multi-party computation (MPC) to authenticate data communicated between a Prover and a TLS-enabled web server.
+        <img src="/images/ts-notaly-diagram.svg" />
+      `,
+
     STEPS: [
       {
         TITLE: "Step 1: Multiparty TLS Request",
