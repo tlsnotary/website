@@ -7,8 +7,8 @@ Markdown supported for description
 export const ABOUT_CONTENT = {
   WHO_WE_ARE: {
     TITLE: "Who we are",
-    DESCRIPTION: `TLSNotary is an open-source protocol developed by the **Privacy and Scaling Exploration (PSE)** research lab of the Ethereum Foundation.
-    \nTLSNotary is not a new project; in fact, it has been around for **more than a decade**. In 2022, TLSNotary was rebuilt from the ground up in **Rust** incorporating state-of-the-art cryptographic protocols. This renewed version of the TLSNotary protocol offers enhanced security, privacy, and performance.
+    DESCRIPTION: `TLSNotary is an open-source protocol developed by the <u>Privacy and Scaling Exploration (PSE)</u> research lab of the Ethereum Foundation.
+    \nTLSNotary is not a new project; in fact, it has been around for <u>more than a decade</u>. In 2022, TLSNotary was rebuilt from the ground up in <ins>Rust</ins> incorporating state-of-the-art cryptographic protocols. This renewed version of the TLSNotary protocol offers enhanced security, privacy, and performance.
     `,
   },
   HOW_IT_WORKS: {

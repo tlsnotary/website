@@ -1,5 +1,6 @@
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { Label } from "./ui/Label";
 import { createElement } from "react";
 
@@ -16,9 +17,19 @@ const REACT_MARKDOWN_CONFIG: Components = {
       target: "_blank",
       ...props,
     }),
-  strong: ({ node, ...props }) =>
+  u: ({ node, ...props }) =>
     createMarkdownElement("span", {
       className: "underline",
+      ...props,
+    }),
+  ins: ({ node, ...props }) =>
+    createMarkdownElement("span", {
+      className: "underline",
+      ...props,
+    }),
+  strong: ({ node, ...props }) =>
+    createMarkdownElement("span", {
+      className: "font-bold",
       ...props,
     }),
   span: ({ ...props }: any) => <Label.Paragraph {...props} />,
@@ -34,6 +45,7 @@ export const AppMarkdown = ({ children }: MarkdownProps) => {
       skipHtml={false}
       components={REACT_MARKDOWN_CONFIG}
       remarkPlugins={[remarkGfm]}
+      rehypePlugins={[rehypeRaw]}
     >
       {children}
     </ReactMarkdown>
