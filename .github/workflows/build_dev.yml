@@ -32,8 +32,17 @@ jobs:
       - name: Build with Next.js 🏗️
         run: npx next build
 
-      - name: Deploy to gh-pages-dev branch
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+      - name: Upload artifact 📡
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages-dev
-          folder: out
+          path: ./out
+
+      - name: Publish to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      #- name: Deploy to gh-pages-dev branch
+      #  uses: JamesIves/github-pages-deploy-action@v4.4.3
+      #  with:
+      #    branch: gh-pages-dev
+      #    folder: out
