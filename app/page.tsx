@@ -50,7 +50,7 @@ export default function Home() {
         inverse
       >
         <div className="flex justify-center items-center bg-slate-200 rounded-2xl h-[260px] md:h-[400px]">
-          <span className="font-sans text-primary">PLACEHOLDER</span>
+          <iframe width="400" height="260" src="https://www.youtube-nocookie.com/embed/bNGSdlvIPfI?si=ajKeL15xl1NLarrU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </Banner>
     </main>

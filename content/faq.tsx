@@ -25,7 +25,12 @@ export const FAQS: FAQItem[] = [
   {
     question: "What is the overhead of using TLSNotary?",
     answer:
-      "To the server, the TLS connection appears the same as any other connection. Only the User communicates with the Server, not the Notary or the Verifier. However, the timing patterns of TLS communication might have a different fingerprint, so through statistical analysis, specific identifying patterns might be uncovered.",
+      "The Multi-Party Computation (MPC) between the Prover and the Verifier requires significant bandwidth, orders of magnitude more than the Server’s data size."
+  },
+  {
+    question: "Can the server detect that a TLS session is being notarized?",
+    answer: `
+      To the server, the TLS connection appears the same as any other connection. Only the User communicates with the Server, not the Notary or the Verifier. However, the timing patterns of TLS communication might have a different fingerprint, so through statistical analysis, specific identifying patterns might be uncovered.`,
   },
   {
     question: "Can TLSNotary be used for public data?",
@@ -35,7 +40,7 @@ export const FAQS: FAQItem[] = [
   {
     question: "How can I inspect and verify a TLSNotary proof?",
     answer:
-      "The easiest way is to use the proof-of-concept proof visualizer: TLSNotary Proof Visualizer",
+      "The easiest way is to use the proof-of-concept proof visualizer: [TLSNotary Proof Visualizer](https://tlsnotary.github.io/proof_viz/)",
   },
   {
     question: "Which TLS versions are supported?",
