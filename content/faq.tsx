@@ -25,7 +25,7 @@ export const FAQS: FAQItem[] = [
   {
     question: "What is the overhead of using TLSNotary?",
     answer:
-      "The Multi-Party Computation (MPC) between the Prover and the Verifier requires significant bandwidth, orders of magnitude more than the Server’s data size."
+      "The Multi-Party Computation (MPC) between the Prover and the Verifier requires significant bandwidth, orders of magnitude more than the Server's data size.",
   },
   {
     question: "Can the server detect that a TLS session is being notarized?",
@@ -44,8 +44,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     question: "Which TLS versions are supported?",
-    answer:
-      "TLSNotary currently supports TLS 1.2. Support for TLS 1.3 is on the roadmap.",
+    answer: "TLSNotary currently supports TLS 1.2. Support for TLS 1.3 is on the roadmap.",
   },
   {
     question: "How can I use TLSNotary to verify data on-chain?",
@@ -58,8 +57,7 @@ export const FAQS: FAQItem[] = [
       "A TLSNotary proof is trustworthy because of its cryptographic integrity and its inclusion of an ephemeral key, allowing verifiers to confirm the data's origin from the claimed domain. This trust also hinges on the verifier's confidence in the data source (the server) and the validity of any redactions. Additionally, if the verifier did not conduct the TLS-MPC process themselves, they must trust in the notary's neutrality, ensuring it has not been influenced or compromised by the Prover.",
   },
   {
-    question:
-      "How does TLSNotary differ from other TLS portability approaches?",
+    question: "How does TLSNotary differ from other TLS portability approaches?",
     answer:
       "TLSNotary distinguishes itself with its dedication to open-source development and a strong emphasis on trustlessness. Developed as a public good without a business model, it fosters transparency and allows for community-driven improvements.   Unlike other solutions, TLSNotary is designed to prioritize trustlessness, thereby guaranteeing superior levels of privacy and security. It achieves this without depending on particular network assumptions or compromising on privacy or security to enhance performance. This strategy positions TLSNotary as the go-to choice for projects that place a high value on security and privacy in their TLS portability needs.",
   },

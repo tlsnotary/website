@@ -43,12 +43,14 @@ const REACT_MARKDOWN_CONFIG: Components = {
 
 interface MarkdownProps {
   children: string;
+  customComponents?: Components;
 }
-export const AppMarkdown = ({ children }: MarkdownProps) => {
+
+export const AppMarkdown = ({ children, customComponents, ...props }: MarkdownProps) => {
   return (
     <ReactMarkdown
       skipHtml={false}
-      components={REACT_MARKDOWN_CONFIG}
+      components={{ ...REACT_MARKDOWN_CONFIG, ...customComponents }}
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
     >

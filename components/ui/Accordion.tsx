@@ -33,7 +33,13 @@ const Accordion = ({ label, children }: AccordionProps) => {
             isOpen ? "grid-rows-[1fr] opacity-100 max-h-full" : "grid-rows-[0fr] opacity-0"
           )}
         >
-          <p className="block overflow-hidden pt-4 text-primary text-sm leading-5 font-sans font-normal">{children}</p>
+          {typeof children === "string" ? (
+            <p className="block overflow-hidden pt-4 text-primary text-sm leading-5 font-sans font-normal">
+              {children}
+            </p>
+          ) : (
+            children
+          )}
         </div>
       </div>
     </div>
