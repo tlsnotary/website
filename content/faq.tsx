@@ -29,8 +29,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     question: "Can the server detect that a TLS session is being notarized?",
-    answer: `
-      To the server, the TLS connection appears the same as any other connection. Only the User communicates with the Server, not the Notary or the Verifier. However, the timing patterns of TLS communication might have a different fingerprint, so through statistical analysis, specific identifying patterns might be uncovered.`,
+    answer: "To the server, the TLS connection appears the same as any other connection. Only the User communicates with the Server, not the Notary or the Verifier. However, the timing patterns of TLS communication might have a different fingerprint, so through statistical analysis, specific identifying patterns might be uncovered.",
   },
   {
     question: "Can TLSNotary be used for public data?",
