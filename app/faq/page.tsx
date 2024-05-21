@@ -24,6 +24,9 @@ export default function FAQPage() {
                         />
                       ),
                       strong: ({ ...props }) => <span className="font-bold" {...props} />,
+                      a: ({ ...props }) => (
+                        <a className="font-semibold underline" target="_blank" rel="noopener noreferrer" {...props} />
+                      ),
                     }}
                   >
                     {answer}

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AppContainer } from "./AppContainer";
 import { Icons } from "./Icons";
-import { LINKS, NAVIGATION, SOCIALS_HEADER } from "../app/settings";
+import { NAVIGATION, SOCIALS_HEADER } from "../app/settings";
 import { classed } from "@tw-classed/react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";

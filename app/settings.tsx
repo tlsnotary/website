@@ -28,6 +28,11 @@ export const NAVIGATION: NavItem[] = [
     href: "/faq",
   },
   {
+    label: "API",
+    href: "https://tlsnotary.github.io/tlsn/",
+    external: true,
+  },
+  {
     label: "Documentation",
     href: LINKS.DOCUMENTATION,
     external: true,
