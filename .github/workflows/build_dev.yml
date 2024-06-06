@@ -32,11 +32,3 @@ jobs:
       - name: Build with Next.js 🏗️
         run: npx next build
 
-      - name: Build with Next.js 🏗️
-        run: npx next build
-
-      - name: Deploy to gh-pages-dev branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages-dev
-          folder: out
