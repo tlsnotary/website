@@ -37,11 +37,8 @@ jobs:
         with:
           path: out
 
-      - name: Publish to GitHub Pages 🚀
-        uses: actions/deploy-pages@v4
-
-      #- name: Deploy to gh-pages-dev branch
-      #  uses: JamesIves/github-pages-deploy-action@v4.4.3
-      #  with:
-      #    branch: gh-pages-dev
-      #    folder: out
+      - name: Deploy to gh-pages-dev branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages-dev
+          folder: out
