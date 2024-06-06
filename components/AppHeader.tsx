@@ -10,14 +10,17 @@ import { useState } from "react";
 import { cn } from "../shared/utils";
 import { LABELS } from "../content";
 
-const NavLabel = classed.span("text-lg font-semibold hover:text-gold duration-300", {
-  variants: {
-    active: {
-      false: "text-primary",
-      true: "text-gold",
+const NavLabel = classed.span(
+  "relative overflow-hidden text-lg text-primary font-semibold group-hover:text-brown-50 hover:text-gold duration-300 after:content-[''] after:h-1 after:w-full after:bottom-0 after:left-0 after:absolute p-2 duration-200",
+  {
+    variants: {
+      active: {
+        false: "after:bg-transparent",
+        true: "after:bg-brown-50",
+      },
     },
-  },
-});
+  }
+);
 
 const AppMobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,9 +62,12 @@ const AppMobileNav = () => {
                 key={index}
                 href={`${item.href}`}
                 onClick={() => setIsOpen(false)}
-                className="py-3 capitalize text-primary text-lg dark:text-white duration-200 font-semibold hover:text-gray-900"
+                className="flex items-center py-3 gap-3"
               >
-                {item.label}
+                <span className="capitalize text-primary text-lg dark:text-white duration-200 font-semibold hover:text-gray-900">
+                  {item.label}
+                </span>
+                {item.external && <Icons.ExternalLink className="text-primary" />}
               </Link>
             );
           })}
@@ -81,7 +87,7 @@ const AppMobileNav = () => {
               );
             })}
           </div>
-          <span className="text-center font-sans text-primary text-sm">{LABELS.COMMON.FOOTER.TITLE}</span>
+          <span className="text-center font-sans text-primary text-sm px-8">{LABELS.COMMON.FOOTER.TITLE}</span>
         </div>
       </div>
     </div>
@@ -92,7 +98,7 @@ const AppDesktopNav = () => {
   const pathname = usePathname();
 
   return (
-    <AppContainer className="hidden md:py-[26px] md:grid items-center grid-cols-[200px_1fr_200px]">
+    <AppContainer className="hidden md:py-[25px] md:grid items-center grid-cols-[200px_1fr_200px]">
       <Link href="/">
         <Icons.Logo className="text-primary" />
       </Link>
@@ -105,8 +111,9 @@ const AppDesktopNav = () => {
           const isActive = isHome || (pathname !== null && pathParts[0] === pathname.split("/")[1]);
 
           return (
-            <Link key={index} href={href} target={external ? "_blank" : undefined}>
+            <Link className="flex items-center group" key={index} href={href} target={external ? "_blank" : undefined}>
               <NavLabel active={isActive}>{label}</NavLabel>
+              {external && <Icons.ExternalLink className="text-primary group-hover:text-brown-50 duration-200" />}
             </Link>
           );
         })}
@@ -133,7 +140,7 @@ const AppDesktopNav = () => {
 
 export const AppHeader = () => {
   return (
-    <header className="sticky right-0 left-0 top-0 bg-white backdrop-blur-xl z-10">
+    <header className="sticky right-0 left-0 top-0 bg-gray backdrop-blur-xl z-10">
       <AppDesktopNav />
       <AppMobileNav />
     </header>

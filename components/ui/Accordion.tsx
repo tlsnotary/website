@@ -12,14 +12,17 @@ const Accordion = ({ label, children }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col py-3 px-6 rounded-lg bg-gray border border-gray-100" aria-expanded={isOpen}>
+    <div
+      className="flex flex-col py-3 px-6 rounded-lg bg-gray border border-gray-100 hover:bg-gray-100 duration-200"
+      aria-expanded={isOpen}
+    >
       <div
         className="grid grid-cols-[1fr_20px] gap-1 justify-between items-center cursor-pointer"
         onClick={() => {
           setIsOpen(!isOpen);
         }}
       >
-        <span className="font-sans text-base leading-6 text-primary font-medium">{label}</span>
+        <span className="font-inter leading-5 text-base text-primary font-bold">{label}</span>
         <Icons.ArrowUp
           className={cn("duration-200", {
             "transform rotate-180": !isOpen,

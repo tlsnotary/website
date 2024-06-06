@@ -9,8 +9,14 @@ import React from "react";
 export default function FAQPage() {
   return (
     <main>
-      <AppContainer size="small" className="flex flex-col pt-20 pb-16">
-        <Section title={LABELS.COMMON.FAQ}>
+      <AppContainer size="small" className="flex flex-col py-16 md:py-[120px]">
+        <Section
+          title={
+            <h2 className="text-primary text-center font-bold font-inter text-[32px] md:text-[56px]">
+              {LABELS.COMMON.FAQ}
+            </h2>
+          }
+        >
           <div className="flex flex-col gap-6">
             {FAQS.map(({ answer, question }, index) => {
               return (

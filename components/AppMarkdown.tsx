@@ -4,7 +4,7 @@ import rehypeRaw from "rehype-raw";
 import { Label } from "./ui/Label";
 import { createElement } from "react";
 
-const createMarkdownElement = (tag: keyof JSX.IntrinsicElements, props: any) =>
+export const createMarkdownElement = (tag: keyof JSX.IntrinsicElements, props: any) =>
   createElement(tag, {
     ...props,
   });
@@ -34,7 +34,12 @@ const REACT_MARKDOWN_CONFIG: Components = {
     }),
   strong: ({ node, ...props }) =>
     createMarkdownElement("span", {
-      className: "font-bold",
+      className: "underline",
+      ...props,
+    }),
+  b: ({ node, ...props }) =>
+    createMarkdownElement("b", {
+      className: "text-bold",
       ...props,
     }),
   span: ({ ...props }: any) => <Label.Paragraph {...props} />,

@@ -26,12 +26,12 @@ export const ABOUT_CONTENT = {
       {
         TITLE: "Step 2: Selective Disclosure",
         DESCRIPTION:
-          "The Prover selectively discloses the data to the Verifier by redacting sensitive information prior to sharing it. Selective disclosure may involve simple redactions, or more advanced techniques such as a zero-knowledge proofs that can prove properties of redacted data without revealing the data itself."
+          "The Prover selectively discloses the data to the Verifier by redacting sensitive information prior to sharing it. Selective disclosure may involve simple redactions, or more advanced techniques such as a zero-knowledge proofs that can prove properties of redacted data without revealing the data itself.",
       },
       {
         TITLE: "Step 3: Data Verification",
         DESCRIPTION:
-          "The Verifier verifies that the prover did not tamper with the data and also verifiers the data origin, by inspecting the Server certificate through trusted certificate authorities (CAs). The Verifier can now make assertions about the non-redacted content of the transcript."
+          "The Verifier verifies that the prover did not tamper with the data and also verifiers the data origin, by inspecting the Server certificate through trusted certificate authorities (CAs). The Verifier can now make assertions about the non-redacted content of the transcript.",
       },
     ],
   },

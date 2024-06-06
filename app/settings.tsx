@@ -12,7 +12,7 @@ type NavItem = {
 export const LINKS = {
   DISCORD: "https://discord.gg/9XwESXtcN7",
   GITHUB: "https://github.com/tlsnotary/tlsn",
-  TWITTER: "https://github.com/tlsnotary/tlsn",
+  TWITTER: "https://twitter.com/tlsnotary",
   DOCUMENTATION: "https://docs.tlsnotary.org/",
   BLOG: "#",
 };
@@ -24,17 +24,21 @@ export const NAVIGATION: NavItem[] = [
     href: "/about",
   },
   {
+    label: "Use Cases",
+    href: "/use-cases",
+  },
+  {
     label: "FAQ",
     href: "/faq",
   },
   {
-    label: "API",
-    href: "https://tlsnotary.github.io/tlsn/",
+    label: "Documentation",
+    href: LINKS.DOCUMENTATION,
     external: true,
   },
   {
-    label: "Documentation",
-    href: LINKS.DOCUMENTATION,
+    label: "API",
+    href: "https://tlsnotary.github.io/tlsn/",
     external: true,
   },
 ];
@@ -74,5 +78,11 @@ export const SOCIALS_HEADER: NavItem[] = [
     href: LINKS.GITHUB,
     external: true,
     icon: <Icons.GithubCircle />,
+  },
+  {
+    label: "Twitter",
+    href: LINKS.TWITTER,
+    external: true,
+    icon: <Icons.TwitterCircle />,
   },
 ];

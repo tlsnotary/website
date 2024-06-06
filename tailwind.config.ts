@@ -10,15 +10,16 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        sans: ["DM Sans", "sans-serif"],
+        sans: ["var(--font-sans)"],
+        inter: ["var(--font-inter)"],
       },
       colors: {
         primary: "#243F5F", // nano-blue
         gold: "#E8C075", // nano-yellow
+        // brown: "#A27F3C", // nano-brown
         white: {
           DEFAULT: "#FFFFFF",
           100: "#F6F7F7",
@@ -29,6 +30,7 @@ const config: Config = {
         },
         brown: {
           50: "#A27F3C",
+          70: "#614C24",
         },
       },
     },

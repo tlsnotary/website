@@ -1,58 +1,130 @@
+import { AppLink } from "@/components/AppLink";
 import { AppContainer } from "../components/AppContainer";
-import { Banner } from "../components/ui/Banner";
+import { Banner, BannerTitle, BannerWrapper } from "../components/ui/Banner";
 import { Button } from "../components/ui/Button";
-import { Card } from "../components/ui/Card";
 import { Label } from "../components/ui/Label";
 import { LABELS } from "../content";
-import { COMMON_CONTENT } from "../content/common";
-import { WHAT_WE_DO } from "../content/whatWeDo";
+import { LINKS } from "./settings";
+import { Icons } from "@/components/Icons";
+import { Section } from "@/components/Section";
+import Image from "next/image";
+import { classed } from "@tw-classed/react";
+
+interface ComparisonTableProps {
+  title: string;
+  tls: boolean;
+  tlsNotary: boolean;
+}
+
+const TableWrapper = classed.div("grid grid-cols-4 ");
+const TableTitle = classed.h4("font-semibold text-[15px] text-inter text-brown-50 uppercase");
+const TableContent = classed.div("p-4");
+
+const ComparisonTable = ({ title, tls, tlsNotary }: ComparisonTableProps) => {
+  return (
+    <TableWrapper>
+      <TableContent className=" col-span-2">
+        <span className="text-primary font-semibold text-lg text-inter">{title}</span>
+      </TableContent>
+      <TableContent className="m-auto">{tls ? <Icons.Check /> : <Icons.X />}</TableContent>
+      <TableContent className="m-auto">{tlsNotary ? <Icons.Check /> : <Icons.X />}</TableContent>
+    </TableWrapper>
+  );
+};
 
 export default function Home() {
   return (
     <main>
-      <AppContainer className="flex flex-col gap-8 md:gap-12 lg:gap-16 pt-16 pb-6">
-        <div className="flex flex-col gap-2 lg:w-3/4">
-          <Label.Subtitle>{LABELS.HOMEPAGE.SUBTITLE}</Label.Subtitle>
-          <Label.Title>{LABELS.HOMEPAGE.TITLE}</Label.Title>
-        </div>
-        <div className="flex flex-col md:flex-row gap-4">
-          <Button>{LABELS.COMMON.VIEW_DOCUMENTATION}</Button>
-          <Button variant="transparent">{LABELS.COMMON.FORK_REPO}</Button>
-        </div>
-      </AppContainer>
-
-      <Banner title={LABELS.HOMEPAGE.INTRO.TITLE} description={LABELS.HOMEPAGE.INTRO.DESCRIPTION} />
-
-      <AppContainer className="py-[120px] ">
-        <div className="flex flex-col gap-10 md:gap-16">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
-            {WHAT_WE_DO.map(({ title, icon }, index) => {
-              return (
-                <Card.Base className="appear" shadow key={index}>
-                  <div className="flex flex-col gap-14 items-center">
-                    {icon}
-                    <span className=" text-primary text-xl font-semibold leading-6">{title}</span>
-                  </div>
-                </Card.Base>
-              );
-            })}
+      <AppContainer className="flex flex-col">
+        <div className="flex flex-col gap-8 md:gap-12 lg:gap-16 py-16 ">
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-2 w-full lg:w-3/4">
+              <Label.Subtitle className=" ">{LABELS.HOMEPAGE.SUBTITLE}</Label.Subtitle>
+              <Label.Title>{LABELS.HOMEPAGE.TITLE}</Label.Title>
+            </div>
+            <span className="w-full lg:w-3/4 text-primary text-base font-inter md:text-xl font-medium">
+              {LABELS.HOMEPAGE.DESCRIPTION}
+            </span>
           </div>
-          <span className="appear text-center text-primary text-xl font-semibold leading-6">
-            {COMMON_CONTENT.AND_MORE}
-          </span>
+
+          <AppLink href={LINKS.DOCUMENTATION} external>
+            <Button className="w-full md:w-auto">{LABELS.COMMON.CHECKOUT_DOCS}</Button>
+          </AppLink>
+        </div>
+        <Icons.DividerHomepage className="hidden md:flex mx-auto w-full" />
+      </AppContainer>
+
+      <AppContainer className="py-16 md:py-[120px] w-full lg:!max-w-[960px]">
+        <Section
+          title={
+            <h3 className="text-primary text-3xl text-center font-bold md:text-5xl  md:leading-[49px]">
+              {LABELS.HOMEPAGE.WHY_USE_TLSNOTARY.TITLE}
+            </h3>
+          }
+          description={LABELS.HOMEPAGE.WHY_USE_TLSNOTARY.DESCRIPTION}
+        >
+          <div className="relative w-full h-[200px] py-16">
+            <Image src="/images/infographic.svg" alt="infographic" fill />
+          </div>
+        </Section>
+      </AppContainer>
+
+      <AppContainer className="pb-16 md:pb-[120px]">
+        <div className="!max-w-[640px] mx-auto">
+          <TableWrapper className="px-8">
+            <div className=" col-span-2"></div>
+            <TableContent className="text-center">
+              <span className="text-primary font-bold py-4 font-inter text-xs md:text-2xl">TLS</span>
+            </TableContent>
+            <TableContent className="text-center">
+              <span className="text-primary font-bold py-4 font-inter text-xs md:text-2xl">TLSNotary</span>
+            </TableContent>
+          </TableWrapper>
+          <div className=" p-8 border border-gray-100 bg-gray rounded-xl">
+            <TableContent>
+              <TableTitle>{LABELS.COMMON.SERVER_AUTHENTICATION}</TableTitle>
+            </TableContent>
+            <ComparisonTable title="Data Origin" tls tlsNotary />
+            <ComparisonTable title="Data Integrity" tls tlsNotary />
+
+            <TableContent>
+              <TableTitle>{LABELS.COMMON.SERVER_AUTHENTICATION}</TableTitle>
+            </TableContent>
+            <ComparisonTable title="Trustless" tls={false} tlsNotary />
+            <ComparisonTable title="Privacy Preserving" tls={false} tlsNotary />
+          </div>
         </div>
       </AppContainer>
+
+      <BannerWrapper color="gray">
+        <AppContainer className="flex flex-col gap-8">
+          <BannerTitle className="text-center" variant="primary">
+            {LABELS.COMMON.LEARN_THE_BASICS}
+          </BannerTitle>
+
+          <div className="mx-auto">
+            <iframe
+              className="w-full min-w-[360px] md:min-h-[320px] md:min-w-[560px]"
+              src="https://www.youtube.com/embed/bNGSdlvIPfI?si=xJSG43Go-JQGy_hs"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              // @ts-ignore
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </AppContainer>
+      </BannerWrapper>
 
       <Banner
-        title={LABELS.HOMEPAGE.DOWNLOAD.TITLE}
-        description={LABELS.HOMEPAGE.DOWNLOAD.DESCRIPTION}
-        titleSize="small"
-        inverse
-      >
-        <div className="flex justify-center items-center bg-slate-200 rounded-2xl h-[260px] md:h-[400px]">
-          <iframe width="400" height="260" src="https://www.youtube-nocookie.com/embed/bNGSdlvIPfI?si=ajKeL15xl1NLarrU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </Banner>
+        title={LABELS.HOMEPAGE.BUILD_WITH_US.TITLE}
+        description={LABELS.HOMEPAGE.BUILD_WITH_US.DESCRIPTION}
+        actions={
+          <AppLink href={LINKS.DISCORD} external>
+            <Button variant="primary">{LABELS.COMMON.JOIN_DISCORD}</Button>
+          </AppLink>
+        }
+      />
     </main>
   );
 }

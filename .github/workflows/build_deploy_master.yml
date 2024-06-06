@@ -29,7 +29,7 @@ jobs:
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: ./landing-page/out
 
       - name: Publish to GitHub Pages 🚀
         uses: actions/deploy-pages@v4

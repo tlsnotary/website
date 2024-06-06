@@ -3,18 +3,15 @@ import type * as Classed from "@tw-classed/react";
 import React, { forwardRef, HTMLAttributes } from "react";
 
 const ButtonComponent = classed.button(
-  "relative overflow-hidden font-semibold cursor-pointer justify-center flex items-center gap-2 border rounded-[32px] inline-block disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 ease-in-out",
+  "relative overflow-hidden font-medium cursor-pointer justify-center flex items-center gap-2 border rounded-[32px] inline-block disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 ease-in-out",
   {
     variants: {
       variant: {
-        transparent:
-          "border-transparent bg-transparent text-primary hover:opacity-60",
-        primary:
-          "bg-white border-primary text-primary hover:bg-primary hover:text-white",
+        transparent: "border-transparent bg-transparent text-brown-50 hover:text-brown-70 !p-2",
+        primary: "bg-primary border-primary text-white hover:bg-brown-70 hover:border-brown-70 hover:text-white",
       },
       size: {
-        medium:
-          "text-sm md:text-base lg:text-xl md:leading-6 py-2 md:py-3 lg:py-[18px] px-6",
+        medium: "text-sm md:text-base lg:text-xl md:leading-6 py-2 md:py-[14px] px-8",
       },
     },
     defaultVariants: {
@@ -26,9 +23,7 @@ const ButtonComponent = classed.button(
 
 type ButtonVariants = Classed.VariantProps<typeof ButtonComponent>;
 
-interface ButtonProps
-  extends ButtonVariants,
-    HTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonVariants, HTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   icon?: React.ReactNode;
   disabled?: boolean;
