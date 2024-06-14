@@ -88,7 +88,7 @@ export default function Home() {
             <ComparisonTable title="Data Integrity" tls tlsNotary />
 
             <TableContent>
-              <TableTitle>{LABELS.COMMON.SERVER_AUTHENTICATION}</TableTitle>
+              <TableTitle>{LABELS.COMMON.DATA_PORTABILITY}</TableTitle>
             </TableContent>
             <ComparisonTable title="Trustless" tls={false} tlsNotary />
             <ComparisonTable title="Privacy Preserving" tls={false} tlsNotary />

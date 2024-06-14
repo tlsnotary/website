@@ -1,8 +1,8 @@
 export const HOMEPAGE_CONTENT = {
-  TITLE: "Privacy-preserving data portability for any data on the web",
+  TITLE: "Privacy-preserving data portability",
   SUBTITLE: "TLSNotary",
   DESCRIPTION:
-    " TLSNotary is an open-source protocol that can verify the authenticity of data while protecting privacy. If you're looking for a way to make data portable without compromising on security, check out the protocol and integrate it into your applications!",
+    " TLSNotary is an open-source protocol that can verify the authenticity of TLS data while protecting privacy. If you're looking for a way to make data portable without compromising on security, check out the protocol and integrate it into your applications!",
   BUILD_WITH_US: {
     TITLE: "Build with us",
     DESCRIPTION:

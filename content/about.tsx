@@ -38,6 +38,6 @@ export const ABOUT_CONTENT = {
   GET_INVOLVED: {
     TITLE: "Get involved",
     DESCRIPTION:
-      "An alpha version of the TLSNotary protocol is available for testing. We welcome folks to start playing around with it, including trying to break it!\n\nBoth codebases are 100% Rust and compile to WASM targets with an eye on deployment into browser environments.All our code is and always will be open source! Dual-licensed under Apache 2 and MIT, at your choice.\n\nWe've invested effort into making sure our code is modular and capable of evolving. We hope that others may find some of the components independently interesting and useful. Contributions are welcome!",
+      "An alpha version of the TLSNotary protocol is available for testing. We welcome folks to start playing around with it, including trying to break it!\n\nBoth codebases are 100% Rust and compile to WASM targets with an eye on deployment into browser environments. All our code is and always will be open source! Dual-licensed under Apache 2 and MIT, at your choice.\n\nWe've invested effort into making sure our code is modular and capable of evolving. We hope that others may find some of the components independently interesting and useful. Contributions are welcome!",
   },
 };

@@ -7,6 +7,23 @@ type Project = {
 };
 
 export const ProjectList: Project[] = [
+
+  {
+    title: "ZKP2p",
+    tldr: "Completely peer-to-peer leveraging everyday payment networks",
+    links: {
+      // website: "https://zkp2p.xyz/",
+      twitter: "https://x.com/zkp2p",
+      github: "https://github.com/zkp2p",
+    },
+  },
+  {
+    title: "OpenLayer/Jomo Labs",
+    tldr: "Scale web3 through optimistic verifiable computation",
+    links: {
+      twitter: "https://x.com/OpenLayerHQ",
+    },
+  },
   {
     title: "ZeroTrustBounty",
     tldr: "A trustless bug bounty platform with redacted bug reports & guaranteed payments to whitehats.",
@@ -22,13 +39,6 @@ export const ProjectList: Project[] = [
     },
   },
   {
-    title: "zkP2M",
-    tldr: "Trustless and instant INR to USD on-ramp powered by ZK",
-    links: {
-      github: "https://github.com/zkP2M",
-    },
-  },
-  {
     title: "ComplianceNoted",
     tldr: "Compliance for on-chain private equity: manage a portfolio or a fund with an array of accounts and breathe through client reporting and compliance requirements! Privacy, efficiency and portability all in place.",
     links: {},
@@ -39,10 +49,5 @@ export const ProjectList: Project[] = [
     links: {
       github: "https://github.com/dingchaoz/ZEROGUARD",
     },
-  },
-  {
-    title: "Zkyc",
-    tldr: "Trustless and instant INR to USD on-ramp powered by ZK",
-    links: {},
   },
 ];
