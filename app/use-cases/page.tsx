@@ -11,9 +11,9 @@ import { Card } from "@/components/ui/Card";
 import { Icons } from "@/components/Icons";
 
 const IconMapping: Record<WebsiteType, React.ReactNode> = {
-  twitter: <Icons.Twitter className="text-white hover:bg-brown-50 duration-200" />,
-  github: <Icons.Github className="text-white hover:bg-brown-50 duration-200" />,
-  website: <Icons.Website className="text-white hover:bg-brown-50 duration-200" />,
+  twitter: <Icons.Twitter className="text-white hover:text-brown-50 duration-200" />,
+  github: <Icons.Github className="text-white hover:text-brown-50 duration-200" />,
+  website: <Icons.Website className="text-white hover:text-brown-50 duration-200" />,
 };
 
 export default function UseCases() {
@@ -49,7 +49,7 @@ export default function UseCases() {
                         <span className="text-white text-sm font-normal font-inter line-clamp-5">{project.tldr}</span>
                       </div>
                     </div>
-                    <div className="mt-5">
+                    <div className="flex items-center gap-2 mt-5">
                       {Object.keys(project?.links ?? []).map((website, index) => {
                         // @ts-ignore
                         const url: string | undefined = project.links?.[website] ?? undefined;
@@ -60,11 +60,9 @@ export default function UseCases() {
                         if (!icon) return null;
 
                         return (
-                          <div key={index}>
-                            <AppLink href={url} external>
-                              {icon}
-                            </AppLink>
-                          </div>
+                          <AppLink key={index} href={url} external>
+                            {icon}
+                          </AppLink>
                         );
                       })}
                     </div>

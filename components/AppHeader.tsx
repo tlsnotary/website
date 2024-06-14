@@ -11,7 +11,7 @@ import { cn } from "../shared/utils";
 import { LABELS } from "../content";
 
 const NavLabel = classed.span(
-  "relative overflow-hidden text-lg text-primary font-semibold group-hover:text-brown-50 hover:text-gold duration-300 after:content-[''] after:h-1 after:w-full after:bottom-0 after:left-0 after:absolute p-2 duration-200",
+  "relative overflow-hidden text-base md:text-lg text-primary font-semibold group-hover:text-brown-50 hover:text-gold duration-300 after:content-[''] after:h-1 after:w-full after:bottom-0 after:left-0 after:absolute p-2 duration-200",
   {
     variants: {
       active: {
@@ -26,7 +26,7 @@ const AppMobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative flex items-center md:hidden">
+    <div className="relative flex items-center lg:hidden">
       <AppContainer className="flex w-full justify-between items-center py-4">
         <Link href="/" type="button" aria-label="logo">
           <Icons.Logo className="text-primary" size={48} />
@@ -98,7 +98,7 @@ const AppDesktopNav = () => {
   const pathname = usePathname();
 
   return (
-    <AppContainer className="hidden md:py-[25px] md:grid items-center grid-cols-[200px_1fr_200px]">
+    <AppContainer className="hidden lg:py-[25px] lg:grid items-center grid-cols-[200px_1fr_200px]">
       <Link href="/">
         <Icons.Logo className="text-primary" />
       </Link>

@@ -34,12 +34,12 @@ const REACT_MARKDOWN_CONFIG: Components = {
     }),
   strong: ({ node, ...props }) =>
     createMarkdownElement("span", {
-      className: "underline",
+      className: "font-bold",
       ...props,
     }),
   b: ({ node, ...props }) =>
     createMarkdownElement("b", {
-      className: "text-bold",
+      className: "font-bold",
       ...props,
     }),
   span: ({ ...props }: any) => <Label.Paragraph {...props} />,
