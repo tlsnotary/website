@@ -39,7 +39,7 @@ export const FAQS: FAQItem[] = [
   {
     question: "How can I inspect and verify a TLSNotary proof?",
     answer:
-      "The easiest way is to use the proof-of-concept proof visualizer: [TLSNotary Proof Visualizer](https://tlsnotary.github.io/proof_viz/)",
+      "The easiest way is to use the proof-of-concept [TLSNotary Explorer](https://explorer.tlsnotary.org)",
   },
   {
     question: "Which TLS versions are supported?",
