@@ -4,44 +4,22 @@
   "private": true,
   "homepage": "https://tlsnotary.github.io/landing-page",
   "dependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-react": "^7.17.12",
-    "@babel/preset-typescript": "^7.17.12",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.1",
-    "@types/node": "^16.11.36",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
-    "@types/react-modal": "^3.13.1",
-    "babel-loader": "^8.2.3",
-    "color-hash": "^2.0.1",
-    "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.5.1",
-    "css-minimizer-webpack-plugin": "^3.2.0",
-    "file-loader": "^6.2.0",
-    "html-webpack-inline-source-plugin": "^0.0.10",
-    "html-webpack-plugin": "^5.5.0",
-    "jest": "^27.4.3",
-    "jest-resolve": "^27.4.2",
-    "jest-watch-typeahead": "^1.0.0",
-    "mini-css-extract-plugin": "^2.4.5",
+    "@tw-classed/react": "^1.7.0",
+    "clsx": "^2.1.0",
+    "next": "14.1.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-modal": "^3.15.1",
+    "react-markdown": "^9.0.1",
     "react-router-dom": "^6.3.0",
-    "style-loader": "^3.3.1",
-    "typescript": "^4.6.4",
-    "web-vitals": "^2.1.4",
-    "webpack": "^5.64.4",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.6.0"
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "tailwind-merge": "^2.2.2"
   },
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack",
-    "prerender": "npm run build && webpack --config ./webpack.prerender.js && node build-prerender",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "test": "jest"
   },
   "browserslist": {
@@ -57,26 +35,15 @@
     ]
   },
   "devDependencies": {
-    "@types/color-hash": "^1.0.2"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "tsx",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
-  },
-  "babel": {
-    "presets": [
-      ["@babel/preset-react", { "runtime": "automatic" }],
-      "@babel/preset-typescript"
-    ]
+    "@types/jest": "^27.5.1",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5"
   }
 }
