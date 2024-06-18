@@ -15,6 +15,6 @@ export const COMMON_CONTENT = {
       "Our team believes in open-source development with a strong emphasis on trustlessness. We are committed to transparency and community-driven improvements. Come find us in our public Discord to learn more and collaborate!",
   },
   FOOTER: {
-    TITLE: "TLSNotary is project of Privacy and Scaling Explorations, an Ethereum Foundation supported team.",
+    TITLE: "TLSNotary is a project of Privacy and Scaling Explorations, an Ethereum Foundation supported team.",
   },
 };
