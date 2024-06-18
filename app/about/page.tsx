@@ -20,7 +20,7 @@ export default function AboutPage() {
           description={LABELS.ABOUT.WHO_WE_ARE.DESCRIPTION}
         >
           <div className="mx-auto">
-            <AppLink href="" external showExternalIcon>
+            <AppLink href={LINKS.DOCUMENTATION} external showExternalIcon>
               <Button variant="transparent">{LABELS.COMMON.VIEW_DOCUMENTATION}</Button>
             </AppLink>
           </div>
