@@ -8,15 +8,20 @@ import ReactMarkdown from "react-markdown";
 import { createMarkdownElement } from "../AppMarkdown";
 import { AppContainer } from "../AppContainer";
 
-export const BannerWrapper = classed.div("py-[120px] relative", {
+export const BannerWrapper = classed.div("relative md:py-[120px]", {
   variants: {
     color: {
       brown: "bg-brown-50",
       gray: "bg-gray",
     },
+    spacing: {
+      small: "py-8",
+      medium: "py-16",
+    },
   },
   defaultVariants: {
     color: "brown",
+    spacing: "small",
   },
 });
 
@@ -24,7 +29,7 @@ export const BannerTitle = classed.h4("text-gold", {
   variants: {
     titleSize: {
       small: "text-[32px] font-semibold",
-      medium: "text-3xl md:text-4xl lg:text-5xl md:leading-[49px] font-bold",
+      medium: "text-2xl md:text-4xl lg:text-5xl md:leading-[49px] font-bold",
     },
     variant: {
       brown: "text-gold",
@@ -47,12 +52,12 @@ type BannerProps = Classed.VariantProps<typeof BannerTitle> &
 
 export const Banner = ({ title, description, actions, descriptionClass, color }: BannerProps) => {
   return (
-    <BannerWrapper color={color}>
+    <BannerWrapper spacing="medium" color={color}>
       <AppContainer>
         <div className="mx-auto py-10 md:py-16 px-8 md:px-[120px] bg-white rounded-3xl w-full md:max-w-[900px]">
           <div className={cn("flex flex-col gap-8")}>
-            <div className="flex flex-col gap-6">
-              <span className=" text-primary font-sans font-bold text-2xl text-center md:text-5xl">{title}</span>
+            <div className="flex flex-col gap-4 md:gap-6">
+              <span className=" text-primary font-inter font-bold text-2xl text-center md:text-5xl">{title}</span>
               {description && (
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
@@ -66,7 +71,7 @@ export const Banner = ({ title, description, actions, descriptionClass, color }:
                       }),
                     a: ({ node, ...props }) =>
                       createMarkdownElement("a", {
-                        className: "text-primary font-medium text-lg md:text-xl md:leading-6",
+                        className: "text-primary font-medium leading-5 text-sm font-inter md:text-xl md:leading-6",
                         target: "_blank",
                         ...props,
                       }),
@@ -74,7 +79,10 @@ export const Banner = ({ title, description, actions, descriptionClass, color }:
                       <span className="text-primary font-normal text-lg md:text-xl md:leading-6" {...props} />
                     ),
                     p: ({ ...props }: any) => (
-                      <span className="text-primary font-normal text-lg md:text-xl md:leading-6" {...props} />
+                      <span
+                        className="text-primary font-inter font-medium text-sm leading-5 md:font-normal md:text-xl md:leading-6"
+                        {...props}
+                      />
                     ),
                   }}
                   className={cn(descriptionClass, "text-primary font-normal text-lg  md:text-xl md:leading-6")}

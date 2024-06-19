@@ -19,11 +19,11 @@ const IconMapping: Record<WebsiteType, React.ReactNode> = {
 export default function UseCases() {
   return (
     <div className="flex flex-col">
-      <div className=" py-16">
+      <div className=" py-10 md:py-16">
         <AppContainer className="flex flex-col gap-16 !max-w-[800px]">
           <Section
             title={
-              <h2 className=" text-primary font-semibold text-[32px] text-center">
+              <h2 className=" text-primary font-semibold text-2xl md:text-[32px] text-center">
                 {LABELS.USE_CASES.USE_CASES.TITLE}
               </h2>
             }
@@ -32,20 +32,20 @@ export default function UseCases() {
 
           <Section
             title={
-              <h2 className=" text-primary font-semibold text-[32px] text-center">
+              <h2 className=" text-primary font-inter w-3/4 mx-auto font-semibold text-2xl leading-6 md:text-[32px] md:w-full text-center">
                 {LABELS.USE_CASES.BUILD_WITH_TLSNOTARY}
               </h2>
             }
           >
-            <div className="grid grid-cols-1  gap-5 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               {ProjectList.map((project) => {
                 return (
                   <Card.Base key={project.title}>
                     <div className="flex flex-col gap-3">
-                      <h5 className=" text-white font-inter font-semibold text-[28px] leading-[28px]">
+                      <h5 className=" text-white font-inter font-semibold text-[22px] leading-5 md:text-[28px] md:leading-[28px]">
                         {project.title}
                       </h5>
-                      <div className=" min-h-[100px]">
+                      <div className="min-h-[100px]">
                         <span className="text-white text-sm font-normal font-inter line-clamp-5">{project.tldr}</span>
                       </div>
                     </div>
