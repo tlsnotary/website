@@ -9,8 +9,8 @@ interface SectionProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
 
 export const Section = ({ title, description, children }: SectionProps) => {
   return (
-    <div className="flex flex-col gap-6 md:gap-16">
-      <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4 md:gap-16">
+      <div className="flex flex-col gap-4 md:gap-8">
         {typeof title === "string" ? <Label.SectionTitle className="text-center">{title}</Label.SectionTitle> : title}
         {description && <AppMarkdown>{description}</AppMarkdown>}
         {children && <div className="flex">{children}</div>}

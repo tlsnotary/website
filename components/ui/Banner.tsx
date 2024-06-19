@@ -56,7 +56,7 @@ export const Banner = ({ title, description, actions, descriptionClass, color }:
       <AppContainer>
         <div className="mx-auto py-10 md:py-16 px-8 md:px-[120px] bg-white rounded-3xl w-full md:max-w-[900px]">
           <div className={cn("flex flex-col gap-8")}>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4 md:gap-6">
               <span className=" text-primary font-inter font-bold text-2xl text-center md:text-5xl">{title}</span>
               {description && (
                 <ReactMarkdown
