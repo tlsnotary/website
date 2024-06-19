@@ -32,7 +32,7 @@ const AppMobileNav = () => {
           <Icons.Logo className="text-primary" size={48} />
         </Link>
         <button type="button" aria-label="burgher menu" onClick={() => setIsOpen(true)}>
-          <Icons.Burgher className="text-primary dark:text-white" />
+          <Icons.Burgher className="text-primary" />
         </button>
       </AppContainer>
       {isOpen && (
