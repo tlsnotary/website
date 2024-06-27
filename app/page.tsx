@@ -72,7 +72,7 @@ export default function Home() {
 
       <AppContainer className="pb-16 md:pb-[120px]">
         <div className="!max-w-[640px] mx-auto">
-          <TableWrapper className="hidden md:block px-8">
+          <TableWrapper className="hidden md:!grid px-8">
             <div className=" col-span-2"></div>
             <TableContent className="text-center">
               <span className="text-primary font-bold py-4 font-inter text-xs md:text-2xl">TLS</span>
