@@ -3,6 +3,7 @@ import { Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { AppFooter } from "../components/AppFooter";
 import { AppHeader } from "../components/AppHeader";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const sans = DM_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
@@ -28,6 +29,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script id="matomo-tracking" strategy="afterInteractive">
+          {`
+            var _paq = window._paq = window._paq  [];
+            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+              var u="https://psedev.matomo.cloud/";
+              _paq.push(['setTrackerUrl', u+'matomo.php']);
+              _paq.push(['setSiteId', '16']);
+              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+              g.async=true; g.src='https://cdn.matomo.cloud/psedev.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+            })();
+          `}
+        </Script>
+      </head>
       <body className={`${inter.className} ${inter.variable} ${sans.variable} font-inter`}>
         <AppHeader />
         {children}
