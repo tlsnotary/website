@@ -27,29 +27,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log("RootLayout");
   return (
     <html lang="en">
-      <head>
-        <Script id="matomo-tracking" strategy="afterInteractive">
-          {`
-            var _paq = window._paq = window._paq  [];
-            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-              var u="https://psedev.matomo.cloud/";
-              _paq.push(['setTrackerUrl', u+'matomo.php']);
-              _paq.push(['setSiteId', '16']);
-              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-              g.async=true; g.src='https://cdn.matomo.cloud/psedev.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-            })();
-          `}
-        </Script>
-      </head>
+      <head />
       <body className={`${inter.className} ${inter.variable} ${sans.variable} font-inter`}>
         <AppHeader />
         {children}
         <AppFooter />
+        <Script id="matomo-tracking" strategy="afterInteractive">
+          {`
+             var _paq = window._paq = window._paq || [];
+             /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+             _paq.push(['trackPageView']);
+             _paq.push(['enableLinkTracking']);
+             (function() {
+               var u="https://psedev.matomo.cloud/";
+               _paq.push(['setTrackerUrl', u+'matomo.php']);
+               _paq.push(['setSiteId', '16']);
+               var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+               g.async=true; g.src='//cdn.matomo.cloud/psedev.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+             })();
+          `}
+        </Script>
       </body>
     </html>
   );
