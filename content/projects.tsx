@@ -35,6 +35,15 @@ export const ProjectList: Project[] = [
     },
   },
   {
+    title: "vlayer",
+    tldr: "Empowering web3 with Verifiable Data",
+    links: {
+      website: "https://www.vlayer.xyz",
+      twitter: "https://x.com/vlayer_xyz",
+      github: "https://github.com/vlayer-xyz"
+    },
+  },
+  {
     title: "ZeroTrustBounty",
     tldr: "A trustless bug bounty platform with redacted bug reports & guaranteed payments to whitehats.",
     links: {
@@ -46,13 +55,6 @@ export const ProjectList: Project[] = [
     tldr: "An open leaderboard of verified real investment returns, enabled by TLSNotary and Jomo.",
     links: {
       github: "https://github.com/chcharcharlie/realreturn",
-    },
-  },
-  {
-    title: "Zero Guard",
-    tldr: "A decentralized zero knowledge powered AI Red Team Network that improves diversity, safety to AI through community",
-    links: {
-      github: "https://github.com/dingchaoz/ZEROGUARD",
     },
   },
 ];
