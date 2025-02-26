@@ -9,6 +9,7 @@ import { Icons } from "@/components/Icons";
 import { Section } from "@/components/Section";
 import Image from "next/image";
 import { classed } from "@tw-classed/react";
+import App from 'next/app';
 
 interface ComparisonTableProps {
   title: string;
@@ -46,10 +47,18 @@ export default function Home() {
               {LABELS.HOMEPAGE.DESCRIPTION}
             </span>
           </div>
+          <div className="flex flex-row gap-4">
+            <AppLink href={LINKS.DOCUMENTATION} external>
+              <Button className="w-full md:w-auto">{LABELS.COMMON.CHECKOUT_DOCS}</Button>
+            </AppLink>
 
-          <AppLink href={LINKS.DOCUMENTATION} external>
-            <Button className="w-full md:w-auto">{LABELS.COMMON.CHECKOUT_DOCS}</Button>
-          </AppLink>
+            <AppLink href={LINKS.DEMO} external>
+              <Button className="w-full md:w-auto">
+                {LABELS.COMMON.CHECKOUT_DEMO}{' '}
+                (Desktop Only{' '} <Icons.ChromeIcon className="inline-block" />)
+              </Button>
+            </AppLink>
+          </div>
         </div>
         <Icons.DividerHomepage className="hidden md:flex mx-auto w-full" />
       </AppContainer>

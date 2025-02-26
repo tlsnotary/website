@@ -4,6 +4,7 @@ export const COMMON_CONTENT = {
   AND_MORE: "... and more!",
   CHECKOUT_GITHUB: "Check out our Github",
   CHECKOUT_DOCS: "Check out our documentation",
+  CHECKOUT_DEMO: "Try TLSNotary",
   LEARN_THE_BASICS: "Learn the basics",
   SERVER_AUTHENTICATION: "Server Authentication",
   DATA_PORTABILITY: "Data Portability",
