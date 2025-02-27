@@ -14,6 +14,7 @@ export const LINKS = {
   GITHUB: "https://github.com/tlsnotary/tlsn",
   TWITTER: "https://twitter.com/tlsnotary",
   DOCUMENTATION: "https://docs.tlsnotary.org/",
+  DEMO: "https://demo.tlsnotary.org/",
   BLOG: "#",
 };
 
