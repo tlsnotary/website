@@ -23,6 +23,9 @@ function HomepageHeader() {
             to="/docs/intro">
             Check out our documentation
           </Link>
+        </div>
+        <br />
+        <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="https://demo.tlsnotary.org">

@@ -1,7 +1,7 @@
 ---
 title: TLSNotary Updates
 authors: [sinu]
-tags: [mpc-tls, proxy]
+# tags: [mpc-tls, proxy]
 ---
 
 # Introduction

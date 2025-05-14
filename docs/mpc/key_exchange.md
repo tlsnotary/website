@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # Key Exchange
 
 In TLS, the first step towards obtaining TLS session keys is to compute a shared secret between the client and the server by running the [ECDH protocol](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie–Hellman). The resulting shared secret in TLS terms is **called the pre-master secret `PMS`**.
