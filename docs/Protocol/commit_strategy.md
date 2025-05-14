@@ -25,4 +25,4 @@ The commitment strategies differ mainly in the number of committed ranges (`K`).
 | `Attestation` | Artifact signed by the `Notary` attesting to the authenticity of the plaintext from a TLS session | Constant     | `Attestation` only contains data that remains constant-sized regardless of `K`, e.g., the Merkle root of the commitments |
 | `Secret`      | Artifact containing secret data that correspond to commitments in `Attestation`                   | Linear       | `Secret` contains some data whose sizes scale linearly with `K`, e.g., a Merkle tree whose number of leaves equals `K`   |
 
-Using the default hash algorithm (i.e., BLAKE3), every additional range committed costs around 250 bytes of increment in the size of `Secret`. For more details, please visit this [Jupyter notebook](https://github.com/tlsnotary/docs-mdbook/blob/main/src/protocol/commit_strategy.ipynb).
+Using the default hash algorithm (i.e., BLAKE3), every additional range committed costs around 250 bytes of increment in the size of `Secret`. For more details, please visit this [Jupyter notebook](https://github.com/tlsnotary/landing-page/blob/docusaurus/docs/Protocol/commit_strategy.ipynb).

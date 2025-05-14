@@ -57,8 +57,8 @@ const config: Config = {
           rehypePlugins: [rehypeKatex],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -91,15 +91,17 @@ const config: Config = {
         src: 'img/logo/tlsn-logo-white-on-blue.png',
       },
       items: [
+        { to: '/about', label: 'About', position: 'left' },
+
+        { to: '/use_cases', label: 'Use Cases', position: 'left' },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Documentation',
         },
-        { to: '/use_cases', label: 'Use Cases', position: 'left' },
+        { to: '/docs/faq', label: 'FAQ', position: 'left' },
 
-        { to: '/docs/intro', label: 'Documentation', position: 'left' },
         { href: 'https://tlsnotary.github.io/tlsn/tlsn_prover/', label: 'API', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
@@ -159,7 +161,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `TLSNotary is a project of Privacy and Scaling Explorations, an Ethereum Foundation supported team.`,
     },
     prism: {
       theme: prismThemes.github,

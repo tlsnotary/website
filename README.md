@@ -49,3 +49,8 @@ Front matter:
 https://docusaurus.io/docs/markdown-features#front-matter
 
 https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter
+
+
+Other Docusaurus websites at PSE:
+* MACI: https://github.com/privacy-scaling-explorations/maci/tree/dev/apps/website
+* MPC: https://github.com/privacy-scaling-explorations/mpc-framework-website
