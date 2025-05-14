@@ -18,4 +18,4 @@ Next, the `Verifier` parses the `opening` with an application-specific parser (e
 
 Below is an example of a verification output for an HTTP 1.1 request and response. Note that since the `Prover` chose not to disclose some sensitive information like their HTTP session token and address, that information will be withheld from the `Verifier` and will appear to him as redacted (in red).
 
-![Verification example](../diagrams/verification_example.svg)
+![Verification example](../../diagrams/light/verification_example.svg)

@@ -11,5 +11,5 @@ The high-level idea is that the `Prover` creates a commitment to the active plai
 
 We also hide the amount of commitments (to preserve `Prover` privacy) by having the `Prover` commit to the Merkle tree of commitments.
 
-
-![Commitment](../diagrams/encoding_commitment.svg)
+![Commitment](../../diagrams/light/encoding_commitment.svg#gh-light-mode-only)
+![Commitment](../../diagrams/dark/encoding_commitment.svg#gh-dark-mode-only)

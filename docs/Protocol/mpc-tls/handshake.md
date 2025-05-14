@@ -4,7 +4,8 @@ sidebar_position: 1
 
 # Handshake
 
-![](../../diagrams/key_exchange.svg)
+![Encryption](../../../diagrams/light/key_exchange.svg#gh-light-mode-only)
+![Encryption](../../../diagrams/dark/key_exchange.svg#gh-dark-mode-only)
 
 A TLS handshake is the first step in establishing a TLS connection between a `Prover` and a `Server`. In TLSNotary the `Prover` is the one who starts the TLS handshake and physically communicates with the `Server`, but all cryptographic TLS operations are performed together with the `Verifier` using MPC.
 

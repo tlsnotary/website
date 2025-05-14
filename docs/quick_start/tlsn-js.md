@@ -60,7 +60,8 @@ In this demo, we will request JSON data from the Star Wars API at https://swapi.
 
 ## Interactive verification with `tlsn-js` <a name="interactive-demo"></a>
 
-![](../diagrams/overview_prover_verifier.svg)
+![](../../diagrams/light/overview_prover_verifier.svg#gh-light-mode-only)
+![](../../diagrams/dark/overview_prover_verifier.svg#gh-dark-mode-only)
 
 Follow the instructions from:
 https://github.com/tlsnotary/tlsn-js/blob/main/demo/interactive-demo/README.md

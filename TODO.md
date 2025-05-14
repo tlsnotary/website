@@ -1,8 +1,8 @@
 TODO:
 * Design/Styling
-* drawio/svg cleanup
+* ~~drawio/svg cleanup~~
 * use cases
-* math in SVGs
+* ~~math in SVGs~~ (Needed an update of local drawio)
 * social card
 * review
 * deployment flow
@@ -11,7 +11,7 @@ TODO:
 * README
 * Matomo tracking: https://github.com/karser/docusaurus-plugin-matomo/tree/main ?
 * check links
-* dark/light theme diagrams
+* ~~dark/light theme diagrams~~
 * rename repo landing-page -> website
 * archive old documentation website
 * What to do with drafts etc?
