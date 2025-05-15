@@ -11,7 +11,8 @@ TLSNotary is not a new project; in fact, it has been around for **more than a de
 
 TLSNotary is a protocol which allows people to export data from any web application and prove facts about it to a third-party in a privacy-preserving way by leveraging secure multi-party computation (MPC) to authenticate data communicated between a Prover and a TLS-enabled web server.
 
-![](/img/tlsnotary-diagram.svg)
+![](../../diagrams/light/overview_prover_verifier.svg#gh-light-mode-only)
+![](../../diagrams/dark/overview_prover_verifier.svg#gh-dark-mode-only)
 
 
 ### Step 1: Multiparty TLS Request"

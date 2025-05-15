@@ -88,7 +88,7 @@ const config: Config = {
       title: 'TLSNotary',
       logo: {
         alt: 'TLSNotary Logo',
-        src: 'img/logo/tlsn-logo-white-on-blue.png',
+        src: 'img/logo/tlsn-logo-blue.svg',
       },
       items: [
         { to: '/about', label: 'About', position: 'left' },
