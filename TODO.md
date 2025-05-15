@@ -15,3 +15,4 @@ TODO:
 * rename repo landing-page -> website
 * archive old documentation website
 * What to do with drafts etc?
+* Check Docusaurus warnings
