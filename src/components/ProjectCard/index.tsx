@@ -3,43 +3,31 @@ import { useColorMode } from "@docusaurus/theme-common";
 import IconDiscord from "../../icons/IconDiscord";
 import IconGithub from "../../icons/IconGithub";
 import IconWebsite from "../../icons/IconWebsite";
-
+import IconTwitter from "../../icons/IconTwitter";
 import styles from "./styles.module.css";
 
 interface ProjectLinks {
   website?: string;
   github?: string;
   discord?: string;
+  twitter?: string;
 }
 
 interface ProjectCardProps {
   name: string;
   description: string;
-  hackathon?: string;
-  status?: string;
   links: ProjectLinks;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
-  hackathon = "",
   links,
   name,
-  status = "",
 }: ProjectCardProps) => {
-  const categories = hackathon ? [hackathon] : [status];
   const { colorMode } = useColorMode();
 
   return (
     <div className={`${styles.card} ${styles[colorMode]}`}>
-      <div className={styles.cardTags}>
-        {categories.map((category) => (
-          <span key={category} className={styles.tag}>
-            {category}
-          </span>
-        ))}
-      </div>
-
       <div className={styles.cardBody}>
         <h2 className={styles.cardTitle}>{name}</h2>
 
@@ -63,6 +51,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {links.discord && (
             <a aria-label="Discord" href={links.discord} rel="noopener noreferrer" target="_blank">
               <IconDiscord />
+            </a>
+          )}
+
+          {links.twitter && (
+            <a aria-label="Twitter" href={links.twitter} rel="noopener noreferrer" target="_blank">
+              <IconTwitter />
             </a>
           )}
         </div>

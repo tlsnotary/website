@@ -2,7 +2,6 @@ import { useColorMode } from "@docusaurus/theme-common";
 import React, { useState, useEffect, useCallback } from "react";
 
 import projects from "../../content/projects.json";
-import { getProjectsByFilter, getUniqueHackathons, getUniqueStatuses } from "../../utils/getProjectsByFilter";
 import ActionCard from "../ActionCard";
 import ProjectCard from "../ProjectCard";
 
@@ -11,12 +10,11 @@ import styles from "./styles.module.css";
 interface Project {
   name: string;
   description: string;
-  hackathon: string | null;
-  status: string;
   links: {
     website?: string;
     github?: string;
     discord?: string;
+    twitter?: string;
   };
 }
 
@@ -33,122 +31,32 @@ function chunkArray(array: Project[]): Project[][] {
   return result.length === 0 ? [[]] : result;
 }
 
-const typedGetProjectsByFilter = getProjectsByFilter as (
-  projects: Project[],
-  filters: { hackathon: string; status: string },
-) => Project[];
-const typedGetUniqueHackathons = getUniqueHackathons as (projects: Project[]) => string[];
-const typedGetUniqueStatuses = getUniqueStatuses as (projects: Project[]) => string[];
-
 const ProjectList: React.FC = () => {
-  const [filteredProjects, setFilteredProjects] = useState<Project[][]>(chunkArray(sortedProjects));
-  const [selectedHackathon, setSelectedHackathon] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("");
+  const [projects, setProjects] = useState<Project[][]>(chunkArray(sortedProjects));
   const [currentPage, setCurrentPage] = useState(0);
   const { colorMode } = useColorMode();
 
-  const filterProjects = useCallback(() => {
-    const filtered = typedGetProjectsByFilter(sortedProjects, {
-      hackathon: selectedHackathon,
-      status: selectedStatus,
-    });
-    setFilteredProjects(chunkArray(filtered));
-    setCurrentPage(0);
-  }, [selectedHackathon, selectedStatus]);
-
   useEffect(() => {
-    filterProjects();
-  }, [filterProjects]);
-
-  const hackathons = typedGetUniqueHackathons(sortedProjects);
-  const statuses = typedGetUniqueStatuses(sortedProjects);
+    setProjects(chunkArray(sortedProjects));
+    setCurrentPage(0);
+  }, []);
 
   return (
     <div className={`${styles.projectList} ${styles[colorMode]}`}>
-      <div className={styles.filters}>
-        <div className={styles.filterGroup}>
-          <h3>Status</h3>
-
-          <div className={styles.filterOptions}>
-            <button
-              className={selectedStatus === "" ? styles.active : ""}
-              type="button"
-              onClick={() => {
-                setSelectedStatus("");
-              }}
-            >
-              All
-            </button>
-
-            {statuses.map((status) => (
-              <button
-                key={status}
-                className={selectedStatus === status ? styles.active : ""}
-                type="button"
-                onClick={() => {
-                  setSelectedStatus(status);
-                }}
-              >
-                {status}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.filterGroup}>
-          <h3>Hackathon</h3>
-
-          <div className={styles.filterOptions}>
-            <button
-              className={selectedHackathon === "" ? styles.active : ""}
-              type="button"
-              onClick={() => {
-                setSelectedHackathon("");
-              }}
-            >
-              All
-            </button>
-
-            {hackathons.map((hackathon) => (
-              <button
-                key={hackathon}
-                className={selectedHackathon === hackathon ? styles.active : ""}
-                type="button"
-                onClick={() => {
-                  setSelectedHackathon(hackathon);
-                }}
-              >
-                {hackathon}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className={styles.projectsGrid}>
-        {filteredProjects[currentPage]?.length > 0 ? (
-          filteredProjects[currentPage].map((project) => (
+        {
+          projects[currentPage].map((project) => (
             <ProjectCard
               key={project.name}
               description={project.description}
-              hackathon={project.hackathon || undefined}
               links={project.links}
               name={project.name}
-              status={project.status}
             />
           ))
-        ) : (
-          <div className={styles.noResults}>
-            <p>
-              <strong>No results found.</strong>
-            </p>
-
-            <p>No projects matching these filters. Try changing your search.</p>
-          </div>
-        )}
+        }
       </div>
 
-      {filteredProjects.length > 1 && (
+      {projects.length > 1 && (
         <div className={styles.pagination}>
           <span
             className={`${styles.paginationArrow} ${currentPage === 0 ? styles.disabled : ""}`}
@@ -166,7 +74,7 @@ const ProjectList: React.FC = () => {
             ←
           </span>
 
-          {filteredProjects.map((_, index) => (
+          {projects.map((_, index) => (
             <span
               key={`page-${String(index)}`}
               className={`${styles.paginationNumber} ${currentPage === index ? styles.active : ""}`}
@@ -186,15 +94,15 @@ const ProjectList: React.FC = () => {
           ))}
 
           <span
-            className={`${styles.paginationArrow} ${currentPage === filteredProjects.length - 1 ? styles.disabled : ""}`}
+            className={`${styles.paginationArrow} ${currentPage === projects.length - 1 ? styles.disabled : ""}`}
             role="button"
             tabIndex={0}
             onClick={() => {
-              setCurrentPage((prev) => Math.min(filteredProjects.length - 1, prev + 1));
+              setCurrentPage((prev) => Math.min(projects.length - 1, prev + 1));
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
-                setCurrentPage((prev) => Math.min(filteredProjects.length - 1, prev + 1));
+                setCurrentPage((prev) => Math.min(projects.length - 1, prev + 1));
               }
             }}
           >
@@ -205,12 +113,21 @@ const ProjectList: React.FC = () => {
 
       <div className={styles.actionCardContainer}>
         <ActionCard
-          buttonText="Submit your project"
-          buttonUrl="https://github.com/privacy-scaling-explorations/maci/issues/new?title=Add+a+Project+to+the+Projects+Showcase"
-          description="We are missing your project! Add your project to this page and show your awesomeness to the world."
-          title="Show what you have built"
+          buttonText="Join our Discord"
+          buttonUrl="https://discord.gg/9XwESXtcN7"
+          description="Are you using TLSNotary in your project? Reach out on Discord and tell us about your work!"
+          title="Share what you're building with TLSNotary"
         />
       </div>
+
+      {/* <div className={styles.actionCardContainer}>
+        <ActionCard
+          buttonText="Submit your project"
+          buttonUrl="https://github.com/tlsnotary/landing-page/issues/new?title=Add+a+Project+to+the+Projects+Showcase"
+          description="Submit your project to this page."
+          title="Are we missing your project?"
+        />
+      </div> */}
     </div>
   );
 };

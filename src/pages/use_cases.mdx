@@ -1,10 +1,9 @@
 ---
-title: my hello page title
-description: my hello page description
 hide_table_of_contents: true
 ---
 import styles from './index.module.css';
 import Link from '@docusaurus/Link';
+import ProjectsList from "../components/ProjectList";
 
 # Use cases
 
@@ -26,16 +25,10 @@ You can use TLSNotary for:
 
 ...and more!
 
-<!-- TODO: Projects using TLSNotary -->
+## Projects using TLSNotary
 
-## Share what you're building with TLSNotary
-
-Are you using TLSNotary in your project? Reach out on Discord and tell us about your work!
-
-<div className={styles.buttons}>
-    <Link
-    className="button button--secondary button--lg"
-    to="https://discord.gg/9XwESXtcN7">
-        Join our Discord
-    </Link>
-</div>
+<section className={styles.introduction}>
+    <div className="container">
+        <ProjectsList />
+    </div>
+</section>
