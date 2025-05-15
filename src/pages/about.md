@@ -15,15 +15,15 @@ TLSNotary is a protocol which allows people to export data from any web applicat
 ![](../../diagrams/dark/overview_prover_verifier.svg#gh-dark-mode-only)
 
 
-### Step 1: Multiparty TLS Request"
+### Step 1: "Multiparty TLS Request"
 
 The Prover requests data from a Server over TLS. The verifier cooperates in secure and privacy-preserving multi-party computation (MPC). This cooperation guaranties that the Prover can not cheat and allows the Verifier to check the authenticity of the data in step 3.",
 
-### Step 2: Selective Disclosure",
+### Step 2: "Selective Disclosure",
 
 The Prover selectively discloses the data to the Verifier by redacting sensitive information prior to sharing it. Selective disclosure may involve simple redactions, or more advanced techniques such as a zero-knowledge proofs that can prove properties of redacted data without revealing the data itself.
 
-### "Step 3: Data Verification"
+### Step 3: "Data Verification"
 
 The Verifier verifies that the prover did not tamper with the data and also verifiers the data origin, by inspecting the Server certificate through trusted certificate authorities (CAs). The Verifier can now make assertions about the non-redacted content of the transcript.
 
