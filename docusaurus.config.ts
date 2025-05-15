@@ -103,22 +103,23 @@ const config: Config = {
 
         { to: '/docs/faq', label: 'FAQ', position: 'left' },
 
-        { href: 'https://tlsnotary.github.io/tlsn/tlsn_prover/', label: 'API', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
+
+
+        { href: 'https://tlsnotary.github.io/tlsn/tlsn_prover/', label: 'API', position: 'right' },
         {
-          href: 'https://discord.com/invite/9XwESXtcN7',
-          label: 'Discord',
+          href: 'https://github.com/tlsnotary',
+          label: 'GitHub',
           position: 'right',
         },
-
         {
           href: 'https://x.com/tlsnotary',
           label: 'X',
           position: 'right',
         },
         {
-          href: 'https://github.com/tlsnotary',
-          label: 'GitHub',
+          href: 'https://discord.com/invite/9XwESXtcN7',
+          label: 'Discord',
           position: 'right',
         },
       ],
@@ -130,8 +131,16 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Documentation',
               to: '/docs/intro',
+            },
+            {
+              label: 'Quick Start',
+              to: '/docs/quick_start',
+            },
+            {
+              label: 'FAQ',
+              to: '/docs/faq',
             },
           ],
         },
@@ -145,6 +154,10 @@ const config: Config = {
             {
               label: 'X',
               href: 'https://x.com/tlsnotary',
+            },
+            {
+              label: 'PSE',
+              href: 'https://pse.dev',
             },
           ],
         },
