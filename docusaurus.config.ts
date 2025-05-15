@@ -100,7 +100,10 @@ const config: Config = {
           position: 'left',
           label: 'Documentation',
         },
+
         { to: '/docs/faq', label: 'FAQ', position: 'left' },
+
+        { to: '/projects', label: 'Projects', position: 'left' },
 
         { href: 'https://tlsnotary.github.io/tlsn/tlsn_prover/', label: 'API', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
