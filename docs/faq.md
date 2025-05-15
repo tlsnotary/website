@@ -38,7 +38,7 @@ Yes, but for public data, a less-resource-intensive man-in-the-middle approach i
 
 ### How can I inspect and verify a TLSNotary proof?
 
-The easiest way is to use the proof-of-concept [TLSNotary Explorer](https://explorer.tlsnotary.org).
+The easiest way is to use the browser extension.
 
 ### Which TLS versions are supported?
 
