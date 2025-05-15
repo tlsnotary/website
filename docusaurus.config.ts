@@ -4,6 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import matomoPlugin from './plugins/matomo-plugin';
+import { redirects } from './plugins/redirect/index';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -26,8 +27,10 @@ const config: Config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-
-  plugins: [matomoPlugin],
+  plugins: [
+    matomoPlugin,
+    ['@docusaurus/plugin-client-redirects', { redirects },],
+  ],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -97,7 +100,7 @@ const config: Config = {
       items: [
         { to: '/about', label: 'About', position: 'left' },
 
-        { to: '/use_cases', label: 'Use Cases', position: 'left' },
+        { to: '/use-cases', label: 'Use Cases', position: 'left' },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
