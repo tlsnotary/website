@@ -16,3 +16,4 @@ TODO:
 * archive old documentation website
 * What to do with drafts etc?
 * Check Docusaurus warnings
+* Removed current landing page folder "old"

@@ -8,7 +8,7 @@ In this quick start we will prove ownership of a Twitter account with TLSNotary'
 
 Optionaly you can [install](#install) and configure a local [websocket proxy](#proxy) and local [notary server](#notary-server).
 
-## Install Browser Extension (Chrome/Brave) <a name="install"></a>
+## Install Browser Extension (Chrome/Brave) {#install}
 
 The easiest way to install the TLSN browser extension is to use **[Chrome Web Store](https://chromewebstore.google.com/detail/gcfkkledipjbgdbimfpijgbkhajiaaph)**.
 
@@ -29,7 +29,7 @@ Alternatively, you can install it manually:
 
 ![](images/extension_pin.png)
 
-## Websocket Proxy <a name="proxy"></a>
+## Websocket Proxy {#proxy}
 
 Since a web browser doesn't have the ability to make TCP connection, we need to use a websocket proxy server. You can either run one yourself, or use a TLSNotary hosted proxy.
 
@@ -54,7 +54,7 @@ Note the `api.x.com:443` argument on the last line.
 
 Next use  `ws://localhost:55688` as **proxy API** in Step 3 above.
 
-## Notary Server <a name="notary-server"></a>
+## Notary Server {#notary-server}
 
 To create a TLSNotary proof, the browser extension needs a TLSNotary notary server. In a real world scenario, this server should be run by a neutral party, or by the verifier of the proofs. In this quick start, you can either run the server yourself or use the test server from the TLSNotary team. Notarizing TLS with Multi Party Computation involves a lot of communication between the extension and notary server, so running a local server is the fastest option. 
 
@@ -74,7 +74,7 @@ If you plan to run a local notary server:
 
 <img width="478"  src="images/extension_proxy.png" />
 
-### Run a Local Notary Server <a name="local-notary"></a>
+### Run a Local Notary Server {#local-notary}
 
 1. Clone the TLSNotary repository (defaults to the `main` branch, which points to the latest release):
    ```shell
@@ -88,7 +88,7 @@ If you plan to run a local notary server:
 
 The notary server will now be running in the background waiting for connections.
 
-## Notarize Twitter Account Access <a name="notarize"></a>
+## Notarize Twitter Account Access {#notarize}
 
 1. Open the extension, you should see the Twitter plugin:  
    <img width="477" src="images/extension_plugins.png" />

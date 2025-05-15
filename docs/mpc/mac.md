@@ -2,14 +2,13 @@
 sidebar_position: 5
 sidebar_label: MAC
 ---
+import TOCInline from '@theme/TOCInline';
+
 # Computing MAC in 2PC
 
-1. [What is a MAC](#section1)
-2. [How a MAC is computed in AES-GCM](#section2)
-3. [Computing MAC using secure two-party computation (2PC)](#section3) 
+<TOCInline toc={toc} maxHeadingLevel={2} />
 
-
-## 1. What is a MAC <a name="section1"></a>
+## 1. What is a MAC
 
 When sending an encrypted ciphertext to the Webserver, the User attaches a
 checksum to it. The Webserver uses this checksum to check whether the ciphertext
@@ -26,7 +25,7 @@ malicious actor to modify the **plaintext** by flipping certain bits of the
 **ciphertext**.
 
 
-## 2. How a MAC is computed in AES-GCM <a name="section2"></a>
+## 2. How a MAC is computed in AES-GCM
 
 In TLS the plaintext is split up into chunks called "TLS records". Each TLS
 record is encrypted and a MAC is computed for the ciphertext. The MAC (in
@@ -76,7 +75,7 @@ Standard math properties hold in finite field math, viz. commutative: $a+b=b+a$
 and distributive: $a(b+c)=ab+ac$.
 
 
-## 3. Computing MAC using secure two-party computation (2PC) <a name="section3"></a>
+## 3. Computing MAC using secure two-party computation (2PC)
 
 The goal of the protocol is to compute the MAC in such a way that neither party
 would learn the other party's share of $H$ i.e. the `GHASH key`

@@ -79,7 +79,7 @@ knows the secret key the `Server` uses to authenticate data and can trivially ge
 
 The `Verifier` collaborates with the `Prover` using secure multi-party computation (MPC). There is no requirement for the `Verifier` to monitor or to access the `Prover's` TLS connection. The `Prover` is the one who communicates with the server.
 
-### What are the trust assumptions of the TLSNotary protocol? 
+### What are the trust assumptions of the TLSNotary protocol? {#faq2}
 
 The protocol does not have trust assumptions. In particular, it does not rely on secure hardware or on the untamperability of the communication channel.
 
@@ -127,7 +127,7 @@ If you are experiencing slow performance or server timeouts, make sure you are b
 ```
 cargo run --release
 ```
-### How to run TLSNotary with extra logging? 
+### How to run TLSNotary with extra logging? {#faq11}
 
 To get deeper insights into what TLSNotary is doing, you can enable extra logging with `RUST_LOG=debug` or `RUST_LOG=trace`. This will generate a lot of output, as it logs extensive network activity. It’s recommended to filter logs for better readability. The recommended configuration is:
 ```

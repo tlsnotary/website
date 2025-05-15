@@ -32,7 +32,7 @@ Visit [demo.tlsnotary.org](https://demo.tlsnotary.org) to try the different step
 
 Learn how to use TLSNotary in a React/Typescript app with the `tlsn-js` NPM module.
 
-[Proving and Verifying Data in a React/Typescript App](tlsn-js.md#browser)
+[Proving and Verifying Data in a React/Typescript App](tlsn-js.md#react-ts-webpack)
 
 ### Browser Extension
 

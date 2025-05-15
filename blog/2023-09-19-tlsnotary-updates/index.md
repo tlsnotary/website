@@ -95,7 +95,7 @@ In this configuration, the Verifier acts as a proxy and simply records the encry
 
 This approach is quite viable and is one which other teams are pursuing. However, it comes with a different set of security assumptions. Rather than relying just on cryptographic assumptions, the proxy approach also makes _network topology_ assumptions. It assumes that the Verifier has a direct connection to the Server, and that a malicious Prover can not bypass or otherwise insert themselves in-between the Verifier and Server. As the Prover holds the full TLS session keys, if they are able to invalidate this assumption it completely breaks the integrity of the protocol.
 
-As explained in the above [section on Notaries](#General-purpose-Verifier-Notary), we find the ability to hide the identity of the Server from the Verifier important. This is clearly not possible with this model.
+As explained in the above [section on Notaries](#general-purpose-verifier-notary), we find the ability to hide the identity of the Server from the Verifier important. This is clearly not possible with this model.
 
 To be fair, there are viable mitigations to network attacks and in many scenarios these assumptions are acceptable. We look forward to seeing what is unlocked with the application of this model, as the simplicity and efficiency of this approach is enticing.
 

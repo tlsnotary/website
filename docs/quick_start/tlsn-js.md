@@ -12,7 +12,7 @@ This quick start uses the react/typescript [demos in `tlsn-js`](https://github.c
 2. [`interactive-demo`: prove data interactively to a Verifier](#interactive-demo)
 3. [`web-to-web-p2p`: prove data between two peers, in the browser](#web-to-web-p2p)
 
-## `tlsn-js` in a React/Typescript app<a name="react-ts-webpack"></a>
+## `tlsn-js` in a React/Typescript app {#react-ts-webpack}
 
 In this demo, we will request JSON data from the Star Wars API at https://swapi.dev. We will use `tlsn-js` to notarize the TLS request with TLSNotary and store the result in a *proof*. Then, we will use `tlsn-js` again to verify this *proof*.
 
@@ -58,7 +58,7 @@ In this demo, we will request JSON data from the Star Wars API at https://swapi.
 8. Click the **Start demo** button
 9. Open **Developer Tools** and monitor the console logs
 
-## Interactive verification with `tlsn-js` <a name="interactive-demo"></a>
+## Interactive verification with `tlsn-js` {#interactive-demo}
 
 ![](../../diagrams/light/overview_prover_verifier.svg#gh-light-mode-only)
 ![](../../diagrams/dark/overview_prover_verifier.svg#gh-dark-mode-only)
@@ -66,18 +66,18 @@ In this demo, we will request JSON data from the Star Wars API at https://swapi.
 Follow the instructions from:
 https://github.com/tlsnotary/tlsn-js/blob/main/demo/interactive-demo/README.md
 
-## Web-to-web proofs with `tlsn-js`<a name="web-to-web-p2p"></a>
+## Web-to-web proofs with `tlsn-js` {#web-to-web-p2p}
 
 This demo showcases peer-to-peer communication between a web prover and a web verifier using TLSNotary. The prover fetches data from swapi.dev and proves it to the verifier.
 
 Follow the instructions from:
 https://github.com/tlsnotary/tlsn-js/blob/main/demo/web-to-web-p2p/README.md
 
-## Run a local notary server and websocket proxy <a name="local"></a> (Optional)
+## Run a local notary server and websocket proxy (Optional) {#local}
 
 The instructions above, use the [PSE](https://pse.dev) hosted notary server and websocket proxy. This is easier for this quick start because it requires less setup. If you develop your own applications with `tlsn-js`, development will be easier with locally hosted services. This section explains how.
 
-### Websocket Proxy <a name="proxy"></a>
+### Websocket Proxy {#proxy}
 
 Since a web browser doesn't have the ability to make TCP connection, we need to use a websocket proxy server.
 
@@ -92,7 +92,7 @@ wstcp --bind-addr 127.0.0.1:55688 swapi.dev:443
 
 Note the `swapi.dev:443` argument on the last line, this is the server we will use in this quick start.
 
-### Run a Local Notary Server <a name="local-notary"></a>
+### Run a Local Notary Server {#local-notary}
 
 For this demo, we also need to run a local notary server.
 
