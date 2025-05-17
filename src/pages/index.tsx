@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
@@ -52,7 +51,6 @@ export default function Home(): ReactNode {
       title={`${siteConfig.title} - Secure Data Verification`}
       description="TLSNotary - Verify the authenticity of TLS data while protecting privacy. Make data portable without compromising security.">
       <HomepageHeader />
-
       <main>
         <section className={styles.introduction}>
           <div className="container text--center">
@@ -60,7 +58,6 @@ export default function Home(): ReactNode {
             <Why />
           </div>
         </section>
-
         <section className={styles.introduction}>
           <div className="container text--center">
             <img
@@ -68,6 +65,9 @@ export default function Home(): ReactNode {
               alt="TLSNotary Infographic"
               className="margin-bottom--lg"
             />
+            <div className="markdown">
+              <TLSNotaryTable />
+            </div>
           </div>
         </section>
 

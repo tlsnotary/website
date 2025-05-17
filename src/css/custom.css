@@ -44,3 +44,20 @@
   margin-right: 8px;
   height: 32px;
 }
+
+/* Center footer content */
+.footer {
+  text-align: center;
+}
+
+.footer__links {
+  justify-content: center;
+}
+
+.footer__col {
+  text-align: center;
+}
+
+.footer__copyright {
+  text-align: center;
+}

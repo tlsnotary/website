@@ -80,12 +80,23 @@
   margin: 0 auto;
 }
 
+.introduction table {
+  margin: 0 auto;
+  width: auto;
+}
+
 :global(.markdown) {
   font-size: 1.1rem;
   line-height: 1.7;
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+:global(.markdown table) {
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
 }
 
 :global(.markdown p) {
