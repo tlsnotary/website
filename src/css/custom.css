@@ -33,3 +33,14 @@
 [data-theme='dark'] img[src$='#gh-light-mode-only'] {
   display: none;
 }
+
+/* Fix logo alignment in navbar */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo img {
+  margin-right: 8px;
+  height: 32px;
+}

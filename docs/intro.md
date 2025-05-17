@@ -53,14 +53,22 @@ In this setup, the `Notary` cryptographically signs commitments to the data and 
 ## What Can TLSNotary Do?
 
 TLSNotary can be used for various purposes. For example, you can use TLSNotary to prove that:
-- you have access to an account on a web platform
-- a website showed specific content on a certain date
-- you have private information about yourself (address, birth date, health, etc.)
-- you have received a money transfer using your online banking account without revealing your login credentials or sensitive financial information
-- you received a private message from someone
-- you purchased an item online
-- you were blocked from using an app
-- you earned professional certificates
+
+You have access to an account on a web platform
+
+A website showed specific content on a certain date
+
+You have private information about yourself (address, birth date, health, etc.)
+
+You have received a money transfer using your online banking account without revealing your login credentials or sensitive financial information
+
+You received a private message from someone
+
+You purchased an item online
+
+You were blocked from using an app
+
+You earned professional certificates
 
 While TLSNotary can notarize publicly available data, it does not solve the "[oracle problem](https://ethereum.org/en/developers/docs/oracles/)". For this use case, existing oracle solutions are more suitable.
 

@@ -2,7 +2,7 @@
 title: About
 ---
 ## Who we are
-    
+
 TLSNotary is an open-source protocol developed by the **Privacy and Scaling Exploration (PSE)** research lab of the Ethereum Foundation.
 
 TLSNotary is not a new project; in fact, it has been around for **more than a decade**. In 2022, TLSNotary was rebuilt from the ground up in **Rust** incorporating state-of-the-art cryptographic protocols. This renewed version of the TLSNotary protocol offers enhanced security, privacy, and performance.
@@ -19,7 +19,7 @@ TLSNotary is a protocol which allows people to export data from any web applicat
 
 The Prover requests data from a Server over TLS. The verifier cooperates in secure and privacy-preserving multi-party computation (MPC). This cooperation guaranties that the Prover can not cheat and allows the Verifier to check the authenticity of the data in step 3.",
 
-### Step 2: "Selective Disclosure",
+### Step 2: "Selective Disclosure"
 
 The Prover selectively discloses the data to the Verifier by redacting sensitive information prior to sharing it. Selective disclosure may involve simple redactions, or more advanced techniques such as a zero-knowledge proofs that can prove properties of redacted data without revealing the data itself.
 
