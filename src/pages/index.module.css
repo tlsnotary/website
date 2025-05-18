@@ -53,6 +53,15 @@
   height: 48px;
 }
 
+/* Dark mode styles for all primary buttons */
+[data-theme='dark'] :global(.button--primary) {
+  color: white;
+}
+
+[data-theme='dark'] :global(.button--primary svg) {
+  color: white;
+}
+
 .buttons :global(.button svg) {
   width: 20px;
   height: 20px;
@@ -61,7 +70,8 @@
 
 .introduction {
   padding: 4rem 0;
-  background: white;
+  background: var(--ifm-background-color);
+  color: var(--ifm-color-content);
 }
 
 .introduction h2 {
@@ -69,13 +79,13 @@
   font-weight: 600;
   text-align: center;
   margin-bottom: 2rem;
-  color: #243F5F;
+  color: var(--ifm-color-primary);
 }
 
 .introduction p {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #333;
+  color: var(--ifm-color-content);
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -91,14 +101,16 @@
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;
+  color: var(--ifm-color-content);
 }
 
 .introduction :global(.markdown p) {
   text-align: center;
+  color: var(--ifm-color-content);
 }
 
 .introduction :global(.markdown strong) {
-  color: #243F5F;
+  color: var(--ifm-color-primary);
 }
 
 .introduction :global(.markdown table) {
@@ -122,8 +134,13 @@ img {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 2rem;
-  background: white;
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
   margin: 2rem auto;
+}
+
+[data-theme='dark'] .container {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 768px) {
@@ -146,4 +163,5 @@ img {
 :global(.markdown) {
   font-size: 1.1rem;
   line-height: 1.7;
+  color: var(--ifm-color-content);
 }

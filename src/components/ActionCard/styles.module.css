@@ -1,9 +1,10 @@
 .actionCard {
-  background-color: #1a202c; /* darkBlue */
-  color: white;
+  background-color: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
   border-radius: 24px;
   width: 100%;
   padding: 64px 32px;
+  border: 1px solid var(--ifm-color-emphasis-200);
 }
 
 .actionCardBody {
@@ -26,7 +27,7 @@
   font-size: 30px;
   line-height: 44px;
   font-weight: normal;
-  color: white;
+  color: var(--ifm-color-content);
 }
 
 .actionCardDescription {
@@ -34,7 +35,7 @@
   font-size: 16px;
   line-height: 25px;
   font-weight: normal;
-  color: #a0aec0; /* text.400 */
+  color: var(--ifm-color-content-secondary);
 }
 
 .actionCardButtonContainer {
@@ -44,13 +45,20 @@
 .actionCardButton {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: #3182ce; /* primary */
-  color: white;
+  background-color: var(--ifm-color-primary);
+  color: var(--ifm-color-white);
   text-decoration: none;
   border-radius: 0.25rem;
   font-size: 1rem;
   line-height: 1.5;
   text-align: center;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.actionCardButton:hover {
+  background-color: var(--ifm-color-primary-darker);
+  color: var(--ifm-color-white);
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {
@@ -93,4 +101,8 @@
   .actionCard {
     width: 1110px;
   }
+}
+
+[data-theme='dark'] .actionCard {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
