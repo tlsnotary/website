@@ -8,7 +8,6 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 import actioncard_styles from "../components/ActionCard/styles.module.css";
 import IconChrome from '@site/src/icons/IconChrome';
-import TLSNotaryTable from './landing_page/_table.md';
 import Why from './landing_page/_why.md';
 import Build from './landing_page/_build.md';
 
@@ -65,9 +64,6 @@ export default function Home(): ReactNode {
               alt="TLSNotary Infographic"
               className="margin-bottom--lg"
             />
-            <div className="markdown">
-              <TLSNotaryTable />
-            </div>
           </div>
         </section>
 
