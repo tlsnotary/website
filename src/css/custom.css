@@ -1,0 +1,95 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #243F5F;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f2f2f2;
+  --ifm-color-content: #1c1e21;
+  --ifm-color-content-secondary: #606770;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #4D82BC;
+  --ifm-color-primary-dark: #3B71AB;
+  --ifm-color-primary-darker: #2E609A;
+  --ifm-color-primary-darkest: #214F89;
+  --ifm-color-primary-light: #6193CD;
+  --ifm-color-primary-lighter: #75A4DE;
+  --ifm-color-primary-lightest: #89B5EF;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --ifm-background-color: #1c1e21;
+  --ifm-background-surface-color: #242526;
+  --ifm-color-content: #e3e3e3;
+  --ifm-color-content-secondary: #a4a6a8;
+
+  --ifm-navbar-background-color: var(--ifm-background-surface-color);
+  --ifm-dropdown-background-color: var(--ifm-background-surface-color);
+  --ifm-card-background-color: var(--ifm-background-surface-color);
+  --ifm-toc-border-color: var(--ifm-color-emphasis-200);
+}
+
+[data-theme='light'] img[src$='#gh-dark-mode-only'],
+[data-theme='dark'] img[src$='#gh-light-mode-only'] {
+  display: none;
+}
+
+/* Fix logo alignment in navbar */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo img {
+  margin-right: 8px;
+  height: 32px;
+}
+
+/* Center footer content */
+.footer {
+  text-align: center;
+}
+
+.footer__links {
+  justify-content: center;
+}
+
+.footer__col {
+  text-align: center;
+}
+
+.footer__copyright {
+  text-align: center;
+}
+
+/* Additional dark mode overrides */
+[data-theme='dark'] {
+  /* Ensure text is readable in dark mode */
+  color: var(--ifm-color-content);
+}
+
+[data-theme='dark'] .navbar {
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+}
+
+[data-theme='dark'] .table-of-contents {
+  border-left-color: var(--ifm-toc-border-color);
+}
+
+[data-theme='dark'] .footer {
+  background-color: var(--ifm-background-surface-color);
+}

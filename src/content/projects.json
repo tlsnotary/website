@@ -1,0 +1,60 @@
+[
+  {
+    "name": "ZKP2P",
+    "description": "Completely peer-to-peer leveraging everyday payment networks",
+    "links": {
+      "website": "https://zkp2p.xyz",
+      "twitter": "https://x.com/zkp2p",
+      "github": "https://github.com/zkp2p"
+    }
+  },
+  {
+    "name": "OpenLayer (Jomo)",
+    "description": "Scale web3 through optimistic verifiable computation",
+    "links": {
+      "website": "https://www.openlayer.tech/",
+      "twitter": "https://x.com/OpenLayerHQ",
+      "github": "https://github.com/0xJomo"
+    }
+  },
+  {
+    "name": "Opacity Labs",
+    "description": "The ZKP protocol for proving anything without revealing the details",
+    "links": {
+      "website": "https://www.opacity.network/",
+      "twitter": "https://warpcast.com/~/channel/opacity"
+    }
+  },
+  {
+    "name": "vlayer",
+    "description": "Empowering web3 with Verifiable Data",
+    "links": {
+      "website": "https://www.vlayer.xyz",
+      "twitter": "https://x.com/vlayer_xyz",
+      "github": "https://github.com/vlayer-xyz"
+    }
+  },
+  {
+    "name": "KapWork",
+    "description": "Automated invoice verification for Factoring Companies",
+    "links": {
+      "website": "https://kapwork.com/",
+      "github": "https://github.com/antojoseph/ZeroTrustBounty"
+    }
+  },
+  {
+    "name": "Keyring Network",
+    "description": "Institutional-grade compliance",
+    "links": {
+      "website": "https://keyring.network",
+      "twitter": "https://x.com/KeyringNetwork"
+    }
+  },
+  {
+    "name": "Usher Labs",
+    "description": "Secure and verifiable data pipelines between traditional systems and blockchains",
+    "links": {
+      "website": "https://www.usher.so/"
+    }
+  }
+]

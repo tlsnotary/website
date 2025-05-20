@@ -1,0 +1,18 @@
+sinu:
+  name: Sinu
+  title: Tech lead
+  url: https://github.com/sinui0
+  image_url: https://github.com/sinui0.png
+  page: true
+  socials:
+    x: sinu_eth
+    github: sinui0
+
+heeckhau:
+  name: Hendrik Eeckhaut
+  url: https://github.com/heeckhau
+  image_url: https://github.com/heeckhau.png
+  page: true
+  socials:
+    x: heeckhau
+    github: heeckhau
