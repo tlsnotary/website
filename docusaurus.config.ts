@@ -178,6 +178,10 @@ const config: Config = {
               label: 'GitHub',
               href: 'https://github.com/tlsnotary',
             },
+            {
+              label: 'Release Notes',
+              href: 'https://github.com/tlsnotary/tlsn/releases',
+            },
           ],
         },
       ],

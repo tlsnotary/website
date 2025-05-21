@@ -10,6 +10,7 @@ import actioncard_styles from "../components/ActionCard/styles.module.css";
 import IconChrome from '@site/src/icons/IconChrome';
 import Why from './landing_page/_why.md';
 import Build from './landing_page/_build.md';
+import IconGithub from '../icons/IconGithub';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -75,6 +76,16 @@ export default function Home(): ReactNode {
                 className="button button--primary button--lg"
                 to="/docs/intro">
                 <span>Start Building</span>
+              </Link>
+            </div>
+            <div className="margin-top--lg">
+              <Link
+                className="button button--primary button--lg"
+                href="https://github.com/tlsnotary/tlsn/releases"
+                rel="noopener noreferrer"
+                target="_blank">
+                <span>Release notes</span>
+                <IconGithub />
               </Link>
             </div>
           </div>
