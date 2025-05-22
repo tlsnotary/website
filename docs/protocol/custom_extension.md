@@ -45,7 +45,7 @@ The [Notary server](https://github.com/tlsnotary/tlsn/tree/main/crates/notary/se
 NS_NOTARIZATION__ALLOW_EXTENSIONS=true cargo run --release
 ```
 
-Currently, the notary server does not support adding its own extensions or performing validations on `Prover`-supplied extensions out of the box. To do so, you’ll need to extend the notary server using the APIs outlined in the [API docs](https://tlsnotary.github.io/tlsn/tlsn_core/attestation/index.html#extensions).
+Currently, the notary server does not support adding its own extensions or performing validations on extensions requested by the `Prover` out of the box. To do so, you’ll need to extend the notary server using the APIs outlined in the [API docs](https://tlsnotary.github.io/tlsn/tlsn_core/attestation/index.html#extensions).
 
 ### Verifier
 
