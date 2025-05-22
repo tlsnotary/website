@@ -74,7 +74,7 @@ While TLSNotary can notarize publicly available data, it does not solve the "[or
 
 ## What TLS version does TLSNotary support?
 
-TLSNotary currently supports TLS 1.2. TLS 1.3 support will be added in 2024.
+TLSNotary currently supports TLS 1.2. Support for TLS 1.3 is on the roadmap.
 
 ## Who is behind TLSNotary?
 
