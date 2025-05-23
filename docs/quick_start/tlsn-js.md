@@ -102,8 +102,7 @@ For this demo, we also need to run a local notary server.
    ```
 2. Run the notary server:
    ```sh
-   cd crates/notary/server
-   cargo run --release -- --tls-enabled false
+   cargo run --release --bin notary-server
    ```
 
 The notary server will now be running in the background waiting for connections.
