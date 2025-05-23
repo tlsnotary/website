@@ -16,3 +16,11 @@ heeckhau:
   socials:
     x: heeckhau
     github: heeckhau
+
+dan:
+  name: Dan
+  url: https://github.com/themighty1
+  image_url: https://github.com/themighty1.png
+  page: true
+  socials:
+    github: themighty1
