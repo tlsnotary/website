@@ -27,6 +27,11 @@ The Prover selectively discloses the data to the Verifier by redacting sensitive
 
 The Verifier verifies that the prover did not tamper with the data and also verifiers the data origin, by inspecting the Server certificate through trusted certificate authorities (CAs). The Verifier can now make assertions about the non-redacted content of the transcript.
 
+## Project timeline
+
+![](../../diagrams/light/timeline.svg#gh-light-mode-only)
+![](../../diagrams/dark/timeline.svg#gh-dark-mode-only)
+
 ## Get involved
 
 An alpha version of the TLSNotary protocol is available for testing. We welcome folks to start playing around with it, including trying to break it!
