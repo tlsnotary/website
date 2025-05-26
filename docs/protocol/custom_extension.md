@@ -4,7 +4,9 @@ sidebar_position: 5
 
 # Custom Extensions
 
-Notary attestations can be extended with custom fields defined by the `Prover`. This allows applications to attach additional data to attestations in a verifiable way. For now, the `Notary` simply includes these fields in the signed attestation without validation. In the future, a plugin system will allow developers to add custom logic to the `Notary` for verifying this data. Until then, such validation requires modifying the Notary code directly.
+Notary attestations can be extended with custom fields defined by the `Prover` or the `Notary`. This allows applications to attach additional data to attestations in a verifiable way.
+
+For now, the default notary server implementation only supports including custom data requested by the `Prover` in the attestation without any validation. In the future, a plugin system will allow developers to add custom logic to the notary server for adding or validating these data, without needing to modify the notary server code.
 
 ## Use Cases
 
