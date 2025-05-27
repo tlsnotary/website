@@ -23,7 +23,7 @@ The following demonstrates how to modify the [attestation example](https://githu
 The [attestation prover](https://github.com/tlsnotary/tlsn/blob/main/crates/examples/attestation/prove.rs) is modified as follows:
 
 ```rust
-...
+// ...
 
 let builder = RequestConfig::builder();
 
@@ -34,7 +34,7 @@ builder.extension(Extension {
 
 let request_config = builder.build()?;
 
-...
+// ...
 ```
 
 Note that the `Extension`'s `id` and `value` are both `Vec<u8>`, giving full control over the encoding format.
@@ -54,7 +54,7 @@ Currently, the notary server does not support adding its own extensions or perfo
 The [attestation verifier](https://github.com/tlsnotary/tlsn/blob/main/crates/examples/attestation/verify.rs) can be modified to inspect extensions:
 
 ```rust
-...
+// ...
 
 let PresentationOutput {
     server_name,
@@ -69,10 +69,10 @@ let Extension { id, value } = extensions.pop().unwrap();
 // Check the prover's public key.
 if id.as_slice() == b"prover_public_key" {
     let public_key_pem = String::from_utf8(value).unwrap();
-    ...
+    // ...
 }
 
-...
+// ...
 ```
 
 This allows the `Verifier` to confirm that the attestation is bound to the identity associated with the specified public key.
