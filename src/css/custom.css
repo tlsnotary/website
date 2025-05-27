@@ -27,8 +27,7 @@
   --ifm-link-hover-color: #003D80;
   --ifm-link-decoration: underline;
 }
-
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode */
 [data-theme='dark'] {
   --ifm-color-primary: #4D82BC;
   --ifm-color-primary-dark: #3B71AB;
