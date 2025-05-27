@@ -25,7 +25,6 @@
   /* Brighter link colors for light mode */
   --ifm-link-color: #0056B3;
   --ifm-link-hover-color: #003D80;
-  --ifm-link-decoration: underline;
 }
 /* Dark mode */
 [data-theme='dark'] {
@@ -90,7 +89,6 @@
 
 /* Additional dark mode overrides */
 [data-theme='dark'] {
-  /* Ensure text is readable in dark mode */
   color: var(--ifm-color-content);
 }
 

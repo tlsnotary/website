@@ -31,7 +31,7 @@
 .blogCard:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-decoration: none; /* Ensure no underline on hover */
+  text-decoration: none;
 }
 
 .blogTitle,
@@ -40,7 +40,7 @@
 .blogAuthors,
 .blogExcerpt,
 .blogReadMoreButton {
-  text-decoration: none; /* Remove underline from text elements */
+  text-decoration: none; 
 }
 
 .blogTitle {

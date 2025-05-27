@@ -37,7 +37,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       {(links.website || links.github || links.discord) && (
         <div className={styles.cardFooter}>
           {links.github && (
-            <a aria-label="GitHub" href={links.github} rel="noopener noreferrer" target="_blank">
+            <a aria-label="GitHub" className={styles.cardFooterLink} href={links.github} rel="noopener noreferrer" target="_blank">
               <IconGithub />
             </a>
           )}
