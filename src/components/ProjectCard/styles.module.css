@@ -46,6 +46,7 @@
   font-size: 24px;
   line-height: 33px;
   margin-bottom: 1rem;
+  cursor: default;
 }
 
 .cardDescription {
@@ -62,6 +63,7 @@
 .cardFooter a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .cardFooter svg {
