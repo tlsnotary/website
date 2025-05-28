@@ -24,4 +24,8 @@ export const redirects: RedirectItem[] = [
         to: '/docs/quick_start',
         from: '/quick_start',
     },
+    {
+        to: '/docs/quick_start/tlsn-js',
+        from: '/quick_start/tlsn-js',
+    },
 ];
