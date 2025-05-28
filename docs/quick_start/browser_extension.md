@@ -15,7 +15,7 @@ The easiest way to install the TLSN browser extension is to use **[Chrome Web St
 ![Chrome Web Store](./images/chromewebstore.png)
 
 Alternatively, you can install it manually:
-1. Download the browser extension from https://github.com/tlsnotary/tlsn-extension/releases/download/0.1.0.1000/tlsn-extension-0.1.0.1000.zip
+1. Download the browser extension from https://github.com/tlsnotary/tlsn-extension/releases/download/0.1.0.1100/tlsn-extension-0.1.0.1100.zip
 2. Unzip
    ⚠️ This is a flat zip file, so be careful if you unzip from the command line, this zip file contains many file at the top level
 3. Open **Manage Extensions**: chrome://extensions/
@@ -61,7 +61,7 @@ To create a TLSNotary proof, the browser extension needs a TLSNotary notary serv
 To use the TLSNotary team notary server:
 1. Open the extension
 2. Click **Options**
-3. Update Notary API to: `https://notary.pse.dev/v0.1.0-alpha.10`
+3. Update Notary API to: `https://notary.pse.dev/v0.1.0-alpha.11`
 4. Click **Save**
 5. Skip the next section and [continue with the notarization step](#notarize)
 
