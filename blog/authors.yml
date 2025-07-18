@@ -16,3 +16,12 @@ heeckhau:
   socials:
     x: heeckhau
     github: heeckhau
+
+atheartengineer:
+  name: AtHeartEngineer
+  url: https://github.com/atheartengineer
+  image_url: https://github.com/atheartengineer.png
+  page: true
+  socials:
+    x: atheartengineer
+    github: atheartengineer
