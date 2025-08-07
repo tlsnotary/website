@@ -54,7 +54,9 @@
     "name": "Usher Labs",
     "description": "Secure and verifiable data pipelines between traditional systems and blockchains",
     "links": {
-      "website": "https://www.usher.so/"
+      "website": "https://www.usher.so/",
+      "twitter": "https://x.com/usher_web3",
+      "github": "https://github.com/usherlabs/verity-dp"
     }
   }
 ]
