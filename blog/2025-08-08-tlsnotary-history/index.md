@@ -79,7 +79,7 @@ In the DECO paper, we see the modern terminology for the two parties involved in
 The improvements from DECO and projects like PADO (now Primus) (https://primuslabs.xyz/) began to attract the attention of the [Privacy and Scaling Explorations](https://pse.dev/) team at the [Ethereum Foundation](https://ethereum.foundation/). Specifically, former members Barry Whitehat (https://github.com/barrywhitehat) and Justin Martin (https://github.com/TheFrozenFire) were looking for a way to implement the ideas proposed in DECO.
 
 
-Around the same time, Sinu (https://github.com/sinui0) was looking for ways to securely and privately bring web2 data on to Ethereum. Seeing that TLSNotary was implementing DECO before the DECO paper was published, Sinu reached out to Dan, and together they applied for a PSE grant to revive TLSNotary using modern technology. The grant was accepted and the modern era of TLSNotary began.
+Around the same time, Sinu (https://github.com/sinui0) was looking for ways to securely and privately bring web2 data on to Ethereum. Seeing that TLSNotary was MPC-TLS before the DECO paper was published, Sinu reached out to Dan, and together they applied for a PSE grant to revive TLSNotary using modern technology. The grant was accepted and the modern era of TLSNotary began.
 
 The team began rebuilding [TLSNotary](/about) from the ground up in Rust and made the protocol compatible with TLS 1.2. But the biggest change was integrating MPC.
 
