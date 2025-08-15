@@ -107,9 +107,7 @@ During the TLS record phase, where application data is encrypted, exchanged, and
 ![Encryption](../../diagrams/dark/mpc-encryption.svg#gh-dark-mode-only)
 ](/docs/protocol/mpc-tls/encryption)
 
-TLSNotary began as an idea that formed the roots of a modern ecosystem known as zkTLS. Although the ZK part is emphasized, it is a bit of a misnomer. Protocols like TLSNotary, which work in parallel to TLS, are inherently interactive. The ZK part is more the end product while the MPC part is where most of the work happens.
-
-Still, zkTLS has stuck as a name, and it now describes a growing set of projects using TLS to prove the authenticity of web data. Some of these include:
+TLSNotary began as an idea that formed the roots of a modern ecosystem known as zkTLS. Although the ZK part is emphasized, it is a bit of a misnomer. Still, zkTLS has stuck as a name, and it now describes a growing set of projects using TLS to prove the authenticity of web data. Some of these include:
 
 - Primus (https://primuslabs.xyz/)
 - vlayer (https://www.vlayer.xyz/)
@@ -118,8 +116,6 @@ Still, zkTLS has stuck as a name, and it now describes a growing set of projects
 - zkP2P (https://www.zkp2p.xyz/)
 - Keyring (https://keyring.network/)
 - [And more...](/use-cases)
-
-Many of these projects have been built with the actively maintained, free, and open-source library and protocol that is TLSNotary ([https://github.com/tlsnotary](https://github.com/tlsnotary)).
 
 # **References**
 
