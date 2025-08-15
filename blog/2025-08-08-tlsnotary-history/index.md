@@ -50,7 +50,9 @@ Once the handshake is complete, the connection is trusted and secure. Now comes 
 
 [![](TLS_12.png)](https://en.wikipedia.org/wiki/Transport_Layer_Security "Simplified illustration of the full TLS 1.2 handshake with timing information.")
 
-TLSNotary’s original idea was to take the privacy, authentication, and reliability inside the TLS tunnel and bring it out into the world. The proof captures key session information like the domain name and ephemeral public key from the server, all traceable back to a trusted certificate.
+TLSNotary’s original idea was to take the privacy, authentication, and reliability inside the TLS tunnel and bring it out into the world. 
+
+One of the key innovations of TLSNotary was implementing the handshake with multi-party computation (MPC). This allowed a third party to get a proof that captured key session information like the domain name and ephemeral public key from the server, all traceable back to a trusted certificate.
 
 But that relied on the original version of TLS.
 
@@ -64,23 +66,20 @@ That broke the original TLSNotary. As websites migrated to newer versions of TLS
 
 Even after work on TLSNotary paused, interest in the problem it tried to solve continued.
 
-In 2019, DECO (https://arxiv.org/pdf/1909.00938) introduced a new approach for proving the origin of data in a TLS session. DECO focused on modern versions of TLS, specifically 1.2 and 1.3. Like TLSNotary, the idea was to enable users to access private data over secure TLS channels and then produce cryptographic proofs that the data came from a specific source. The DECO paper even referenced TLSNotary as a past effort that “only work with deprecated TLS versions and offer no privacy from the oracle (e.g., TLSNotary ) or rely on trusted hardware (e.g., Town Crier), against which various attacks have recently emerged.”
+In 2019, the DECO paper (https://arxiv.org/pdf/1909.00938) presented a solution for newer versions of TLS, specifically 1.2 and 1.3. Like TLSNotary, the idea was to enable users to access private data over secure TLS channels with MPC and then produce cryptographic proofs that the data came from a specific source. The DECO paper references TLSNotary as a past effort that “only work with deprecated TLS versions and offer no privacy from the oracle (e.g., TLSNotary ) or rely on trusted hardware (e.g., Town Crier), against which various attacks have recently emerged.”
 
-In DECO, we see the modern terminology for the two parties involved in the TLSNotary: Prover (formerly Auditee) and Verifier (formerly Auditor).
-
-DECO also “introduces a novel three-party handshake protocol among the prover, verifier, and web server that creates an unforgeable commitment by the prover to the verifier on a piece of TLS session data.” This is the basic architecture we see in today’s version of TLSNotary.
+In the DECO paper, we see the modern terminology for the two parties involved in the TLSNotary: Prover (formerly Auditee) and Verifier (formerly Auditor).
 
 [![](../../diagrams/light/overview_prover_verifier.svg#gh-light-mode-only)
 ![](../../diagrams/dark/overview_prover_verifier.svg#gh-dark-mode-only)
 ](/about)
 
-But most importantly, DECO introduces the idea of secure multi-party computation (MPC) as a way for the Prover and Verifier to jointly participate in TLS sessions without compromising privacy.
-
 ## The era of MPC and PSE (2022 to present day)
 
-The ideas introduced by DECO and projects like PADO (now Primus) (https://primuslabs.xyz/) began to attract the attention of the [Privacy and Scaling Explorations](https://pse.dev/) team at the [Ethereum Foundation](https://ethereum.foundation/). Specifically, former members Barry Whitehat (https://github.com/barrywhitehat) and Justin Martin(https://github.com/TheFrozenFire) were looking for a way to implement the ideas proposed in DECO.
+The improvements from DECO and projects like PADO (now Primus) (https://primuslabs.xyz/) began to attract the attention of the [Privacy and Scaling Explorations](https://pse.dev/) team at the [Ethereum Foundation](https://ethereum.foundation/). Specifically, former members Barry Whitehat (https://github.com/barrywhitehat) and Justin Martin (https://github.com/TheFrozenFire) were looking for a way to implement the ideas proposed in DECO.
 
-Around the same time, Sinu (https://github.com/sinui0) was looking for ways to securely and privately bring web2 data on to Ethereum. Seeing that TLSNotary was implementing DECO before DECO even existed, Sinu reached out to Dan, and together they applied for a PSE grant to revive TLSNotary using modern technology. The grant was accepted and the modern era of TLSNotary began.
+
+Around the same time, Sinu (https://github.com/sinui0) was looking for ways to securely and privately bring web2 data on to Ethereum. Seeing that TLSNotary was implementing DECO before the DECO paper was published, Sinu reached out to Dan, and together they applied for a PSE grant to revive TLSNotary using modern technology. The grant was accepted and the modern era of TLSNotary began.
 
 The team began rebuilding [TLSNotary](/about) from the ground up in Rust and made the protocol compatible with TLS 1.2. But the biggest change was integrating MPC.
 
