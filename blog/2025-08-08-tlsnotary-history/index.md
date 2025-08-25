@@ -82,7 +82,7 @@ Around the same time, Sinu (https://github.com/sinui0) was looking for ways to s
 
 The team began rebuilding [TLSNotary](/about) from the ground up in Rust and made the protocol compatible with TLS 1.2. But the biggest change was integrating MPC.
 
-MPC (https://en.wikipedia.org/wiki/Secure_multi-party_computation) is a way for multiple parties to work together, to compute some mutual function without revealing their private data. It fits naturally with TLS, which is also interactive. Unlike zero-knowledge proofs, which are non-interactive, MPC can mirror the back-and-forth nature of a TLS session.
+MPC (https://en.wikipedia.org/wiki/Secure_multi-party_computation) is a way for multiple parties to work together, to compute some mutual function without revealing their private data. It fits naturally with TLS, which is also interactive.
 
 Since things (especially terminology) tend to change in a decade, let’s quickly recap the parties involved.
 
