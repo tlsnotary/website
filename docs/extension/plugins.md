@@ -59,6 +59,7 @@ type StepConfig = {
   title: string;         // Text for the step's title
   description?: string;  // OPTIONAL: Text for the step's description
   cta: string;           // Text for the step's call-to-action button
+  inputs?: InputFieldConfig[]; // Input fields for user data collection (optional)
   action: string;        // The function name that this step will execute
   prover?: boolean;      // Boolean indicating if this step outputs a notarization
 }
