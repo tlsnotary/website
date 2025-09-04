@@ -35,3 +35,11 @@ kichong:
     url: https://kichongtran.substack.com/
     ethereum-papers: https://mirror.xyz/ethpapers.eth
     farcaster: https://farcaster.xyz/kichong
+
+dan:
+  name: Dan
+  url: https://github.com/themighty1
+  image_url: https://github.com/themighty1.png
+  page: true
+  socials:
+    github: themighty1
