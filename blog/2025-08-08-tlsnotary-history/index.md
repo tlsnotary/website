@@ -15,7 +15,7 @@ TLSNotary aimed to do this by leveraging the same cryptographic protocol that se
 
 ## Origin Story (2013 – 2015)
 
-To understand TLSNotary, we need a basic understanding of the protocol it works alongside. Transport Layer Security (TLS) (https://en.wikipedia.org/wiki/Transport_Layer_Security) is a layer of the internet we use every day. You’re using it now to read this post. It’s the “S” in HTTPS and the little lock icon 🔒 you see in your browser.
+To understand TLSNotary, we need a basic understanding of the protocol it works alongside. [Transport Layer Security (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security) is a layer of the internet we use every day. You’re using it now to read this post. It’s the “S” in HTTPS and the little lock icon 🔒 you see in your browser.
 
 TLS establishes a secure connection between you (the client) and the website (the server) you’re accessing. It’s an interactive connection most people never notice, yet it protects privacy and ensures the websites you visit are authentic. While TLS ensures the data you receive came from the server during your session, it doesn’t add a verifiable signature to the data. So you can’t prove to a third party that a specific piece of data came from the server.
 
@@ -25,15 +25,15 @@ TLSNotary was a practical idea. At the time, it was hard to get bitcoins. Banks 
 
 But the internet already had a trustworthy cryptographic layer called SSL (the precursor to TLS). So the idea was simple: leverage the existing connection between client and server to create cryptographic proof of, for example, a bank transaction. If a user could generate a proof that money had been sent from one bank to another, that proof could be used to resolve disputes in a Bitcoin trade. Since the bank’s website already created a kind of receipt via SSL, why not take a cryptographic screenshot to prove the Bitcoin was paid for? People could exchange Bitcoin using these cryptographic proofs instead of relying on centralized platforms.
 
-With that idea in place, the protocol began to evolve. New ideas (https://bitcointalk.org/index.php?topic=173220.msg2304618#msg2304618)  were proposed, discussed, debated, and refined, until the concept had a name (https://bitcointalk.org/index.php?topic=173220.msg4998488#msg4998488) and a working implementation. The alpha release (https://bitcointalk.org/index.php?topic=173220.msg7143321#msg7143321) came in June 2014.
+With that idea in place, the protocol began to evolve. [New ideas](https://bitcointalk.org/index.php?topic=173220.msg2304618#msg2304618)  were proposed, discussed, debated, and refined, until the concept had [a name](https://bitcointalk.org/index.php?topic=173220.msg4998488#msg4998488) and a working implementation. The [alpha release](https://bitcointalk.org/index.php?topic=173220.msg7143321#msg7143321) came in June 2014.
 
-Dan Smidt, Adam Gibson (https://github.com/AdamISZ), and oakpacific (https://github.com/oakpacific) continued developing the original TLSNotary protocol (https://github.com/tlsnotary/tlsnotary). Then in September 2014, a whitepaper was released establishing the core idea of TLSNotary as a “mechanism for independently audited https sessions” (https://tlsnotary.org/TLSNotary.pdf).
+Dan Smidt, Adam Gibson (https://github.com/AdamISZ), and oakpacific (https://github.com/oakpacific) continued developing the [original TLSNotary protocol](https://github.com/tlsnotary/tlsnotary). Then in September 2014, a whitepaper was released establishing the core idea of TLSNotary as a “mechanism for independently audited https sessions” (https://tlsnotary.org/TLSNotary.pdf).
 
 [![](whitepaper.png)](/TLSNotary.pdf "TLSNotary whitepaper")
 
 The core idea has remained consistent across all versions of the protocol. When you visit a website, a secure TLS connection is established. The client and server generate secret keys and exchange data in a private session. During this session, an Auditor (now called a Verifier) partially participates. The Verifier never sees the full session key or the complete unencrypted data. Instead, they witness only a slice of the interaction—just enough to produce a cryptographic proof that someone else can verify.
 
-A working version of TLSNotary was live almost a year before Ethereum mainnet was launched. A Chromium extension called PageSigner (https://github.com/tlsnotary/pagesigner/) implemented the protocol for everyday use.
+A working version of TLSNotary was live almost a year before Ethereum mainnet was launched. A Chromium extension called [PageSigner](https://github.com/tlsnotary/pagesigner/) implemented the protocol for everyday use.
 
 Then it broke. The web migrated to TLS version 1.2 and the core mechanism TLSNotary relied on could no longer be used.
 
@@ -82,7 +82,7 @@ Around the same time, Sinu (https://github.com/sinui0) was looking for ways to s
 
 The team began rebuilding [TLSNotary](/about) from the ground up in Rust and made the protocol compatible with TLS 1.2. But the biggest change was integrating MPC.
 
-MPC (https://en.wikipedia.org/wiki/Secure_multi-party_computation) is a way for multiple parties to work together, to compute some mutual function without revealing their private data. It fits naturally with TLS, which is also interactive.
+[MPC](https://en.wikipedia.org/wiki/Secure_multi-party_computation) is a way for multiple parties to work together, to compute some mutual function without revealing their private data. It fits naturally with TLS, which is also interactive.
 
 Since things (especially terminology) tend to change in a decade, let’s quickly recap the parties involved.
 
