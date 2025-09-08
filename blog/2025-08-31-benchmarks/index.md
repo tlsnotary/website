@@ -41,32 +41,40 @@ Combined with the ability to tweak **request** and **response** sizes, this give
 As all TLSNotary code, the harness is open source, so anyone can reproduce our results or adapt it for their own testing:
 https://github.com/tlsnotary/tlsn/tree/783355772ac34af469048d0e67bb161fc620c6ac/crates/harness
 
-Raw data and notebooks are available on [GitHub](https://github.com/tlsnotary/website/tree/main/blog/2025-09-08-benchmarks/data).
-
+Raw data and notebooks are available on [GitHub](https://github.com/tlsnotary/website/tree/master/blog/2025-08-31-benchmarks/data).
 
 ## How does Prover Upload Bandwidth impact performance?
 
+[
 ![bandwidth benchmark](./data/bandwidth_light.svg#gh-light-mode-only)
 ![bandwidth benchmark](./data/bandwidth_dark.svg#gh-dark-mode-only)
-
+](
+    https://github.com/tlsnotary/website/blob/master/blog/2025-08-31-benchmarks/data/download.ipynb
+)
 *Benchmark parameters: latency = 25 ms, request size = 1 KB, response size = 4 KB.*
 
 On low-bandwidth connections, protocol runtime is dominated by the volume of MPC data the prover must upload to the verifier. Once bandwidth reaches around **100 Mbps**, the impact diminishes significantly and no longer drives the overall runtime.
 
 ## How does Network Latency impact performance?
 
+[
 ![latency benchmark](./data/latency_light.svg#gh-light-mode-only)
 ![latency benchmark](./data/latency_dark.svg#gh-dark-mode-only)
-
+](
+    https://github.com/tlsnotary/website/blob/master/blog/2025-08-31-benchmarks/data/latency.ipynb
+)
 *Benchmark parameters: bandwidth = 1000 Mbps (to isolate latency), request size = 1 KB, response size = 4 KB.*
 
 As expected, latency has a direct proportional impact on runtime. Since our MPC-TLS protocol involves ~40 communication rounds, higher RTT values linearly increase total runtime. At higher latencies, the cost of communication dominates, and the **native build’s speed advantage** is effectively canceled out — its runtime converges to that of the browser build.
 
 ## How does Server Response Size impact performance?
 
+[
 ![response size benchmark](./data/download_light.svg#gh-light-mode-only)
 ![response size benchmark](./data/download_dark.svg#gh-dark-mode-only)
-
+](
+    https://github.com/tlsnotary/website/blob/master/blog/2025-08-31-benchmarks/data/download.ipynb
+)
 *Benchmark parameters: latency = 10 ms, bandwidth = 200 Mbps, request size = 2 KB.*
 
 Runtime also scales with server response size. In many real-world use cases, a response size of ~10 KB is sufficient. Under these conditions, the **native build completes in ~5 s**, while the **browser build takes ~10 s** — still responsive enough for a smooth end-user experience.
