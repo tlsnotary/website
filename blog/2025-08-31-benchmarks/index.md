@@ -5,7 +5,7 @@ authors: [dan, heeckhau]
 
 Over the past months, we’ve made major performance leaps in TLSNotary. We implemented the VOLE-based IZK backend (QuickSilver) and implemented control-flow and MPC optimizations across the stack. These changes have drastically accelerated both native and browser builds.
 
-Starting with v0.1.0-alpha.8, QuickSilver replaced the older garbled-circuit proof backend, slashing bandwidth usage and latency sensitivity. Subsequent releases added transcript-hash commitments, low-bandwidth modes, faster APIs, and more. (https://github.com/tlsnotary/tlsn/releases)
+Starting with v0.1.0-alpha.8, QuickSilver replaced the older garbled-circuit proof backend, greatly reducing bandwidth usage and sensitivity to latency. Subsequent releases added transcript-hash commitments, low-bandwidth modes, faster APIs, and more. (https://github.com/tlsnotary/tlsn/releases)
 
 These changes yield significant performance gains in both native and browser builds. 
 
@@ -41,6 +41,9 @@ Combined with the ability to tweak **request** and **response** sizes, this give
 As all TLSNotary code, the harness is open source, so anyone can reproduce our results or adapt it for their own testing:
 https://github.com/tlsnotary/tlsn/tree/783355772ac34af469048d0e67bb161fc620c6ac/crates/harness
 
+Raw data and notebooks are available on [GitHub](https://github.com/tlsnotary/website/tree/main/blog/2025-09-08-benchmarks/data).
+
+
 ## How does Prover Upload Bandwidth impact performance?
 
 ![bandwidth benchmark](./data/bandwidth_light.svg#gh-light-mode-only)
@@ -70,7 +73,7 @@ Runtime also scales with server response size. In many real-world use cases, a r
 
 ## Native vs. Browser Performance
 
-Overall, as demonstrated in the final benchmark where bandwidth and latency are not the limiting factors, the **browser build runs about 3× slower than the native build**. The main reason is the absence of hardware acceleration in the browser’s WebAssembly environment. The underlying interactive ZK protocol, **QuickSilver**, relies heavily on these hardware features for optimal performance, which are fully available in native builds but not yet accessible in browsers.
+Overall, as demonstrated in the final benchmark where bandwidth and latency are not the limiting factors, the **browser build runs about 3× slower than the native build**. The main reason is the absence of hardware acceleration in the browser’s WebAssembly environment. The underlying interactive ZK protocol, **QuickSilver**, relies heavily on SIMD instructions and hardware-accelerated cryptographic operations for optimal performance, which are fully available in native builds but not yet accessible in browsers.
 
 In conclusion, the performance is good enough for practical use, but still leaves room for optimization in the browser. As WebAssembly gets better support for SIMD and hardware acceleration, the gap with native will shrink. Meanwhile, our harness gives us a clear way to track progress over time.
 
@@ -78,7 +81,7 @@ In conclusion, the performance is good enough for practical use, but still leave
 
 Alongside major protocol changes like QuickSilver, smaller optimizations also help reduce runtime:
 
-- **Nagle’s algorithm** — disabled in these benchmarks (`TCP_NODELAY` enabled). Nagle normally batches small TCP packets to improve efficiency, but in interactive protocols like TLSNotary it adds latency. Disabling it ensures packets are sent immediately. [Learn more](https://en.wikipedia.org/wiki/Nagle%27s_algorithm).
+- **TCP_NODELAY** — enabled in these benchmarks to disable Nagle's algorithm. Nagle normally batches small TCP packets to improve efficiency, but in interactive protocols like TLSNotary it adds latency. Disabling it ensures packets are sent immediately. [Learn more](https://en.wikipedia.org/wiki/Nagle%27s_algorithm).
 
 - **Deferred decryption** — enabled here. This defers decryption until a full TLS transcript is available, reducing the amount of data that must be processed with MPC.
 
