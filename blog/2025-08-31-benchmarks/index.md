@@ -43,7 +43,8 @@ https://github.com/tlsnotary/tlsn/tree/783355772ac34af469048d0e67bb161fc620c6ac/
 
 ## How does Prover Upload Bandwidth impact performance?
 
-![bandwidth benchmark](bandwidth_benchmark.svg)
+![bandwidth benchmark](./data/bandwidth_light.svg#gh-light-mode-only)
+![bandwidth benchmark](./data/bandwidth_dark.svg#gh-dark-mode-only)
 
 *Benchmark parameters: latency = 25 ms, request size = 1 KB, response size = 4 KB.*
 
@@ -51,7 +52,8 @@ On low-bandwidth connections, protocol runtime is dominated by the volume of MPC
 
 ## How does Network Latency impact performance?
 
-![latency benchmark](latency_benchmark.svg)
+![latency benchmark](./data/latency_light.svg#gh-light-mode-only)
+![latency benchmark](./data/latency_dark.svg#gh-dark-mode-only)
 
 *Benchmark parameters: bandwidth = 1000 Mbps (to isolate latency), request size = 1 KB, response size = 4 KB.*
 
@@ -59,7 +61,8 @@ As expected, latency has a direct proportional impact on runtime. Since our MPC-
 
 ## How does Server Response Size impact performance?
 
-![response size benchmark](response_size_benchmark.svg)
+![response size benchmark](./data/download_light.svg#gh-light-mode-only)
+![response size benchmark](./data/download_dark.svg#gh-dark-mode-only)
 
 *Benchmark parameters: latency = 10 ms, bandwidth = 200 Mbps, request size = 2 KB.*
 
