@@ -78,7 +78,7 @@ Talks will take place in the main stage room from **10:00 to 17:00**, with break
 | 12:00–12:30 | zkTLS is better (Opacity Labs)                                                                                               | Workshops continue         |
 | 12:30–13:00 | Cryptography of zkTLS (Primus Labs)                                                                                          | Workshops continue         |
 | 13:00–14:15 | Lunch break                                                                                                                  | No lunch break, open lab 🙂 |
-| 14:00–14:45 | zkTLS for developers (Reclaim)                                                                                               | Workshops continue         |
+| 14:00–14:45 | zkTLS for developers (Reclaim Protocol)                                                                                      | Workshops continue         |
 | 14:45–15:15 | Coffee break                                                                                                                 | Workshops continue         |
 | 15:15–16:30 | Use case demos ([Submit yours](https://docs.google.com/forms/d/1YLxTIoxaB0zLuyg8c5qjTUm99KJnvuJZ7M1Ffz_m_YA/edit#responses)) | Workshops continue         |
 | 16:30–17:00 | The future of zkTLS                                                                                                          | Workshops continue         |
