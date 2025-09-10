@@ -50,7 +50,7 @@ Raw data and notebooks are available on [GitHub](https://github.com/tlsnotary/we
 ![bandwidth benchmark](./data/bandwidth_dark.svg#gh-dark-mode-only)
 ](
     https://github.com/tlsnotary/website/blob/master/blog/2025-08-31-benchmarks/data/download.ipynb
-)
+)  
 *Benchmark parameters: latency = 25 ms, request size = 1 KB, response size = 4 KB.*
 
 On low-bandwidth connections, protocol runtime is dominated by the volume of MPC data the prover must upload to the verifier. Once bandwidth reaches around **100 Mbps**, the impact diminishes significantly and no longer drives the overall runtime.
@@ -62,7 +62,7 @@ On low-bandwidth connections, protocol runtime is dominated by the volume of MPC
 ![latency benchmark](./data/latency_dark.svg#gh-dark-mode-only)
 ](
     https://github.com/tlsnotary/website/blob/master/blog/2025-08-31-benchmarks/data/latency.ipynb
-)
+)  
 *Benchmark parameters: bandwidth = 1000 Mbps (to isolate latency), request size = 1 KB, response size = 4 KB.*
 
 As expected, latency has a direct proportional impact on runtime. Since our MPC-TLS protocol involves ~40 communication rounds, higher RTT values linearly increase total runtime. At higher latencies, the cost of communication dominates, and the **native build’s speed advantage** is effectively canceled out — its runtime converges to that of the browser build.
@@ -74,10 +74,16 @@ As expected, latency has a direct proportional impact on runtime. Since our MPC-
 ![response size benchmark](./data/download_dark.svg#gh-dark-mode-only)
 ](
     https://github.com/tlsnotary/website/blob/master/blog/2025-08-31-benchmarks/data/download.ipynb
-)
+)  
 *Benchmark parameters: latency = 10 ms, bandwidth = 200 Mbps, request size = 2 KB.*
 
 Runtime also scales with server response size. In many real-world use cases, a response size of ~10 KB is sufficient. Under these conditions, the **native build completes in ~5 s**, while the **browser build takes ~10 s** — still responsive enough for a smooth end-user experience.
+
+:::info
+
+Note: The benchmarks above measure proving statements over the entire server response. If redaction is not required, TLSNotary can process much larger resources, such as images or video, without a significant impact on runtime. In these cases, obtaining a ciphertext commitment is fast and largely independent of response size. This scenario will be covered in a separate benchmark in the upcoming alpha.13 release.
+
+:::
 
 ## Native vs. Browser Performance
 
