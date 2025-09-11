@@ -81,7 +81,7 @@ Runtime also scales with server response size. In many real-world use cases, a r
 
 :::info
 
-Note: The benchmarks above measure proving statements over the entire server response. If redaction is not required, TLSNotary can process much larger resources, such as images or video, without a significant impact on runtime. In these cases, obtaining a ciphertext commitment is fast and largely independent of response size. This scenario will be covered in a separate benchmark in the upcoming alpha.13 release.
+Note: The benchmarks above measure proving statements over the entire server response. If selective disclosure is not required, TLSNotary can process much larger resources, such as images or video, without a significant impact on runtime. In these cases, obtaining a ciphertext commitment is fast and largely independent of response size. This scenario will be covered in a separate benchmark in the upcoming alpha.13 release.
 
 :::
 
