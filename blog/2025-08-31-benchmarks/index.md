@@ -15,7 +15,7 @@ In this post, we share results from our new benchmarking harness and highlight h
 
 ## Why is performance important?
 
-TLSNotary is an interactive protocol: the Prover and Verifier exchange data while the TLS session is ongoing. That means runtime is more than a benchmark number, it directly determines usability.
+TLSNotary is an interactive protocol: the Prover and Verifier exchange data while the TLS session is ongoing. That means runtime is more than a benchmark number, it directly affects usability.
 
 If proving takes too long:
 - Connections may **timeout** before notarization completes.  
