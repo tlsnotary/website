@@ -1,5 +1,5 @@
 ---
-title: TLSNotary Performance Benchmarks
+title: TLSNotary Performance Benchmarks (August 2025)
 authors: [dan, heeckhau]
 ---
 
@@ -85,27 +85,17 @@ Note: The benchmarks above measure proving statements over the entire server res
 
 :::
 
-## Native vs. Browser Performance
+## Conclusions
 
 Overall, as demonstrated in the final benchmark where bandwidth and latency are not the limiting factors, the **browser build runs about 3× slower than the native build**. The main reason is the absence of hardware acceleration in the browser’s WebAssembly environment. The underlying cryptography relies heavily on SIMD instructions and hardware-accelerated cryptographic operations for optimal performance, which are fully available in native builds but not yet accessible in browsers.
 
 In conclusion, the performance is good enough for practical use, but still leaves room for optimization in the browser. For example, an AES implementation which leverages the WASM SIMD extension could narrow the gap some more. Contributions welcome!
 
-## Performance Tweaks
-
-Alongside major protocol changes like QuickSilver, smaller optimizations also help reduce runtime:
-
-- **TCP_NODELAY** — enabled in these benchmarks to disable Nagle's algorithm. Nagle normally batches small TCP packets to improve efficiency, but in interactive protocols like TLSNotary it adds latency. Disabling it ensures packets are sent immediately. [Learn more](https://en.wikipedia.org/wiki/Nagle%27s_algorithm).
-
-- **Deferred decryption** — enabled here. This defers decryption until a full TLS transcript is available, reducing the amount of data that must be processed with MPC.
-
-- **Ongoing improvements** — more optimizations are underway; see for example [issue #474](https://github.com/tlsnotary/tlsn/issues/474).
-
-While smaller in scope than the QuickSilver integration, these tweaks help shave off precious time.
-
-
 ---
-## Notes
-The benchmarks were run on a c5.4xlarge AWS instance: 16 vCPU, 3.0GHz, 32GB RAM.
 
-These benchmarks can be reproduced by running the benchmarking harness located in our repo https://github.com/tlsnotary/tlsn/tree/783355772ac34af469048d0e67bb161fc620c6ac/crates/harness
+## Benchmark Details
+
+- **Hardware:** All benchmarks were run on an AWS c5.4xlarge instance (16 vCPU, 3.0 GHz, 32 GB RAM).
+- **Deferred Decryption:** Enabled (TLSNotary feature that defers decryption until the full TLS transcript is available, reducing MPC workload).
+- **TCP_NODELAY:** Enabled to disable Nagle’s algorithm, ensuring immediate packet transmission and reducing latency for faster interactive proving. [Learn more](https://en.wikipedia.org/wiki/Nagle%27s_algorithm).
+- **Reproducibility:** You can reproduce these results using our open-source benchmarking harness: [tlsnotary/tlsn/crates/harness](https://github.com/tlsnotary/tlsn/tree/783355772ac34af469048d0e67bb161fc620c6ac/crates/harness).
