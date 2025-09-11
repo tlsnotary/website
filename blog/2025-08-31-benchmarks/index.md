@@ -3,7 +3,7 @@ title: TLSNotary Performance Benchmarks
 authors: [dan, heeckhau]
 ---
 
-Over the past months, we’ve made major performance leaps in TLSNotary. We implemented the VOLE-based IZK backend (QuickSilver) and implemented control-flow and MPC optimizations across the stack. These changes have drastically accelerated both native and browser builds.
+Over the past months, we’ve made major performance leaps in TLSNotary. We implemented the VOLE-based IZK backend (QuickSilver) and introduced control-flow and MPC optimizations across the stack.
 
 Starting with v0.1.0-alpha.8, QuickSilver replaced the older garbled-circuit proof backend, greatly reducing bandwidth usage and sensitivity to latency. Subsequent releases added transcript-hash commitments, low-bandwidth modes, faster APIs, and more. (https://github.com/tlsnotary/tlsn/releases)
 
