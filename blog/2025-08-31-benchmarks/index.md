@@ -21,7 +21,7 @@ If proving takes too long:
 - Connections may **timeout** before notarization completes.  
 - Users may experience **slow, blocking interactions**.  
 
-What matters most is minimizing the **online time**: the period when the Prover is actively connected to the Server.  If this phase runs too long, the server will simply close the connection.  
+A key objective is minimizing the **online time**: the period when the Prover is actively connected to the Server.  If this phase runs too long, the server will simply close the connection.  
 
 TLSNotary addresses this by allowing the Prover and Verifier to **preprocess** much of the MPC work *before* the Prover connects to the Server. 
 The protocol is designed to make both the preprocessing and the online phase as short as possible; fast enough for smooth end-user experiences, without compromising security or privacy.
