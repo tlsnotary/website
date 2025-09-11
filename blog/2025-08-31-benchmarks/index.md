@@ -89,7 +89,7 @@ Note: The benchmarks above measure proving statements over the entire server res
 
 Overall, as demonstrated in the final benchmark where bandwidth and latency are not the limiting factors, the **browser build runs about 3× slower than the native build**. The main reason is the absence of hardware acceleration in the browser’s WebAssembly environment. The underlying cryptography relies heavily on SIMD instructions and hardware-accelerated cryptographic operations for optimal performance, which are fully available in native builds but not yet accessible in browsers.
 
-In conclusion, the performance is good enough for practical use, but still leaves room for optimization in the browser. As WebAssembly gets better support for SIMD and hardware acceleration, the gap with native will shrink. Meanwhile, our harness gives us a clear way to track progress over time.
+In conclusion, the performance is good enough for practical use, but still leaves room for optimization in the browser. For example, an AES implementation which leverages the WASM SIMD extension could narrow the gap some more. Contributions welcome!
 
 ## Performance Tweaks
 
