@@ -26,12 +26,12 @@ This example demonstrates how to use TLSNotary in a simple interactive session b
 Follow the instructions from:
 https://github.com/tlsnotary/tlsn/tree/main/crates/examples/interactive#readme
 
-## Simple Attestation Example: Verifying Data from an API in Rust with a Notary {#attestation}
+## Simple Attestation Example: Attesting and Verifying Data from an API in Rust {#attestation}
 
 ![](../../diagrams/light/overview_notary.svg#gh-light-mode-only)
 ![](../../diagrams/dark/overview_notary.svg#gh-dark-mode-only)
 
-TLSNotary can also be used in a setup where MPC-TLS verification is delegated to a notary server. In this example, the notary attests to the data served to the prover. Next, the prover can share this attestation with a Verifier who can verify the data.
+TLSNotary also supports a workflow where a Verifier (acting as Attestor) attests to the proven data. The Prover can then generate a presentation of this attested data, which can be verified by anyone who trusts the Attestor.
 
 Follow the instructions from:
 https://github.com/tlsnotary/tlsn/tree/main/crates/examples/attestation#readme

@@ -1,11 +1,25 @@
 ---
 sidebar_position: 4
+sidebar_label: Notary server
 ---
+
+
+:::danger
+
+In [alpha.13](https://github.com/tlsnotary/tlsn/releases/tag/v0.1.0-alpha.13) the project’s scope was narrowed to focus on the core TLSNotary libraries and the upcoming SDK. While the Notary server was designed to be simple and easy to customize, maintaining it became increasingly challenging due to growing feature requests and support needs. By removing the Notary server more resources can be allocated to stabilizing and improving the core protocol.
+
+Existing users who rely on the Notary server can continue to use it by forking and maintaining their own version. We encourage the community to adapt and extend the server as needed for their use cases.
+
+[More info](https://github.com/tlsnotary/tlsn/releases/tag/v0.1.0-alpha.13)
+
+:::
+
+
 # Run a Notary Server
-This guide shows you how to run a [notary server](https://github.com/tlsnotary/tlsn/tree/main/crates/notary/server) in an Ubuntu server instance.
+This guide shows you how to run a [notary server](https://github.com/tlsnotary/tlsn/tree/v0.1.0-alpha.12/crates/notary/server) in an Ubuntu server instance.
 
 ## Configure Server Setting
-Refer to the server's [README.md](https://github.com/tlsnotary/tlsn/tree/main/crates/notary/server#configuration) for instructions on how to configure the following settings.
+Refer to the server's [README.md](https://github.com/tlsnotary/tlsn/tree/v0.1.0-alpha.12/crates/notary/server#configuration) for instructions on how to configure the following settings.
 
 1. The following files are needed before running a notary server.
 
@@ -15,7 +29,7 @@ Refer to the server's [README.md](https://github.com/tlsnotary/tlsn/tree/main/cr
    | TLS certificate    | The notary server's TLS certificate to establish TLS connections with provers                          | TLS certificate in PEM format                                  | Yes unless TLS is turned off | \<Obtained from your Certificate Authority, e.g. [Let's Encrypt](https://letsencrypt.org/)>                           |
    | Notary signing key | The private key used by the notary server to sign the attestation                                      | A K256 or P256 elliptic curve private key in PKCS#8 PEM format | Yes                          | `openssl genpkey -algorithm EC -out eckey.pem -pkeyopt ec_paramgen_curve:secp256k1 -pkeyopt ec_param_enc:named_curve` |
 2. Expose the notary server port (specified in the config) on your server networking setting.
-3. Optionally one can turn on [authorization](https://github.com/tlsnotary/tlsn/tree/main/crates/notary/server#authorization), or turn off [TLS](https://github.com/tlsnotary/tlsn/tree/main/crates/notary/server#tls) if TLS is handled by an external setup, e.g. reverse proxy, cloud setup.
+3. Optionally one can turn on [authorization](https://github.com/tlsnotary/tlsn/tree/v0.1.0-alpha.12/crates/notary/server#authorization), or turn off [TLS](https://github.com/tlsnotary/tlsn/tree/v0.1.0-alpha.12/crates/notary/server#tls) if TLS is handled by an external setup, e.g. reverse proxy, cloud setup.
 
 ## Using Cargo
 1. Install required system dependencies.
@@ -37,7 +51,7 @@ source ~/.cargo/env
 ```bash
 git checkout tags/<version>
 ```
-5. To configure the server setting, please refer to the server's [README.md](https://github.com/tlsnotary/tlsn/tree/main/crates/notary/server#configuration).
+5. To configure the server setting, please refer to the server's [README.md](https://github.com/tlsnotary/tlsn/tree/v0.1.0-alpha.12/crates/notary/server#configuration).
 6. Run the server.
 ```bash
 cargo run --release --bin notary-server
@@ -45,14 +59,14 @@ cargo run --release --bin notary-server
 
 ## Using Docker
 1. Install docker following your preferred method [here](https://docs.docker.com/engine/install/ubuntu/).
-2. To configure the server setting, please refer to the server's [README.md](https://github.com/tlsnotary/tlsn/tree/main/crates/notary/server#configuration).
+2. To configure the server setting, please refer to the server's [README.md](https://github.com/tlsnotary/tlsn/tree/v0.1.0-alpha.12/crates/notary/server#configuration).
 3. Run the notary server docker image of your desired version (⚠️ only prover of the same version is supported for now).
 ```bash
 docker run --init -p 127.0.0.1:7047:7047 ghcr.io/tlsnotary/tlsn/notary-server:<version>
 ```
 
 ## API Endpoints
-Please refer to the list of all HTTP APIs [here](pathname:///swagger-ui/notary_server_api.html), and WebSocket APIs [here](https://github.com/tlsnotary/tlsn/tree/main/crates/notary/server#websocket-apis).
+Please refer to the list of all HTTP APIs [here](pathname:///swagger-ui/notary_server_api.html), and WebSocket APIs [here](https://github.com/tlsnotary/tlsn/tree/v0.1.0-alpha.12/crates/notary/server#websocket-apis).
 
 ## PSE Development Notary Server
 
