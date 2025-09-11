@@ -30,7 +30,7 @@ All diagrams are created using draw.io. The diagram source files are stored in t
 * Front matter: https://docusaurus.io/docs/markdown-features#front-matter
 
 Other Docusaurus websites at PSE:
-* MACI: https://github.com/privacy-scaling-explorations/maci/tree/dev/apps/website
-* MPC: https://github.com/privacy-scaling-explorations/mpc-framework-website
+* MACI: https://github.com/privacy-ethereum/maci/tree/main/apps/website
+* MPC: https://github.com/privacy-ethereum/mpc-framework-website
 
 > **Disclaimer**: While we appreciate all contributions, we do not prioritize minor grammatical fixes (e.g., correcting typos or rewording sentences) unless they significantly improve clarity in technical documentation. These contributions can be a distraction for the team. If you notice a grammatical error, please let us know on our Discord.
