@@ -3,7 +3,7 @@ title: About
 ---
 ## Who we are
 
-TLSNotary is an open-source protocol developed by the **Privacy Stewards of Ethereum (PSE)** research lab of the Ethereum Foundation.
+TLSNotary is an open-source protocol developed by the **Privacy Stewards of Ethereum (PSE)** research and development lab of the Ethereum Foundation.
 
 TLSNotary is not a new project; in fact, it has been around for **more than a decade**. In 2022, TLSNotary was rebuilt from the ground up in **Rust** incorporating state-of-the-art cryptographic protocols. This renewed version of the TLSNotary protocol offers enhanced security, privacy, and performance.
 

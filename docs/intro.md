@@ -78,7 +78,7 @@ TLSNotary currently supports TLS 1.2. Support for TLS 1.3 is on the roadmap.
 
 ## Who is behind TLSNotary?
 
-TLSNotary is developed by the [Privacy Stewards of Ethereum (PSE)](https://pse.dev) research lab of the Ethereum Foundation. The PSE team is committed to conceptualizing and testing use cases for cryptographic primitives.
+TLSNotary is developed by the [Privacy Stewards of Ethereum (PSE)](https://pse.dev) research and development lab of the Ethereum Foundation.
 
 TLSNotary is not a new project; in fact, it has been around for [more than a decade](https://bitcointalk.org/index.php?topic=173220.0).
 
