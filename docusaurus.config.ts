@@ -185,7 +185,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `TLSNotary is a project of Privacy and Scaling Explorations, an Ethereum Foundation supported team.`,
+      copyright: `TLSNotary is a project of the Ethereum Foundation.`,
     },
     prism: {
       theme: prismThemes.github,
