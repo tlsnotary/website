@@ -1,5 +1,5 @@
 ---
-tiltle: TLSNotary timeline
+title: TLSNotary timeline
 ---
 
 ![](../diagrams/light/timeline.svg#gh-light-mode-only)
