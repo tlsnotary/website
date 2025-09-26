@@ -69,7 +69,7 @@ The tutorials are organized by: [vLayer](https://www.vlayer.xyz/), [Primus Labs]
 Talks will take place in the main stage room from **10:00 to 17:00**, with breaks for coffee, lunch, and a closing session.
 | Time        | Main Track                                                                                                                   | Workshop Room              |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| 09:30–10:00 | Arrival and coffee                                                                                                           |                            |
+| 09:30–10:00 | Doors open                                                                                                                   |                            |
 | 10:00–13:00 | Morning sessions                                                                                                             |                            |
 | 10:00–10:10 | Welcome                                                                                                                      |                            |
 | 10:10–11:20 | zkTLS fundamentals (TLSNotary)                                                                                               | Streamed                   |
