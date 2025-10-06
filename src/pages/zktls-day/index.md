@@ -46,7 +46,7 @@ Our speaker lineup represents the absolute cutting edge of zkTLS research and de
 🔹 **Ethereum integration**: Discover how zkTLS is unlocking new DeFi and identity primitives  
 🔹 **Developer tools**: Get hands-on with the SDKs and frameworks that will power tomorrow's apps  
 
-**Featuring the teams that are defining the space:** vLayer, Opacity Labs, Primus Labs, Reclaim Protocol, and TLSNotary.
+**Featuring the teams that are defining the space:** vLayer, Primus Labs, Reclaim Protocol, and TLSNotary.
 
 🎟️ **Tickets dropping soon—don't miss out!**
 
@@ -62,7 +62,7 @@ The workshops run in parallel to the main track. You can walk in anytime and try
 
 You might even earn a POAP or some swag 🙂
 
-The tutorials are organized by: [vLayer](https://www.vlayer.xyz/), [Primus Labs](https://primuslabs.xyz/), [Reclaim](https://reclaimprotocol.org/), [Opacity Labs](https://www.opacity.network/) and [TLSNotary](/)
+The tutorials are organized by: [vLayer](https://www.vlayer.xyz/), [Primus Labs](https://primuslabs.xyz/), [Reclaim](https://reclaimprotocol.org/) and [TLSNotary](/)
 
 ## Agenda
 
@@ -75,7 +75,7 @@ Talks will take place in the main stage room from **10:00 to 17:00**, with break
 | 10:10–11:20 | zkTLS fundamentals (TLSNotary)                                                                                               | Streamed                   |
 | 11:20–11:30 | Workshop pitch                                                                                                               | Workshop teams pitch       |
 | 11:30–12:00 | Web proofs on Ethereum (vLayer)                                                                                              | Workshops open             |
-| 12:00–12:30 | zkTLS is better (Opacity Labs)                                                                                               | Workshops continue         |
+| 12:00–12:30 | TBD                                                                                                                          | Workshops continue         |
 | 12:30–13:00 | Cryptography of zkTLS (Primus Labs)                                                                                          | Workshops continue         |
 | 13:00–14:15 | Lunch break                                                                                                                  | No lunch break, open lab 🙂 |
 | 14:00–14:45 | zkTLS for developers (Reclaim Protocol)                                                                                      | Workshops continue         |
