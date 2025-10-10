@@ -24,13 +24,18 @@ const config: Config = {
   organizationName: 'tlsnotary', // Usually your GitHub org/user name.
   projectName: 'TLSNotary', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
 
   plugins: [
     matomoPlugin,
     ['@docusaurus/plugin-client-redirects', { redirects },],
   ],
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'throw',
+      onBrokenMarkdownImages: 'throw',
+    },
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
