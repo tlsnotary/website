@@ -28,7 +28,7 @@ In this demo, we will request JSON data from the Star Wars API at https://swapi.
    ```
 3. Checkout the version of this quick start:
    ```sh
-   git checkout v0.1.0-alpha.11
+   git checkout v0.1.0-alpha.12
    ```
 4. If you want to use a local TLSNotary server: [Run a local notary server and websocket proxy](#local), otherwise:
    1. Open `app.tsx` in your favorite editor.
