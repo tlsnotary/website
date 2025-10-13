@@ -66,19 +66,18 @@ The tutorials are organized by: [vLayer](https://www.vlayer.xyz/), [Primus Labs]
 
 ## Agenda
 
-Talks will take place in the main stage room from **10:00 to 17:00**, with breaks for coffee, lunch, and a closing session.
-| Time        | Main Track                                                                                                                   | Workshop Room              |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| 09:30–10:00 | Doors open                                                                                                                   |                            |
-| 10:00–13:00 | Morning sessions                                                                                                             |                            |
-| 10:00–10:10 | Welcome                                                                                                                      |                            |
-| 10:10–11:20 | zkTLS fundamentals (TLSNotary)                                                                                               | Streamed                   |
-| 11:20–11:30 | Workshop pitch                                                                                                               | Workshop teams pitch       |
-| 11:30–12:00 | Web proofs on Ethereum (vLayer)                                                                                              | Workshops open             |
-| 12:00–12:30 | TBD                                                                                                                          | Workshops continue         |
-| 12:30–13:00 | Cryptography of zkTLS (Primus Labs)                                                                                          | Workshops continue         |
-| 13:00–14:15 | Lunch break                                                                                                                  | No lunch break, open lab 🙂 |
-| 14:00–14:45 | zkTLS for developers (Reclaim Protocol)                                                                                      | Workshops continue         |
-| 14:45–15:15 | Coffee break                                                                                                                 | Workshops continue         |
-| 15:15–16:30 | Use case demos ([Submit yours](https://docs.google.com/forms/d/1YLxTIoxaB0zLuyg8c5qjTUm99KJnvuJZ7M1Ffz_m_YA/edit#responses)) | Workshops continue         |
-| 16:30–17:00 | The future of zkTLS                                                                                                          | Workshops continue         |
+Talks will take place in the main stage room from **10:00 to 17:00**.
+| Time        | Main Track                              | Workshop Room              |
+| ----------- | --------------------------------------- | -------------------------- |
+| 09:30–10:00 | Doors open                              |                            |
+| 10:00–10:10 | Welcome                                 |                            |
+| 10:10–11:20 | zkTLS fundamentals (TLSNotary)          | Streamed                   |
+| 11:20–11:30 | Workshop pitch                          | Workshop teams pitch       |
+| 11:30–12:00 | Web proofs on Ethereum (vLayer)         | Workshops open             |
+| 12:00–12:30 | Cryptography of zkTLS (Primus Labs)     | Workshops continue         |
+| 12:30–13:45 | Lunch break                             | No lunch break, open lab 🙂 |
+| 13:45–14:30 | zkTLS for developers (Reclaim Protocol) | Workshops continue         |
+| 14:30–15:30 | Use case demos Part 1                   | Workshops continue         |
+| 15:30–15:45 | Break                                   | Workshops continue         |
+| 15:45–16:30 | Use case demos Part 2                   | Workshops continue         |
+| 16:30–17:00 | The future of zkTLS                     | Workshops continue         |
