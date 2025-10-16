@@ -19,7 +19,8 @@ Right here! 🔥 Come to zkTLS day to learn how TLS becomes privately verifiable
 
 **Date**: November 19, 2025  
 **Location**: La Rural, Buenos Aires 🇦🇷  
-**Part of**: [Devconnect 2025](https://devconnect.org/calendar)
+**Part of**: [Devconnect 2025](https://devconnect.org/calendar)  
+**[Tickets](https://devconnect.org/calendar?event=zktls-day)** 
 
 A full day dedicated to learn about zkTLS.
 
