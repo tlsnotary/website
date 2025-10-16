@@ -136,8 +136,6 @@ RUST_LOG=trace,yamux=info,uid_mux=info cargo run --release
 
 In the browser extension, you can change the logging level via **Options > Advanced > Logging Level**.
 
-For the notary server, please refer to [this](https://github.com/tlsnotary/tlsn/blob/main/crates/notary/server/README.md#logging) on how to change the logging level.
-
 ### How do I troubleshoot connection issues?
 
 If a TLSNotary request fails, first ensure that the request works independently of TLSNotary by testing it with tools like `curl`, Postman, or another HTTP client. This helps rule out any server or network issues unrelated to TLSNotary.
