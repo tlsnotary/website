@@ -135,7 +135,7 @@ RUST_LOG=trace,yamux=info,uid_mux=info cargo run --release
 ```
 
 In the browser extension, you can change the logging level via **Options > Advanced > Logging Level**.
-w
+
 ### How do I troubleshoot connection issues?
 
 If a TLSNotary request fails, first ensure that the request works independently of TLSNotary by testing it with tools like `curl`, Postman, or another HTTP client. This helps rule out any server or network issues unrelated to TLSNotary.
