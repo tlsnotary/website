@@ -49,11 +49,7 @@ Our speaker lineup represents the absolute cutting edge of zkTLS research and de
 
 **Featuring the teams that are defining the space:** vLayer, Primus Labs, Reclaim Protocol, and TLSNotary.
 
-🎟️ **Tickets dropping soon—don't miss out!**
-
-:::tip Want to present your zkTLS use case?
-If you are building something with zkTLS and want to share it onstage, [please fill out this form](https://docs.google.com/forms/d/e/1FAIpQLScVFXK1WhPbPA9ZDnjH-ZfORch0lzk0sqz9UjjwHn2kn8KylA/viewform)
-:::
+🎟️ **Tickets** https://devconnect.org/calendar?event=zktls-day
 
 ## 🧪 Workshop Room
 
@@ -68,17 +64,17 @@ The tutorials are organized by: [vLayer](https://www.vlayer.xyz/), [Primus Labs]
 ## Agenda
 
 Talks will take place in the main stage room from **10:00 to 17:00**.
-| Time        | Main Track                              | Workshop Room              |
-| ----------- | --------------------------------------- | -------------------------- |
-| 09:30–10:00 | Doors open                              |                            |
-| 10:00–10:10 | Welcome                                 |                            |
-| 10:10–11:20 | zkTLS fundamentals (TLSNotary)          | Streamed                   |
-| 11:20–11:30 | Workshop pitch                          | Workshop teams pitch       |
-| 11:30–12:00 | Web proofs on Ethereum (vLayer)         | Workshops open             |
-| 12:00–12:30 | Cryptography of zkTLS (Primus Labs)     | Workshops continue         |
-| 12:30–13:45 | Lunch break                             | No lunch break, open lab 🙂 |
-| 13:45–14:30 | zkTLS for developers (Reclaim Protocol) | Workshops continue         |
-| 14:30–15:30 | Use case demos Part 1                   | Workshops continue         |
-| 15:30–15:45 | Break                                   | Workshops continue         |
-| 15:45–16:30 | Use case demos Part 2                   | Workshops continue         |
-| 16:30–17:00 | The future of zkTLS                     | Workshops continue         |
+| Time        | Main Track                                     | Workshop Room              |
+| ----------- | ---------------------------------------------- | -------------------------- |
+| 09:30–10:00 | Doors open                                     |                            |
+| 10:00–10:10 | Welcome                                        |                            |
+| 10:10–11:20 | zkTLS fundamentals (Sinu, TLSNotary)           |                            |
+| 11:20–11:30 | Workshop pitch                                 | Workshop teams pitch       |
+| 11:30–12:00 | Web proofs on Ethereum (Maciek Kalka, vLayer)  | Workshops open             |
+| 12:00–12:30 | Cryptography of zkTLS (Xiang Xie, Primus Labs) | Workshops continue         |
+| 12:30–13:45 | Lunch break                                    | No lunch break, open lab 🙂 |
+| 13:45–14:30 | zkTLS for developers (Maddy, Reclaim Protocol) | Workshops continue         |
+| 14:30–15:30 | Use case demos Part 1                          | Workshops continue         |
+| 15:30–15:45 | Break                                          | Workshops continue         |
+| 15:45–16:30 | Use case demos Part 2                          | Workshops continue         |
+| 16:30–17:00 | The future of zkTLS                            | Workshops continue         |
