@@ -67,20 +67,19 @@ The tutorials are organized by: [vLayer](https://www.vlayer.xyz/), [Primus Labs]
 
 Talks will take place in the main stage room from **10:00 to 17:00**. 
 
-| Time        | Main Track                                                                                     | Workshop Room              |
-| ----------- | ---------------------------------------------------------------------------------------------- | -------------------------- |
-| 09:30–10:00 | Doors open                                                                                     |                            |
-| 10:00–10:10 | Welcome                                                                                        |                            |
-| 10:10–11:00 | [zkTLS fundamentals](#zktls-fundamentals-sinu-tlsnotary) (Sinu, TLSNotary)                     |                            |
-| 11:00–11:10 | Workshops pitch                                                                                | Workshop teams pitch       |
-| 11:10–11:45 | [Web proofs on Ethereum](#web-proofs-on-ethereum-maciek-kalka-vlayer) (Maciek Kalka, vLayer)   | Workshops open             |
-| 11:45–12:15 | [Cryptography of zkTLS](#cryptography-of-zktls-xiang-xie-primus-labs) (Xiang Xie, Primus Labs) | Workshops continue         |
-| 12:15–13:45 | Lunch break                                                                                    | No lunch break, open lab 🙂 |
-| 13:45–14:30 | [zkTLS for developers](#zktls-for-developers-maddy-reclaim-protocol) (Maddy, Reclaim Protocol) | Workshops continue         |
-| 14:30–15:30 | [Use case demos Part 1](#use-case-demos-part-1)                                                | Workshops continue         |
-| 15:30–15:45 | Break                                                                                          | Workshops continue         |
-| 15:45–16:30 | [Use case demos Part 2](#use-case-demos-part-2)                                                | Workshops continue         |
-| 16:30–17:00 | [The future of zkTLS](#the-future-of-zktls)                                                    | Workshops continue         |
+| Time        | Main Track                                                                                                                                                        | Workshop Room              |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| 09:30–10:00 | Doors open                                                                                                                                                        |                            |
+| 10:00–10:10 | Welcome                                                                                                                                                           |                            |
+| 10:10–10:50 | [zkTLS fundamentals](#zktls-fundamentals-sinu-tlsnotary) (Sinu, TLSNotary)                                                                                        |                            |
+| 10:50–11:00 | Workshops pitch                                                                                                                                                   | Workshop teams pitch       |
+| 11:00–11:35 | [Web proofs on Ethereum](#web-proofs-on-ethereum-maciek-kalka-vlayer) (Maciek Kalka, vLayer)                                                                      | Workshops open             |
+| 11:35–12:10 | [Cryptography of zkTLS](#cryptography-of-zktls-xiang-xie-primus-labs) (Xiang Xie, Primus Labs)                                                                    | Workshops continue         |
+| 12:10–13:30 | Lunch break                                                                                                                                                       | No lunch break, open lab 🙂 |
+| 13:30–14:05 | [zkTLS for developers](#zktls-for-developers-maddy-reclaim-protocol) (Maddy, Reclaim Protocol)                                                                    | Workshops continue         |
+| 14:05–15:10 | [Use case demos Part 1](#use-case-demos-part-1)<br/>• Kofi (cr3dentials.xyz)<br/>• Dimitris Mouris (Nillion)<br/>• Mikhail (Bring ID)<br/>• Sachin (zkp2p)        | Workshops continue         |  | 15:10–15:25 | Break | Workshops continue |
+| 15:25–16:30 | [Use case demos Part 2](#use-case-demos-part-2)<br/>• Luís Freitas (MCPay)<br/>• Michael Dong (Brevis)<br/>• Carlos Ramos (Stormbit Labs)<br/>• Ryan (Usher Labs) | Workshops continue         |
+| 16:30–17:00 | [The future of zkTLS](#the-future-of-zktls)                                                                                                                       | Workshops continue         |
 
 ## Talk details
 
@@ -104,17 +103,35 @@ A practical deep dive into what it really takes to build privacy-preserving appl
 
 ### Use case demos Part 1
 
-* Trustless Verification for Financial Institutions (Kofi, cr3dentials.xyz)
-* TLShare: Verifiable Inputs for Private Computation (Dimitris Mouris, Nilion)
-* Proof of Humanity from Web Accounts (Mikhail, Bring ID)
-* Fast, Permissionless On and Offramping (Sachin, zkp2p)
+#### Trustless Verification for Financial Institutions (Kofi, cr3dentials.xyz)
 
+Cr3dentials is a privacy preserving verification platform that helps lenders, fintechs, and payment companies perform income verification, KYC/identity checks, and lending risk assessments from any online source across banking platforms, freelance, creator, crypto, and more without storing user data. It uses zkTLS proofs to turn digital financial activity into trusted credentials, helping institutions mitigate counterparty risk, reduce fraud, and enable faster lending and financial access across the global digital economy.
+
+#### TLShare: Verifiable Inputs for Private Computation (Dimitris Mouris, Nilion)
+TLShare extends zkTLS to enable verifiable, provenance-attested data to be securely imported into multiparty computation (MPC) and fully homomorphic encryption (FHE) workflows. It allows multiple clients to use authentic TLS-sourced data (e.g., from banks, exchanges, etc.) in privacy-preserving analytics, as well as AI model inference and training. Developed jointly by Nillion and Primus Labs, TLShare bridges the gap between verifiable web data and downstream private computation. The talk will also introduce tickr.app, a production deployment showcasing privacy-preserving computation on zkTLS-extracted data using trusted execution environments (TEEs).
+
+#### Proof of Humanity from Web Accounts (Mikhail, Bring ID)
+
+Bring ID uses MPC-TLS to privately verify online activity — for example, confirming a user has completed at least one Uber trip — as a basis for proof of personhood. Built with TLSNotary, it achieves more efficient, privacy-preserving, and trustworthy Sybil-resistance across blockchain ecosystems.
+
+#### Fast, Permissionless On and Offramping (Sachin, zkp2p)
+
+zkp2p enables instant, trust-minimized crypto onramps and offramps across Base, Arbitrum, Solana, Hyperliquid, and Ethereum — completing transfers in under 60 seconds. Built with Reclaim and Primus Labs, it delivers a seamless UX for users moving between fiat and crypto without intermediaries.
 
 ### Use case demos Part 2
-* Verifiable Micropayments for API Data (Luís Freitas, MCPay)
-* Web2-Backed On-Chain Credit (Carlos Ramos, Stormbit Labs)
-* Verity: Trust-Minimized Data Flows for Smart Contracts (Ryan, Usher Labs)  
-<!-- Usher Labs' Verity zkTLS stack enables trust-minimised data flows between traditional systems and blockchains. Integrate private or restricted data from any trusted API into your Smart Contracts. Building on TLSNotary, RiscZero, and the Internet Computer, the Verity stack provides a full-stack framework to extract, transform, and load data into blockchains with end-to-end verifiability. Think "zkRollup of TLS attestations".  -->
+
+####  Verifiable Micropayments for API Data (Luís Freitas, MCPay)
+MCPay uses zkTLS to prove that API responses received after a micropayment are authentic and untampered, enabling agents and AI models to trust the data they purchase. Built with vLayer, it explores the intersection of verifiable payments and trustworthy data exchange, tackling challenges around proof latency and low-cost transactions.
+
+#### InfoFi without Doxxing: The first ZKTLS and ZKVM Powered Social Leaderboard (Michael Dong, Brevis)
+Brevis combines zkTLS for verifiable Web2 data with a high-performance zkVM (Pico) to privately compute eligibility for incentive programs. In the Brevis Yapper Leaderboard on Kaito, users prove social identity and on-chain behavior without exposing wallets or trusting operators — enabling rewards and multipliers based on verified credentials, fully private end-to-end.
+
+#### Web2-Backed On-Chain Credit (Carlos Ramos, Stormbit Labs)
+
+Stormbit Labs integrates zkTLS into its modular fixed-rate lending protocol, allowing users to prove Web2 credentials or financial data to unlock on-chain credit. Built with Primus Labs and Reclaim, it bridges traditional finance and DeFi while focusing on improving proof speed, efficiency, and TEE security.
+
+#### Verity: Trust-Minimized Data Flows for Smart Contracts (Ryan, Usher Labs)
+Usher Labs' Verity zkTLS stack enables trust-minimised data flows between traditional systems and blockchains. Integrate private or restricted data from any trusted API into your Smart Contracts. Building on TLSNotary, RiscZero, and the Internet Computer, the Verity stack provides a full-stack framework to extract, transform, and load data into blockchains with end-to-end verifiability. Think "zkRollup of TLS attestations".
 
 ### The future of zkTLS
 Panel discussion about what is next, and how to get involved.
