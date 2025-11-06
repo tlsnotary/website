@@ -47,7 +47,7 @@ Our speaker lineup represents the absolute cutting edge of zkTLS research and de
 🔹 **Ethereum integration**: Discover how zkTLS is unlocking new DeFi and identity primitives  
 🔹 **Developer tools**: Get hands-on with the SDKs and frameworks that will power tomorrow's apps  
 
-**Featuring the teams that are defining the space:** vLayer, Primus Labs, Reclaim Protocol, and TLSNotary.
+**Featuring the teams that are defining the space:** vlayer, Primus Labs, Reclaim Protocol, and TLSNotary.
 
 🎟️ **Tickets** https://devconnect.org/calendar?event=zktls-day
 
@@ -61,7 +61,7 @@ The workshops start after their introduction in the main track at 11 and continu
 
 You might even earn a POAP or some swag 🙂
 
-The tutorials are organized by: [vLayer](https://www.vlayer.xyz/), [Primus Labs](https://primuslabs.xyz/), [Reclaim](https://reclaimprotocol.org/) and [TLSNotary](/)
+The tutorials are organized by: [vlayer](https://www.vlayer.xyz/), [Primus Labs](https://primuslabs.xyz/), [Reclaim](https://reclaimprotocol.org/) and [TLSNotary](/)
 
 ## Agenda
 
@@ -73,7 +73,7 @@ Talks will take place in the main stage room from **10:00 to 17:00**.
 | 10:00–10:10 | Welcome                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                            |
 | 10:10–10:50 | [zkTLS fundamentals](#zktls-fundamentals-sinu-tlsnotary) (Sinu, TLSNotary)                                                                                                                                                                                                                                                                                                                                                                                                   |                            |
 | 10:50–11:00 | Workshops pitch                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Workshop teams pitch       |
-| 11:00–11:35 | [Building Online Trust, On-Chain](#building-online-trust-on-chain-maciek-kalka-vlayer) (Maciek Kalka, vLayer)                                                                                                                                                                                                                                                                                                                                                                | Workshops open             |
+| 11:00–11:35 | [Building Online Trust, On-Chain](#building-online-trust-on-chain-maciek-kalka-vlayer) (Maciek Kalka, vlayer)                                                                                                                                                                                                                                                                                                                                                                | Workshops open             |
 | 11:35–12:10 | [Cryptography of zkTLS](#cryptography-of-zktls-xiang-xie-primus-labs) (Xiang Xie, Primus Labs)                                                                                                                                                                                                                                                                                                                                                                               | Workshops continue         |
 | 12:10–13:30 | Lunch break                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | No lunch break, open lab 🙂 |
 | 13:30–14:05 | [zkTLS for developers](#zktls-for-developers-maddy-reclaim-protocol) (Maddy, Reclaim Protocol)                                                                                                                                                                                                                                                                                                                                                                               | Workshops continue         |
@@ -89,7 +89,7 @@ Start your zkTLS journey with a foundational session led by Sinu, the technical 
 This talk traces the evolution of zkTLS and breaks down its core concepts, from proofs vs. attestations to the trade-offs between TEE-, proxy-, and MPC-based approaches.
 You’ll learn how different trust models, privacy techniques, and verification methods shape the landscape of zkTLS, and gain a clear understanding of the performance and security considerations behind each design.
 
-### Building Online Trust, On-Chain (Maciek Kalka, vLayer)
+### Building Online Trust, On-Chain (Maciek Kalka, vlayer)
 Join Maciej from vlayer for a deep dive into how zkTLS web proofs can power Ethereum ecosystem. This session explores the emerging design space of on-chain attestations - from cryptographic verification and the oracle problem to evolving trust assumptions in decentralized systems. Drawing on lessons from building zk tooling and infrastructure for practical web proofs, Maciej will highlight the promising directions for verifiable web data - and the approaches intentionally left behind along the way.
 
 ### Cryptography of zkTLS (Xiang Xie, Primus Labs)
@@ -122,7 +122,7 @@ zkp2p enables instant, trust-minimized crypto onramps and offramps across Base, 
 ### Use case demos Part 2
 
 ####  Verifiable Micropayments for API Data (Luís Freitas, MCPay)
-MCPay uses zkTLS to prove that API responses received after a micropayment are authentic and untampered, enabling agents and AI models to trust the data they purchase. Built with vLayer, it explores the intersection of verifiable payments and trustworthy data exchange, tackling challenges around proof latency and low-cost transactions.
+MCPay uses zkTLS to prove that API responses received after a micropayment are authentic and untampered, enabling agents and AI models to trust the data they purchase. Built with vlayer, it explores the intersection of verifiable payments and trustworthy data exchange, tackling challenges around proof latency and low-cost transactions.
 
 #### InfoFi without Doxxing: The first ZKTLS and ZKVM Powered Social Leaderboard (Michael Dong, Brevis)
 Brevis combines zkTLS for verifiable Web2 data with a high-performance zkVM (Pico) to privately compute eligibility for incentive programs. In the Brevis Yapper Leaderboard on Kaito, users prove social identity and on-chain behavior without exposing wallets or trusting operators — enabling rewards and multipliers based on verified credentials, fully private end-to-end.
