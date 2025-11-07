@@ -18,7 +18,7 @@ image: /img/zktls-day-og.png
 Right here! 🔥 Come to zkTLS day to learn how TLS becomes privately verifiable.
 
 **Date**: November 19, 2025  
-**Location**: La Rural, Buenos Aires 🇦🇷  
+**Location**: Ceibo Room, La Rural, Buenos Aires 🇦🇷  
 **Part of**: [Devconnect 2025](https://devconnect.org/calendar)  
 **[Tickets](https://devconnect.org/calendar?event=zktls-day)** 
 
@@ -71,7 +71,7 @@ Talks will take place in the main stage room from **10:00 to 17:00**.
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | 09:30–10:00 | Doors open                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                            |
 | 10:00–10:10 | Welcome                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                            |
-| 10:10–10:50 | [zkTLS fundamentals](#zktls-fundamentals-sinu-tlsnotary) (Sinu, TLSNotary)                                                                                                                                                                                                                                                                                                                                                                                                   |                            |
+| 10:10–10:50 | [zkTLS fundamentals](#zktls-fundamentals-sinu-tlsnotary) (Thomas, TLSNotary)                                                                                                                                                                                                                                                                                                                                                                                                 |                            |
 | 10:50–11:00 | Workshops pitch                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Workshop teams pitch       |
 | 11:00–11:35 | [Building Online Trust, On-Chain](#building-online-trust-on-chain-maciek-kalka-vlayer) (Maciek Kalka, vlayer)                                                                                                                                                                                                                                                                                                                                                                | Workshops open             |
 | 11:35–12:10 | [Cryptography of zkTLS](#cryptography-of-zktls-xiang-xie-primus-labs) (Xiang Xie, Primus Labs)                                                                                                                                                                                                                                                                                                                                                                               | Workshops continue         |
@@ -85,7 +85,7 @@ Talks will take place in the main stage room from **10:00 to 17:00**.
 ## Talk details
 
 ### zkTLS fundamentals (Sinu, TLSNotary)
-Start your zkTLS journey with a foundational session led by Sinu, the technical lead behind EF's TLSNotary project.
+Start your zkTLS journey with a foundational session led by Thomas, a key contributor to EF's TLSNotary project.
 This talk traces the evolution of zkTLS and breaks down its core concepts, from proofs vs. attestations to the trade-offs between TEE-, proxy-, and MPC-based approaches.
 You’ll learn how different trust models, privacy techniques, and verification methods shape the landscape of zkTLS, and gain a clear understanding of the performance and security considerations behind each design.
 
