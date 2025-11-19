@@ -18,7 +18,7 @@ In this tutorial, you'll learn how to prove web data with TLSNotary's browser ex
 Run these commands to set up the tutorial environment:
 
 ```sh
-git clone https://github.com/tlsnotary/tlsn-extension.git -b tutorial
+git clone --depth 1 --single-branch -b tutorial https://github.com/tlsnotary/tlsn-extension.git
 cd tlsn-extension
 npm install
 npm run tutorial
