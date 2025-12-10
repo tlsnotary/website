@@ -165,3 +165,14 @@ The term "presentation" is inspired by similar terminology in the [W3C Verifiabl
 TLSNotary uses a multi-party computation (MPC) approach to secure the TLS session. Without MPC, the Prover would have full control over the TLS session keys and could forge the Server's responses. Zero-knowledge (ZK) proofs alone cannot prevent this. To prevent forged responses, the Verifier participates in the handshake, splitting the TLS session keys between the Prover and the Verifier.
 
 In proxy-based designs only ZK proofs are needed. In such designs the verifier proxies the connection with the server, observes the encrypted traffic, and later verifies a ZK proof from the Prover that the plaintext matches the encrypted data. TLSNotary's direct connection model avoids introducing a network assumption and provides stronger resistance to censorship compared to the proxy approach.
+
+### Where is the “zk” in TLSNotary’s zkTLS protocol? Is “zk” the same as a zkSNARK?
+
+The TLSNotary protocol includes zero-knowledge guarantees, but not through a zkSNARK. The "zk" comes from **Quicksilver**, an MPC-in-the-head proving system used internally to verify TLS transcript processing without revealing secrets.
+
+* **Constraint count**?
+    Not applicable. Quicksilver does not use R1CS or Plonkish circuits, so there is no constraint count to report.
+* **Proof size**?
+    TLSNotary does not produce a single SNARK-like proof artifact. The closest equivalent is the total volume of MPC messages exchanged during the protocol, which can be inspected using the project’s benchmarking harness.
+
+**Attestations** are a separate feature. TLSNotary provides an attestation format, but applications may define their own or use SNARKs to prove statements about the verified TLS transcript. The zero-knowledge machinery inside TLSNotary is used for verifying the transcript, not for producing standalone SNARK-style proofs.
