@@ -165,3 +165,13 @@ The term "presentation" is inspired by similar terminology in the [W3C Verifiabl
 TLSNotary uses a multi-party computation (MPC) approach to secure the TLS session. Without MPC, the Prover would have full control over the TLS session keys and could forge the Server's responses. Zero-knowledge (ZK) proofs alone cannot prevent this. To prevent forged responses, the Verifier participates in the handshake, splitting the TLS session keys between the Prover and the Verifier.
 
 In proxy-based designs only ZK proofs are needed. In such designs the verifier proxies the connection with the server, observes the encrypted traffic, and later verifies a ZK proof from the Prover that the plaintext matches the encrypted data. TLSNotary's direct connection model avoids introducing a network assumption and provides stronger resistance to censorship compared to the proxy approach.
+
+### Can I prove statements about TLS data in zero-knowledge with TLSNotary? Does it use zkSNARKs?
+
+The TLSNotary protocol itself is an MPC-TLS protocol; zero-knowledge functionality is provided by the higher-level `tlsn` crate built on top of it.
+
+Today, `tlsn` supports proving hash commitments to transcript data in zero-knowledge and uses the `QuickSilver` proving system. We plan to extend it to support richer statements in the future.
+
+`QuickSilver` is an interactive zero-knowledge protocol (rather than a non-interactive zkSNARK) with attractive proof-generation time and memory usage. Its interactive nature makes it a natural fit inside TLSNotary’s already interactive MPC-TLS flow.
+
+Once a prover has produced and proven a hash commitment with `tlsn`, the prover and verifier can hand that commitment to a general-purpose zk system, such as Noir, to open the commitment and prove arbitrary properties about the committed transcript.
