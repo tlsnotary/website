@@ -166,13 +166,12 @@ TLSNotary uses a multi-party computation (MPC) approach to secure the TLS sessio
 
 In proxy-based designs only ZK proofs are needed. In such designs the verifier proxies the connection with the server, observes the encrypted traffic, and later verifies a ZK proof from the Prover that the plaintext matches the encrypted data. TLSNotary's direct connection model avoids introducing a network assumption and provides stronger resistance to censorship compared to the proxy approach.
 
-### Where is the “zk” in TLSNotary’s zkTLS protocol? Is “zk” the same as a zkSNARK?
+### Can I prove statements about TLS data in zero-knowledge with TLSNotary? Does it use zkSNARKs?
 
-The TLSNotary protocol includes zero-knowledge guarantees, but not through a zkSNARK. The "zk" comes from **Quicksilver**, an MPC-in-the-head proving system used internally to verify TLS transcript processing without revealing secrets.
+The TLSNotary protocol itself is an MPC-TLS protocol; zero-knowledge functionality is provided by the higher-level `tlsn` crate built on top of it.
 
-* **Constraint count**?
-    Not applicable. Quicksilver does not use R1CS or Plonkish circuits, so there is no constraint count to report.
-* **Proof size**?
-    TLSNotary does not produce a single SNARK-like proof artifact. The closest equivalent is the total volume of MPC messages exchanged during the protocol, which can be inspected using the project’s benchmarking harness.
+Today, `tlsn` supports proving hash commitments to transcript data in zero-knowledge and uses the `QuickSilver` proving system. We plan to extend it to support richer statements in the future.
 
-**Attestations** are a separate feature. TLSNotary provides an attestation format, but applications may define their own or use SNARKs to prove statements about the verified TLS transcript. The zero-knowledge machinery inside TLSNotary is used for verifying the transcript, not for producing standalone SNARK-style proofs.
+`QuickSilver` is an interactive zero-knowledge protocol (rather than a non-interactive zkSNARK) with attractive proof-generation time and memory usage. Its interactive nature makes it a natural fit inside TLSNotary’s already interactive MPC-TLS flow.
+
+Once a prover has produced and proven a hash commitment with `tlsn`, the prover and verifier can hand that commitment to a general-purpose zk system, such as Noir, to open the commitment and prove arbitrary properties about the committed transcript.
