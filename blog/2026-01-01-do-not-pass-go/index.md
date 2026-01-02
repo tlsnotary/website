@@ -1,5 +1,6 @@
 ---
 title: do not pass "Go"
+slug: do-not-pass-go
 authors: [sinu]
 description: "To solve problems at scale, humans design systems which both encapsulate complexity and leverage specialization to achieve efficiency and predictability. This reduces the need for interpersonal trust by replacing it with systemic trust — that is, trusting the behavior of a system and not an individual. Much of societal progress can be attributed to this process of systematization, but much can also be said about the damage that is caused when the goals of these systems become misaligned, or simply when they fail to adapt to new circumstances. The modern world is increasingly characterized by both failure modes."
 image: "./institutions.svg"
@@ -10,7 +11,9 @@ import Callout from '@site/src/components/Callout';
 
 # do not pass "Go"
 
-The following article is a bit meaty, so for those who just want the key points, feel free to skip to the [last section](#you-may-now-pass-go).
+The following article is a bit meaty, so for those who just want the key points, feel free to skip to the [last section](/blog/do-not-pass-go#you-may-now-pass-go).
+
+<!-- truncate -->
 
 ## scale
 
