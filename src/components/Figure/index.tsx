@@ -25,18 +25,15 @@ export default function Figure({ src, caption, alt, width, children }) {
   return (
     <>
       <figure className={styles.figure}>
-        <div className={styles.imageWrapper} onClick={() => setIsOpen(true)}>
+        <div className={styles.imageWrapper} onClick={() => setIsOpen(true)} style={{ maxWidth: width }}>
           {isSvgComponent ? (
-            <SvgComponent style={{ width, height: 'auto' }} />
+            <SvgComponent style={{ width: '100%', height: 'auto', maxWidth: '100%' }} />
           ) : (
-            <img src={imgSrc} alt={alt || caption} width={width} />
+            <img src={imgSrc} alt={alt || caption} style={{ width: '100%', maxWidth: '100%' }} />
           )}
         </div>
         {(caption || children) && (
-          <figcaption
-            className={styles.caption}
-            {...(!children && caption ? { dangerouslySetInnerHTML: { __html: caption } } : {})}
-          >
+          <figcaption className={styles.caption} dangerouslySetInnerHTML={children ? undefined : { __html: caption }}>
             {children}
           </figcaption>
         )}
@@ -50,10 +47,7 @@ export default function Figure({ src, caption, alt, width, children }) {
               <img src={imgSrc} alt={alt || caption} />
             )}
             {(caption || children) && (
-              <figcaption
-                className={styles.modalCaption}
-                {...(!children && caption ? { dangerouslySetInnerHTML: { __html: caption } } : {})}
-              >
+              <figcaption className={styles.modalCaption} dangerouslySetInnerHTML={children ? undefined : { __html: caption }}>
                 {children}
               </figcaption>
             )}

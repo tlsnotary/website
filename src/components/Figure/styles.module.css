@@ -1,12 +1,14 @@
 .figure {
   text-align: center;
   margin: 2rem auto;
+  max-width: 100%;
 }
 
 .imageWrapper {
   display: inline-block;
   cursor: pointer;
   transition: transform 0.2s ease;
+  max-width: 100%;
 }
 
 .imageWrapper img,
@@ -15,6 +17,9 @@
   background-color: white;
   border-radius: 4px;
   margin: 0;
+  max-width: 100%;
+  width: 100%;
+  height: auto !important;
 }
 
 .imageWrapper:hover {
