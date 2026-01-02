@@ -10,7 +10,7 @@ import Callout from '@site/src/components/Callout';
 
 # do not pass "Go"
 
-The following article is a bit meaty, so for those who just want the key points, feel free to skip to the [last section](#you-may-now-pass-go).
+The following article is a bit meaty, so for those who just want the key points, feel free to skip to the [last section](/blog/2026/01/01/do-not-pass-go#you-may-now-pass-go).
 
 <!-- truncate -->
 
