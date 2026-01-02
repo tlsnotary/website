@@ -63,6 +63,11 @@ You might even earn a POAP or some swag 🙂
 
 The tutorials are organized by: [vlayer](https://www.vlayer.xyz/), [Primus Labs](https://primuslabs.xyz/), [Reclaim](https://reclaimprotocol.org/) and [TLSNotary](/)
 
+* [Primus Labs zkTLS Tutorial](https://github.com/primus-labs/zkTLS-tutorial)
+* [Reclaim Protocol Tutorial](https://youtu.be/wvcZPSiqn5Y?si=ZQuZr2esqnspjhUl)
+* [TLSNotary Tutorial](https://tlsnotary.org/zktls-day-tlsnotary-tutorial/)
+* [vlayer GitHub Contribution Verifier](https://github.com/vlayer-xyz/github-contribution-verifier-demo/blob/main/TUTORIAL.md)
+
 ## Agenda
 
 Talks will take place in the main stage room from **10:00 to 17:00**. 
