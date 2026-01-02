@@ -17,7 +17,7 @@ The following article is a bit meaty, so for those who just want the key points,
 
 ## scale
 
-To solve problems at scale, humans design systems which both encapsulate complexity and leverage specialization to achieve *efficiency* and *predictability*. This reduces the need for interpersonal trust by replacing it with **systemic trust** — that is, trusting the behavior of a system and not an individual. Much of societal progress can be attributed to this process of systematization, but much can also be said about the damage that is caused when the goals of these systems become misaligned, or simply when they fail to adapt to new circumstances. The modern world is increasingly characterized by both failure modes.
+To solve problems at scale, humans design systems which both encapsulate complexity and leverage specialization to achieve efficiency and predictability. This reduces the need for interpersonal trust by replacing it with systemic trust — that is, trusting the behavior of a system and not an individual. Much of societal progress can be attributed to this process of systematization, but much can also be said about the damage that is caused when the goals of these systems become misaligned, or simply when they fail to adapt to new circumstances. The modern world is increasingly characterized by both failure modes.
 
 <Figure
   src={require('./institutions.svg').default}
@@ -27,7 +27,7 @@ To solve problems at scale, humans design systems which both encapsulate complex
 
 <!-- truncate -->
 
-Of course, that is the impetus for the various efforts centered around building _new_ systems which apply technological innovation to decrease fragility and solve modern problems. The promise being that these new systems will be more resilient to undue influence, more efficient, and will *ultimately shift power back to individuals*. Certainly, the faster that future arrives the better, but **how** such transitions will occur is not always clear.
+Of course, that is the impetus for the various efforts centered around building _new_ systems which apply technological innovation to decrease fragility and solve modern problems. The promise being that these new systems will be more resilient to undue influence, more efficient, and will ultimately shift power back to individuals. Certainly, the faster that future arrives the better, but _how_ such transitions will occur is not always clear.
 
 Today, it is the case that the majority of digital systems which we rely on as a basis for our collective reality are owned, and operated, by a relatively small number of corporate and state institutions. This existing infrastructure is the product of enormous amounts of capital investment and was built over the course of decades. Further, in terms of data _volume_, any newer contending systems pale in comparison.
 
@@ -37,17 +37,17 @@ Today, it is the case that the majority of digital systems which we rely on as a
   width={400}
 />
 
-Individuals rely on these systems every day to connect with their peers and to be able to interact at great distance with people they do not know nor trust. Identity, finance, commerce, news, social media — vast portions of all human activity are intermediated through them. It is through this intermediation that _privileged actors pervasively surveil, censor, manipulate and extract rents_.
+Individuals rely on these systems every day to connect with their peers and to be able to interact at great distance with people they do not know nor trust. Identity, finance, commerce, news, social media — vast portions of all human activity are intermediated through them. It is through this intermediation that privileged actors pervasively surveil, censor, manipulate and extract rents.
 
 One may ask how such a situation could persist unchecked, and there are surely many answers, but a common thread is the steady erosion of individuals' ability to exit — to choose better alternatives.
 
 ## walls
 
-It has been pointed out by many that the reason existing systems are failing in the first place is due to the predictable outcomes of underlying incentives. In the context of digital systems, this phenomenon has recently been popularly coined as ["**enshittification**" by Cory Doctorow](https://pluralistic.net/2022/11/28/enshittification/#relentless-payola). In short, it pertains to a situation where, after achieving sufficient scale, privileged actors in a system begin to alter it in order to extract as much value as possible while simultaneously degrading it and restricting the ability of others to exit.
+It has been pointed out by many that the reason existing systems are failing in the first place is due to the predictable outcomes of underlying incentives. In the context of digital systems, this phenomenon has recently been popularly coined as ["enshittification" by Cory Doctorow](https://pluralistic.net/2022/11/28/enshittification/#relentless-payola). In short, it pertains to a situation where, after achieving sufficient scale, privileged actors in a system begin to alter it in order to extract as much value as possible while simultaneously degrading it and restricting the ability of others to exit.
 
 The "_restricting the ability of others to exit_" part is of critical importance. After all, one would hope competitive forces in the market would apply corrective pressure when service degrades. But incumbents can and will do everything they can to stifle competition and entrench their power. This is done in numerous ways, but we will focus specifically on one: **data access control**.
 
-If users were simply showing up and obtaining fungible services, the cost associated with switching between systems would be low. But in many cases users have a stake in a particular system due to the accrual of data that is valuable to them, such as identity information, financial records, and social graphs. If they wish to switch to a competitor this usually requires leaving all that behind. For example, on a ride sharing platform, drivers can spend years building up a history which is the basis for their reputation. Switching to a new platform which offers them a larger proportion of margins may not be worth it simply because they would have to incur significant losses in revenue while rebuilding their reputation again.
+If users were simply showing up and obtaining fungible services then the cost associated with switching between systems would be low. But in many cases users have a stake in a particular system due to the accrual of data that is valuable to them, such as identity information, financial records, and social graphs. If they wish to switch to a competitor this usually requires leaving all that behind. For example, on a ride sharing platform, drivers can spend years building up a history which is the basis for their reputation. Switching to a new platform which offers them a larger proportion of margins may not be worth it simply because they would have to incur significant losses in revenue while rebuilding their reputation again.
 
 <Figure 
     src={require('./access-control.svg').default}
@@ -67,9 +67,9 @@ In some cases an incumbent system will voluntarily provide some limited degree o
 
 There have been policy efforts to _force_ incumbents to support integrations with their competitors, such as initiatives in Open Banking. Predictably, every means available is used to resist these measures. This may include things such as applying tactics straight out of the Simple Sabotage Field Manual in standardization initiatives, or just providing an undocumented, arduous and bare-minimum API that works half the time. The issue is that these policies attempt to do something much more than simply dictating "your device must support third-party headphones". They require incumbents to be active and _knowing_ intermediaries between their users and their competitors. This provides them ample opportunity for subversion.
 
-It should be noted that the focus of this section has primarily been regarding the **incentive structures** of privately owned systems, but public (state) systems also commonly have interoperability issues, albeit for different reasons (bureaucracy, red tape, underfunded). Public systems carry significant authority and credibility, but their failure to meet the needs of the modern digital era has resulted in many critical functions being handled by the private sector instead.
+It should be noted that the focus of this section has primarily been regarding the incentive structures of privately owned systems, but public (state) systems also commonly have interoperability issues, albeit for different reasons (bureaucracy, red tape, underfunded). Public systems carry significant authority and credibility, but their failure to meet the needs of the modern digital era has resulted in many critical functions being handled by the private sector instead.
 
-If we want new systems to have a chance of reaching scale and competing with those that already exist, **interoperability** will need to play a crucial role. Further, interoperability should not be contingent upon blessing from incumbents, nor should it require their knowing involvement.
+If we want new systems to have a chance of reaching scale and competing with those that already exist, interoperability will need to play a crucial role. Further, interoperability should not be contingent upon blessing from incumbents, nor should it require their knowing involvement.
 
 ## scaling walls
 
@@ -79,9 +79,9 @@ However, most personal data is, rightly, not publicly accessible. Sensitive priv
 
 For example, a new driver signing up on a ridesharing platform may claim they have 4000 hours of experience. But, says who? Perhaps they even provide a screenshot of their profile from another platform as evidence. It's well understood that screenshots can be easily forged and thus this is not credible evidence. The point of interoperability isn't simply copying data from one system to another, a user could download and reupload it if that were the goal. The goal is _securely_ exchanging data between the systems such that the provenance remains intact.
 
-If one searches online for "**data provenance**" they will find an abundance of content which could rapidly put anyone to sleep. Enterprise database management, compliance practices, data governance: these words do not typically induce enthusiasm. However, if scaling over the artificial walls of monopolies is exciting, then understanding that provenance is a key component of that should make provenance exciting as well. Fortunately, we're not going to look at any of those aforementioned topics. But we will introduce the notion.
+If one searches online for "data provenance" they will find an abundance of content which could rapidly put anyone to sleep. Enterprise database management, compliance practices, data governance: these words do not typically induce enthusiasm. However, if scaling over the artificial walls of monopolies is exciting, then understanding that provenance is a key component of that should make provenance exciting as well. Fortunately, we're not going to look at any of those aforementioned topics. But we will introduce the notion.
 
-Data provenance is the notion that _all data has an implicit history_ which is comprised of a causal chain of processes including generation, transmission and transformation.
+Data provenance is the notion that all data has an implicit history which is comprised of a causal chain of processes including generation, transmission and transformation.
 
 Provenance is concerned with questions such as:
 
@@ -99,7 +99,7 @@ The answers to these questions are themselves data, often referred to as metadat
 
 The primary reason a competing system would need to _directly_ query an incumbent system would be to do data exchange securely without requiring the incumbent to change anything. One way this has been tried is to have a user send their password to the new system which subsequently uses the user's device as a proxy to login on their behalf. This "credential-sharing" approach has two fatal issues. First, it is a security and privacy disaster. Sharing passwords is considered a cardinal sin amongst infosec experts for good reason: it greatly increases the chance of a user's account getting hacked. Additionally, even if the password isn't widely leaked, the party it is being shared with has full access to all the user's private information, which is often well in excess of what the user wishes to share. Second, credential-sharing has been contested in court and argued to be in violation of US CFAA law as a form of nebulously defined "unauthorized access". The legal uncertainty around this method is sufficient to deter its use given the prospect of being buried by armies of lawyers.
 
-Now, this is usually where the hordes of cryptographers come piling in screaming "use digital signatures!". And they are right to point out that digital signatures are meant to address this exact problem, as they allow a recipient to verify the origin and authenticity of the data that is signed. The old system _could_ simply provide a signature on the hypothetical rideshare driver's profile so that a new system could verify its authenticity without having to connect them directly. This would indeed be the ideal solution, if not for one inconvenient truth: this requires the old system to do that, and it won't because the incentives are not there.
+Now, this is usually where the hordes of cryptographers come piling in screaming "use digital signatures!". And they are right to point out that digital signatures are meant to address this exact problem, as they allow a recipient to verify the origin and authenticity of the data that is signed. The old system _could_ simply provide a signature on the hypothetical rideshare driver's profile so that a new system could verify its authenticity without having to connect them directly. This would indeed be the ideal solution, if not for one inconvenient truth: this requires the old system to do that, and it won't.
 
 <Figure
   src={require('./actually-no.png').default}
@@ -158,17 +158,15 @@ Proving such a statement could go a long way in providing credibility to somethi
 
 ## you may now pass "Go"
 
-Our project, TLSNotary, provides free open-source software (FOSS) which enables **universal data portability and selective disclosure for the internet**. With TLSNotary, users can **export** their data **anywhere** in a **fully verifiable** and **privacy-preserving** way.
+Our project, TLSNotary, provides free open-source software (FOSS) which enables universal data portability and selective disclosure for the internet. With TLSNotary, users can export their data anywhere in a fully verifiable and privacy-preserving way.
 
-Our ambition is for our software to _promote people's digital sovereignty_ and to _enhance their privacy online_. We feel that unlocking universal interoperability between digital systems could play a meaningful role in that by enabling people to opt-in to using systems which treat them with dignity and respect, and opt-out of systems which seek to coerce and infringe.
+Our ambition is for our software to promote people's digital sovereignty and to enhance their privacy online. We feel that unlocking universal interoperability between digital systems could play a meaningful role in that by enabling people to opt-in to using systems which treat them with dignity and respect, and opt-out of systems which seek to coerce and infringe.
 
 The ability to selectively disclose information, using zero-knowledge proofs, will help alleviate the endemic oversharing and replication of personal information across systems which is invariably leaked widely without care and without consequence.
 
 The history of technology is a story of inertia, where each increment forward is compounding upon the last. For new systems to reach scale, they must not, and need not, ask users to start their digital lives from scratch. That being said, we also recognize the risk of creating dependencies on old systems which have proven to be adversarial. Cautious and deliberate design is warranted to ensure new systems are not vulnerable to undue influence.
 
 As existing systems continue their trend of extracting, degrading and failing to adapt, the world is beginning to demand alternatives. Feeds littered with ads, poor search results, outlandish fees, data breaches and unmitigated bot campaigns — better online experiences are desired, and they are possible.
-
-**Collect your $200 — your data is finally yours to take wherever you go. Your data, your proof, your choice!**
 
 ---
 
