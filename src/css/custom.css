@@ -26,6 +26,7 @@
   --ifm-link-color: #0056B3;
   --ifm-link-hover-color: #003D80;
 }
+
 /* Dark mode */
 [data-theme='dark'] {
   --ifm-color-primary: #4D82BC;
