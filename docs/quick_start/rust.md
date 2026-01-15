@@ -16,15 +16,15 @@ Before we start, make sure you have cloned the `tlsn` repository and have a rece
     ```
 2. If you don't have Rust installed yet, you can install it using [rustup](https://rustup.rs/). If your Rust version is outdated, update it with `rustup update stable`.
 
-## Simple Interactive Verifier: Verifying Data from an API in Rust {#interactive}
+## Basic Verifier: Verifying Data from an API in Rust {#basic}
 
 ![](../../diagrams/light/overview_prover_verifier.svg#gh-light-mode-only)
 ![](../../diagrams/dark/overview_prover_verifier.svg#gh-dark-mode-only)
 
-This example demonstrates how to use TLSNotary in a simple interactive session between a Prover and a Verifier. It involves the Verifier first verifying the MPC-TLS session and then confirming the correctness of the data.
+This example demonstrates how to use TLSNotary in a simple session between a Prover and a Verifier. It involves the Verifier first verifying the MPC-TLS session and then confirming the correctness of the data.
 
 Follow the instructions from:
-https://github.com/tlsnotary/tlsn/tree/main/crates/examples/interactive#readme
+https://github.com/tlsnotary/tlsn/tree/main/crates/examples/basic#readme
 
 ## Simple Attestation Example: Attesting and Verifying Data from an API in Rust {#attestation}
 
@@ -35,5 +35,12 @@ TLSNotary also supports a workflow where a Verifier (acting as Attestor) attests
 
 Follow the instructions from:
 https://github.com/tlsnotary/tlsn/tree/main/crates/examples/attestation#readme
+
+## Zero-Knowledge Age Verification Example {#basic-zk}
+
+This example demonstrates **privacy-preserving age verification** using TLSNotary and zero-knowledge proofs. It allows a prover to demonstrate they are 18+ years old without revealing their actual birth date or any other personal information. The ZK proof is generated using [Noir](https://noir-lang.org/).
+
+Follow the instructions from:
+https://github.com/tlsnotary/tlsn/tree/main/crates/examples/basic_zk#readme
 
 🍾 Great job! You have successfully used TLSNotary in Rust.
