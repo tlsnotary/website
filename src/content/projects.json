@@ -35,11 +35,11 @@
     }
   },
   {
-    "name": "KapWork",
+    "name": "Kapwork",
     "description": "Automated invoice verification for Factoring Companies",
     "links": {
       "website": "https://kapwork.com/",
-      "github": "https://github.com/antojoseph/ZeroTrustBounty"
+      "github": "https://github.com/Kapwork"
     }
   },
   {
