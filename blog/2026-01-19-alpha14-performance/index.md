@@ -70,6 +70,8 @@ On bandwidth-constrained connections, the protocol runtime is dominated by the v
 
 Network latency has a direct linear impact on runtime due to the ~40 communication rounds in the MPC-TLS protocol. Performance improvements are maintained across all latency levels, though the relative impact decreases as network round-trip time becomes the dominant factor.
 
+The browser build shows a ~1.5s improvement over alpha.13, primarily due to optimizations in the MPC protocol.
+
 ### Response Size
 
 [
@@ -80,7 +82,7 @@ Network latency has a direct linear impact on runtime due to the ~40 communicati
 )
 *Benchmark Parameters: latency = 25 ms, bandwidth = 100 Mbps, request size = 1 KB.*
 
-Runtime scales with server response size, as expected. Performance improvements are maintained across all response sizes. For typical web API responses (~10 KB), **native builds complete in under 7 seconds** while **browser builds take ~13 seconds** — both fast enough for responsive end-user experiences.
+Runtime scales with server response size, as expected. Performance improvements are maintained across all response sizes. For typical web API responses (~10 KB), **native builds complete in under 6 seconds** while **browser builds take ~11 seconds** — both fast enough for responsive end-user experiences.
 
 :::info
 
