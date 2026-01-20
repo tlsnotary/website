@@ -72,6 +72,8 @@ Network latency has a direct linear impact on runtime due to the ~40 communicati
 
 The browser build shows a ~1.5s improvement over alpha.13, primarily due to optimizations in the MPC protocol.
 
+Interestingly, beyond the 150ms latency mark, browser builds actually achieve faster runtimes than native. This points to suboptimal I/O handling in the native build—an area we plan to optimize in upcoming releases.
+
 ### Response Size
 
 [
