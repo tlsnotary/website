@@ -3,9 +3,9 @@ title: alpha.14 Performance Improvements
 authors: [dan]
 ---
 
-We're pleased to share performance improvements in TLSNotary **alpha.14**. Through optimizations across the protocol stack, alpha.14 delivers speedups of **8% to 16%** across real-world network scenarios.
+We're pleased to share performance improvements in TLSNotary **[alpha.14](https://github.com/tlsnotary/tlsn/releases/tag/v0.1.0-alpha.14)**. Through optimizations across the protocol stack, alpha.14 delivers speedups of **8% to 16%** across real-world network scenarios.
 
-In this post, we present detailed benchmarks comparing alpha.13 and alpha.14 across different network conditions, demonstrating how these improvements translate to real-world performance gains for both native and browser deployments.
+In this post, we present detailed benchmarks comparing [alpha.13](https://github.com/tlsnotary/tlsn/releases/tag/v0.1.0-alpha.13) and [alpha.14](https://github.com/tlsnotary/tlsn/releases/tag/v0.1.0-alpha.14) across different network conditions, demonstrating how these improvements translate to real-world performance gains for both native and browser deployments.
 
 <!-- truncate -->
 
@@ -13,9 +13,9 @@ In this post, we present detailed benchmarks comparing alpha.13 and alpha.14 acr
 
 Protocol runtime (in seconds) for alpha.14 native and browser builds across representative real-world scenarios:
 
-|  | Cable | Fiber | Mobile 5G |
-|--|-------|-------|-----------|
-| Native | 15.0s (**-8.9%**) | 4.1s (**-9.7%**) | 10.9s (**-8.4%**) |
+|         | Cable              | Fiber             | Mobile 5G          |
+| ------- | ------------------ | ----------------- | ------------------ |
+| Native  | 15.0s (**-8.9%**)  | 4.1s (**-9.7%**)  | 10.9s (**-8.4%**)  |
 | Browser | 16.8s (**-12.8%**) | 6.5s (**-16.1%**) | 12.9s (**-12.6%**) |
 
 *__Bold percentages__ indicate improvement over alpha.13.*
