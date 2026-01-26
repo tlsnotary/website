@@ -3,16 +3,16 @@ title: "Testing MPC-TLS: Building a Reproducible Network Harness"
 authors: [heeckhau]
 ---
 
-Testing and benchmarking a multi-party computation (MPC) protocol like TLSNotary presents unique challenges. Two parties, Prover and Verifier, must communicate over a network, and the protocol's performance is highly sensitive to real-world network conditions: multiple communication rounds make it **latency-sensitive**, while significant data transfer makes it **bandwidth-sensitive**. Add network failures and browser/WASM support to the mix, and things get even more interesting.
+Testing and benchmarking a multi-party computation (MPC) protocol like TLSNotary presents unique challenges. Three parties, Server, Prover and Verifier, must communicate over a network, and the protocol's performance is highly sensitive to real-world network conditions: multiple communication rounds make it **latency-sensitive**, while significant data transfer makes it **bandwidth-sensitive**. Add network failures and browser/WASM support to the mix, and things get even more interesting.
+
+![TLSNotary Overview](./light/overview.svg#gh-light-mode-only)
+![TLSNotary Overview](./dark/overview.svg#gh-dark-mode-only)
 
 In this post, we'll walk through how we built a test and benchmark harness that provides reproducible network conditions for both native and browser-based testing. This is the same harness we use to produce our [performance benchmarks](/blog/2026/01/19/alpha14-performance).
 
 <!-- truncate -->
 
 ## The Testing Challenge
-
-![TLSNotary Overview](./light/overview.svg#gh-light-mode-only)
-![TLSNotary Overview](./dark/overview.svg#gh-dark-mode-only)
 
 Testing TLSNotary requires:
 
@@ -27,7 +27,7 @@ Simply running everything on `localhost` doesn't cut it. Localhost traffic has n
 
 Ideally, we'd test on two separate machines with a real network between them. But that's impractical for CI and local development.
 
-Instead, we use Linux's `tc` (traffic control) combined with **network namespaces**. Namespaces give us isolated network environments; `tc` lets us shape the traffic between them. This isn't a perfect replica of real-world networking, but it's good enough for reproducible benchmarks.
+Instead, we use Linux's `tc` (traffic control) combined with network namespaces. Namespaces give us isolated network environments; `tc` lets us shape the traffic between them. This isn't a perfect replica of real-world networking, but it's good enough for reproducible benchmarks.
 
 ### The Network Topology
 
@@ -35,12 +35,6 @@ The harness creates three namespaces connected via a bridge:
 
 ![Network Topology](./light/topology.svg#gh-light-mode-only)
 ![Network Topology](./dark/topology.svg#gh-dark-mode-only)
-
-| Namespace  | Purpose              | Key Components                                                 |
-| ---------- | -------------------- | -------------------------------------------------------------- |
-| **NS_0**   | Prover environment   | Prover executor, WebSocket proxies (browser mode), WASM server |
-| **NS_1**   | Verifier environment | Verifier executor                                              |
-| **NS_APP** | Target server        | Test HTTP server                                               |
 
 We apply `tc` rules to the virtual interfaces (veth) connecting namespaces, shaping traffic in both directions. This enables testing under different conditions: high bandwidth (100+ Mbps), constrained upload (10 Mbps), or high latency (200ms RTT).
 
@@ -50,10 +44,7 @@ A [runner](https://github.com/tlsnotary/tlsn/tree/v0.1.0-alpha.14/crates/harness
 
 ## Native vs Browser Mode
 
-In native mode, the Prover connects directly to the Verifier via TCP. Browser mode is trickier: browsers can't open raw TCP sockets, so we use WebSocket proxies that relay connections to TCP. The proxy runs inside NS_0, so traffic still traverses the shaped virtual interfaces.
-
-![Browser Traffic Flow](./light/browser-flow.svg#gh-light-mode-only)
-![Browser Traffic Flow](./dark/browser-flow.svg#gh-dark-mode-only)
+In native mode, the Prover connects directly to the Verifier via TCP. Browser mode is trickier: browsers can't open raw TCP sockets, so we use WebSocket proxies that relay connections to TCP. Traffic still traverses the shaped virtual interfaces.
 
 ## Running Benchmarks
 

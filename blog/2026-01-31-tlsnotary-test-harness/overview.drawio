@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="overview" name="TLSNotary Overview">
-        <mxGraphModel dx="842" dy="364" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="380" math="0" shadow="0">
+        <mxGraphModel dx="832" dy="456" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="380" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -28,11 +28,11 @@
                 <mxCell id="prover-desc" value="Wants to prove data from server" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9;fontColor=#558b2f;fontStyle=2;" parent="1" vertex="1">
                     <mxGeometry x="95" y="280" width="150" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="verifier" value="VERIFIER&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;(Always native)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontStyle=1;fontSize=12;" parent="1" vertex="1">
-                    <mxGeometry x="440" y="230" width="140" height="60" as="geometry"/>
+                <mxCell id="verifier" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="200" width="180" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="verifier-desc" value="Validates proofs without&lt;br&gt;seeing sensitive data" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9;fontColor=#f57f17;fontStyle=2;" parent="1" vertex="1">
-                    <mxGeometry x="440" y="295" width="140" height="30" as="geometry"/>
+                    <mxGeometry x="460" y="280" width="140" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="tls-arrow" value="" style="endArrow=classic;startArrow=classic;html=1;strokeWidth=2;strokeColor=#b85450;curved=1;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -66,6 +66,18 @@
                 </mxCell>
                 <mxCell id="challenge-text" value="&lt;b&gt;Challenge:&lt;/b&gt; How do we test this with realistic network conditions in both native AND browser environments?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#424242;" parent="1" vertex="1">
                     <mxGeometry x="90" y="345" width="520" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="VERIFIER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#f57f17;" vertex="1" parent="1">
+                    <mxGeometry x="490" y="205" width="80" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Native (Rust)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+                    <mxGeometry x="452.5" y="235" width="70" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="or" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#666666;" vertex="1" parent="1">
+                    <mxGeometry x="517.5" y="240" width="20" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Browser (WASM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+                    <mxGeometry x="532.5" y="235" width="75" height="35" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
