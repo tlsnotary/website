@@ -117,7 +117,7 @@ const config: Config = {
         { to: '/blog', label: 'Blog', position: 'left' },
 
 
-        { href: 'https://tlsnotary.github.io/tlsn/tlsn_prover/', label: 'API', position: 'right' },
+        { href: 'https://tlsnotary.github.io/tlsn/tlsn/', label: 'API', position: 'right' },
         {
           href: 'https://github.com/tlsnotary',
           label: 'GitHub',
