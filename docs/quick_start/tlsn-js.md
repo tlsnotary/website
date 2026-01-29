@@ -96,9 +96,9 @@ Note the `swapi.dev:443` argument on the last line, this is the server we will u
 
 For this demo, we also need to run a local notary server.
 
-1. Clone the TLSNotary repository  (defaults to the `main` branch, which points to the latest release):
+1. Clone the TLSNotary repository:
    ```sh
-   git clone https://github.com/tlsnotary/tlsn.git
+   git clone https://github.com/tlsnotary/tlsn.git --branch v0.1.0-alpha.14
    ```
 2. Run the notary server:
    ```sh

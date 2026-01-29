@@ -76,9 +76,9 @@ If you plan to run a local notary server:
 
 ### Run a Local Notary Server {#local-notary}
 
-1. Clone the TLSNotary repository (defaults to the `main` branch, which points to the latest release):
+1. Clone the TLSNotary repository:
    ```shell
-      git clone https://github.com/tlsnotary/tlsn.git
+   git clone https://github.com/tlsnotary/tlsn.git --branch v0.1.0-alpha.14
    ```
 2. Run the notary server:
    ```sh

@@ -10,9 +10,9 @@ This quick start demonstrates how to use TLSNotary with Rust code.
 
 Before we start, make sure you have cloned the `tlsn` repository and have a recent version of Rust installed.
 
-1. Clone the `tlsn` repository (defaults to the `main` branch, which points to the latest release):
+1. Clone the `tlsn` repository:
     ```shell
-    git clone https://github.com/tlsnotary/tlsn.git
+   git clone https://github.com/tlsnotary/tlsn.git --branch v0.1.0-alpha.14
     ```
 2. If you don't have Rust installed yet, you can install it using [rustup](https://rustup.rs/). If your Rust version is outdated, update it with `rustup update stable`.
 
