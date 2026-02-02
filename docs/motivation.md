@@ -4,48 +4,73 @@ sidebar_position: 2
 
 # Motivation
 
-The decentralized internet demands privacy-respecting data provenance!
+:::tip TL;DR
+* **Prove your data** from any website without screenshots or sharing passwords
+* **Selective disclosure**: Show only what you want (balance but not transactions)
+* **No permission needed**: Works with existing sites—servers don't even know it's happening
+* **Built for Ethereum**: Import reputation, credentials, and private data into dApps on Day 1
+:::
 
-Data provenance ensures internet data is authentic. It allows verification of the data's origin and ensures the data hasn't been fabricated or tampered with.
+The internet is broken. Your data is locked in "walled gardens," and you can't prove what's yours without giving away the keys to everything.
 
-Data provenance will make data truly portable, empowering users to share it with others as they see fit.
+**Data provenance** is the solution: it proves your data is real, shows where it came from, and guarantees it hasn't been tampered with. Think of it as a "digital receipt" that travels with your data.
 
-## Non-repudiation: TLS is not enough
+With true data provenance, your data becomes **portable**. You control what you share and with whom. No intermediaries, no gatekeepers, no compromises.
+
+## The Problem: TLS Keeps You Safe, But Can't Prove Your Data to Others
 
 ![](../diagrams/light/data_provenance_none.svg#gh-light-mode-only)
 ![](../diagrams/dark/data_provenance_none.svg#gh-dark-mode-only)
 
-Transport Layer Security (TLS) plays a crucial role in digital security. TLS protects communication against eavesdropping and tampering. It ensures that the data received by a user (_"Alice"_) indeed originated from the `Server` and was not changed. The `Server`'s identity is verified by Alice through trusted Certificate Authorities (CAs). Data integrity is maintained by transmitting a cryptographic hash (called Message Authentication Code or MAC in TLS) alongside the data, which safeguards against deliberate alterations.
+When you browse the web, **TLS** (the "lock" icon in your browser) protects your connection. It ensures that the data you receive from a server is authentic and hasn't been tampered with in transit. You can trust what you see on your screen came from the real server.
 
-However, this hash does not provide **non-repudiation**, meaning it cannot serve as evidence for the **authenticity and integrity** of the data to Bob (e.g., a service or an app). Because it is a keyed hash and TLS requires that the key is known to Alice, she could potentially modify the data and compute a corresponding hash after the TLS session is finished.
+But here's the catch: **TLS only protects the conversation between you and the server**. It doesn't give you proof you can share with others.
 
-Achieving non-repudiation requires digital signatures implemented with asymmetric, public-key cryptography.
+Say Alice wants to prove her bank balance to Bob (maybe to get approved for a loan). Even though TLS guarantees the bank sent her that balance, she can't simply show Bob a screenshot: anyone can fake those. And because TLS uses "symmetric keys" (both Alice and the bank know the secret), Alice could technically fake the data herself and Bob would have no way to verify it actually came from the bank.
 
-While the concept seems straightforward, enabling servers to sign data is not a part of the TLS protocol. Even if all data were securely signed, naively sharing all data with others could expose too much information, compromising Alice's privacy. **Privacy** is a vital social good that must be protected.
+To solve this, you'd need **digital signatures** from the server, but servers don't do this. Even if they did, forcing Alice to share *all* her data would be a privacy nightmare. We need a way to prove data authenticity **while preserving privacy**.
 
-## Status Quo: delegate access
+## Today's "Solution": Hand Over the Keys (OAuth)
 
 ![](../diagrams/light/data_provenance_oauth.svg#gh-light-mode-only)
 ![](../diagrams/dark/data_provenance_oauth.svg#gh-dark-mode-only)
 
-Currently, when Alice wants to share data from a `Server` with another party, OAuth can be used to facilitate this if the application supports it. In this way, the other party receives the data directly from the `Server`, ensuring authentic and unchanged data. However, applications often do not provide fine-grained control over which data to share, leading to the other party gaining access to more information than strictly necessary.
+Right now, if Alice wants to share data from one platform with another service, she typically uses **OAuth** (think "Sign in with Google" or "Connect to Facebook"). This lets Bob's app directly access Alice's data from the original server, so the data is guaranteed to be authentic.
 
-Another drawback of this solution is that the `Server` is aware of the access delegation, enabling it to monitor and censor the other user’s requests.
+But there are major problems:
 
-It's worth noting that in many instances, OAuth is not even presented as an option. This is because a lot of servers lack the incentive to provide third-party access to the data.
+* **All-or-nothing access**: Most platforms don't let Alice pick and choose. She has to give Bob access to *way more* information than necessary. Want to prove you have a Twitter account? Here's your entire DM history too.
 
-## TLSNotary: data provenance and privacy with secure multi-party computation
+* **The platform watches everything**: The original server knows exactly what Alice is sharing and with whom. They can monitor, analyze, or even block the connection at any time.
+
+* **Many platforms refuse to play ball**: Most services have zero incentive to let competitors access their users' data. No OAuth option means no data portability, you're stuck.
+
+## TLSNotary: Prove Your Data Without Revealing Everything
 
 ![](../diagrams/light/data_provenance_tlsn.svg#gh-light-mode-only)
 ![](../diagrams/dark/data_provenance_tlsn.svg#gh-dark-mode-only)
 
-TLSNotary operates by executing the TLS communication using **multi-party computation** (MPC). MPC allows Alice and Bob to jointly manage the TLS connection.
-With TLSNotary, Alice can selectively prove the authenticity of arbitrary portions of the data to Bob. Since Bob participated in the MPC-TLS communication, he is guaranteed that the data is authentic.
+TLSNotary solves this using clever cryptography called **multi-party computation** (MPC). Here's how it works:
 
-The TLSNotary protocol is **transparent** to the `Server`. From the `Server`'s perspective, the TLS connection appears just like any other connection, meaning **no modifications to the TLS protocol are necessary**.
+Instead of Alice connecting to the server alone, **Alice and Bob work together** to manage the TLS connection. Neither one has full control: they split the cryptographic "keys" between them. This means:
+
+* **Alice can selectively prove specific parts of her data** to Bob. Want to prove your bank balance but hide your transaction history? No problem: just reveal the balance.
+* **Bob knows the data is authentic** because he participated in the TLS connection. Alice can't fake it because she never had complete control of the keys.
+* **The server has no idea this is happening**. From the server's perspective, it's just a normal TLS connection. No API required, no permission needed, no modifications necessary.
+
+It's data provenance with built-in privacy: exactly what the internet needs.
 
 <!-- TLSNotary can also separate the TLS-MPC verification from the data verification. When an independent **Notary** handles the TLS verification, the user receives signed, or notarized, data from the notary, which she can store or carry around. This equates to full data portability. It is worth noting that in this setup, Bob (the data verifier) needs to trust the notary. -->
 
+## TLSNotary is a Growth Accelerator for the Ethereum ecosystem
+
+* **Unlocking the "Private Data" Ocean**: Ethereum is the ultimate "Trust Machine," but it currently runs primarily on public data. TLSNotary provides "super-fuel" by unlocking the 99% of world data currently hidden in "walled gardens" (bank records, social graphs, and identity), enabling a massive new class of useful applications.
+* **Battling "Enshittification" via Portability**: It restores market pressure by enabling a Permissionless Exit. If users can leave a platform while taking their data and reputation with them to an Ethereum alternative, the "walled gardens" lose their monopoly power.
+* **Solving the Cold Start Problem**: New dApps no longer have to start from zero. They can build on the "data capital" of incumbents, allowing users to import a 10-year reputation or credit history onto Ethereum on Day 1.
+* **Scaling without Permission or Censorship**: It allows Ethereum to scale into real-world use cases without needing "API blessings" or permission from corporate gatekeepers.
+* **Selective Disclosure**: TLSNotary ensures this new "private fuel" doesn't leak. By using zero-knowledge proofs, users stay in total control over what specific facts are shared and what raw data remains private.
+
+[Read more](/blog/2026/01/01/do-not-pass-go)
 
 ## Make your data portable with TLSNotary!
 
