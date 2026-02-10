@@ -30,29 +30,25 @@ TLSNotary uses **Multi-Party Computation (MPC)** to generate cryptographic proof
 
 ## Architecture
 
-```
-┌─────────────────┐                  ┌──────────────────┐                  ┌─────────────────┐
-│                 │                  │                  │                  │                 │
-│  Browser        │ ◄──WebSocket──►  │  Verifier Server │ ◄──TCP/TLS──►    │  Target Server  │
-│  Extension      │                  │  (packages/      │                  │  (api.x.com,    │
-│  (Prover)       │                  │   verifier)      │                  │   etc.)         │
-│                 │                  │                  │                  │                 │
-└────────┬────────┘                  └────────┬─────────┘                  └─────────────────┘
-         │                                     │
-         ├─1. /session ───────────────►        │
-         │   (create session)                  │
-         │                                     │
-         ◄─ sessionId ────────────────         │
-         │                                     │
-         ├─2. /verifier?sessionId=... ────►    │
-         │   (MPC-TLS verification)            │
-         │                                     │
-         │                          3. /proxy?token=api.x.com ─────►
-         │                             (forward request to target)
-         │                                     │
-         ◄─ Proof Result ─────────────         │
-         │                                     │
-         │                          4. Webhook (optional) ─────► Backend
+```mermaid
+sequenceDiagram
+    participant B as Browser Extension<br/>(Prover)
+    participant V as Verifier Server<br/>(packages/verifier)
+    participant P as WebSocket Proxy<br/>(optional, any proxy)
+    participant T as Target Server<br/>(api.x.com, etc.)
+    participant BE as Backend
+
+    Note over P: Proxy can run on verifier,<br/>user's device, or separately
+
+    B->>V: 1. /session<br/>(create session)
+    V-->>B: sessionId
+    B->>V: 2. /verifier?sessionId=...<br/>(MPC-TLS verification)
+    B->>P: 3. /proxy?token=api.x.com<br/>(via WebSocket)
+    P->>T: Forward request<br/>(TCP/TLS)
+    T-->>P: Response
+    P-->>B: Response
+    V-->>B: Proof Result
+    V->>BE: 4. Webhook (optional)
 ```
 
 **Key components:**
@@ -67,18 +63,24 @@ TLSNotary uses **Multi-Party Computation (MPC)** to generate cryptographic proof
 
 ## Built-in WebSocket Proxy
 
+:::note
+The recommended approach is to run a WebSocket-to-TCP proxy on the prover's device for maximum control and privacy. However, this requires setup effort from the user. For convenience, the verifier includes a built-in proxy that works out-of-the-box. Any WebSocket-to-TCP proxy can be used — you can run your own, use a third-party service, or use the verifier's built-in proxy.
+:::
+
 The verifier includes a built-in proxy that eliminates the need for external proxy services.
 
-```
-Browser Extension ──► WebSocket ──► Verifier Proxy ──► TCP/TLS ──► api.x.com
+```mermaid
+graph LR
+    A[Browser Extension] -->|WebSocket| B[Verifier Proxy]
+    B -->|TCP/TLS| C[api.x.com]
 ```
 
 **Endpoint:** `ws[s]://<host>/proxy?token=<target-hostname>`
 
-| Environment | URL |
-|-------------|-----|
-| Local | `ws://localhost:7047/proxy?token=api.x.com` |
-| Production | `wss://demo.tlsnotary.org/proxy?token=api.x.com` |
+| Environment | URL                                              |
+| ----------- | ------------------------------------------------ |
+| Local       | `ws://localhost:7047/proxy?token=api.x.com`      |
+| Production  | `wss://demo.tlsnotary.org/proxy?token=api.x.com` |
 
 The `token` parameter specifies the target server hostname. The proxy:
 
@@ -119,11 +121,11 @@ Creates a new MPC-TLS verification session.
 }
 ```
 
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `maxRecvData` | number | 16384 | Maximum bytes the prover can receive |
-| `maxSentData` | number | 4096 | Maximum bytes the prover can send |
-| `sessionData` | object | — | Custom metadata, included in webhook notifications |
+| Field         | Type   | Default | Description                                        |
+| ------------- | ------ | ------- | -------------------------------------------------- |
+| `maxRecvData` | number | 16384   | Maximum bytes the prover can receive               |
+| `maxSentData` | number | 4096    | Maximum bytes the prover can send                  |
+| `sessionData` | object | —       | Custom metadata, included in webhook notifications |
 
 **Response:**
 ```json
@@ -158,38 +160,47 @@ See [Built-in WebSocket Proxy](#built-in-websocket-proxy) above.
 
 Complete flow for generating a TLS proof:
 
-```
-Extension                          Verifier Server                     Target Server
-    │                                     │                                     │
-    │  1. WS /session                     │                                     │
-    │ ──────────────────────────────────► │                                     │
-    │                                     │                                     │
-    │  2. { sessionId: "..." }            │                                     │
-    │ ◄────────────────────────────────── │                                     │
-    │                                     │                                     │
-    │  3. WS /verifier?sessionId=...      │                                     │
-    │ ──────────────────────────────────► │                                     │
-    │                                     │                                     │
-    │  4. MPC-TLS handshake               │  5. WS /proxy?token=api.x.com       │
-    │ ──────────────────────────────────► │ ──────────────────────────────────► │
-    │                                     │                                     │
-    │                                     │  6. TCP: HTTP request               │
-    │                                     │ ──────────────────────────────────► │
-    │                                     │                                     │
-    │                                     │  7. TCP: HTTP response              │
-    │                                     │ ◄────────────────────────────────── │
-    │                                     │                                     │
-    │  8. Transcript validation           │                                     │
-    │ ◄────────────────────────────────── │                                     │
-    │                                     │                                     │
-    │  9. Proof result (redacted data)    │                                     │
-    │ ◄────────────────────────────────── │                                     │
-    │                                     │                                     │
-    │                                     │  10. Webhook POST (optional)        │
-    │                                     │ ──────────────────────────────────► Backend
-    │                                     │                                     │
-    │  11. WS close, session cleanup      │                                     │
-    │ ◄────────────────────────────────── │                                     │
+```mermaid
+sequenceDiagram
+    participant E as Extension
+    participant V as Verifier Server
+    participant P as WebSocket Proxy
+    participant T as Target Server
+    participant BE as Backend
+
+    Note over E,V: Session Setup
+    E->>V: 1. WS /session<br/>(maxRecvData, maxSentData, sessionData)
+    V-->>E: 2. { sessionId: "..." }
+
+    Note over E,V: MPC-TLS Verification Connection
+    E->>V: 3. WS /verifier?sessionId=...
+    activate V
+
+    Note over E,V: Cryptographic Protocol
+    E->>V: 4. MPC-TLS handshake<br/>(co-sign TLS without seeing plaintext)
+
+    Note over E,T: HTTP Request/Response (via Proxy)
+    E->>P: 5. WS /proxy?token=api.x.com
+    activate P
+    P->>T: 6. TCP: HTTP request<br/>(headers, body)
+    activate T
+    T-->>P: 7. TCP: HTTP response<br/>(headers, body, status)
+    deactivate T
+    P-->>E: Forward response
+    deactivate P
+
+    Note over V,E: Proof Generation
+    V-->>E: 8. Transcript validation<br/>(verify request/response integrity)
+    V-->>E: 9. Proof result<br/>(redacted transcript per handlers)
+    deactivate V
+
+    opt Webhook Configured
+        Note over V,BE: Backend Integration
+        V->>BE: 10. Webhook POST<br/>(sessionId, redacted transcript, revealConfig)
+    end
+
+    Note over V,E: Cleanup
+    V-->>E: 11. WS close, session cleanup
 ```
 
 ---
@@ -311,64 +322,15 @@ cargo build --release
 
 ### Docker
 
-```dockerfile
-FROM rust:1.75 AS builder
+For a complete Docker deployment example with docker-compose, see the [official docker-compose.yml](https://github.com/tlsnotary/tlsn-extension/blob/main/packages/demo/docker-compose.yml) in the repository.
 
-WORKDIR /app
-COPY Cargo.toml Cargo.lock ./
-COPY src ./src
-
-RUN cargo build --release
-
-FROM debian:bookworm-slim
-
-RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY --from=builder /app/target/release/tlsn-verifier-server /usr/local/bin/
-COPY config.yaml /etc/tlsn-verifier/config.yaml
-
-ENV RUST_LOG=info
-EXPOSE 7047
-
-CMD ["tlsn-verifier-server"]
-```
+Quick start with docker-compose:
 
 ```bash
-docker build -t tlsn-verifier-server .
-docker run -p 7047:7047 -v $(pwd)/config.yaml:/etc/tlsn-verifier/config.yaml tlsn-verifier-server
-```
-
-### Reverse Proxy (nginx)
-
-```nginx
-upstream tlsn_verifier {
-    server localhost:7047;
-}
-
-server {
-    listen 443 ssl http2;
-    server_name demo.tlsnotary.org;
-
-    ssl_certificate /etc/letsencrypt/live/demo.tlsnotary.org/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/demo.tlsnotary.org/privkey.pem;
-
-    location ~ ^/(session|verifier|proxy|health) {
-        proxy_pass http://tlsn_verifier;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-
-        # Long timeout for MPC-TLS operations
-        proxy_read_timeout 3600s;
-        proxy_send_timeout 3600s;
-    }
-}
+git clone https://github.com/tlsnotary/tlsn-extension.git
+cd tlsn-extension/packages/demo
+docker-compose up verifier
+# Server starts on http://0.0.0.0:7047
 ```
 
 ---
@@ -464,9 +426,9 @@ cargo test test_name            # Specific test
 
 ### Common Issues
 
-| Issue | Solution |
-|-------|----------|
-| `Address already in use (os error 48)` | Kill existing process: `lsof -ti:7047 \| xargs kill -9` |
-| `failed to load config.yaml` | Create `config.yaml` or run from the directory containing it |
-| WebSocket upgrade fails | Ensure client sends `Upgrade: websocket` and `Connection: Upgrade` headers |
-| Proxy connection timeout | Check target server is reachable: `nc -zv api.x.com 443` |
+| Issue                                  | Solution                                                                   |
+| -------------------------------------- | -------------------------------------------------------------------------- |
+| `Address already in use (os error 48)` | Kill existing process: `lsof -ti:7047 \| xargs kill -9`                    |
+| `failed to load config.yaml`           | Create `config.yaml` or run from the directory containing it               |
+| WebSocket upgrade fails                | Ensure client sends `Upgrade: websocket` and `Connection: Upgrade` headers |
+| Proxy connection timeout               | Check target server is reachable: `nc -zv api.x.com 443`                   |

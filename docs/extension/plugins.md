@@ -103,44 +103,30 @@ prove(requestOptions, {
 
 ## Plugin Lifecycle
 
-```
-1. User triggers plugin execution
-          │
-          ▼
-2. Background service worker receives EXEC_CODE message,
-   forwards to Offscreen Document
-          │
-          ▼
-3. SessionManager.executePlugin(code)
+1. **User triggers plugin execution**
+2. **Background service worker receives `EXEC_CODE` message**
+   - Forwards to Offscreen Document
+3. **SessionManager.executePlugin(code)**
    - Creates QuickJS sandbox with capabilities
    - Evaluates plugin code
-   - Extracts { main, onClick, config, ...callbacks }
-          │
-          ▼
-4. Initial render: main()
+   - Extracts `{ main, onClick, config, ...callbacks }`
+4. **Initial render: `main()`**
    - Plugin returns UI as JSON (div/button tree)
    - May call openWindow() via useEffect
-          │
-          ▼
-5. Request/header interception
+5. **Request/header interception**
    - WindowManager captures HTTP traffic
-   - Sends REQUEST_INTERCEPTED messages
+   - Sends `REQUEST_INTERCEPTED` messages
    - SessionManager updates plugin state
-   - Calls main() again → UI updates
-          │
-          ▼
-6. User interaction (button click)
-   - Content script sends PLUGIN_UI_CLICK message
+   - Calls `main()` again → UI updates
+6. **User interaction (button click)**
+   - Content script sends `PLUGIN_UI_CLICK` message
    - SessionManager executes associated callback
-   - Callback may call prove() to generate proof
-   - Calls main() again → UI updates
-          │
-          ▼
-7. Plugin completion: done()
+   - Callback may call `prove()` to generate proof
+   - Calls `main()` again → UI updates
+7. **Plugin completion: done()**
    - Closes associated window
    - Disposes QuickJS sandbox
-   - Resolves executePlugin() promise
-```
+   - Resolves `executePlugin()` promise
 
 ---
 
@@ -199,12 +185,12 @@ button(
 
 Opens a new managed browser window with request interception enabled.
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `url` | string | — | URL to open |
-| `options.width` | number | 800 | Window width in pixels |
-| `options.height` | number | 600 | Window height in pixels |
-| `options.showOverlay` | boolean | false | Show TLSN overlay |
+| Parameter             | Type    | Default | Description             |
+| --------------------- | ------- | ------- | ----------------------- |
+| `url`                 | string  | —       | URL to open             |
+| `options.width`       | number  | 800     | Window width in pixels  |
+| `options.height`      | number  | 600     | Window height in pixels |
+| `options.showOverlay` | boolean | false   | Show TLSN overlay       |
 
 **Returns:** `Promise<{ windowId: number, uuid: string, tabId: number }>`
 
@@ -342,23 +328,23 @@ The unified API for TLS proof generation. This single function handles creating 
 
 **`requestOptions`**
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `url` | string | Full request URL |
-| `method` | string | HTTP method (`GET`, `POST`, etc.) |
-| `headers` | object | Request headers as key-value pairs |
-| `body` | string? | Request body for POST/PUT requests |
+| Field     | Type    | Description                        |
+| --------- | ------- | ---------------------------------- |
+| `url`     | string  | Full request URL                   |
+| `method`  | string  | HTTP method (`GET`, `POST`, etc.)  |
+| `headers` | object  | Request headers as key-value pairs |
+| `body`    | string? | Request body for POST/PUT requests |
 
 **`proverOptions`**
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `verifierUrl` | string | Verifier WebSocket URL |
-| `proxyUrl` | string | WebSocket proxy URL (format: `ws[s]://<host>/proxy?token=<target>`) |
-| `maxRecvData` | number? | Max received bytes (default: 16384) |
-| `maxSentData` | number? | Max sent bytes (default: 4096) |
-| `handlers` | Handler[] | What to reveal or commit |
-| `sessionData` | object? | Custom metadata passed to verifier and included in webhooks |
+| Field         | Type      | Description                                                         |
+| ------------- | --------- | ------------------------------------------------------------------- |
+| `verifierUrl` | string    | Verifier WebSocket URL                                              |
+| `proxyUrl`    | string    | WebSocket proxy URL (format: `ws[s]://<host>/proxy?token=<target>`) |
+| `maxRecvData` | number?   | Max received bytes (default: 16384)                                 |
+| `maxSentData` | number?   | Max sent bytes (default: 4096)                                      |
+| `handlers`    | Handler[] | What to reveal or commit                                            |
+| `sessionData` | object?   | Custom metadata passed to verifier and included in webhooks         |
 
 #### Handler Structure
 
@@ -388,16 +374,16 @@ type Handler = {
 
 **Handler `part` values:**
 
-| Part | Description | Applicable To |
-|------|-------------|---------------|
-| `START_LINE` | Full first line (e.g. `GET /path HTTP/1.1`) | SENT, RECV |
-| `PROTOCOL` | HTTP version (e.g. `HTTP/1.1`) | SENT, RECV |
-| `METHOD` | HTTP method (e.g. `GET`) | SENT only |
-| `REQUEST_TARGET` | Request path (e.g. `/1.1/account/settings.json`) | SENT only |
-| `STATUS_CODE` | Response status (e.g. `200`) | RECV only |
-| `HEADERS` | HTTP headers section | SENT, RECV |
-| `BODY` | HTTP body content | SENT, RECV |
-| `ALL` | Entire transcript (use with regex) | SENT, RECV |
+| Part             | Description                                      | Applicable To |
+| ---------------- | ------------------------------------------------ | ------------- |
+| `START_LINE`     | Full first line (e.g. `GET /path HTTP/1.1`)      | SENT, RECV    |
+| `PROTOCOL`       | HTTP version (e.g. `HTTP/1.1`)                   | SENT, RECV    |
+| `METHOD`         | HTTP method (e.g. `GET`)                         | SENT only     |
+| `REQUEST_TARGET` | Request path (e.g. `/1.1/account/settings.json`) | SENT only     |
+| `STATUS_CODE`    | Response status (e.g. `200`)                     | RECV only     |
+| `HEADERS`        | HTTP headers section                             | SENT, RECV    |
+| `BODY`           | HTTP body content                                | SENT, RECV    |
+| `ALL`            | Entire transcript (use with regex)               | SENT, RECV    |
 
 #### Proof Response
 
@@ -474,129 +460,7 @@ async function onClick() {
 
 A complete plugin that proves a user's X.com profile by opening the site, detecting the profile API request, and generating a TLS proof with selective disclosure.
 
-```javascript
-const config = {
-  name: 'X Profile Prover',
-  description: 'Prove your X.com profile data with selective disclosure',
-};
-
-function main() {
-  // Get intercepted headers matching X.com profile API
-  const [header] = useHeaders((headers) =>
-    headers.filter((header) =>
-      header.url.includes('https://api.x.com/1.1/account/settings.json'),
-    ),
-  );
-
-  // Open X.com window on first render
-  useEffect(() => {
-    openWindow('https://x.com');
-  }, []);
-
-  return div(
-    {
-      style: {
-        position: 'fixed',
-        bottom: '0',
-        right: '8px',
-        width: '240px',
-        height: '240px',
-        borderRadius: '4px 4px 0 0',
-        backgroundColor: '#b8b8b8',
-        zIndex: '999999',
-        fontSize: '16px',
-        color: '#0f0f0f',
-        border: '1px solid #e2e2e2',
-        borderBottom: 'none',
-        padding: '8px',
-        fontFamily: 'sans-serif',
-      },
-    },
-    [
-      div(
-        {
-          style: {
-            fontWeight: 'bold',
-            color: header ? 'green' : 'red',
-          },
-        },
-        [header ? 'Profile detected!' : 'No profile detected'],
-      ),
-      header
-        ? button(
-            {
-              style: {
-                color: 'black',
-                backgroundColor: 'white',
-                padding: '8px 16px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                marginTop: '8px',
-              },
-              onclick: 'onClick',
-            },
-            ['Prove'],
-          )
-        : div(
-            { style: { color: 'black', marginTop: '8px' } },
-            ['Please login to x.com'],
-          ),
-    ],
-  );
-}
-
-async function onClick() {
-  const [header] = useHeaders((headers) =>
-    headers.filter((header) =>
-      header.url.includes('https://api.x.com/1.1/account/settings.json'),
-    ),
-  );
-
-  // Extract authentication headers
-  const headers = {
-    cookie: header.requestHeaders.find((h) => h.name === 'Cookie')?.value,
-    'x-csrf-token': header.requestHeaders.find((h) => h.name === 'x-csrf-token')?.value,
-    'x-client-transaction-id': header.requestHeaders.find(
-      (h) => h.name === 'x-client-transaction-id',
-    )?.value,
-    Host: 'api.x.com',
-    authorization: header.requestHeaders.find((h) => h.name === 'authorization')?.value,
-    'Accept-Encoding': 'identity',
-    Connection: 'close',
-  };
-
-  // Generate TLS proof
-  const resp = await prove(
-    {
-      url: 'https://api.x.com/1.1/account/settings.json',
-      method: 'GET',
-      headers: headers,
-    },
-    {
-      verifierUrl: 'http://localhost:7047',
-      proxyUrl: 'ws://localhost:7047/proxy?token=api.x.com',
-      maxRecvData: 16384,
-      maxSentData: 4096,
-      handlers: [
-        { type: 'SENT', part: 'START_LINE', action: 'REVEAL' },
-        { type: 'RECV', part: 'START_LINE', action: 'REVEAL' },
-        { type: 'RECV', part: 'HEADERS', action: 'REVEAL', params: { key: 'date' } },
-        {
-          type: 'RECV',
-          part: 'BODY',
-          action: 'REVEAL',
-          params: { type: 'json', path: 'screen_name', hideKey: true },
-        },
-      ],
-    },
-  );
-
-  done(JSON.stringify(resp));
-}
-
-export default { main, onClick, config };
-```
+**Source code:** [twitter.js](https://github.com/tlsnotary/tlsn-extension/blob/main/packages/demo/public/plugins/twitter.js)
 
 ---
 
@@ -606,10 +470,10 @@ export default { main, onClick, config };
 
 Plugins run in a **QuickJS WebAssembly sandbox** with strict limitations:
 
-| | |
-|---|---|
+|              |                                                                                                                                                    |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Disabled** | Network access (`fetch`, `XMLHttpRequest`), file system access, browser APIs (except capabilities), Node.js APIs, `eval` / `Function` constructors |
-| **Allowed** | ES6+ JavaScript, pure computation, capabilities registered by host (via `env` object) |
+| **Allowed**  | ES6+ JavaScript, pure computation, capabilities registered by host (via `env` object)                                                              |
 
 ```javascript
 // Allowed — registered capability
@@ -624,13 +488,13 @@ const fs = require('fs'); // ReferenceError: require is not defined
 
 ### Resource Limits
 
-| Resource | Limit |
-|----------|-------|
-| Concurrent managed windows | 10 |
-| Requests per window | 1000 (FIFO) |
-| Headers per window | 1000 (FIFO) |
-| `maxSentData` default | 4096 bytes |
-| `maxRecvData` default | 16384 bytes |
+| Resource                   | Limit       |
+| -------------------------- | ----------- |
+| Concurrent managed windows | 10          |
+| Requests per window        | 1000 (FIFO) |
+| Headers per window         | 1000 (FIFO) |
+| `maxSentData` default      | 4096 bytes  |
+| `maxRecvData` default      | 16384 bytes |
 
 ---
 
@@ -697,15 +561,15 @@ useEffect(() => { openWindow('https://x.com'); }, []);
 
 ## API Reference Summary
 
-| Category | Function | Description |
-|----------|----------|-------------|
-| DOM | `div(options, children)` | Create div element |
-| DOM | `button(options, children)` | Create button element |
-| Window | `openWindow(url, options?)` | Open managed window |
-| Hooks | `useEffect(effect, deps)` | Side effect with dependencies |
-| Hooks | `useRequests(filterFn)` | Get filtered requests |
-| Hooks | `useHeaders(filterFn)` | Get filtered headers |
-| Hooks | `useState(key, defaultValue?)` | Get state value |
-| Hooks | `setState(key, value)` | Set state value and re-render |
-| Proof | `prove(requestOptions, proverOptions)` | Unified proof generation |
-| Utility | `done(args?)` | Cleanup and exit |
+| Category | Function                               | Description                   |
+| -------- | -------------------------------------- | ----------------------------- |
+| DOM      | `div(options, children)`               | Create div element            |
+| DOM      | `button(options, children)`            | Create button element         |
+| Window   | `openWindow(url, options?)`            | Open managed window           |
+| Hooks    | `useEffect(effect, deps)`              | Side effect with dependencies |
+| Hooks    | `useRequests(filterFn)`                | Get filtered requests         |
+| Hooks    | `useHeaders(filterFn)`                 | Get filtered headers          |
+| Hooks    | `useState(key, defaultValue?)`         | Get state value               |
+| Hooks    | `setState(key, value)`                 | Set state value and re-render |
+| Proof    | `prove(requestOptions, proverOptions)` | Unified proof generation      |
+| Utility  | `done(args?)`                          | Cleanup and exit              |
