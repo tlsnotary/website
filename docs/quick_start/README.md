@@ -8,7 +8,7 @@ This quick start will help you get started with TLSNotary, both in native Rust a
 ## Objectives
 
 - Gain a better understanding of what you can do with TLSNotary
-- Learn the basics of how to notarize and verify data using TLSNotary
+- Learn the basics of how to prove and verify data using TLSNotary
 
 ## Rust
 
@@ -18,26 +18,8 @@ This quick start will help you get started with TLSNotary, both in native Rust a
 
 ## Browser
 
-### Hosted demo
+The easiest way to get started with TLSNotary in the browser is to try the [interactive tutorial](https://demo.tlsnotary.org/tutorial/). It walks you through the full workflow — from running your first plugin to writing custom handlers.
 
-To get started with TLSNotary in the browser, it is recommended to try the online TLSNotary demo first. This demo shows how TLSNotary can be used to verify private user data in a web app. The demo guides you through the following steps:
+You can also visit [demo.tlsnotary.org](https://demo.tlsnotary.org) to try pre-built plugins with no setup required.
 
-1. Installing the browser extension
-2. Installing the website plugin into the browser extension
-3. Running the plugin to get a TLSNotary attestation
-4. Verifying the attestation on the server
-
-Visit [demo.tlsnotary.org](https://demo.tlsnotary.org) to try the different steps.
-
-### Proving and Verifying Data in a React/Typescript App (`tlsn-js`)
-
-Learn how to use TLSNotary in a React/Typescript app with the `tlsn-js` NPM module.
-
-[Proving and Verifying Data in a React/Typescript App](tlsn-js.md#react-ts-webpack)
-
-### Browser Extension
-
-Learn how to prove and verify ownership of a Twitter account using the TLSNotary browser extension.
-
-[Proving and Verifying Ownership of a Twitter Account (Browser)](browser_extension)
-
+For step-by-step installation and setup instructions, see the [Browser Quick Start](browser_extension).
