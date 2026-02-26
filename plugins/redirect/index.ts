@@ -29,7 +29,7 @@ export const redirects: RedirectItem[] = [
         from: '/quick_start',
     },
     {
-        to: '/docs/quick_start/tlsn-js',
+        to: '/docs/quick_start/browser_extension',
         from: '/quick_start/tlsn-js',
     },
 ];

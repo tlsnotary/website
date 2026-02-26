@@ -1,122 +1,62 @@
 ---
-sidebar_label: Browser Extension
+sidebar_label: Browser
 
 ---
-# TLSNotary Browser Extension
+# Browser Quick Start
 
-In this quick start we will prove ownership of a Twitter account with TLSNotary's browser extension.
+Get started with TLSNotary in the browser using the TLSNotary browser extension.
 
-Optionaly you can [install](#install) and configure a local [websocket proxy](#proxy) and local [notary server](#notary-server).
+> **Recommended:** Try the [interactive tutorial](https://demo.tlsnotary.org/tutorial/) for a guided walkthrough with a pre-configured verifier server.
 
-## Install Browser Extension (Chrome/Brave) {#install}
+## Install Browser Extension {#install}
 
-The easiest way to install the TLSN browser extension is to use **[Chrome Web Store](https://chromewebstore.google.com/detail/gcfkkledipjbgdbimfpijgbkhajiaaph)**.
+### Chrome Web Store (Recommended)
 
-![Chrome Web Store](./images/chromewebstore.png)
+1. Visit the [TLSNotary Extension on Chrome Web Store](https://chromewebstore.google.com/detail/gnoglgpcamodhflknhmafmjdahcejcgg)
+2. Click **Add to Chrome**
+3. Grant the required permissions
 
-Alternatively, you can install it manually:
-1. Download the browser extension from https://github.com/tlsnotary/tlsn-extension/releases/download/0.1.0.1100/tlsn-extension-0.1.0.1100.zip
-2. Unzip
-   ⚠️ This is a flat zip file, so be careful if you unzip from the command line, this zip file contains many file at the top level
-3. Open **Manage Extensions**: chrome://extensions/
-4. Enable `Developer mode`
-5. Click the **Load unpacked** button
-6. Select the unzipped folder
+**Supported browsers:** Google Chrome, Microsoft Edge, Brave, and any Chromium-based browser.
 
-![Extension installation](./images/extension_install.png)
+### Build from Source
 
-(Optional:) Pin the extension, so that it is easier to find in the next steps:
-
-![Pin the extension](./images/extension_pin.png)
-
-## Websocket Proxy {#proxy}
-
-Since a web browser doesn't have the ability to make TCP connection, we need to use a websocket proxy server. You can either run one yourself, or use a TLSNotary hosted proxy.
-
-To use the TLSnotary hosted proxy:
-   1. Open the extension
-   2. Click **Options**
-   3. Enter `wss://notary.pse.dev/proxy` as **proxy API**
-   4. Click **Save**
-
-> ⚠️ **Note:** The TLSNotary hosted proxy only supports a predefined set of domains. You can view the full list of supported domains in the [websockify configuration file](https://github.com/privacy-ethereum/tlsn-infra/blob/main/docker/websockify/websockify_config).
-
-To run your own websocket proxy **locally**, run:
-1. Install [wstcp](https://github.com/sile/wstcp):
-```shell
-cargo install wstcp
+```bash
+git clone https://github.com/tlsnotary/tlsn-extension.git
+cd tlsn-extension
+npm install
+npm run build
 ```
-2. Run a websocket proxy for `https://api.x.com`:
-```shell
-wstcp --bind-addr 127.0.0.1:55688 api.x.com:443
-```
-Note the `api.x.com:443` argument on the last line.
 
-Next use  `ws://localhost:55688` as **proxy API** in Step 3 above.
+Then load the extension in Chrome:
 
-## Notary Server {#notary-server}
+1. Open `chrome://extensions/`
+2. Enable **Developer mode** (toggle in top right)
+3. Click **Load unpacked**
+4. Select the `packages/extension/build/` directory
 
-To create a TLSNotary proof, the browser extension needs a TLSNotary notary server. In a real world scenario, this server should be run by a neutral party, or by the verifier of the proofs. In this quick start, you can either run the server yourself or use the test server from the TLSNotary team. Notarizing TLS with Multi Party Computation involves a lot of communication between the extension and notary server, so running a local server is the fastest option.
+## Try the Demo {#demo}
 
-To use the TLSNotary team notary server:
-1. Open the extension
-2. Click **Options**
-3. Update Notary API to: `https://notary.pse.dev/v0.1.0-alpha.12`
-4. Click **Save**
-5. Skip the next section and [continue with the notarization step](#notarize)
+The quickest way to see TLSNotary in action:
 
-If you plan to run a local notary server:
-1. Open the extension
-2. Click **Options**
-3. Update Notary API to: `http://localhost:7047`
-4. Click **Save**
-5. Run a local notary server (see [below](#local-notary))
+1. Visit the [TLSNotary Demo](https://demo.tlsnotary.org)
+2. Pick a plugin and follow the instructions
+3. When finished you can view the attestation and transcript in the extension
 
-![Extension Notary and Proxy settings](./images/extension_proxy.png)
+## Interactive Tutorial {#tutorial}
 
-### Run a Local Notary Server {#local-notary}
+The [interactive tutorial](https://demo.tlsnotary.org/tutorial/) walks you through the full development workflow:
 
-1. Clone the TLSNotary repository:
-   ```shell
-   git clone https://github.com/tlsnotary/tlsn.git --branch v0.1.0-alpha.14
-   ```
-2. Run the notary server:
-   ```sh
-   cargo run --release --bin notary-server
-   ```
+1. **Concepts** — MPC-TLS, handlers, and selective disclosure
+2. **Running Your First Plugin** — See a complete example in action (X.com proof)
+3. **Writing Custom Handlers** — Add your own handler to prove bank balances
+4. **Advanced Challenges** — Nested JSON paths, header revelation, request/response handling
+5. **Breaking the Verifier** — Understand why proper verification logic matters
 
-The notary server will now be running in the background waiting for connections.
+You can also [run the tutorial locally](https://github.com/tlsnotary/tlsn-extension/tree/main/packages/tutorial) with your own verifier server (see [Verifier: Local Development](/docs/extension/verifier#local-development)).
 
-## Notarize Twitter Account Access {#notarize}
-   Note: If you use the hosted notary server, notarization will take multiple seconds. You can track progress by opening the *offscreen console*:
-   * Open: `chrome://extensions` ▸ **TLSN Extension** ▸ **Details** ▸ **offscreen.html**
+## What's Next
 
-   Using the TLSNotary Plugin Demo:
-   1. Goto [TLSNotary Plugin Demo](https://demo.tlsnotary.org)
-   2. Run the Twitter Plugin
-   3. When finished you can view the attestation and transcript of the notarization at the bottom of the page or in the extension.
-
-
-   Using the Browser console:
-   1. Open Chrome/Brave
-   2. Open the developer console (Right Click -> Inspect or F12)
-   3. Copy/Paste the code below:
-   ```javascript
-   const client = await tlsn.connect();
-
-   await client.runPlugin(
-        'https://github.com/tlsnotary/tlsn-extension/raw/main/src/assets/plugins/twitter_profile.wasm'
-      );
-   ```
-   4. Run the plugin from the pop up window
-   5. This will navigate to [x.com](https://x.com), open the sidepanel, and begin notarization
-
-## Verify
-
-   When the notarization is ready, you can click the **View** button. If you closed the sidebar, you can find the proof by clicking the extension button and clicking the "Notarize Request" that was just completed.
-
-![Extension History](./images/extension_history_new.png)
-
-## Write your own Extension Plugins
-
-The TLSNotary Browser extension allows you to add custom plugins for more data sources. The repository at [tlsn-plugin-boilerplate](https://github.com/tlsnotary/tlsn-plugin-boilerplate) shows how the Twitter plugin (see above) is built. The `examples` folder contains more examples.
+- **[Extension Documentation](/docs/extension/)** — Architecture overview, plugin system, and verifier server
+- **[Plugin System](/docs/extension/plugins)** — Capabilities API, handler reference, and a full example plugin
+- **[Verifier Server](/docs/extension/verifier)** — Deployment, API endpoints, webhook integration, and configuration
+- **[Plugin SDK](https://github.com/tlsnotary/tlsn-extension/tree/main/packages/plugin-sdk)** — Source for `@tlsn/plugin-sdk`
