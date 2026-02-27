@@ -1,0 +1,109 @@
+<mxfile host="65bd71144e">
+    <diagram id="tlsnotary-what" name="TLSNotary What">
+        <mxGraphModel dx="1299" dy="877" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="560" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=none;arcSize=4;" parent="1" vertex="1">
+                    <mxGeometry x="10" y="30" width="960" height="470" as="geometry"/>
+                </mxCell>
+                <mxCell id="leftBox" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;shadow=1;arcSize=6;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="60" width="300" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="leftTitle" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;EXISTING WEBSITES&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=17;fontColor=#111111;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="72" width="260" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="leftInnerTitle" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;User&#39;s Data&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=15;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="112" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="leftInner" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#dddddd;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="145" width="260" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="dotSocial" value="🌐" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;" parent="1" vertex="1">
+                    <mxGeometry x="58" y="155" width="34" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblSocial" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Social media&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#222222;" parent="1" vertex="1">
+                    <mxGeometry x="94" y="155" width="110" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="dotBank" value="🏦" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;" parent="1" vertex="1">
+                    <mxGeometry x="185" y="155" width="34" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblBank" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Banking&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#222222;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="155" width="80" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="dotHealth" value="⚕" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;" parent="1" vertex="1">
+                    <mxGeometry x="58" y="205" width="34" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblHealth" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Healthcare&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#222222;" parent="1" vertex="1">
+                    <mxGeometry x="94" y="205" width="105" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="dotCart" value="🛒" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;" parent="1" vertex="1">
+                    <mxGeometry x="185" y="205" width="34" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblCart" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;E-commerce&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#222222;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="205" width="110" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="dotGov" value="🏛" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;" parent="1" vertex="1">
+                    <mxGeometry x="58" y="255" width="34" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblGov" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Gov portals&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#222222;" parent="1" vertex="1">
+                    <mxGeometry x="94" y="255" width="105" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblEllipsisL" value="..." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontColor=#666666;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="255" width="40" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="userIcon" value="" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#5b7a8c;strokeColor=#3d5c6e;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="465" y="123.5" width="40" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="userShield" value="✓" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4a8c5c;strokeColor=none;fontColor=#ffffff;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="153.5" width="18" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="userLabel" value="User" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontStyle=1;fontColor=#111111;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="175.5" width="70" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="rightBox" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;shadow=1;arcSize=6;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="60" width="310" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="rightTitle" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;YOUR APP&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=17;fontColor=#111111;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="72" width="140" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="rightInnerTitle" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Verified Data&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=15;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="670" y="112" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="rightInner" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#dddddd;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="145" width="260" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblId" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Proof of identity &lt;font color=&quot;#4a8c5c&quot;&gt;✓&lt;/font&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#222222;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="168" width="180" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblBal" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Account balance &lt;font color=&quot;#4a8c5c&quot;&gt;✓&lt;/font&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#222222;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="218" width="180" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblOwn" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Account ownership &lt;font color=&quot;#4a8c5c&quot;&gt;✓&lt;/font&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#222222;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="268" width="200" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="lblEllipsisR" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;...&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontColor=#666666;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="675" y="308" width="40" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottomLeft" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;no changes required&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#111111;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="445" width="300" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottomCenter" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;user controls what is shared&lt;br&gt;(privacy)&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#333333;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="345" y="270" width="280" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bottomRight" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;verification without&lt;br&gt;central middleman&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#111111;" parent="1" vertex="1">
+                    <mxGeometry x="645" y="445" width="300" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="leftBox" target="rightBox">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="450" y="350" as="sourcePoint"/>
+                        <mxPoint x="550" y="350" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="&lt;span style=&quot;color: rgb(63, 63, 63); font-size: 24px; font-weight: 700; text-wrap-mode: wrap; background-color: rgb(251, 251, 251);&quot;&gt;TLSNotary&lt;/span&gt;" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
