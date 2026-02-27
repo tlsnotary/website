@@ -21,8 +21,8 @@ export const redirects: RedirectItem[] = [
         from: '/docs'
     },
     {
-        to: '/docs/motivation',
-        from: '/motivation',
+        to: '/why',
+        from: ['/motivation', '/docs/motivation'],
     },
     {
         to: '/docs/quick_start',

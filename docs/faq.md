@@ -1,7 +1,7 @@
 ---
 title: Frequently Asked Questions
-sidebar_position: 3
 sidebar_label: FAQ
+sidebar_position: 100
 ---
 
 <div className="text--center">

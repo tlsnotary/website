@@ -60,6 +60,11 @@
   display: none;
 }
 
+[data-theme='light'] .dark-mode-only,
+[data-theme='dark'] .light-mode-only {
+  display: none;
+}
+
 /* Fix logo alignment in navbar */
 .navbar__logo {
   display: flex;

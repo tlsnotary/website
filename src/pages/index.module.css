@@ -16,10 +16,25 @@
   color: white;
 }
 
+.heroQuestion {
+  font-size: 1.25rem;
+  opacity: 0.85;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+}
+
 .heroBanner h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.heroSubtext {
+  font-size: 1.15rem;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  opacity: 0.85;
+  line-height: 1.6;
 }
 
 .heroBanner p {
@@ -37,36 +52,6 @@
   .heroBanner h1 {
     font-size: 2.5rem;
   }
-}
-
-.categoryFraming {
-  font-size: 1rem;
-  opacity: 0.9;
-  margin-top: 1.5rem;
-}
-
-.categoryFraming strong {
-  color: white;
-  letter-spacing: 0.02em;
-}
-
-.asterisk {
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  font-size: 0.85em;
-  vertical-align: super;
-}
-
-.asterisk:hover {
-  color: white;
-  text-decoration: underline;
-}
-
-.heroDiagramCaption {
-  font-size: 0.9rem;
-  opacity: 0.65;
-  margin-top: 0.75rem;
-  font-style: italic;
 }
 
 .buttons {
@@ -96,37 +81,25 @@
   color: white;
 }
 
-.buttons :global(.button svg) {
-  width: 20px;
-  height: 20px;
-  margin-left: 4px;
-}
-
-.trustChips {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 2rem;
-}
-
-.trustChip {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 9999px;
-  padding: 0.3rem 0.85rem;
-  font-size: 0.8rem;
-  opacity: 0.85;
-  color: white;
-}
-
 .heroDiagram {
-  max-width: 700px;
+  max-width: 900px;
   margin: 2.5rem auto 0;
 }
 
-.heroDiagram img {
-  border-radius: 0;
-  margin: 0;
+.heroDiagram svg {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 576px) {
+  .heroDiagram {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .heroDiagram svg {
+    min-width: 600px;
+  }
 }
 
 /* ========================================
@@ -158,69 +131,49 @@
 }
 
 /* ========================================
-   Explainer Section (How It Works)
+   How It Works Section (3-step explainer)
    ======================================== */
 
-.explainerSection {
+.howSection {
   padding: 5rem 0;
   background: var(--ifm-background-surface-color);
   text-align: center;
 }
 
-.explainerVisual {
-  max-width: 800px;
-  margin: 0 auto 1rem;
-}
-
-.explainerVisual img {
-  border-radius: 12px;
-  border: 1px solid var(--ifm-color-emphasis-200);
-}
-
-[data-theme='dark'] .explainerVisual img {
-  border-color: var(--ifm-color-emphasis-300);
-}
-
-.stepsGrid {
+.howGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 3rem;
-  text-align: left;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  text-align: center;
 }
 
-.stepCard {
-  background: var(--ifm-background-color);
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 12px;
-  padding: 2rem;
+.howStep {
+  padding: 1.5rem;
 }
 
-[data-theme='dark'] .stepCard {
-  border-color: var(--ifm-color-emphasis-300);
+.howStepIcon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
 }
 
-.stepNumber {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: var(--ifm-color-primary);
-  color: white;
-  font-size: 1.1rem;
+.howStepNumber {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--ifm-color-primary);
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.stepTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
-.stepBody {
+.howStepTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-color-content);
+}
+
+.howStepBody {
   font-size: 0.95rem;
   color: var(--ifm-color-content-secondary);
   line-height: 1.6;
@@ -228,23 +181,14 @@
 }
 
 @media screen and (max-width: 768px) {
-  .stepsGrid {
+  .howGrid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
-.explainerBridge {
-  margin-top: 2.5rem;
-  font-size: 0.95rem;
-  color: var(--ifm-color-content-secondary);
-}
-
-.explainerBridge a {
-  font-weight: 600;
-}
-
 /* ========================================
-   Why Section (Comparison)
+   Why Section (4 pillar cards)
    ======================================== */
 
 .whySection {
@@ -253,286 +197,114 @@
   text-align: center;
 }
 
-.whyRow {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  margin-top: 2.5rem;
-}
-
-/* Comparison table (desktop) */
-.whyTable {
-  flex: 1;
-  min-width: 0;
-  overflow-x: auto;
-}
-
-.whyTable table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 0.95rem;
-}
-
-.whyTable thead th {
-  padding: 0.85rem 1rem;
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background: var(--ifm-background-surface-color);
-  border-bottom: 2px solid var(--ifm-color-emphasis-200);
-  color: var(--ifm-color-content-secondary);
-}
-
-.whyTable tbody td {
-  padding: 0.85rem 1rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
-  color: var(--ifm-color-content);
-  vertical-align: top;
-}
-
-.whyTableApproach {
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.whyTableHighlight {
-  background: rgba(36, 63, 95, 0.06);
-}
-
-[data-theme='dark'] .whyTableHighlight {
-  background: rgba(77, 130, 188, 0.1);
-}
-
-.whyTableHighlight td {
-  font-weight: 500;
-  border-bottom-color: transparent;
-}
-
-.whyTableHighlight td:first-child {
-  border-left: 3px solid var(--ifm-color-primary);
-  padding-left: calc(1rem - 3px);
-  color: var(--ifm-color-primary);
-  font-weight: 700;
-}
-
-.check {
-  color: var(--ifm-color-primary);
-  font-weight: 700;
-}
-
-.cross {
-  color: #c0392b;
-  font-weight: 700;
-}
-
-/* Comparison cards (mobile) */
-.whyCards {
-  display: none;
-}
-
-@media screen and (max-width: 996px) {
-  .whyRow {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .whyTriangle {
-    width: 280px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .whyTable {
-    display: none;
-  }
-
-  .whyCards {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
-    text-align: left;
-  }
-
-  .whyCard {
-    border: 1px solid var(--ifm-color-emphasis-200);
-    border-radius: 12px;
-    padding: 1.25rem;
-    background: var(--ifm-background-surface-color);
-  }
-
-  .whyCardHighlight {
-    border-color: var(--ifm-color-primary);
-    border-width: 2px;
-  }
-
-  .whyCardTitle {
-    font-weight: 700;
-    font-size: 1.05rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .whyCardRow {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 0.4rem 0;
-    border-bottom: 1px solid var(--ifm-color-emphasis-100);
-    font-size: 0.85rem;
-  }
-
-  .whyCardRow:last-child {
-    border-bottom: none;
-  }
-}
-
-.whyTriangle {
-  flex-shrink: 0;
-  width: 300px;
-}
-
-.whyTriangle img {
-  width: 100%;
-}
-
-.whyPunchline {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--ifm-color-primary);
-  text-align: center;
-  margin-top: 0.75rem;
-}
-
-/* ========================================
-   Use Cases Section
-   ======================================== */
-
-.useCasesSection {
-  padding: 5rem 0;
-  background: var(--ifm-background-surface-color);
-  text-align: center;
-}
-
-.useCasesGrid {
+.whyGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-  text-align: left;
-}
-
-.useCaseCard {
-  background: var(--ifm-background-color);
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: border-color 0.2s;
-}
-
-.useCaseCard:hover {
-  border-color: var(--ifm-color-primary);
-}
-
-[data-theme='dark'] .useCaseCard {
-  background: var(--ifm-background-surface-color);
-  border-color: var(--ifm-color-emphasis-300);
-}
-
-.useCaseEmoji {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
-  line-height: 1;
-}
-
-.useCaseTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-}
-
-.useCaseBody {
-  font-size: 0.9rem;
-  color: var(--ifm-color-content-secondary);
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* ========================================
-   Ecosystem Section
-   ======================================== */
-
-.ecosystemSection {
-  padding: 5rem 0;
-  background: var(--ifm-background-color);
-  text-align: center;
-}
-
-/* ========================================
-   Trust Section
-   ======================================== */
-
-.trustSection {
-  padding: 5rem 0;
-  background: var(--ifm-background-surface-color);
-  text-align: center;
-}
-
-.trustGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-top: 2.5rem;
   text-align: left;
 }
 
-.trustCard {
-  background: var(--ifm-background-color);
+.whyCard {
+  background: var(--ifm-background-surface-color);
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 12px;
   padding: 2rem;
 }
 
-[data-theme='dark'] .trustCard {
+[data-theme='dark'] .whyCard {
   border-color: var(--ifm-color-emphasis-300);
 }
 
-.trustCardIcon {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-}
-
-.trustCardTitle {
-  font-size: 1.1rem;
+.whyCardHeading {
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  color: var(--ifm-color-primary);
 }
 
-.trustCardBody {
-  font-size: 0.9rem;
+.whyCardBody {
+  font-size: 0.95rem;
   color: var(--ifm-color-content-secondary);
   line-height: 1.6;
   margin: 0;
 }
 
-.institutionalSupport {
-  margin-top: 2.5rem;
-  font-size: 0.85rem;
-  color: var(--ifm-color-content-secondary);
-  opacity: 0.8;
+.whyReadMore {
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+.whyReadMore a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.whyReadMore a:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 996px) {
-  .trustGrid {
+  .whyGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (max-width: 768px) {
-  .trustGrid {
+@media screen and (max-width: 576px) {
+  .whyGrid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ========================================
+   Built With Section (logo strip)
+   ======================================== */
+
+.builtWithSection {
+  padding: 3rem 0;
+  background: var(--ifm-background-surface-color);
+  text-align: center;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.builtWithLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--ifm-color-content-secondary);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.builtWithLogos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem 3rem;
+}
+
+.builtWithName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-600);
+  letter-spacing: 0.02em;
+}
+
+.builtWithLink {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.builtWithLink a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.builtWithLink a:hover {
+  text-decoration: underline;
 }
 
 /* ========================================
@@ -564,6 +336,12 @@
   justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
+}
+
+.ctaButtons :global(.button) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .ctaSecondaryLinks {
