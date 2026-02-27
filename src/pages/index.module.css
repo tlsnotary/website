@@ -3,6 +3,10 @@
  * and scoped locally.
  */
 
+/* ========================================
+   Hero Section
+   ======================================== */
+
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
@@ -12,10 +16,25 @@
   color: white;
 }
 
+.heroQuestion {
+  font-size: 1.25rem;
+  opacity: 0.85;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+}
+
 .heroBanner h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.heroSubtext {
+  font-size: 1.15rem;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  opacity: 0.85;
+  line-height: 1.6;
 }
 
 .heroBanner p {
@@ -62,11 +81,290 @@
   color: white;
 }
 
-.buttons :global(.button svg) {
-  width: 20px;
-  height: 20px;
-  margin-left: 4px;
+.heroDiagram {
+  max-width: 900px;
+  margin: 2.5rem auto 0;
 }
+
+.heroDiagram svg {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 576px) {
+  .heroDiagram {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .heroDiagram svg {
+    min-width: 600px;
+  }
+}
+
+/* ========================================
+   Shared Section Patterns
+   ======================================== */
+
+.sectionLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ifm-color-content);
+  margin-bottom: 0.75rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: var(--ifm-color-content-secondary);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+/* ========================================
+   How It Works Section (3-step explainer)
+   ======================================== */
+
+.howSection {
+  padding: 5rem 0;
+  background: var(--ifm-background-surface-color);
+  text-align: center;
+}
+
+.howGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.howStep {
+  padding: 1.5rem;
+}
+
+.howStepIcon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.howStepNumber {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.howStepTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-color-content);
+}
+
+.howStepBody {
+  font-size: 0.95rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .howGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ========================================
+   Why Section (4 pillar cards)
+   ======================================== */
+
+.whySection {
+  padding: 5rem 0;
+  background: var(--ifm-background-color);
+  text-align: center;
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+  text-align: left;
+}
+
+.whyCard {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+[data-theme='dark'] .whyCard {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+.whyCardHeading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.whyCardBody {
+  font-size: 0.95rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.whyReadMore {
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+.whyReadMore a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.whyReadMore a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 996px) {
+  .whyGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .whyGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Built With Section (logo strip)
+   ======================================== */
+
+.builtWithSection {
+  padding: 3rem 0;
+  background: var(--ifm-background-surface-color);
+  text-align: center;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.builtWithLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--ifm-color-content-secondary);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.builtWithLogos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem 3rem;
+}
+
+.builtWithName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-600);
+  letter-spacing: 0.02em;
+}
+
+.builtWithLink {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.builtWithLink a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.builtWithLink a:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   CTA Section
+   ======================================== */
+
+.ctaSection {
+  padding: 5rem 0;
+  background: linear-gradient(145deg, #243F5F 0%, #1a2d43 100%);
+  color: white;
+  text-align: center;
+}
+
+[data-theme='dark'] .ctaSection {
+  background: linear-gradient(145deg, #1a2d43 0%, #0e1a28 100%);
+}
+
+.ctaSection .sectionTitle {
+  color: white;
+}
+
+.ctaSection .sectionSubtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.ctaButtons :global(.button) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ctaSecondaryLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.ctaSecondaryLinks a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+.ctaSecondaryLinks a:hover {
+  color: white;
+}
+
+/* ========================================
+   Legacy / Shared (kept for use-cases.mdx etc.)
+   ======================================== */
 
 .introduction {
   padding: 4rem 0;
@@ -119,28 +417,9 @@
   display: table;
 }
 
-section + section {
-  margin-top: 2rem;
-}
-
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
-  margin: 2rem 0;
-}
-
-.container {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 2rem;
-  background: var(--ifm-background-surface-color);
-  color: var(--ifm-color-content);
-  margin: 2rem auto;
-}
-
-[data-theme='dark'] .container {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 768px) {
@@ -152,14 +431,8 @@ img {
     font-size: 1rem;
     padding: 0 1rem;
   }
-
-  .container {
-    margin: 1rem;
-    padding: 1rem;
-  }
 }
 
-/* Remove global markdown styling */
 :global(.markdown) {
   font-size: 1.1rem;
   line-height: 1.7;
