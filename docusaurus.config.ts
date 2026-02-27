@@ -106,7 +106,7 @@ const config: Config = {
       },
       items: [
         { to: '/about', label: 'About', position: 'left' },
-
+        { to: '/why', label: 'Why', position: 'left' },
         { to: '/use-cases', label: 'Use Cases', position: 'left' },
         {
           type: 'docSidebar',

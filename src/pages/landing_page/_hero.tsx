@@ -6,32 +6,46 @@ import IconChrome from '@site/src/icons/IconChrome';
 
 import styles from '../index.module.css';
 
-const TRUST_CHIPS = [
-  'Open Source',
-  'Cryptography',
-  '10+ Years',
-  'Audit-friendly',
-];
+import DiagramLight from '@site/diagrams/light/tlsnotary_what.svg';
+import DiagramDark from '@site/diagrams/dark/tlsnotary_what.svg';
 
 export default function HeroSection(): ReactNode {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
+        <p className={styles.heroQuestion}>
+          How do you access verified user data from existing websites in your app?
+        </p>
         <Heading as="h1" className="hero__title">
-          Prove and verify web data.
+          Verify user data from any website,<br />with their consent.
         </Heading>
-        <p className="hero__subtitle">
-          TLSNotary is an open protocol for generating verifiable, private,
-          permissionless proofs from any HTTPS website, without sharing passwords, without asking for permission<Link to="/disclaimer" className={styles.asterisk}>*</Link>{' '},
-           and without exposing more than necessary.
+        <p className={styles.heroSubtext}>
+          TLSNotary is an open-source library that uses cryptography to let users
+          prove facts about their web data to third parties, with full control
+          over what is shared.
         </p>
-        <p className={styles.categoryFraming}>
-          
-          <strong>Verifiable &middot; Private &middot; Permissionless</strong>
-        </p>
+        <div className={styles.heroDiagram}>
+          <DiagramLight
+            className="light-mode-only"
+            role="img"
+            aria-label="TLSNotary: verify user data from existing websites into your app"
+          />
+          <DiagramDark
+            className="dark-mode-only"
+            role="img"
+            aria-label="TLSNotary: verify user data from existing websites into your app"
+          />
+        </div>
         <div className={styles.buttons}>
-          <Link className="button button--primary button--lg" to="/docs/intro">
-            <span>Get Started</span>
+          <Link
+            className="button button--primary button--lg"
+            to="/docs/quick_start">
+            Quick Start
+          </Link>
+          <Link
+            className="button button--primary button--lg"
+            to="/docs/intro">
+            Documentation
           </Link>
           <a
             className="button button--primary button--lg"
@@ -42,22 +56,6 @@ export default function HeroSection(): ReactNode {
             <IconChrome />
           </a>
         </div>
-        <div className={styles.trustChips}>
-          {TRUST_CHIPS.map((chip) => (
-            <span key={chip} className={styles.trustChip}>
-              {chip}
-            </span>
-          ))}
-        </div>
-        <div className={styles.heroDiagram}>
-          <img
-            src="/img/screenshot_to_proof.png"
-            alt="From screenshot to cryptographic proof with TLSNotary"
-          />
-        </div>
-        <p className={styles.heroDiagramCaption}>
-          An open protocol with a performant Rust implementation.
-        </p>
       </div>
     </header>
   );
