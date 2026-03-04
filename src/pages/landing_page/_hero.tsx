@@ -48,7 +48,7 @@ export default function HeroSection(): ReactNode {
             Documentation
           </Link>
           <a
-            className="button button--primary button--lg"
+            className={clsx('button button--primary button--lg', styles.heroHideOnMobile)}
             href="https://demo.tlsnotary.org"
             rel="noopener noreferrer"
             target="_blank">
