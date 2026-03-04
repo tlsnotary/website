@@ -92,13 +92,13 @@
 }
 
 @media screen and (max-width: 576px) {
-  .heroDiagram {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .heroDiagram svg {
+    width: 100%;
+    min-width: 0;
   }
 
-  .heroDiagram svg {
-    min-width: 600px;
+  .heroHideOnMobile {
+    display: none;
   }
 }
 
