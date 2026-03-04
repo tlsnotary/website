@@ -13,13 +13,13 @@ const STEPS = [
     number: '2',
     icon: '🤝',
     title: 'The verifier witnesses the encrypted data',
-    body: 'Behind the scenes, TLSNotary splits the cryptographic keys between the user and a verifier. Neither side can cheat.',
+    body: 'With TLSNotary the verifier makes sure the user can not cheat.',
   },
   {
     number: '3',
     icon: '✅',
     title: 'Share only what you choose',
-    body: 'The user proves specific facts, like "my balance is over $1,000", without revealing their full statement. The verifier knows it\'s authentic.',
+    body: 'The user is in full control of what is shared. The verifier knows it\'s authentic.',
   },
 ];
 

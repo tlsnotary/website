@@ -5,8 +5,8 @@ import styles from '../index.module.css';
 
 const PILLARS = [
   {
-    title: 'Censorship Resistant',
-    body: 'No APIs, no server changes, no cooperation needed. Works with any HTTPS website without permission.',
+    title: 'Universal',
+    body: 'No server changes needed. Works with any HTTPS website.',
   },
   {
     title: 'Open Source',
@@ -18,7 +18,7 @@ const PILLARS = [
   },
   {
     title: 'Secure',
-    body: 'Pure cryptography. No trusted hardware, no TEEs. Multi-party computation and state of the art cryptographic primitives.',
+    body: 'Pure cryptography. No trusted hardware. Multi-party computation and state of the art cryptographic primitives.',
   },
 ];
 
@@ -30,7 +30,7 @@ export default function WhySection(): ReactNode {
           Why TLSNotary?
         </h2>
         <p className={styles.sectionSubtitle}>
-          Built on 10+ years of research by the Ethereum Foundation's PSE team.
+          10+ years of research. Developed at the Ethereum Foundation.
         </p>
         <div className={styles.whyGrid}>
           {PILLARS.map((p) => (
