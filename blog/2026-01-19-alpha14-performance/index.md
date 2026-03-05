@@ -3,7 +3,9 @@ title: alpha.14 Performance Improvements
 authors: [dan]
 ---
 
-<small>*Updated March 3, 2026: Graphs and figures refreshed after correcting a bench harness reporting bug.*</small>
+:::note[Update — March 3, 2026]
+Graphs and figures refreshed after correcting a bench harness reporting bug ([#1091](https://github.com/tlsnotary/tlsn/pull/1091), [16be02c](https://github.com/tlsnotary/tlsn/commit/16be02c64)).
+:::
 
 We're pleased to share performance improvements in TLSNotary **[alpha.14](https://github.com/tlsnotary/tlsn/releases/tag/v0.1.0-alpha.14)**. Through optimizations across the protocol stack, alpha.14 delivers speedups of **8% to 16%** across real-world network scenarios.
 
