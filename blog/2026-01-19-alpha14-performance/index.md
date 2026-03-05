@@ -3,6 +3,10 @@ title: alpha.14 Performance Improvements
 authors: [dan]
 ---
 
+:::note[Update — March 3, 2026]
+Graphs and figures refreshed after correcting a bench harness reporting bug ([#1091](https://github.com/tlsnotary/tlsn/pull/1091), [16be02c](https://github.com/tlsnotary/tlsn/commit/16be02c64)).
+:::
+
 We're pleased to share performance improvements in TLSNotary **[alpha.14](https://github.com/tlsnotary/tlsn/releases/tag/v0.1.0-alpha.14)**. Through optimizations across the protocol stack, alpha.14 delivers speedups of **8% to 16%** across real-world network scenarios.
 
 In this post, we present detailed benchmarks comparing [alpha.13](https://github.com/tlsnotary/tlsn/releases/tag/v0.1.0-alpha.13) and [alpha.14](https://github.com/tlsnotary/tlsn/releases/tag/v0.1.0-alpha.14) across different network conditions, demonstrating how these improvements translate to real-world performance gains for both native and browser deployments.
@@ -15,8 +19,8 @@ Protocol runtime (in seconds) for alpha.14 native and browser builds across repr
 
 |         | Cable              | Fiber             | Mobile 5G          |
 | ------- | ------------------ | ----------------- | ------------------ |
-| Native  | 15.0s (**-8.9%**)  | 4.1s (**-9.7%**)  | 10.9s (**-8.4%**)  |
-| Browser | 16.8s (**-12.8%**) | 6.5s (**-16.1%**) | 12.9s (**-12.6%**) |
+| Native  | 14.9s (**-8.9%**)  | 4.0s (**-9.7%**)  | 10.8s (**-8.4%**)  |
+| Browser | 17.0s (**-12.8%**) | 6.2s (**-16.1%**) | 12.9s (**-12.6%**) |
 
 *__Bold percentages__ indicate improvement over alpha.13.*
 
@@ -72,8 +76,6 @@ Network latency has a direct linear impact on runtime due to the ~40 communicati
 
 The browser build shows a ~1.5s improvement over alpha.13, primarily due to optimizations in the MPC protocol.
 
-Interestingly, beyond the 150ms latency mark, browser builds actually achieve faster runtimes than native. This points to suboptimal I/O handling in the native build—an area we plan to optimize in upcoming releases.
-
 ### Response Size
 
 [
@@ -84,7 +86,7 @@ Interestingly, beyond the 150ms latency mark, browser builds actually achieve fa
 )
 *Benchmark Parameters: latency = 25 ms, bandwidth = 100 Mbps, request size = 1 KB.*
 
-Runtime scales with server response size, as expected. Performance improvements are maintained across all response sizes. For typical web API responses (~10 KB), **native builds complete in under 6 seconds** while **browser builds take ~11 seconds** — both fast enough for responsive end-user experiences.
+Runtime scales with server response size, as expected. Performance improvements are maintained across all response sizes. For typical web API responses (~10 KB), **native builds complete in ~5 seconds** while **browser builds take ~10 seconds** — both fast enough for responsive end-user experiences.
 
 :::info
 
