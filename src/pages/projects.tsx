@@ -25,7 +25,7 @@ const ProjectspageHeader = ({ tagline, title }: ProjectspageHeaderProps) => (
 
 const Projects: React.FC = () => (
     <LayoutProvider>
-        <Layout description="A list of projects built with the MACI protocol" title="Projects built with MACI">
+        <Layout description="A list of projects built with the TLSNotary" title="Projects built with TLSNotary">
             <div>
                 <ProjectspageHeader tagline="Projects using TLSNotary" title="Projects" />
             </div>
