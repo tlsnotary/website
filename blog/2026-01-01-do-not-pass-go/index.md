@@ -19,7 +19,8 @@ The following article is a bit meaty, so for those who just want the key points,
 To solve problems at scale, humans design systems which both encapsulate complexity and leverage specialization to achieve efficiency and predictability. This reduces the need for interpersonal trust by replacing it with systemic trust — that is, trusting the behavior of a system and not an individual. Much of societal progress can be attributed to this process of systematization, but much can also be said about the damage that is caused when the goals of these systems become misaligned, or simply when they fail to adapt to new circumstances. The modern world is increasingly characterized by both failure modes.
 
 <Figure
-  src={require('./institutions.svg').default}
+  src={require('./light/institutions.svg').default}
+  darkSrc={require('./dark/institutions.svg').default}
   caption="Institutions are trusted to provide reliable evidence about the world to facilitate cooperation between untrusting parties."
   width={500}
 />
@@ -31,7 +32,8 @@ Of course, that is the impetus for the various efforts centered around building 
 Today, it is the case that the majority of digital systems which we rely on as a basis for our collective reality are owned, and operated, by a relatively small number of corporate and state institutions. This existing infrastructure is the product of enormous amounts of capital investment and was built over the course of decades. Further, in terms of data _volume_, any newer contending systems pale in comparison.
 
 <Figure
-  src={require('./data-volume.svg').default}
+  src={require('./light/volume.svg').default}
+  darkSrc={require('./dark/volume.svg').default}
   caption="Existing digital systems contain vast quantities of valuable data, including historical records."
   width={400}
 />
@@ -48,8 +50,9 @@ The "_restricting the ability of others to exit_" part is of critical importance
 
 If users were simply showing up and obtaining fungible services then the cost associated with switching between systems would be low. But in many cases users have a stake in a particular system due to the accrual of data that is valuable to them, such as identity information, financial records, and social graphs. If they wish to switch to a competitor this usually requires leaving all that behind. For example, on a ride sharing platform, drivers can spend years building up a history which is the basis for their reputation. Switching to a new platform which offers them a larger proportion of margins may not be worth it simply because they would have to incur significant losses in revenue while rebuilding their reputation again.
 
-<Figure 
-    src={require('./access-control.svg').default}
+<Figure
+    src={require('./light/access-control.svg').default}
+    darkSrc={require('./dark/access-control.svg').default}
     caption="Retention strategy: <s>useful product</s> deny interoperability."
     width={600}>
 </Figure>
@@ -91,7 +94,8 @@ Provenance is concerned with questions such as:
 The answers to these questions are themselves data, often referred to as metadata.
 
 <Figure
-  src={require('./chain.svg').default}
+  src={require('./light/chain.svg').default}
+  darkSrc={require('./dark/chain.svg').default}
   caption="A causal chain of processes applied to data from its origin to the present."
   width={600}
 />
@@ -126,7 +130,8 @@ Well, cryptographers have been cooking up a new fundamental technology which pro
 Verifiable computation consists of techniques which allow one to take a piece of data and perform some computation on it, computing an output, and at the same time creating a "proof" that the computation was performed correctly. This is a very powerful tool as one can send an output along with a proof to another party, and they can verify the data was transformed correctly without having to run that computation themselves. A mind bender is that it is possible to verify an output without knowing _anything_ about the input data, just ensuring that the output is correct — this is called a zero-knowledge proof.
 
 <Figure
-  src={require('./proof.svg').default}
+  src={require('./light/proof.svg').default}
+  darkSrc={require('./dark/proof.svg').default}
   caption="Verifiable computation is the missing piece for fully verifiable data provenance."
   width={600}
 />
@@ -138,7 +143,8 @@ In fact, the user gets very precise control over exactly what they share. For in
 This entire process of data sharing is done without the knowing of the system which stores the data, and critically, it does not need to update anything in order for this to work. **It works today, with virtually every digital system that exists on the internet**.
 
 <Figure
-  src={require('./magic.svg').default}
+  src={require('./light/magic.svg').default}
+  darkSrc={require('./dark/magic.svg').default}
   caption="Cryptography enables a user to securely exchange data between applications without sharing credentials."
   width={600}
 />

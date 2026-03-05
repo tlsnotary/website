@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
-export default function Figure({ src, caption, alt, width, children }) {
+export default function Figure({ src, darkSrc, caption, alt, width, children }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { colorMode } = useColorMode();
 
-  const isSvgComponent = typeof src === 'function';
-  const SvgComponent = isSvgComponent ? src : null;
-  const imgSrc = typeof src === 'string' ? src : (src?.default || null);
+  const activeSrc = darkSrc && colorMode === 'dark' ? darkSrc : src;
+
+  const isSvgComponent = typeof activeSrc === 'function';
+  const SvgComponent = isSvgComponent ? activeSrc : null;
+  const imgSrc = typeof activeSrc === 'string' ? activeSrc : (activeSrc?.default || null);
 
   useEffect(() => {
     const handleEsc = (e) => {
@@ -42,7 +46,7 @@ export default function Figure({ src, caption, alt, width, children }) {
         <div className={styles.overlay} onClick={() => setIsOpen(false)}>
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             {isSvgComponent ? (
-              <SvgComponent style={{ backgroundColor: 'white', borderRadius: '4px 4px 0 0', margin: 0, display: 'block' }} />
+              <SvgComponent style={{ borderRadius: '4px 4px 0 0', margin: 0, display: 'block' }} />
             ) : (
               <img src={imgSrc} alt={alt || caption} />
             )}

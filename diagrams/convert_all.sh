@@ -29,6 +29,8 @@ for file in *.drawio; do
         # Only convert if the source is more recent than the target
         if [[ "$SOURCE" -nt "${TARGET}" ]]; then
             "$DRAW_IO" --export --format ${FORMAT} --scale 2.5 --svg-theme "${theme}" -o "${TARGET}" "$SOURCE"
+            # Remove DOCTYPE to prevent SVGO entity count errors during build
+            sed -i '/<!DOCTYPE/d' "${TARGET}"
         fi
     done
 done
