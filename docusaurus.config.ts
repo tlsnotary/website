@@ -57,7 +57,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/tlsnotary/landing-page',
+            'https://github.com/tlsnotary/website/edit/master/',
           // Enable math support in docs
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
