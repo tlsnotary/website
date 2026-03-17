@@ -123,7 +123,7 @@ const ProjectList: React.FC = () => {
       {/* <div className={styles.actionCardContainer}>
         <ActionCard
           buttonText="Submit your project"
-          buttonUrl="https://github.com/tlsnotary/landing-page/issues/new?title=Add+a+Project+to+the+Projects+Showcase"
+          buttonUrl="https://github.com/tlsnotary/website/issues/new?title=Add+a+Project+to+the+Projects+Showcase"
           description="Submit your project to this page."
           title="Are we missing your project?"
         />
