@@ -6,8 +6,7 @@ description: "TLSNotary now supports proxy mode alongside MPC-TLS, letting devel
 
 import Figure from '@site/src/components/Figure';
 
-Today we're introducing **proxy mode**: a fast, lightweight way to prove the authenticity of web data using TLSNotary. It complements our existing **MPC-TLS** approach, giving developers a choice between maximum security and maximum speed, and you can switch between the two within the same protocol.
-
+Today we're introducing **proxy mode**: a fast, lightweight way to prove the authenticity of web data using TLSNotary. It complements our existing **MPC-TLS** approach, giving developers a choice between maximum security and maximum speed, and you can switch between the two with a simple toggle.
 <!-- truncate -->
 
 ## Why Proxy Mode?
@@ -20,7 +19,7 @@ Proxy mode offers a different approach: **let the verifier act as a network prox
 
 ## How It Compares to MPC-TLS
 
-In MPC-TLS, the **prover** connects directly to the server. The server sees the prover's IP address, and the verifier never learns which server the prover is talking to.
+In MPC-TLS, the **prover** connects directly to the server. The server sees the prover's IP address, and the verifier does not learn which server the prover is talking to during the online phase.
 
 <Figure
   src={require('./light/mpc_mode.svg').default}
@@ -57,7 +56,7 @@ At a high level, proxy mode has three phases:
 
 ### Step 3a: Prove key derivation
 
-The core of the proof is a zero-knowledge computation of the TLS 1.2 PRF (pseudo-random function). The prover holds the **pre-master secret** as its private input. Everything else is public: the client random, server random, and handshake transcript hashes that the verifier independently extracted from the traffic it forwarded.
+The core of the proof is a zero-knowledge computation of the TLS 1.2 PRF (pseudo-random function). The prover holds the **pre-master secret** as its private input. Everything else is used as public inputs: the client random, server random, and handshake transcript hashes.
 
 The ZK circuit computes the full derivation chain:
 
@@ -65,17 +64,17 @@ The ZK circuit computes the full derivation chain:
 - **Session keys** (client/server write keys and IVs) from the master secret
 - **Verify data** for both the client Finished and server Finished messages
 
-The verifier learns the derived keys and verify data, but never learns the pre-master secret itself.
+The verifier learns the `verify_data`, but never learns the pre-master secret or the derived keys.
 
 ### Step 3b: Validate the Finished messages
 
 The TLS Finished messages contain `verify_data`: a value derived from the master secret and the full handshake transcript. Both client and server send one. Since the verifier forwarded the traffic, it has the **encrypted** Finished records.
 
-The ZK circuit decrypts these Finished records using the derived keys and checks that the plaintext matches the `verify_data` computed in Step 3a. If they match, the verifier knows the prover actually participated in this specific TLS handshake, because only a party that completed the ECDHE key exchange could know the pre-master secret that produces matching verify data.
+The ZK circuit decrypts these Finished records using the derived keys and checks that the plaintext matches the `verify_data` computed in Step 3a. If they match, the verifier knows the prover actually participated in this specific TLS handshake, because only a party that completed the ECDHE key exchange could know the pre-master secret that produces matching `verify_data`.
 
 ### Step 3c: Verify application data
 
-Finally, the verifier checks the **AES-GCM authentication tags** on every application data record it observed. Using the session keys from Step 3a, it recomputes the expected tags and compares them against the actual ciphertext. This confirms that the application data was encrypted under the same keys, linking it to the authenticated handshake.
+Finally, the verifier checks the **AES-GCM authentication tags** sent by the server on every application data record it observed. Using the session keys from Step 3a, it recomputes the expected tags and compares them against the actual, observed tags. This confirms that the application data was encrypted under the same keys, linking it to the authenticated handshake.
 
 After these three steps, the verifier has cryptographic assurance that the traffic it forwarded corresponds to a real TLS session with the claimed server, and that the prover could not have tampered with the data.
 
@@ -83,7 +82,7 @@ Selective disclosure works the same way as in MPC-TLS: the prover can choose whi
 
 ### Constraints
 
-Proxy mode currently supports **TLS 1.2** with `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` (secp256r1 key exchange). The **Extended Master Secret** extension is required, which binds the master secret to the full handshake transcript and prevents certain cross-session attacks.
+Proxy mode currently supports **TLS 1.2** with `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` (secp256r1 key exchange).
 
 ## Who Connects to the Server Matters
 
@@ -102,11 +101,11 @@ This is another reason MPC-TLS is the stronger choice for high-stakes use cases:
 
 In proxy mode, if you **run the verifier yourself**, you do not need to trust anybody else. You control the infrastructure. The ZK proof guarantees the prover cannot forge the data.
 
-The remaining attack surface is the network: if an adversary controls the network between your verifier and the web server, they could redirect the connection to a fake server. This is a well-understood class of attacks (DNS hijacking, BGP hijacking) that applies broadly to internet infrastructure, not just TLSNotary. <!-- TODO: add reference -->
+The remaining attack surface is the network: if an adversary controls the network between your verifier and the web server (via [DNS or BGP hijacking](https://blog.reclaimprotocol.org/posts/fake-website-attack), for example), they could redirect the connection to a fake server. This is a well-understood class of attacks that applies broadly to internet infrastructure, not just TLSNotary.
 
 TLSNotary does not require you to run the verifier yourself. The verifier role can be delegated to a third party. In that scenario, you must trust the third-party verifier not to collude with the prover, since a colluding verifier could attest to fabricated sessions. This trust requirement applies equally to both MPC-TLS and proxy mode.
 
-What sets TLSNotary apart is the ability to **switch modes**. If you need to eliminate the trust assumption on the verifier entirely, use MPC-TLS. If speed and simplicity matter more, use proxy mode. Both modes share the same protocol and API; switching between them is a configuration change, not a rewrite.
+What sets TLSNotary apart is the ability to **switch modes**. If stakes are high, and the prover's device needs to connect to the server, use MPC-TLS. If speed and simplicity matter more, use proxy mode. Both modes share the same protocol and API; switching between them is a configuration change, not a rewrite.
 
 ## When to Use Which Mode
 
