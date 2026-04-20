@@ -50,7 +50,7 @@ In proxy mode, the **verifier** connects to the server and forwards encrypted tr
 
 At a high level, proxy mode has three phases:
 
-1. **Preprocessing.** Before the TLS connection begins, the prover and verifier set up the zero-knowledge circuits that will later be used to verify key derivation. This is much lighter than MPC-TLS preprocessing (which requires garbled circuits and oblivious transfers), but it is not instant.
+1. **Preprocessing.** Before the TLS connection begins, the prover and verifier set up the zero-knowledge circuits that will later be used to verify key derivation. This is much lighter than MPC-TLS preprocessing (which requires garbled circuits), but it is not instant.
 2. **TLS session.** The prover performs a standard TLS handshake through the verifier, which forwards encrypted packets in both directions. The verifier records all traffic but cannot decrypt it. During the handshake, the prover captures the pre-master secret from the key exchange.
 3. **Verification.** After the session ends, the prover and verifier run the ZK protocol. The prover proves that the traffic the verifier observed is consistent with a legitimate TLS session. This happens in three steps (detailed below).
 
@@ -105,7 +105,7 @@ The remaining attack surface is the network: if an adversary controls the networ
 
 TLSNotary does not require you to run the verifier yourself. The verifier role can be delegated to a third party. In that scenario, you must trust the third-party verifier not to collude with the prover, since a colluding verifier could attest to fabricated sessions. This trust requirement applies equally to both MPC-TLS and proxy mode.
 
-What sets TLSNotary apart is the ability to **switch modes**. If stakes are high, and the prover's device needs to connect to the server, use MPC-TLS. If speed and simplicity matter more, use proxy mode. Both modes share the same protocol and API; switching between them is a configuration change, not a rewrite.
+What sets TLSNotary apart is the ability to **switch modes**. If stakes are high, and the prover's device needs to connect to the server, use MPC-TLS. If speed and simplicity matter more, use proxy mode. Both modes share the same protocol and API; switching between them is just a configuration change.
 
 ## When to Use Which Mode
 
