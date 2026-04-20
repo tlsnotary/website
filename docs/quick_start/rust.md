@@ -28,6 +28,9 @@ https://github.com/tlsnotary/tlsn/tree/main/crates/examples/basic#readme
 
 ## Proxy Verifier: Verifying Data Using Proxy Mode {#proxy}
 
+![](../../diagrams/light/overview_proxy.svg#gh-light-mode-only)
+![](../../diagrams/dark/overview_proxy.svg#gh-dark-mode-only)
+
 This example is very similar to the [basic verifier](#basic), but shows how to set up prover and verifier to use proxy mode for verification.
 
 Follow the instructions from 
