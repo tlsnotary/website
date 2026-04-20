@@ -26,6 +26,13 @@ This example demonstrates how to use TLSNotary in a simple session between a Pro
 Follow the instructions from:
 https://github.com/tlsnotary/tlsn/tree/main/crates/examples/basic#readme
 
+## Proxy Verifier: Verifying Data Using Proxy Mode {#proxy}
+
+This example is very similar to the [basic verifier](#basic), but shows how to set up prover and verifier to use proxy mode for verification.
+
+Follow the instructions from 
+https://github.com/tlsnotary/tlsn/tree/main/crates/examples/proxy#readme
+
 ## Simple Attestation Example: Attesting and Verifying Data from an API in Rust {#attestation}
 
 ![](../../diagrams/light/overview_notary.svg#gh-light-mode-only)
