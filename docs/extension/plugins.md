@@ -18,7 +18,7 @@ The TLSN Extension features a **secure plugin system** that lets developers writ
 
 ### Verifier Integration
 
-Plugins generate TLS proofs by communicating with a **verifier server** (see [Verifier Server](./verifier.md) for deployment and configuration). The verifier participates in MPC-TLS, includes a built-in proxy, validates proofs, and supports webhooks.
+Plugins generate TLS proofs by communicating with a **verifier server** (see [Verifier Server](./verifier.md) for deployment and configuration). The verifier participates in MPC-TLS, includes a built-in proxy, validates proofs, and supports webhooks. Plugins are mode-agnostic: the caller of `execCode()` can additionally opt into [proxy mode](/docs/protocol/proxy-mode) via `sessionData` — no plugin changes required.
 
 **Architecture**: Extension → Verifier (with proxy) → Target Server
 
