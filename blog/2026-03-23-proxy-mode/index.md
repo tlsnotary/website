@@ -1,6 +1,6 @@
 ---
 title: "Introducing Proxy Mode: Choose Your Trust-Speed Tradeoff"
-authors: [heeckhau]
+authors: [th4s, heeckhau]
 description: "TLSNotary now supports proxy mode alongside MPC-TLS, letting developers choose between maximum security and maximum speed, or switch between both depending on the use case."
 ---
 
@@ -111,7 +111,7 @@ What sets TLSNotary apart is the ability to **switch modes**. If stakes are high
 
 **Use proxy mode when:**
 - Speed is the priority (identity verification flows, frequent attestations)
-- You control the verifier infrastructure
+- You fully control the verifier network infrastructure
 - The server's data is low-to-medium stakes
 - Bandwidth between prover and verifier is constrained
 
