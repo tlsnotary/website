@@ -49,6 +49,15 @@ In this setup, the `Notary` cryptographically signs commitments to the data and 
 
 `Verifiers` will only accept the signed data if they trust the `Notary`. A data `Verifier` can also require signed data from multiple `Notaries` to rule out collusion between the `Prover` and a `Notary`.
 
+## Alternative mode: Proxy mode
+
+MPC-TLS is the default and recommended mode. TLSNotary additionally offers **proxy mode**, where the `Verifier` sits between the `Prover` and `Server` as a proxy, observes the encrypted TLS traffic, and afterwards validates a zero-knowledge proof from the `Prover`. This trades the MPC step for a network-path trust assumption in exchange for significantly lower bandwidth and faster verification.
+
+![](../diagrams/light/overview_proxy.svg#gh-light-mode-only)
+![](../diagrams/dark/overview_proxy.svg#gh-dark-mode-only)
+
+For the full comparison, see the [proxy mode blog post](/blog/2026/03/23/proxy-mode) and the [proxy mode protocol reference](./protocol/proxy-mode.md).
+
 
 ## What Can TLSNotary Do?
 

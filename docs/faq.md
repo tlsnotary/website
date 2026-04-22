@@ -26,11 +26,13 @@ If a generic notary is used to verify the TLS session, this notary only sees enc
 
 ### What is the overhead of using TLSNotary?
 
-The Multi-Party Computation (MPC) between the Prover and the Verifier requires significant bandwidth, orders of magnitude more than the Server's data size.
+The Multi-Party Computation (MPC) between the Prover and the Verifier requires significant bandwidth, orders of magnitude more than the Server's data size. [Proxy mode](/docs/protocol/proxy-mode) is available as an alternative with dramatically lower prover-verifier bandwidth, in exchange for a different trust model.
 
 ### Can the server detect that a TLS session is being notarized?
 
 To the server, the TLS connection appears the same as any other connection. Only the User communicates with the Server, not the Notary or the Verifier. However, the timing patterns of TLS communication might have a different fingerprint, so through statistical analysis, specific identifying patterns might be uncovered.
+
+This holds for the default MPC-TLS mode. In [proxy mode](/docs/protocol/proxy-mode) the Verifier connects to the Server on the Prover's behalf, so the Server sees the Verifier's IP address instead of the Prover's.
 
 ### Can TLSNotary be used for public data?
 
@@ -85,6 +87,8 @@ The protocol does not have trust assumptions. In particular, it does not rely on
 
 The protocol does not rely on participants to act honestly. Specifically, it guarantees that, on the one hand, a malicious `Prover` will not be able to convince the `Verifier` of the authenticity of false data, and, on the other hand, that a malicious `Verifier` will not be able to learn the private data of the `Prover`.
 
+If you opt into [proxy mode](/docs/protocol/proxy-mode) instead of the default MPC-TLS, the trust model additionally relies on the network path between the Verifier and the Server not being hijacked.
+
 ### What is the role of a Notary?
 
 In some scenarios where the `Verifier` is unable to participate in a TLS connection, they may choose to delegate the verification of the online phase of the protocol to an entity called the `Notary`.
@@ -115,11 +119,15 @@ In a concrete scenario of sending a 1KB HTTP request followed by a 100KB respons
 
 25 + 10 + 4 = ~39 MB of **upload** data.
 
+These numbers describe the default MPC-TLS mode. [Proxy mode](/docs/protocol/proxy-mode), offered as an alternative, has dramatically lower prover-verifier bandwidth at the cost of a different trust model.
+
 ### Does TLSNotary use a proxy?
 
-A proxy is required only for the browser extension because browsers do not allow extensions to open TCP connections. Instead, our extension opens a websocket connection to a proxy (local or remote) which opens a TCP connection with the server. Our custom TLS client is then attached to this connection and the proxy only sees encrypted data.
+Yes, if you opt into [proxy mode](/docs/protocol/proxy-mode): the Verifier sits between the Prover and the Server and forwards encrypted TLS traffic. In the default MPC-TLS mode there is no such proxy — the Prover connects directly to the Server.
 
-The [Verifier Server](/docs/extension/verifier#built-in-websocket-proxy) includes a built-in WebSocket proxy that handles this automatically.
+:::note Browser extension transport
+Separately, the browser extension relies on a WebSocket-to-TCP proxy because browsers do not allow extensions to open raw TCP connections. The extension opens a WebSocket to this proxy, which then opens a TCP connection to the server; our custom TLS client attaches to that connection, so the proxy only ever sees encrypted data. This is a transport bridge and is unrelated to proxy mode. The [Verifier Server](/docs/extension/verifier#built-in-websocket-proxy) includes a built-in WebSocket proxy that handles this automatically.
+:::
 
 ### Why does my session time out?
 
@@ -164,11 +172,13 @@ The term "presentation" is inspired by similar terminology in the [W3C Verifiabl
 
 TLSNotary uses a multi-party computation (MPC) approach to secure the TLS session. Without MPC, the Prover would have full control over the TLS session keys and could forge the Server's responses. Zero-knowledge (ZK) proofs alone cannot prevent this. To prevent forged responses, the Verifier participates in the handshake, splitting the TLS session keys between the Prover and the Verifier.
 
-In proxy-based designs only ZK proofs are needed. In such designs the verifier proxies the connection with the server, observes the encrypted traffic, and later verifies a ZK proof from the Prover that the plaintext matches the encrypted data. TLSNotary's direct connection model avoids introducing a network assumption and provides stronger resistance to censorship compared to the proxy approach.
+[Proxy mode](/docs/protocol/proxy-mode) needs only ZK proofs: the Verifier proxies the connection with the Server, observes the encrypted traffic, and later verifies a ZK proof from the Prover that the plaintext is consistent with the encrypted session. This avoids MPC-TLS's bandwidth overhead, but introduces a network-path assumption between the Verifier and the Server.
+
+MPC-TLS remains the default because its direct-connection model avoids that network assumption and provides stronger resistance to censorship. Proxy mode is the right choice when speed matters more than the strongest trust guarantees.
 
 ### Can I prove statements about TLS data in zero-knowledge with TLSNotary? Does it use zkSNARKs?
 
-The TLSNotary protocol itself is an MPC-TLS protocol; zero-knowledge functionality is provided by the higher-level `tlsn` crate built on top of it.
+Zero-knowledge functionality is provided by the higher-level `tlsn` crate built on top of the TLSNotary protocol.
 
 Today, `tlsn` supports proving hash commitments to transcript data in zero-knowledge and uses the `QuickSilver` proving system. We plan to extend it to support richer statements in the future.
 
