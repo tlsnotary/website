@@ -43,3 +43,12 @@ dan:
   page: true
   socials:
     github: themighty1
+
+th4s:
+  name: Th4s
+  url: https://github.com/th4s
+  image_url: https://github.com/th4s.png
+  page: true
+  socials:
+    x: th4s_
+    github: th4s
