@@ -76,11 +76,16 @@
   height: 32px;
 }
 
-/* Mobile: move the hamburger to the right side of the navbar
-   instead of next to the logo. The right side is otherwise empty
-   on mobile because the right-aligned nav items are hidden. */
-@media screen and (max-width: 996px) {
+/* Tablet + mobile: collapse the navbar to a hamburger earlier than
+   Docusaurus's default 996px breakpoint. Several inline nav items
+   (About, Why, Use Cases, Documentation, FAQ, Blog + right-side
+   API/GitHub/X/Discord) wrap to two rows in the 996-1280px range
+   on a single-line navbar. Force the mobile drawer to take over up
+   to 1280px and place the hamburger on the right where the empty
+   space is. */
+@media screen and (max-width: 1280px) {
   .navbar__toggle {
+    display: inherit;
     position: absolute;
     right: 1rem;
     top: 50%;
@@ -89,7 +94,14 @@
     z-index: 2;
   }
 
+  .navbar__items > .navbar__link,
+  .navbar__items > .navbar__item,
+  .navbar__items--right {
+    display: none;
+  }
+
   .navbar__items .navbar__brand {
+    display: flex;
     margin-left: 0;
   }
 }

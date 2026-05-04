@@ -201,7 +201,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `TLSNotary is a project of the Ethereum Foundation.`,
+      copyright: `TLSNotary is a project of the <a href="https://ethereum.org" target="_blank" rel="noopener noreferrer">Ethereum Foundation</a>.`,
     },
     prism: {
       theme: prismThemes.github,
