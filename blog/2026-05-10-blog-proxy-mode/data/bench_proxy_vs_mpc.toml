@@ -1,0 +1,311 @@
+#### Proxy vs MPC: full benchmark for the Proxy mode blog post ####
+#
+# One TOML drives every chart in the post. Run once for native, once for
+# browser. Each section below mirrors a chart in the post.
+#
+# All groups use the realistic ZK authentication path on both sent and recv
+# (reveal-sent-all = false, reveal-recv-all = false). The full-reveal fast
+# path is intentionally NOT exercised here — that optimization is the
+# subject of the follow-up post and would muddle the mode-comparison story.
+#
+# Suggested invocation (from crates/harness/):
+#   sudo ./bin/runner bench \
+#       --config blog-proxy-mode-draft/data/bench_proxy_vs_mpc.toml \
+#       --output blog-proxy-mode-draft/data/metrics_native.csv
+#   sudo ./bin/runner --target browser bench \
+#       --config blog-proxy-mode-draft/data/bench_proxy_vs_mpc.toml \
+#       --output blog-proxy-mode-draft/data/metrics_browser.csv
+#
+# Expected runtime per target: ~30-60 min depending on hardware.
+
+############################################################################
+# Section 1: representative real-world scenarios                            #
+# (Cable / Fiber / Mobile 5G — same as bench.toml, both modes)              #
+############################################################################
+
+[[group]]
+name = "scenario_cable_mpc"
+proxy = false
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 20
+protocol_latency = 20
+upload-size = 1024
+download-size = 2048
+
+[[group]]
+name = "scenario_cable_proxy"
+proxy = true
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 20
+protocol_latency = 20
+upload-size = 1024
+download-size = 2048
+
+[[group]]
+name = "scenario_fiber_mpc"
+proxy = false
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 100
+protocol_latency = 15
+upload-size = 1024
+download-size = 2048
+
+[[group]]
+name = "scenario_fiber_proxy"
+proxy = true
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 100
+protocol_latency = 15
+upload-size = 1024
+download-size = 2048
+
+[[group]]
+name = "scenario_mobile_5g_mpc"
+proxy = false
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 30
+protocol_latency = 30
+upload-size = 1024
+download-size = 2048
+
+[[group]]
+name = "scenario_mobile_5g_proxy"
+proxy = true
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 30
+protocol_latency = 30
+upload-size = 1024
+download-size = 2048
+
+[[bench]]
+group = "scenario_cable_mpc"
+[[bench]]
+group = "scenario_cable_proxy"
+[[bench]]
+group = "scenario_fiber_mpc"
+[[bench]]
+group = "scenario_fiber_proxy"
+[[bench]]
+group = "scenario_mobile_5g_mpc"
+[[bench]]
+group = "scenario_mobile_5g_proxy"
+
+############################################################################
+# Section 2: bandwidth sweep                                                #
+# (mirrors bench_bandwidth_sweep.toml — 25 ms / 1 KB / 2 KB, both modes)    #
+############################################################################
+
+[[group]]
+name = "bandwidth_sweep_mpc"
+proxy = false
+reveal-sent-all = false
+reveal-recv-all = false
+protocol_latency = 25
+upload-size = 1024
+download-size = 2048
+
+[[group]]
+name = "bandwidth_sweep_proxy"
+proxy = true
+reveal-sent-all = false
+reveal-recv-all = false
+protocol_latency = 25
+upload-size = 1024
+download-size = 2048
+
+[[bench]]
+group = "bandwidth_sweep_mpc"
+bandwidth = 5
+[[bench]]
+group = "bandwidth_sweep_mpc"
+bandwidth = 10
+[[bench]]
+group = "bandwidth_sweep_mpc"
+bandwidth = 20
+[[bench]]
+group = "bandwidth_sweep_mpc"
+bandwidth = 50
+[[bench]]
+group = "bandwidth_sweep_mpc"
+bandwidth = 100
+[[bench]]
+group = "bandwidth_sweep_mpc"
+bandwidth = 250
+[[bench]]
+group = "bandwidth_sweep_mpc"
+bandwidth = 500
+[[bench]]
+group = "bandwidth_sweep_mpc"
+bandwidth = 1000
+
+[[bench]]
+group = "bandwidth_sweep_proxy"
+bandwidth = 5
+[[bench]]
+group = "bandwidth_sweep_proxy"
+bandwidth = 10
+[[bench]]
+group = "bandwidth_sweep_proxy"
+bandwidth = 20
+[[bench]]
+group = "bandwidth_sweep_proxy"
+bandwidth = 50
+[[bench]]
+group = "bandwidth_sweep_proxy"
+bandwidth = 100
+[[bench]]
+group = "bandwidth_sweep_proxy"
+bandwidth = 250
+[[bench]]
+group = "bandwidth_sweep_proxy"
+bandwidth = 500
+[[bench]]
+group = "bandwidth_sweep_proxy"
+bandwidth = 1000
+
+############################################################################
+# Section 3: latency sweep                                                  #
+# (mirrors bench_latency_sweep.toml — 100 Mbps / 1 KB / 2 KB, both modes)   #
+############################################################################
+
+[[group]]
+name = "latency_sweep_mpc"
+proxy = false
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 100
+upload-size = 1024
+download-size = 2048
+
+[[group]]
+name = "latency_sweep_proxy"
+proxy = true
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 100
+upload-size = 1024
+download-size = 2048
+
+[[bench]]
+group = "latency_sweep_mpc"
+protocol_latency = 10
+[[bench]]
+group = "latency_sweep_mpc"
+protocol_latency = 25
+[[bench]]
+group = "latency_sweep_mpc"
+protocol_latency = 50
+[[bench]]
+group = "latency_sweep_mpc"
+protocol_latency = 75
+[[bench]]
+group = "latency_sweep_mpc"
+protocol_latency = 100
+[[bench]]
+group = "latency_sweep_mpc"
+protocol_latency = 150
+[[bench]]
+group = "latency_sweep_mpc"
+protocol_latency = 200
+
+[[bench]]
+group = "latency_sweep_proxy"
+protocol_latency = 10
+[[bench]]
+group = "latency_sweep_proxy"
+protocol_latency = 25
+[[bench]]
+group = "latency_sweep_proxy"
+protocol_latency = 50
+[[bench]]
+group = "latency_sweep_proxy"
+protocol_latency = 75
+[[bench]]
+group = "latency_sweep_proxy"
+protocol_latency = 100
+[[bench]]
+group = "latency_sweep_proxy"
+protocol_latency = 150
+[[bench]]
+group = "latency_sweep_proxy"
+protocol_latency = 200
+
+############################################################################
+# Section 4: response-size sweep                                            #
+# (mirrors bench_download_sweep.toml — 100 Mbps / 25 ms / 1 KB up,          #
+#  both modes, 1-51 KB response)                                            #
+############################################################################
+
+[[group]]
+name = "download_sweep_mpc"
+proxy = false
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 100
+protocol_latency = 25
+upload-size = 1024
+
+[[group]]
+name = "download_sweep_proxy"
+proxy = true
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 100
+protocol_latency = 25
+upload-size = 1024
+
+[[bench]]
+group = "download_sweep_mpc"
+download-size = 1024
+[[bench]]
+group = "download_sweep_mpc"
+download-size = 2048
+[[bench]]
+group = "download_sweep_mpc"
+download-size = 5120
+[[bench]]
+group = "download_sweep_mpc"
+download-size = 10240
+[[bench]]
+group = "download_sweep_mpc"
+download-size = 20480
+[[bench]]
+group = "download_sweep_mpc"
+download-size = 30720
+[[bench]]
+group = "download_sweep_mpc"
+download-size = 40960
+[[bench]]
+group = "download_sweep_mpc"
+download-size = 51200
+
+[[bench]]
+group = "download_sweep_proxy"
+download-size = 1024
+[[bench]]
+group = "download_sweep_proxy"
+download-size = 2048
+[[bench]]
+group = "download_sweep_proxy"
+download-size = 5120
+[[bench]]
+group = "download_sweep_proxy"
+download-size = 10240
+[[bench]]
+group = "download_sweep_proxy"
+download-size = 20480
+[[bench]]
+group = "download_sweep_proxy"
+download-size = 30720
+[[bench]]
+group = "download_sweep_proxy"
+download-size = 40960
+[[bench]]
+group = "download_sweep_proxy"
+download-size = 51200
