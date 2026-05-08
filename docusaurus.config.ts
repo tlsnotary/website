@@ -142,7 +142,7 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Learn',
           items: [
             {
               label: 'Documentation',
@@ -155,6 +155,10 @@ const config: Config = {
             {
               label: 'FAQ',
               to: '/docs/faq',
+            },
+            {
+              label: 'Blog',
+              to: '/blog',
             },
           ],
         },
@@ -176,24 +180,28 @@ const config: Config = {
           ],
         },
         {
-          title: 'More',
+          title: 'Project',
           items: [
-            {
-              label: 'Disclaimer',
-              to: '/disclaimer',
-            },
             {
               label: 'GitHub',
               href: 'https://github.com/tlsnotary',
             },
             {
+              label: 'API Reference',
+              href: 'https://tlsnotary.github.io/tlsn/tlsn/',
+            },
+            {
               label: 'Release Notes',
               href: 'https://github.com/tlsnotary/tlsn/releases',
+            },
+            {
+              label: 'Disclaimer',
+              to: '/disclaimer',
             },
           ],
         },
       ],
-      copyright: `TLSNotary is a project of the Ethereum Foundation.`,
+      copyright: `TLSNotary is a project of the <a href="https://ethereum.org" target="_blank" rel="noopener noreferrer">Ethereum Foundation</a>.`,
     },
     prism: {
       theme: prismThemes.github,
