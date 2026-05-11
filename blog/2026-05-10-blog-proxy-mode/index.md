@@ -31,11 +31,11 @@ As disucssed in the [Proxy mode introcution post](https://tlsnotary.org/blog/202
 
 **Browser deployments.** Browsers cannot open raw TCP connections, so MPC mode in the browser needs a WebSocket-to-TCP proxy on the path between the prover and the server. Someone has to host that: either the application, or the user themselves locally. The latter is fine for power users and awkward for everyone else. Proxy mode sidesteps the problem: the browser prover speaks WebSocket to the verifier, and the verifier handles the TCP leg to the server.
 
-The previouse blog post covers the trust model in [Who Connects to the Server Matters](https://tlsnotary.org/blog/2026/04/22/proxy-mode#who-connects-to-the-server-matters), and clarifies the WebSocket-proxy distinction in [A Note on the WebSocket Proxy](https://tlsnotary.org/blog/2026/04/22/proxy-mode#a-note-on-the-websocket-proxy). The benchmarks below are about speed. They do not tell you which mode is right for your deployment.
+The previouse blog post covers the trust model in [Who Connects to the Server Matters](https://tlsnotary.org/blog/2026/04/22/proxy-mode#who-connects-to-the-server-matters), and clarifies the WebSocket-proxy distinction in [A Note on the WebSocket Proxy](https://tlsnotary.org/blog/2026/04/22/proxy-mode#a-note-on-the-websocket-proxy). The benchmarks below are about speed.
 
 ## Benchmark setup
 
-- **Hardware:** AMD Ryzen 9 7900X (12 cores / 24 threads), 64 GB RAM, Linux.
+- **Hardware:** AMD Ryzen 9 9950X (16 cores / 32 threads), 64 GB RAM, Linux.
 - **Build:** TLSNotary `main` post-Proxy-mode merge ([`tlsn`](https://github.com/tlsnotary/tlsn) `crates/harness`, commit `d50658ab973`).
 - **Network simulation:** Linux `tc` / `iptables` / `ip` via the harness `runner setup` command.
 - **Modes:** MPC and Proxy, run side by side under identical network and payload conditions.
@@ -85,12 +85,12 @@ In the representative scenarios (1 KB / 2 KB), the WASM browser build is only **
 
 | Use case                                                    | Recommended mode | Why                                                            |
 | ----------------------------------------------------------- | ---------------- | -------------------------------------------------------------- |
-| Adversarial verifier, sensitive data, compliance pressure   | MPC              | Strongest trust model (see the [Proxy mode announcement](https://tlsnotary.org/blog/2026/04/22/proxy-mode)) |
+| Adversarial prover, high-stakes proofs, compliance pressure | MPC              | Strongest trust model (see the [Proxy mode announcement](https://tlsnotary.org/blog/2026/04/22/proxy-mode)) |
 | Server may block data-center or proxy IPs                   | MPC              | Prover's own residential or mobile IP connects directly        |
 | Trusted verifier, latency-sensitive UX                      | Proxy            | An order of magnitude faster on real connections               |
 | Browser deployment for general users                        | Proxy            | No WebSocket-to-TCP proxy to host    |
 
-The decision is principally about who runs the verifier, who connects to the server, how strong a trust story you need, and how you balance speed against the residual risk. The [Proxy mode announcement](https://tlsnotary.org/blog/2026/04/22/proxy-mode) covers the trust side; the benchmarks above tell you what speed you are paying for the trust model you picked.
+The decision is principally about who runs the verifier, who connects to the server, how strong a trust story you need, and how you balance speed against the residual risk.
 
 ---
 

@@ -23,11 +23,11 @@ On a 20 Mbps / 20 ms cable connection, with a partially redacted 1 KB request an
 | Proxy + redact response                     | 1.66 s     | 2.32 s     | 4.56 s     |
 | **Proxy + reveal response (fast path)**     | **1.56 s** | **1.56 s** | **1.66 s** |
 
-The fast path saves about **3 seconds on the prove phase regardless of mode**. Those 3 seconds are the cost of authenticating the response plaintext in ZK, and the fast path skips them when the response is public. Whether that 3 s is the whole runtime (proxy) or a slice of it (MPC) depends on the mode's preprocessing cost, which is dominated by upload bandwidth on cable.
+In the fast path we get response authentication for free, which means that the proving cost becomes independent of the response size, but only if the entire response is public.
 
 ## What the fast path does
 
-Under the hood, TLSNotary proves that ciphertext observed on the wire corresponds to some plaintext the prover claims. For bytes the prover redacts, that proof is done in ZK — expensive, scales with plaintext length. For bytes the prover reveals, there is a second option: just give the verifier the symmetric key and let them decrypt.
+Under the hood, TLSNotary proves that ciphertext observed on the wire corresponds to some plaintext the prover claims. For bytes the prover redacts, that proof is done in ZK — expensive, scales with plaintext length. But there is a second option: just give the verifier the symmetric key and let them decrypt.
 
 The fast path wires up that second option for the response side. When the prover's `reveal_recv` range covers the entire response transcript, the prover reveals the server write key instead of running ZK on the response plaintext. For bytes the verifier will learn anyway, this trades the same information at dramatically lower cost.
 
