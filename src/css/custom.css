@@ -76,20 +76,79 @@
   height: 32px;
 }
 
-/* Center footer content */
-.footer {
+/* Tablet + mobile: collapse the navbar to a hamburger earlier than
+   Docusaurus's default 996px breakpoint. Several inline nav items
+   (About, Why, Use Cases, Documentation, FAQ, Blog + right-side
+   API/GitHub/X/Discord) wrap to two rows in the 996-1280px range
+   on a single-line navbar. Force the mobile drawer to take over up
+   to 1280px and place the hamburger on the right where the empty
+   space is. */
+@media screen and (max-width: 1280px) {
+  .navbar__toggle {
+    display: inherit;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    z-index: 2;
+  }
+
+  .navbar__items > .navbar__link,
+  .navbar__items > .navbar__item,
+  .navbar__items--right {
+    display: none;
+  }
+
+  .navbar__items .navbar__brand {
+    display: flex;
+    margin-left: 0;
+  }
+}
+
+/* Footer — matches the hero's navy palette and dot pattern */
+.footer,
+.footer--dark,
+[data-theme='dark'] .footer,
+[data-theme='dark'] .footer--dark {
+  background-color: #0c1a2e;
+  background-image:
+    radial-gradient(circle, rgba(0, 0, 0, 0.35) 1px, transparent 1.6px),
+    linear-gradient(145deg, #0f2036 0%, #07111f 100%);
+  background-size: 22px 22px, 100% 100%;
+  background-position: 0 0, 0 0;
+  color: rgba(255, 255, 255, 0.88);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
 }
 
-.footer__links {
+.footer .footer__links {
   justify-content: center;
 }
 
-.footer__col {
+.footer .footer__col {
   text-align: center;
 }
 
-.footer__copyright {
+.footer .footer__title {
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.footer .footer__link-item {
+  color: rgba(255, 255, 255, 0.72);
+  transition: color 160ms ease;
+}
+
+.footer .footer__link-item:hover,
+.footer .footer__link-item:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer .footer__copyright {
+  color: rgba(255, 255, 255, 0.6);
   text-align: center;
 }
 
@@ -104,8 +163,4 @@
 
 [data-theme='dark'] .table-of-contents {
   border-left-color: var(--ifm-toc-border-color);
-}
-
-[data-theme='dark'] .footer {
-  background-color: var(--ifm-background-surface-color);
 }
