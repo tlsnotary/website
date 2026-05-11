@@ -1,7 +1,6 @@
 ---
 title: "Proxy mode benchmarks: what the new mode actually buys you"
 authors: [heeckhau, th4s]
-draft: true
 ---
 
 We recently [announced Proxy mode](https://tlsnotary.org/blog/2026/04/22/proxy-mode) support in TLSNotary as a faster zkTLS protocol and discussed the trust and security assumptions. In this post we bring the benchmark results.
