@@ -1,0 +1,161 @@
+#### Issue #474 Download Sweep: Server-Write-Key Reveal Impact ####
+#
+# Measures the impact of the #474 "server write key reveal" optimization in
+# both MPC and Proxy modes, using the realistic asymmetric scenario:
+#
+#   - Request (sent): partial redaction (reveal-sent-all = false)
+#     Keeps the prover on the ZK authentication path for sent data, reflecting
+#     that real requests contain credentials/tokens that must stay private.
+#
+#   - Response (recv): fully revealed (reveal-recv-all = true) or partially
+#     redacted (reveal-recv-all = false), swept to show the #474 win.
+#
+# Four groups × 8 download sizes lets a blog post chart time & bandwidth
+# as a function of response size for each (mode × recv-reveal) combination.
+#
+# Network profile: cable / DSL residential (20 Mbps, 20 ms). This is the
+# common case and the regime where upload bandwidth saving matters most.
+#
+# Fixed parameters:
+#   - Bandwidth: 20 Mbps
+#   - Latency: 20 ms
+#   - Upload: 1 KB
+#   - Sent side: always partially redacted (reveal-sent-all = false)
+#
+# Variable: download-size from 1 KB to 51 KB, and (mode × reveal-recv-all).
+
+[[group]]
+name = "proxy_reveal_recv"
+proxy = true
+reveal-sent-all = false
+reveal-recv-all = true
+bandwidth = 20
+protocol_latency = 20
+upload-size = 1024
+
+[[group]]
+name = "proxy_redact_recv"
+proxy = true
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 20
+protocol_latency = 20
+upload-size = 1024
+
+[[group]]
+name = "mpc_reveal_recv"
+proxy = false
+reveal-sent-all = false
+reveal-recv-all = true
+bandwidth = 20
+protocol_latency = 20
+upload-size = 1024
+
+[[group]]
+name = "mpc_redact_recv"
+proxy = false
+reveal-sent-all = false
+reveal-recv-all = false
+bandwidth = 20
+protocol_latency = 20
+upload-size = 1024
+
+[[bench]]
+group = "proxy_reveal_recv"
+download-size = 1024
+[[bench]]
+group = "proxy_reveal_recv"
+download-size = 2048
+[[bench]]
+group = "proxy_reveal_recv"
+download-size = 5120
+[[bench]]
+group = "proxy_reveal_recv"
+download-size = 10240
+[[bench]]
+group = "proxy_reveal_recv"
+download-size = 20480
+[[bench]]
+group = "proxy_reveal_recv"
+download-size = 30720
+[[bench]]
+group = "proxy_reveal_recv"
+download-size = 40960
+[[bench]]
+group = "proxy_reveal_recv"
+download-size = 51200
+
+[[bench]]
+group = "proxy_redact_recv"
+download-size = 1024
+[[bench]]
+group = "proxy_redact_recv"
+download-size = 2048
+[[bench]]
+group = "proxy_redact_recv"
+download-size = 5120
+[[bench]]
+group = "proxy_redact_recv"
+download-size = 10240
+[[bench]]
+group = "proxy_redact_recv"
+download-size = 20480
+[[bench]]
+group = "proxy_redact_recv"
+download-size = 30720
+[[bench]]
+group = "proxy_redact_recv"
+download-size = 40960
+[[bench]]
+group = "proxy_redact_recv"
+download-size = 51200
+
+[[bench]]
+group = "mpc_reveal_recv"
+download-size = 1024
+[[bench]]
+group = "mpc_reveal_recv"
+download-size = 2048
+[[bench]]
+group = "mpc_reveal_recv"
+download-size = 5120
+[[bench]]
+group = "mpc_reveal_recv"
+download-size = 10240
+[[bench]]
+group = "mpc_reveal_recv"
+download-size = 20480
+[[bench]]
+group = "mpc_reveal_recv"
+download-size = 30720
+[[bench]]
+group = "mpc_reveal_recv"
+download-size = 40960
+[[bench]]
+group = "mpc_reveal_recv"
+download-size = 51200
+
+[[bench]]
+group = "mpc_redact_recv"
+download-size = 1024
+[[bench]]
+group = "mpc_redact_recv"
+download-size = 2048
+[[bench]]
+group = "mpc_redact_recv"
+download-size = 5120
+[[bench]]
+group = "mpc_redact_recv"
+download-size = 10240
+[[bench]]
+group = "mpc_redact_recv"
+download-size = 20480
+[[bench]]
+group = "mpc_redact_recv"
+download-size = 30720
+[[bench]]
+group = "mpc_redact_recv"
+download-size = 40960
+[[bench]]
+group = "mpc_redact_recv"
+download-size = 51200
