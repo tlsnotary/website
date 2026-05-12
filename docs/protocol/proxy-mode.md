@@ -42,5 +42,5 @@ If a third party operates the `Verifier`, the `Prover` and the third-party `Veri
 
 ## See also
 
-- [Introducing Proxy Mode (blog post)](/blog/2026/03/23/proxy-mode) — full narrative, trade-offs, and when to choose which mode
+- [Introducing Proxy Mode (blog post)](/blog/2026/04/22/proxy-mode) — full narrative, trade-offs, and when to choose which mode
 - [Rust quick start: Proxy Verifier example](../quick_start/rust.md#proxy)

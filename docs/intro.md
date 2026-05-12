@@ -56,7 +56,7 @@ MPC-TLS is the default and recommended mode. TLSNotary additionally offers **pro
 ![](../diagrams/light/overview_proxy.svg#gh-light-mode-only)
 ![](../diagrams/dark/overview_proxy.svg#gh-dark-mode-only)
 
-For the full comparison, see the [proxy mode blog post](/blog/2026/03/23/proxy-mode) and the [proxy mode protocol reference](./protocol/proxy-mode.md).
+For the full comparison, see the [proxy mode blog post](/blog/2026/04/22/proxy-mode) and the [proxy mode protocol reference](./protocol/proxy-mode.md).
 
 
 ## What Can TLSNotary Do?
