@@ -51,38 +51,33 @@ In proxy mode, the **verifier** connects to the server and forwards encrypted tr
 At a high level, proxy mode has three phases:
 
 1. **Preprocessing.** Before the TLS connection begins, the prover and verifier set up the zero-knowledge circuits that will later be used to verify key derivation. This is much lighter than MPC-TLS preprocessing (which requires garbled circuits), but it is not instant.
-2. **TLS session.** The prover performs a standard TLS handshake through the verifier, which forwards encrypted packets in both directions. The verifier records all traffic but cannot decrypt it. During the handshake, the prover captures the pre-master secret from the key exchange.
+2. **TLS session.** The prover performs a standard TLS handshake through the verifier, which forwards encrypted packets in both directions. The verifier records all traffic but cannot decrypt it.
 3. **Verification.** After the session ends, the prover and verifier run the ZK protocol. The prover proves that the traffic the verifier observed is consistent with a legitimate TLS session. This happens in three steps (detailed below).
 
 ### Step 3a: Prove key derivation
 
-The core of the proof is a zero-knowledge computation of the TLS 1.2 PRF (pseudo-random function). The prover holds the **pre-master secret** as its private input. Everything else is used as public inputs: the client random, server random, and handshake transcript hashes.
+The core of the proof is a zero-knowledge computation of the TLS 1.2 PRF (pseudo-random function). The prover holds the **master secret** as his private input. Everything else is used as public inputs: the client random, server random, and handshake transcript hashes.
 
-The ZK circuit computes the full derivation chain:
+The ZK circuit computes:
 
-- **Master secret** from the pre-master secret (using the Extended Master Secret extension)
 - **Session keys** (client/server write keys and IVs) from the master secret
-- **Verify data** for both the client Finished and server Finished messages
+- **Verify data** for both the client finished and server finished messages
 
-The verifier learns the `verify_data`, but never learns the pre-master secret or the derived keys.
+The verifier learns the `verify_data`, but never learns the master secret or the derived keys.
 
 ### Step 3b: Validate the Finished messages
 
 The TLS Finished messages contain `verify_data`: a value derived from the master secret and the full handshake transcript. Both client and server send one. Since the verifier forwarded the traffic, it has the **encrypted** Finished records.
 
-The ZK circuit decrypts these Finished records using the derived keys and checks that the plaintext matches the `verify_data` computed in Step 3a. If they match, the verifier knows the prover actually participated in this specific TLS handshake, because only a party that completed the ECDHE key exchange could know the pre-master secret that produces matching `verify_data`.
+The ZK circuit decrypts these Finished records using the derived keys and checks that the plaintext matches the `verify_data` computed in Step 3a. If they match, the verifier knows the prover actually participated in this specific TLS handshake, because only a party that completed the ECDHE key exchange could know the master secret that produces matching `verify_data`.
 
 ### Step 3c: Verify application data
 
-Finally, the verifier checks the **AES-GCM authentication tags** sent by the server on every application data record it observed. Using the session keys from Step 3a, it recomputes the expected tags and compares them against the actual, observed tags. This confirms that the application data was encrypted under the same keys, linking it to the authenticated handshake.
+Finally, the verifier checks the **AES-GCM authentication tags** sent by the server on every application data record it observed. This confirms that the application data was encrypted under the same session keys from the key derivation, linking it to the authenticated handshake.
 
 After these three steps, the verifier has cryptographic assurance that the traffic it forwarded corresponds to a real TLS session with the claimed server, and that the prover could not have tampered with the data.
 
 Selective disclosure works the same way as in MPC-TLS: the prover can choose which parts of the transcript to reveal to the verifier while keeping the rest private.
-
-### Constraints
-
-Proxy mode currently supports **TLS 1.2** with `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` (secp256r1 key exchange).
 
 ## Who Connects to the Server Matters
 
