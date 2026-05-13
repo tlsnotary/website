@@ -24,7 +24,7 @@ Can the prover fake the key? No. The ZK proof of TLS key derivation always runs,
 
 Requests routinely carry secrets like authentication headers and session cookies, so the sent side typically stays on the ZK path. Responses are often something the prover is happy to share in full: an API result, a text message, a bank balance. In that common case, the prover redacts a few request bytes, reveals the response, and the response-side cost drops to a constant. Exactly what the benchmarks below show.
 
-The fast path is all-or-nothing per direction. The ZK circuit covers the full committed range regardless of what ends up revealed, so a single private byte means the prover pays the full per-byte cost across the entire transcript for that direction. One sensitive field, one token in a header, and you're back on the ZK path.
+The fast path is all-or-nothing per direction. A single private byte means the prover pays the full per-byte cost for what gets revealed. So if you have one sensitive field, one token in a header, you're back on the ZK path.
 
 ## Benchmark setup
 
