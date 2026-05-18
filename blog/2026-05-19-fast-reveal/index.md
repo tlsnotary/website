@@ -30,7 +30,7 @@ The fast path is all-or-nothing per direction. A single private byte means the p
 
 - **Hardware:** AMD Ryzen 9 7900X (12 cores / 24 threads), 64 GB RAM, Linux.
 - **Build:** TLSNotary [`tlsn`](https://github.com/tlsnotary/tlsn) `crates/harness`, on a Proxy-mode preview branch (pre-alpha.15).
-- **Request:** 1 KB, **partially redacted** (realistic: requests carry tokens, cookies). Same for every run.
+- **Request:** 1 KB, **partially redacted**. Same for every run.
 - **Response:** fully revealed (`reveal_recv = 0..len`, triggers the fast path) or partially redacted (`0..len-1`, stays on the ZK path).
 - **Modes:** MPC and Proxy, crossed with reveal/redact on the response.
 - **Deferred decryption:** enabled.
@@ -77,4 +77,6 @@ Split the total into preprocess / online / prove, and the fast path's contributi
 
 For the common shape of "request has secrets, response is sharable in full," the fast path turns the response into a flat cost on the prover's side. The same ~3 s of ZK work disappears in either mode, automatically, regardless of how large the response gets.
 
-Bigger responses, same proving cost: no configuration, no trust trade-off, no mode switch. Your users wait less.
+The optimization has been live since alpha.13. If your application matches the pattern (and many do), it's already on. No configuration to set, no trust trade-off to weigh, no mode switch to make.
+
+Bigger responses, same proving cost. Your users wait less.
