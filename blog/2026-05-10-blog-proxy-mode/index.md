@@ -3,7 +3,7 @@ title: "Proxy mode benchmarks: what the new mode actually buys you"
 authors: [heeckhau, th4s]
 ---
 
-We recently [announced Proxy mode](https://tlsnotary.org/blog/2026/04/22/proxy-mode) support in TLSNotary as a faster zkTLS protocol and discussed the trust and security assumptions. In this post we bring the benchmark results.
+We recently [announced Proxy mode](https://tlsnotary.org/blog/2026/04/22/proxy-mode) support in TLSNotary as a faster zkTLS protocol and discussed the security assumptions. In this post we bring the benchmark results.
 
 We ran the benchmark harness across the same network profiles, sweeps, and payload sizes that anchored our [August 2025](https://tlsnotary.org/blog/2025/08/31/benchmarks/) and [alpha.14](https://tlsnotary.org/blog/2026/01/19/alpha14-performance) posts, in both native and browser builds, and added Proxy mode side-by-side with MPC mode. The headline finding lives below; the rest of the post is about *when each mode is the right choice*, because faster is not always better. A full alpha.14-vs-alpha.15 comparison is coming with the alpha.15 release post; this post is the mode comparison only.
 
@@ -26,7 +26,7 @@ Proxy mode completes a 1 KB / 2 KB attestation in **1-2 seconds** across real-wo
 
 As discussed in the [Proxy mode introduction post](https://tlsnotary.org/blog/2026/04/22/proxy-mode) there are a few practical considerations beyond raw runtime:
 
-**Who connects to the server.** In MPC mode the prover's device connects, so the request reaches the server from a normal residential or mobile IP. In Proxy mode the verifier connects on the prover's behalf; if the verifier runs in a data center, the server may flag or block its IP, and routing around that with a residential proxy weakens the network trust assumption further.
+**Who connects to the server.** In MPC mode the prover's device connects, so the request reaches the server from a normal residential or mobile IP. In Proxy mode the verifier connects on the prover's behalf; if the verifier runs in a data center, the server may flag or block its IP, and routing around that with a residential proxy weakens the network security assumption further.
 
 **Browser deployments.** Browsers cannot open raw TCP connections, so MPC mode in the browser needs a WebSocket-to-TCP proxy on the path between the prover and the server. Someone has to host that: either the application, or the user themselves locally. The latter is fine for power users and awkward for everyone else. Proxy mode sidesteps the problem: the browser prover speaks WebSocket to the verifier, and the verifier handles the TCP leg to the server.
 
@@ -92,7 +92,7 @@ In the representative scenarios (1 KB / 2 KB), the WASM browser build is only **
 | Bandwidth- & latency-sensitive UX                      | Proxy            | An order of magnitude faster on real connections               |
 | Browser deployment for general users                        | Proxy            | No WebSocket-to-TCP proxy to host    |
 
-The decision is principally about who runs the verifier, who connects to the server, how strong a trust story you need, and how you balance speed against the residual risk.
+The decision is principally about who runs the verifier, who connects to the server, how strong a security guarantee you need, and how you balance speed against the residual risk.
 
 ---
 

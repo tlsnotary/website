@@ -1,5 +1,5 @@
 ---
-title: "Introducing Proxy Mode: Choose Your Trust-Speed Tradeoff"
+title: "Introducing Proxy Mode: Choose Your Security-Speed Tradeoff"
 authors: [th4s, heeckhau]
 description: "TLSNotary now supports proxy mode alongside MPC-TLS, letting developers choose between maximum security and maximum speed, or switch between both depending on the use case."
 ---
@@ -39,7 +39,7 @@ In proxy mode, the **verifier** connects to the server and forwards encrypted tr
 
 | | MPC-TLS | Proxy Mode |
 |---|---|---|
-| **Trust model** | No trusted party; security from MPC | Verifier must trust its own network path to the server |
+| **Trust model** | Security from MPC; no additional assumptions | Assumes attacker cannot MITM the verifier-to-server connection |
 | **Who connects to the server** | The prover | The verifier (as proxy) |
 | **Detectable by server** | No, looks like normal TLS | Yes, the server sees the verifier's IP |
 | **Bandwidth (prover-verifier)** | High (MPC protocol overhead) | Low (only forwarded TLS packets + ZK proof) |
@@ -87,12 +87,12 @@ In **MPC-TLS**, the prover's device connects directly. From the server's perspec
 
 In **proxy mode**, the verifier connects to the server on behalf of the prover. This has practical consequences:
 
-- **Server-side blocking.** Many web applications block requests from known cloud or data center IPs to prevent bots and scraping. If the verifier runs on a server, its IP may be flagged. A common workaround is routing through a residential proxy, but this introduces another intermediary and further weakens the network trust assumptions.
+- **Server-side blocking.** Many web applications block requests from known cloud or data center IPs to prevent bots and scraping. If the verifier runs on a server, its IP may be flagged. A common workaround is routing through a residential proxy, but this introduces another intermediary and further weakens the network security assumptions.
 - **No blocking issue with MPC-TLS.** Because the prover's own device connects to the server, there is no risk of IP-based blocking. The request originates from the user's residential or mobile connection, exactly as the server expects.
 
 This is another reason MPC-TLS is the stronger choice for high-stakes use cases: it avoids the detectability and censorship concerns entirely.
 
-## Trust Assumptions
+## Security Assumptions
 
 In proxy mode, if you **run the verifier yourself**, you do not need to trust anybody else. You control the infrastructure. The ZK proof guarantees the prover cannot forge the data.
 
@@ -113,7 +113,7 @@ What sets TLSNotary apart is the ability to **switch modes**. If stakes are high
 **Use MPC-TLS when:**
 - The stakes are high (financial proofs, legal attestations)
 - You want blind verification (verifier should not learn which server)
-- You want zero trust assumptions beyond cryptography
+- You want zero security assumptions beyond cryptography
 - The server might block known proxy IPs
 
 The ability to **switch modes per use case** is a unique advantage. A single integration can route high-stakes attestations through MPC-TLS while using proxy mode for everyday verifications, no code changes required.
