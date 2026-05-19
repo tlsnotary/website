@@ -1,16 +1,15 @@
 ---
 sidebar_position: 7
 ---
-
 # Configuration
 
-This page documents the configuration options exposed by the core TLSNotary protocol crates. Higher-level wrappers (the SDK, the notary server, the browser extension) re-export these settings, sometimes with their own defaults — refer to their documentation for the user-facing surface.
+This page documents the configuration options exposed by the core TLSNotary protocol crates. The SDK re-exports these settings — sometimes with its own defaults — and tools built on top of it (such as the browser extension) inherit that surface. Refer to the SDK and tool-specific documentation for the user-facing options.
 
-The protocol supports two TLS commitment modes — **MPC** and **Proxy** — with very different configuration surfaces. The asymmetry follows directly from how each mode works: MPC mode pre-allocates resources to run an interactive protocol with the `Prover` during the live TLS connection, whereas Proxy mode merely relays ciphertext.
+The protocol supports two modes — **MPC** and **Proxy** — with very different configuration surfaces.
 
 ## Mode-independent configuration
 
-These configurations apply regardless of the commitment mode.
+These configurations apply regardless of the mode.
 
 ### `TlsClientConfig`
 
@@ -18,13 +17,13 @@ Configures the TLS client that the `Prover` runs.
 
 | Field          | Required | Description                                                                                                              |
 |----------------|----------|--------------------------------------------------------------------------------------------------------------------------|
-| `server_name`  | yes      | The DNS name (or IP) of the server. Used for SNI and certificate verification.                                           |
+| `server_name`  | yes      | The DNS name (or IP) of the server.                                                                                      |
 | `root_store`   | yes      | Root certificates used to verify the server certificate chain.                                                           |
-| `client_auth`  | no       | Optional certificate chain and private key for TLS client authentication (mutual TLS).                                   |
+| `client_auth`  | no       | Optional certificate chain and private key for TLS client authentication (mutual TLS, mTLS).                             |
 
 ### `VerifierConfig`
 
-Configures the `Verifier`.
+Configures what the `Verifier` accepts during the TLS handshake.
 
 | Field        | Required | Description                                                                       |
 |--------------|----------|-----------------------------------------------------------------------------------|
@@ -36,7 +35,7 @@ Built against a finished transcript, controls what the `Prover` discloses to the
 
 | Field                | Description                                                                                           |
 |----------------------|-------------------------------------------------------------------------------------------------------|
-| `server_identity`    | Whether to prove the server identity (i.e. reveal the server name to the `Verifier`).                 |
+| `server_identity`    | Whether to reveal the configured `server_name` to the `Verifier`.                                     |
 | `reveal`             | Byte ranges of the sent and received transcript to reveal.                                            |
 | `transcript_commit`  | Configuration of the transcript commitments (see [Commit Strategy](./commit_strategy.md)).            |
 
@@ -58,15 +57,15 @@ In MPC mode the `Prover` and `Verifier` jointly run the TLS protocol over MPC. R
 
 Each of these sets a hard cap: exceeding it aborts the session. The record-count fields exist because TLS data is framed into records, and the MPC layer must reserve resources per record as well as per byte. The defaults are derived heuristically from the data limits and rarely need to be set explicitly.
 
-The relationship between `max_recv_data` and `max_recv_data_online` is explained under [Online vs deferred decryption](#online-vs-deferred-decryption) below.
+The relationship between `max_recv_data` and `max_recv_data_online` is explained under [Online vs deferred decryption](#online-vs-deferred-decryption).
 
 ### Deferred decryption
 
 | Field                          | Default | Description                                                                                                                                                   |
 |--------------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `defer_decryption_from_start`  | `true`  | If `true`, application-data decryption is deferred from the moment the TLS connection starts; if `false`, decryption runs online via MPC from the first byte. |
+| `defer_decryption_from_start`  | `true`  | If `true`, application-data decryption is deferred until after the TLS connection closes; if `false`, decryption runs online via MPC from the first byte. |
 
-When deferred decryption is enabled, only `max_recv_data_online` bytes of application data are decrypted under MPC during the live connection — the rest are buffered as ciphertext and decrypted by the `Prover` locally after the connection ends. See [Online vs deferred decryption](#online-vs-deferred-decryption).
+When deferred decryption is enabled, only `max_recv_data_online` received bytes are decrypted under MPC during the live connection — the rest are buffered as ciphertext and decrypted by the `Prover` locally after the connection ends. The default 32-byte budget covers the TLS protocol messages that must be processed online (Finished, alerts); raise it only if the `Prover` needs to read application data mid-session. See [Online vs deferred decryption](#online-vs-deferred-decryption).
 
 ### Network setting
 
@@ -74,21 +73,11 @@ When deferred decryption is enabled, only `max_recv_data_online` bytes of applic
 |------------|-------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------|
 | `network`  | `Bandwidth`, `Latency`  | `Latency`  | Tunes the sub-protocols (notably the PRF) for either fewer round-trips at the cost of more bytes, or lower bandwidth at more RTTs.     |
 
-Pick `Bandwidth` for high-bandwidth, high-RTT links (e.g., cross-region over fiber). Pick `Latency` for low-bandwidth or RTT-cheap links (e.g., LAN, mobile).
+Only switch to `Bandwidth` for high-bandwidth, high-RTT links (e.g., cross-region over fiber). Keep the default `Latency` in all other situations (LAN, mobile, low-bandwidth links).
 
-## Proxy mode (`ProxyTlsConfig`)
+### Online vs deferred decryption
 
-In Proxy mode the `Verifier` proxies the TLS connection, observes encrypted traffic, and later verifies a zero-knowledge proof from the `Prover` that the plaintext matches the ciphertext. There is no MPC preprocessing and no per-session resource allocation, so the configuration surface is minimal.
-
-| Field         | Required | Description                                                                       |
-|---------------|----------|-----------------------------------------------------------------------------------|
-| `server_name` | yes      | The DNS name of the server the `Prover` will connect to through the proxy.        |
-
-Session size in Proxy mode is bounded only by the underlying TLS connection — there are no `max_sent_data` / `max_recv_data` knobs because there is nothing to preallocate.
-
-## Online vs deferred decryption
-
-The trickiest part of MPC-mode sizing is the split between `max_recv_data_online` and `max_recv_data`. Understanding it is easier when you separate two roles the limits play.
+Sizing the split between `max_recv_data_online` and `max_recv_data` is easier once you separate the two roles these limits play:
 
 **As DoS protection.** Every limit bounds what a malicious `Prover` can force the `Verifier` to do. The `Verifier` decides how much it is willing to spend on a session and refuses anything that exceeds those caps.
 
@@ -102,25 +91,33 @@ The three data limits play these roles differently:
 
 Deferred decryption is safe because revealing the key share only happens *after* the TLS connection has been authenticated and closed: the `Prover` can no longer forge anything the server would have accepted, and the ciphertext-plus-MAC is already committed.
 
-### Why have any online decryption at all?
+#### Why have any online decryption at all?
 
 Two reasons:
 
 1. **TLS protocol traffic.** A small amount of received protocol data (Finished messages, alerts, etc.) must be decrypted online for the handshake to complete. The defaults reserve room for this.
 2. **In-session logic.** If the application reads part of the response before it knows what to send next (e.g., extract a CSRF token, follow a redirect, paginate based on a cursor in the body), those bytes must be decrypted online. Set `max_recv_data_online` to cover the parts of the response your client actually inspects mid-session.
 
-### What changes when `defer_decryption_from_start = false`
+#### What changes when `defer_decryption_from_start = false`
 
-When deferred decryption is disabled from the start, all received bytes are decrypted online via MPC. Effectively `max_recv_data_online` is forced up to `max_recv_data`, and preprocessing cost grows with the full receive limit. This is rarely what you want for large responses.
+When deferred decryption is disabled from the start, all received bytes are decrypted online via MPC. Effectively `max_recv_data_online` is forced up to `max_recv_data`, and preprocessing cost grows with the full receive limit. Only disable deferred decryption if your specific use case requires it — online MPC decryption is slow, and on large responses the TLS connection can stay open long enough for the server to time it out.
 
-## Sizing guidance
+### Sizing guidance
 
 A quick checklist for choosing MPC-mode limits:
 
-1. Estimate **outgoing data**: request line, headers, body. Set `max_sent_data` to that figure plus a margin (e.g. 2×). Every byte here costs preprocessing.
-2. Estimate **total incoming data**: response headers + body, plus overhead. Set `max_recv_data` to that. This is mostly a DoS cap if you use deferred decryption.
+1. Estimate **outgoing data**: request line, headers, body. Set `max_sent_data` to that figure plus a margin. Every byte here costs preprocessing.
+2. Estimate **total incoming data**: response headers + body, plus overhead. Set `max_recv_data` to that. With deferred decryption, this cap is essentially free in MPC-preprocessing terms — it just bounds the session size (and the `Verifier` will reject if it exceeds its own policy).
 3. Estimate **incoming data you must read mid-session** (typically: just the parts that influence what you send next, or zero if you fire-and-forget). Set `max_recv_data_online` to that. Keep this small.
 4. Leave `defer_decryption_from_start` at its default (`true`) unless you have a specific reason to disable it.
-5. Pick `network` based on your link. Default `Latency` is fine for most local or mobile testing.
+5. Pick `network` based on your link. Default `Latency` is best for most use cases.
 
 The lower these numbers, the faster the session starts and the less bandwidth is consumed before the TLS connection opens.
+
+## Proxy mode (`ProxyTlsConfig`)
+
+Proxy mode requires no MPC preprocessing and no per-session resource allocation, so the configuration surface is minimal.
+
+| Field         | Required | Description                                                                       |
+|---------------|----------|-----------------------------------------------------------------------------------|
+| `server_name` | yes      | The DNS name of the server the `Prover` will connect to through the proxy.        |
