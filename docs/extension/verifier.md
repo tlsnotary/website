@@ -97,8 +97,6 @@ The `token` parameter specifies the target server hostname. The proxy:
 - Cleans up automatically when either side disconnects
 - Logs total bytes forwarded for debugging
 
-In [proxy mode](/docs/protocol/proxy-mode), the same endpoint also accepts a `sessionId` query parameter (e.g. `/proxy?token=api.x.com&sessionId=...`) so the verifier can link the forwarded TLS traffic to an active verification session. Proxy mode currently only works when the server negotiates `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256`.
-
 ---
 
 ## API Endpoints

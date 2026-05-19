@@ -4,7 +4,7 @@ sidebar_position: 7
 # Proxy Mode
 
 :::note
-**MPC-TLS remains the default TLSNotary protocol.** Proxy mode is an alternative offered for use cases where prover-verifier bandwidth or verification latency is the binding constraint, and where the stronger MPC-TLS trust guarantees can be relaxed in exchange.
+**MPC-TLS remains the default TLSNotary protocol.** Proxy mode is an alternative offered for use cases where prover-verifier bandwidth is the binding constraint, and where the stronger MPC-TLS security guarantees can be relaxed in exchange.
 :::
 
 In proxy mode, the `Verifier` acts as a network proxy between the `Prover` and the `Server`. The `Verifier` forwards encrypted TLS packets (without being able to decrypt them) and, after the TLS session ends, validates a zero-knowledge proof that binds the observed traffic to a legitimate TLS session.
@@ -17,7 +17,7 @@ In proxy mode, the `Verifier` acts as a network proxy between the `Prover` and t
 - Prover-verifier bandwidth is constrained
 - Verification latency is the priority (e.g. high-frequency identity checks)
 - You control the verifier infrastructure
-- The server data is not high-stakes
+- You do not need the security guarantees of MPC
 
 Use MPC-TLS when you need the strongest guarantees, blind verification (the verifier should not learn which server), or when the server might block requests originating from the verifier's IP.
 
@@ -29,8 +29,8 @@ Proxy mode has three phases:
 2. **TLS session.** The `Prover` performs a standard TLS handshake through the `Verifier`, which forwards encrypted packets in both directions. The `Verifier` records all traffic but cannot decrypt it. The `Prover` captures the pre-master secret from the key exchange.
 3. **Verification.** After the session ends, the `Prover` and `Verifier` run a ZK protocol in three steps:
    - **3a.** The `Prover` proves, in zero knowledge, the TLS 1.2 PRF derivation: master secret → session keys → `verify_data` for both Finished messages. The pre-master secret is the only private input.
-   - **3b.** The `Verifier` decrypts the Finished records using the keys from step 3a and checks that their plaintext matches the derived `verify_data`. This proves the `Prover` actually completed the handshake.
-   - **3c.** The `Verifier` recomputes the AES-GCM authentication tags on every application-data record it observed, using the same session keys, and compares them to the tags seen on the wire. This links the forwarded application data to the authenticated handshake.
+   - **3b.** The `Verifier` decrypts the Finished records using the keys from step 3a and checks that their plaintext matches the derived `verify_data`. This proves that the private PMS input of the prover can indeed reproduce the handshake that the verifier observed during the online phase and binds the prover to the session keys, which are later used as private inputs for selective disclosure.
+   - **3c.** The `Prover` proves the server's GHASH key to the `Verifier` in zero knowledge, using the server-side session keys as private input. The `Verifier` then uses this GHASH key to recompute the AES-GCM authentication tags on every server application-data record it observed, and compares them to the tags seen on the wire. This links the forwarded server data to the authenticated handshake.
 
 Selective disclosure works identically to MPC-TLS: the `Prover` can reveal or redact arbitrary parts of the transcript.
 

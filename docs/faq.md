@@ -174,11 +174,11 @@ TLSNotary uses a multi-party computation (MPC) approach to secure the TLS sessio
 
 [Proxy mode](/docs/protocol/proxy-mode) needs only ZK proofs: the Verifier proxies the connection with the Server, observes the encrypted traffic, and later verifies a ZK proof from the Prover that the plaintext is consistent with the encrypted session. This avoids MPC-TLS's bandwidth overhead, but introduces a network-path assumption between the Verifier and the Server.
 
-MPC-TLS remains the default because its direct-connection model avoids that network assumption and provides stronger resistance to censorship. Proxy mode is the right choice when speed matters more than the strongest trust guarantees.
+MPC-TLS remains the default because its direct-connection model avoids that network assumption and provides stronger resistance to censorship. Proxy mode is the right choice when speed matters more than the strongest security guarantees.
 
 ### Can I prove statements about TLS data in zero-knowledge with TLSNotary? Does it use zkSNARKs?
 
-Zero-knowledge functionality is provided by the higher-level `tlsn` crate built on top of the TLSNotary protocol.
+Zero-knowledge functionality will be provided by higher-level crates built on top of the TLSNotary protocol.  
 
 Today, `tlsn` supports proving hash commitments to transcript data in zero-knowledge and uses the `QuickSilver` proving system. We plan to extend it to support richer statements in the future.
 

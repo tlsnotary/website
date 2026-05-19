@@ -51,7 +51,7 @@ In this setup, the `Notary` cryptographically signs commitments to the data and 
 
 ## Alternative mode: Proxy mode
 
-MPC-TLS is the default and recommended mode. TLSNotary additionally offers **proxy mode**, where the `Verifier` sits between the `Prover` and `Server` as a proxy, observes the encrypted TLS traffic, and afterwards validates a zero-knowledge proof from the `Prover`. This trades the MPC step for a network-path trust assumption in exchange for significantly lower bandwidth and faster verification.
+MPC-TLS is the default and recommended mode. TLSNotary additionally offers **proxy mode**, where the `Verifier` sits between the `Prover` and `Server` as a proxy, observes the encrypted TLS traffic, and afterwards validates a zero-knowledge proof from the `Prover`. This trades the MPC step for a network-path security assumption in exchange for significantly lower bandwidth and faster verification.
 
 ![](../diagrams/light/overview_proxy.svg#gh-light-mode-only)
 ![](../diagrams/dark/overview_proxy.svg#gh-dark-mode-only)
