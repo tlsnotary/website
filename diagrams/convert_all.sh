@@ -30,7 +30,7 @@ for file in *.drawio; do
         if [[ "$SOURCE" -nt "${TARGET}" ]]; then
             "$DRAW_IO" --export --format ${FORMAT} --scale 2.5 --svg-theme "${theme}" -o "${TARGET}" "$SOURCE"
             # Remove DOCTYPE to prevent SVGO entity count errors during build
-            sed -i '/<!DOCTYPE/d' "${TARGET}"
+            sed -i.bak '/<!DOCTYPE/d' "${TARGET}" && rm "${TARGET}.bak"
         fi
     done
 done

@@ -7,6 +7,10 @@ To maximize `Prover` privacy, the server identity is not revealed to the `Verifi
 The TLSNotary protocol mitigates the threat of a malicious `Verifier` attempting to infer the server identity from the messages they receive during MPC-TLS. 
 The exact low-level details are outlined below.
 
+:::note
+This property is specific to MPC-TLS. In [proxy mode](./proxy-mode.md), the `Prover` supplies the server's domain name (`server_name`) to the `Verifier` as part of the protocol, so the server identity is not hidden.
+:::
+
 ## Handshake hash
 
 During the MPC-TLS handshake, the `Verifier` learns the hash digest of all handshake messages
