@@ -1,7 +1,6 @@
 ---
 title: "The full-reveal fast path: when response size stops mattering"
 authors: [heeckhau]
-draft: true
 ---
 
 Users want their apps to be fast and don't like waiting for proofs. So "make TLSNotary faster" has been the number one request since forever. We've answered it by picking the fastest crypto we can find (without compromising on security) and trimming overhead out of the implementation release after release.
