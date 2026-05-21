@@ -64,6 +64,8 @@ If `windowManager.getWindowByTabId` returns nothing — meaning the request came
 
 ### Mobile: The Same Capability, Native APIs
 
+> **Note:** TLSNotary on mobile is currently under active development and has not yet been officially released. The model described below reflects the in-progress architecture.
+
 The mobile SDK (`tlsn-mobile`) needs the same ability to capture authenticated traffic but operates in a native WebView rather than a browser extension context. The approach mirrors the extension:
 
 - Android's `CookieManager` and iOS's `HTTPCookieStorage` are queried directly to read HttpOnly cookies that JavaScript cannot reach.
@@ -74,7 +76,7 @@ The net capability — seeing real authenticated HTTP traffic — is identical. 
 
 ---
 
-## Four Layers of Safeguards
+## Five Layers of Safeguards
 
 Broad capability without constraints would be a serious problem. Here is what constrains it.
 
@@ -128,7 +130,7 @@ The validator checks method (case-insensitive), host (exact string match), pathn
 
 Before a plugin runs at all, the user sees a confirmation screen showing the plugin's name, icon, description, and the complete list of every host and path it is permitted to access. There is also an inline source code viewer — the user can read the full plugin code before clicking Approve. The plugin cannot execute without explicit approval.
 
-### Selective Disclosure: What Goes Into the Proof
+### Layer 5: Selective Disclosure
 
 Even after a `prove()` call is approved and the TLS session is complete, the plugin controls exactly what ends up in the proof through handlers:
 

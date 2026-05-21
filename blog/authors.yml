@@ -55,8 +55,8 @@ th4s:
 
 tsukino:
   name: tsukino
-  url: https://github.com/tsukino
-  image_url: https://github.com/tsukino.png
+  url: https://github.com/0xtsukino
+  image_url: https://github.com/0xtsukino.png
   page: true
   socials:
-    github: tsukino
+    github: 0xtsukino
