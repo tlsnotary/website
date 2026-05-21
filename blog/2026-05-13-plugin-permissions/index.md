@@ -10,7 +10,7 @@ If you've installed the TLSNotary browser extension, you've seen Chrome's permis
 
 ---
 
-## What TLSNotary Actually Does
+## What the TLSNotary Browser Extension Actually Does
 
 TLSNotary generates cryptographic proofs that a specific HTTPS response genuinely came from a specific server and was addressed to you. To do that, it needs to see the real, authenticated HTTP exchange — the request with your actual cookies and auth headers, and the response that came back. There is no way around this. A proof of a synthetic or unauthenticated request proves nothing useful.
 
