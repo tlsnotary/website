@@ -19,6 +19,7 @@ sidebar_position: 8
 | M2a   | Multiplication-to-Addition                                                 |
 | MAC   | Message Authentication Code                                                |
 | MPC   | Secure Multi-party computation                                             |
+| MPC-TLS | Multi-party TLS                                                          |
 | OT    | oblivious transfer                                                         |
 | PMS   | Pre master secret (TLS)                                                    |
 | PRF   | Pseudo Random Function                                                     |
@@ -26,3 +27,4 @@ sidebar_position: 8
 | PSE   | Privacy Stewards of Ethereum (formerly "Privacy and Scaling Explorations") |
 | RSA   | Rivest–Shamir–Adleman (public-key cryptosystem)                            |
 | TLS   | transport layer security                                                   |
+| ZKP   | Zero-Knowledge Proof                                                       |

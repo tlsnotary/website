@@ -15,10 +15,10 @@ The TLSNotary Web Extension consists of four core components that work together 
 
 | Component                                                     | Role                                                                                                                                                 |
 | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[Browser Extension](#installation)**                        | Runs in the user's browser. Intercepts requests, executes plugins, and drives the MPC-TLS prover.                                                    |
+| **[Browser Extension](#installation)**                        | Runs in the user's browser. Intercepts requests, executes plugins, and drives the TLSNotary prover (MPC-TLS by default; can also operate in [proxy mode](/docs/protocol/proxy-mode)). |
 | **[Plugin System](./plugins.md)**                             | JavaScript plugins that define *what* to prove — which site, which API call, and which fields to reveal.                                             |
 | **[Verifier Server](./verifier.md)**                          | An independent server that participates in the MPC-TLS handshake, validates proofs, and optionally forwards results via webhooks.                    |
-| **[WebSocket Proxy](./verifier.md#built-in-websocket-proxy)** | Browser extensions are not allowed to setup TCP connections with the target server, so the WebSocket Proxy bridges WebSocket connections to TCP/TLS. |
+| **[WebSocket Proxy](./verifier.md#built-in-websocket-proxy)** | Browser extensions are not allowed to setup TCP connections with the target server, so the WebSocket Proxy bridges WebSocket connections to TCP/TLS. Transport bridge only — unrelated to proxy mode. |
 
 ```mermaid
 graph LR
