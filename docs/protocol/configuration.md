@@ -5,7 +5,7 @@ sidebar_position: 7
 
 This page documents the configuration options exposed by the core TLSNotary protocol crates. The SDK re-exports these settings — sometimes with its own defaults — and tools built on top of it (such as the browser extension) inherit that surface. Refer to the SDK and tool-specific documentation for the user-facing options.
 
-The protocol supports two modes — **MPC** and **Proxy** — with very different configuration surfaces.
+The protocol supports two modes, **MPC** and **Proxy**, with very different configuration surfaces.
 
 ## Mode-independent configuration
 
@@ -65,7 +65,9 @@ The relationship between `max_recv_data` and `max_recv_data_online` is explained
 |--------------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `defer_decryption_from_start`  | `true`  | If `true`, application-data decryption is deferred until after the TLS connection closes; if `false`, decryption runs online via MPC from the first byte. |
 
-When deferred decryption is enabled, only `max_recv_data_online` received bytes are decrypted under MPC during the live connection — the rest are buffered as ciphertext and decrypted by the `Prover` locally after the connection ends. The default 32-byte budget covers the TLS protocol messages that must be processed online (Finished, alerts); raise it only if the `Prover` needs to read application data mid-session. See [Online vs deferred decryption](#online-vs-deferred-decryption).
+With deferred decryption enabled, received bytes are buffered as ciphertext and decrypted by the `Prover` locally after the connection closes. `max_recv_data_online` is a preprocessing budget for the few bytes that still need online decryption: TLS protocol messages (Finished, alerts). The default of 32 bytes covers this; raise it only if the `Prover` needs to read application data mid-session. See [Online vs deferred decryption](#online-vs-deferred-decryption).
+
+`defer_decryption_from_start` sets the initial mode. The protocol also exposes a [`ProverControl`](https://github.com/tlsnotary/tlsn/blob/main/crates/tlsn/src/prover/control.rs) handle that lets the application toggle online decryption mid-session. This is useful when only a specific window of the response needs to be inspected online. Picking the exact toggle point is currently up to the consumer.
 
 ### Network setting
 
@@ -73,7 +75,7 @@ When deferred decryption is enabled, only `max_recv_data_online` received bytes 
 |------------|-------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------|
 | `network`  | `Bandwidth`, `Latency`  | `Latency`  | Tunes the sub-protocols (notably the PRF) for either fewer round-trips at the cost of more bytes, or lower bandwidth at more RTTs.     |
 
-Only switch to `Bandwidth` for high-bandwidth, high-RTT links (e.g., cross-region over fiber). Keep the default `Latency` in all other situations (LAN, mobile, low-bandwidth links).
+Keep the default `Latency` for typical connections. Switch to `Bandwidth` only on links that are both high-bandwidth and high-latency.
 
 ### Online vs deferred decryption
 
@@ -85,9 +87,9 @@ Sizing the split between `max_recv_data_online` and `max_recv_data` is easier on
 
 The three data limits play these roles differently:
 
-- **`max_sent_data`** — drives MPC preprocessing for encryption. All bytes the `Prover` sends must be encrypted under MPC during the live connection (the server is waiting), so there is no "free" tier here.
-- **`max_recv_data_online`** — drives MPC preprocessing for decryption. Bytes counted here are decrypted via MPC while the TLS connection is active.
-- **`max_recv_data`** — the total receive cap. The portion above `max_recv_data_online` is **not** decrypted via MPC; instead, after the TLS connection closes, the `Verifier` reveals its share of the server's keys to the `Prover`, who then decrypts the buffered ciphertext locally. This is **deferred decryption**, and it is essentially free in MPC terms.
+- **`max_sent_data`**: drives MPC preprocessing for encryption. All bytes the `Prover` sends must be encrypted under MPC during the live connection (the server is waiting), so there is no "free" tier here.
+- **`max_recv_data_online`**: drives MPC preprocessing for decryption. Bytes counted here are decrypted via MPC while the TLS connection is active.
+- **`max_recv_data`**: the total receive cap. The portion above `max_recv_data_online` is **not** decrypted via MPC; instead, after the TLS connection closes, the `Verifier` reveals its share of the server's keys to the `Prover`, who then decrypts the buffered ciphertext locally. This is **deferred decryption**, and it is essentially free in MPC terms.
 
 Deferred decryption is safe because revealing the key share only happens *after* the TLS connection has been authenticated and closed: the `Prover` can no longer forge anything the server would have accepted, and the ciphertext-plus-MAC is already committed.
 
@@ -100,14 +102,14 @@ Two reasons:
 
 #### What changes when `defer_decryption_from_start = false`
 
-When deferred decryption is disabled from the start, all received bytes are decrypted online via MPC. Effectively `max_recv_data_online` is forced up to `max_recv_data`, and preprocessing cost grows with the full receive limit. Only disable deferred decryption if your specific use case requires it — online MPC decryption is slow, and on large responses the TLS connection can stay open long enough for the server to time it out.
+When deferred decryption is disabled from the start, all received bytes are decrypted online via MPC. In this mode you'll typically want `max_recv_data_online = max_recv_data`; otherwise the session aborts mid-stream as soon as more bytes are received than the online budget allows. Preprocessing cost grows with the full receive limit. Only disable deferred decryption if your specific use case requires it. Online MPC decryption is slow, and on large responses the TLS connection can stay open long enough for the server to time it out.
 
 ### Sizing guidance
 
 A quick checklist for choosing MPC-mode limits:
 
 1. Estimate **outgoing data**: request line, headers, body. Set `max_sent_data` to that figure plus a margin. Every byte here costs preprocessing.
-2. Estimate **total incoming data**: response headers + body, plus overhead. Set `max_recv_data` to that. With deferred decryption, this cap is essentially free in MPC-preprocessing terms — it just bounds the session size (and the `Verifier` will reject if it exceeds its own policy).
+2. Estimate **total incoming data**: response headers + body, plus overhead. Set `max_recv_data` to that. With deferred decryption, this cap is essentially free in MPC-preprocessing terms. It just bounds the session size (and the `Verifier` will reject if it exceeds its own policy).
 3. Estimate **incoming data you must read mid-session** (typically: just the parts that influence what you send next, or zero if you fire-and-forget). Set `max_recv_data_online` to that. Keep this small.
 4. Leave `defer_decryption_from_start` at its default (`true`) unless you have a specific reason to disable it.
 5. Pick `network` based on your link. Default `Latency` is best for most use cases.
