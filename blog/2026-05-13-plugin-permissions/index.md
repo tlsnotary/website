@@ -172,14 +172,17 @@ The reason manual mode matters: a plugin the user has approved might legitimatel
 
 The broad permissions exist because TLS proofs require seeing real authenticated HTTP traffic — that is the point of TLSNotary. Capturing that traffic from an arbitrary HTTPS host in a browser means `webRequest` + `<all_urls>` + `extraHeaders`. There is no narrower set of APIs that accomplishes the same thing.
 
-What constrains those permissions:
+What keeps those permissions from being abused is scoping plus five layers of constraint:
 
-1. Interception fires only for windows the extension explicitly manages — normal browsing is untouched.
-2. Plugins run in a WebAssembly sandbox with no network or filesystem access.
-3. Every plugin declares its permissions in source, and the runtime enforces them exactly — deny-by-default.
-4. The user approves the plugin before it runs and can read its source before deciding.
-5. Handlers give byte-level control over what actually appears in the final proof.
-6. Strict mode lets users gate each individual `prove()` call with explicit approval.
+**Scoping.** Interception fires only for windows the extension explicitly manages. Normal browsing is never touched.
+
+**The five layers, narrowing what a plugin can do at each step:**
+
+1. **Sandbox** — plugins run in WebAssembly with no network or filesystem access.
+2. **Declaration** — every plugin lists the exact requests it intends to make, in source.
+3. **Runtime enforcement** — `prove()` calls are checked against that list and denied by default.
+4. **User approval** — the plugin's name, permissions, and full source can be inspected before it runs. Strict mode lets users tighten this further, allowing inspection of the actual data before it is revealed.
+5. **Selective disclosure** — handlers give byte-level control over what ends up in the final proof.
 
 The architecture is designed so that a malicious or compromised plugin cannot exceed its declared scope, and so that a user who wants full visibility into what is being proved can have it.
 
