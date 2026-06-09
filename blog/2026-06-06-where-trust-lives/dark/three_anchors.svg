@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <style>.strong{fill:#e6eaf0}.muted{fill:#9aa6b4}</style>
+  </defs>
+
+  <!-- Tier 1: operator -->
+  <rect x="40" y="20" width="556" height="64" rx="10" fill="#131820" stroke="#e06b66" stroke-width="2"/>
+  <circle cx="74" cy="52" r="15" fill="none" stroke="#e06b66" stroke-width="2"/>
+  <text x="74" y="57" text-anchor="middle" font-size="14" font-weight="700" fill="#e06b66">1</text>
+  <text x="102" y="47" font-size="14.5" font-weight="700" class="strong">An operator is honest</text>
+  <text x="102" y="67" font-size="11.5" class="muted">trust: one operator's word</text>
+
+  <!-- Tier 2: TEE -->
+  <rect x="40" y="96" width="556" height="64" rx="10" fill="#131820" stroke="#f0a868" stroke-width="2"/>
+  <circle cx="74" cy="128" r="15" fill="none" stroke="#f0a868" stroke-width="2"/>
+  <text x="74" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#f0a868">2</text>
+  <text x="102" y="123" font-size="14.5" font-weight="700" class="strong">This exact code ran in isolated hardware</text>
+  <text x="102" y="143" font-size="11.5" class="muted">trust: a hardware vendor's signing key</text>
+
+  <!-- Tier 3: math -->
+  <rect x="40" y="202" width="556" height="64" rx="10" fill="#131820" stroke="#6fd6a3" stroke-width="2"/>
+  <circle cx="74" cy="234" r="15" fill="none" stroke="#6fd6a3" stroke-width="2"/>
+  <text x="74" y="239" text-anchor="middle" font-size="14" font-weight="700" fill="#6fd6a3">3</text>
+  <text x="102" y="229" font-size="14.5" font-weight="700" class="strong">Mathematically true, whoever ran it</text>
+  <text x="102" y="249" font-size="11.5" class="muted">trust: no one; the proof is public</text>
+
+  <!-- bracket grouping tiers 1 and 2 -->
+  <path d="M606,32 L612,32 L612,148 L606,148 M612,90 L620,90" fill="none" stroke="#5a6573" stroke-width="1.5"/>
+  <text x="628" y="86" font-size="12" font-weight="700" class="strong">Same kind of trust</text>
+  <text x="628" y="102" font-size="11" class="muted">a secret someone else holds</text>
+
+  <!-- tier 3 callout -->
+  <path d="M606,234 L620,234" fill="none" stroke="#5a6573" stroke-width="1.5"/>
+  <text x="628" y="230" font-size="12" font-weight="700" fill="#6fd6a3">A different kind</text>
+  <text x="628" y="246" font-size="11" class="muted">no secret to hold</text>
+</svg>

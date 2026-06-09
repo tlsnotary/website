@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 376" width="860" height="376" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="8" refX="6.5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#8893a1"/>
+    </marker>
+    <style>
+      .strong{fill:#e6eaf0}.muted{fill:#9aa6b4}.plain{fill:#f0a868}.safe{fill:#6fd6a3}
+    </style>
+  </defs>
+
+  <!-- shared device boundary -->
+  <line x1="250" y1="42" x2="250" y2="334" stroke="#5a6573" stroke-width="2" stroke-dasharray="5 5"/>
+  <text x="250" y="352" text-anchor="middle" font-size="10.5" class="muted">device boundary</text>
+
+  <!-- ============ ROW A : zkTLS ============ -->
+  <text x="24" y="26" font-size="14" font-weight="700" class="strong">zkTLS (proxy)</text>
+
+  <!-- your device -->
+  <rect x="24" y="46" width="200" height="104" rx="12" fill="#1d232c" stroke="#333c47"/>
+  <text x="124" y="66" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing="1" class="muted">YOUR DEVICE</text>
+  <rect x="44" y="82" width="160" height="30" rx="8" fill="#2c2114" stroke="#e0894a"/>
+  <text x="124" y="101" text-anchor="middle" font-size="12" font-weight="600" class="plain">credential + response</text>
+  <text x="124" y="134" text-anchor="middle" font-size="11" class="muted">decrypted on your device</text>
+
+  <!-- proof crosses -->
+  <line x1="224" y1="110" x2="556" y2="110" stroke="#8893a1" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="392" y="100" text-anchor="middle" font-size="12" font-weight="600" class="safe">proof — only the bytes you reveal</text>
+
+  <!-- attestor -->
+  <rect x="572" y="84" width="232" height="52" rx="12" fill="#131820" stroke="#8893a1"/>
+  <text x="688" y="105" text-anchor="middle" font-size="13" font-weight="700" class="strong">Attestor signs</text>
+  <text x="688" y="123" text-anchor="middle" font-size="11" class="muted">sees only ciphertext</text>
+
+  <text x="688" y="166" text-anchor="middle" font-size="11.5" font-weight="600" class="safe">Plaintext stays on your device</text>
+
+  <!-- divider -->
+  <line x1="24" y1="188" x2="836" y2="188" stroke="#2a313b" stroke-width="1"/>
+
+  <!-- ============ ROW B : TEE-TLS ============ -->
+  <text x="24" y="212" font-size="14" font-weight="700" class="strong">TEE-TLS (enclave)</text>
+
+  <!-- your device -->
+  <rect x="24" y="232" width="200" height="104" rx="12" fill="#1d232c" stroke="#333c47"/>
+  <text x="124" y="252" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing="1" class="muted">YOUR DEVICE</text>
+  <rect x="64" y="268" width="120" height="30" rx="8" fill="#2c2114" stroke="#e0894a"/>
+  <text x="124" y="287" text-anchor="middle" font-size="12" font-weight="600" class="plain">credential</text>
+  <text x="124" y="320" text-anchor="middle" font-size="11" class="muted">encrypt &#8594; enclave key</text>
+
+  <!-- credential crosses -->
+  <line x1="224" y1="292" x2="438" y2="292" stroke="#8893a1" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="331" y="282" text-anchor="middle" font-size="11" class="muted">encrypted credential</text>
+
+  <!-- enclave -->
+  <rect x="454" y="252" width="232" height="92" rx="12" fill="#131820" stroke="#8893a1"/>
+  <text x="570" y="274" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing="0.5" class="muted">ENCLAVE &#183; operator hardware</text>
+  <rect x="472" y="286" width="196" height="34" rx="8" fill="#2c2114" stroke="#e0894a"/>
+  <text x="570" y="308" text-anchor="middle" font-size="12" font-weight="600" class="plain">your plaintext, decrypted (~1s)</text>
+
+  <!-- attestation leaves -->
+  <line x1="686" y1="298" x2="812" y2="298" stroke="#8893a1" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="752" y="288" text-anchor="middle" font-size="11" font-weight="600" class="safe">attestation</text>
+
+  <text x="570" y="366" text-anchor="middle" font-size="11.5" font-weight="600" class="plain">Plaintext leaves your device</text>
+</svg>
