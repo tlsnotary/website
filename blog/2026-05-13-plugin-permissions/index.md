@@ -1,7 +1,7 @@
 ---
 title: "TLSNotary Plugins: What They Can Access and How You Stay in Control"
 authors: [tsukino]
-description: "TLSNotary needs broad browser permissions to capture authenticated HTTP traffic for cryptographic proofs. This post explains why those permissions are necessary, what four layers of safeguards constrain them, and how the new strict-mode approval flow lets you review exactly what gets proved before it leaves your device."
+description: "TLSNotary needs broad browser permissions to capture authenticated HTTP traffic for cryptographic proofs. This post explains why those permissions are necessary, what five layers of safeguards constrain them, and how the new strict-mode approval flow lets you review exactly what gets proved before it leaves your device."
 ---
 
 import Figure from '@site/src/components/Figure';
@@ -13,7 +13,7 @@ If you've installed the TLSNotary browser extension, you've seen Chrome's permis
 
 ---
 
-## What the TLSNotary Browser Extension Actually Does
+## How Plugins and the Extension Work Together
 
 Prove your bank balance to a lender without sharing your login. Prove your follower count to a third party without exposing your private DMs. These are the kinds of things a TLSNotary plugin can do.
 
@@ -63,13 +63,13 @@ The alternative — letting users grant host permissions one at a time at runtim
 
 The permission does not mean the extension reads requests from all your tabs; see below.
 
-**`extraHeaders`** is the flag passed to the `webRequest` listener that unlocks access to `Cookie`, `Authorization`, `X-CSRF-Token`, and similar headers. Chrome hides these by default precisely because they are sensitive. TLSNotary needs them because they are the headers that authenticate a request as coming from the real user.
+**`extraHeaders`** is not a manifest permission but a flag passed to the `webRequest` listener at runtime (you can see it in the code below). It unlocks access to `Cookie`, `Authorization`, `X-CSRF-Token`, and similar headers. Chrome hides these by default precisely because they are sensitive. TLSNotary needs them because they are the headers that authenticate a request as coming from the real user.
 
 **`tabs` and `windows`** allow the extension to open and track the dedicated browser window in which request interception happens. When a plugin calls `openWindow('https://x.com')`, the extension creates a managed window, records its ID, and limits interception to that window's traffic.
 
 **`offscreen`** is a Chrome 109+ requirement. The WASM-based TLS prover runs in a background offscreen document because service workers cannot execute WebAssembly. Without this permission the proof engine has nowhere to run.
 
-**`activeTab`** and **`storage`** round out the list — tab access for overlay management, storage for persisting plugin state across sessions.
+**`activeTab`** rounds out the list, giving the extension tab access for overlay management.
 
 ### The Critical Scoping Detail
 
@@ -214,4 +214,9 @@ What keeps those permissions from being abused is scoping plus five layers of co
 
 The architecture is designed so that a malicious or compromised plugin cannot exceed its declared scope, and so that a user who wants full visibility into what is being proved can have it.
 
-For more on building plugins or auditing the permission system: [GitHub](https://github.com/tlsnotary/tlsn-extension) · [Plugin SDK docs](https://github.com/tlsnotary/tlsn-extension/blob/main/PLUGIN.md)
+## Try It Yourself
+
+- **See it in action:** try the extension at [demo.tlsnotary.org](https://demo.tlsnotary.org).
+- **Build your own plugin:** follow the [plugin tutorial](https://demo.tlsnotary.org/tutorial) — or point your favourite AI assistant at it and have it help you.
+
+For the source or to audit the permission system: [GitHub](https://github.com/tlsnotary/tlsn-extension) · [Plugin SDK docs](https://github.com/tlsnotary/tlsn-extension/blob/main/PLUGIN.md)

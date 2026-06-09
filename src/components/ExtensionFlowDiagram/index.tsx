@@ -132,7 +132,7 @@ const STEPS: Step[] = [
   },
   {
     num: 9,
-    title: 'Verifier accepts the attestation',
+    title: 'Verifier accepts the proof',
     detail: (
       <>
         The Verifier checks the disclosed bytes against the TLS transcript it witnessed back in
