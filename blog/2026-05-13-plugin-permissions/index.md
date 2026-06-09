@@ -7,7 +7,7 @@ description: "TLSNotary needs broad browser permissions to capture authenticated
 import Figure from '@site/src/components/Figure';
 import ExtensionFlowDiagram from '@site/src/components/ExtensionFlowDiagram';
 
-If you've installed the TLSNotary browser extension, you've seen Chrome's permission warning: this extension can "read and change all your data on all websites." That sounds alarming. It is worth explaining exactly why those permissions exist, what prevents them from being misused, and what the new strict-mode approval flow gives you on top of all that.
+If you've installed the TLSNotary browser extension, you've seen Chrome's permission warning: this extension can **"read and change all your data on all websites."** That sounds alarming. It is worth explaining exactly why those permissions exist, what prevents them from being misused, and what the new strict-mode approval flow gives you on top of all that.
 
 <!-- truncate -->
 
@@ -15,14 +15,20 @@ If you've installed the TLSNotary browser extension, you've seen Chrome's permis
 
 ## What the TLSNotary Browser Extension Actually Does
 
-Prove your bank balance to a lender without sharing your login. Prove your follower count to a third party without exposing your private DMs. Prove that yesterday's flight delay shows up in the airline's own system before claiming compensation. That is the use case a TLSNotary plugin solves — and it is what shapes the extension's permissions.
+Prove your bank balance to a lender without sharing your login. Prove your follower count to a third party without exposing your private DMs. These are the kinds of things a TLSNotary plugin can do.
+
+A plugin handles the application-specific part of web proofs: which site to open, which request to capture, and which parts of the response to reveal. The extension does everything else. It is the host that runs plugins, the sandbox that keeps you safe while they run, and the machinery that turns an authenticated request into a web proof with minimal effort from the developer.
+
+That split is what shapes the extension's permissions: to host any plugin and prove a request to any site, the extension needs broad browser access. The rest of this post is about what keeps that access in check.
+
+But before we get to those safeguards, here is how a plugin and the extension actually work together.
 
 <ExtensionFlowDiagram />
 
 A few things in that diagram are worth pulling out before we get into permissions:
 
-- The **extension itself does not see TLS plaintext** at any point. It captures HTTP *headers* in the managed window (steps 3–4) so the plugin knows how to construct an authenticated request. The actual TLS bytes the proof is built from never touch the extension code.
-- The **Prover** is a WebAssembly engine that runs the TLS connection together with a **Verifier** under two-party computation (step 7). The server sees a normal TLS handshake; the Verifier co-signs the handshake without ever seeing the plaintext.
+- The **plugin itself does not see TLS plaintext** at any point. It captures HTTP *headers* in the managed window (steps 3–4) so the plugin knows how to construct an authenticated request. The actual TLS bytes the proof is built from never touch the plugin code.
+- The **Prover** is a WebAssembly engine that runs the TLS connection together with a **Verifier** under two-party computation (step 7). The server sees a normal TLS connection; the Verifier witnesses the whole session without ever seeing the plaintext.
 - **Selective disclosure** (step 8) happens at the byte level. The plugin's handlers decide which spans of the transcript the Verifier gets to read in plaintext (`REVEAL`), which appear only as a hash commitment (`HASH`), and which are redacted entirely.
 
 The broad Chrome permissions exist because steps 2–4 require attaching a `webRequest` listener to a window that can be pointed at *any* host — and reading the auth headers Chrome would normally hide. The rest of the post is about what stops that capability from being abused.
@@ -40,7 +46,12 @@ The broad Chrome permissions exist because steps 2–4 require attaching a `webR
 The extension's manifest declares five permissions and one host permission:
 
 ```json
-"permissions": ["offscreen", "webRequest", "activeTab", "tabs", "windows"],
+"permissions": [
+  "offscreen",
+  "webRequest",
+  "activeTab",
+  "tabs",
+  "windows"],
 "host_permissions": ["<all_urls>"]
 ```
 

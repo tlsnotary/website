@@ -41,7 +41,8 @@ const STEPS: Step[] = [
       <>
         The plugin calls <code>openWindow()</code>. The extension spawns a real browser window
         pointed at the target site — this is where the user signs in or navigates as they
-        normally would.
+        normally would. The plugin can add code to guide the user through the steps needed to
+        reach the right data (e.g. step 1: log in, step 2: open your profile, step 3: prove).
       </>
     ),
     active: ['sandbox', 'window'],
@@ -67,7 +68,7 @@ const STEPS: Step[] = [
     detail: (
       <>
         The plugin&apos;s <code>useHeaders()</code> / <code>useRequests()</code> hooks receive
-        the intercepted data, so the plugin code can decide which request it wants to attest.
+        the intercepted data, so the plugin code can decide which request it wants to prove.
       </>
     ),
     active: ['window', 'sandbox'],
@@ -79,7 +80,7 @@ const STEPS: Step[] = [
     detail: (
       <>
         Armed with the live auth headers, the plugin constructs the exact request whose
-        response it wants to attest — e.g.{' '}
+        response it wants to prove — e.g.{' '}
         <code>GET https://api.x.com/users/show.json</code> with the user&apos;s real cookie
         attached.
       </>
@@ -107,9 +108,10 @@ const STEPS: Step[] = [
       <>
         The <strong>Prover</strong> holds the actual connection to the server (raw TCP on
         mobile; a WebSocket-to-TCP proxy in the browser, since browsers can&apos;t open raw
-        sockets). The Verifier participates in the TLS handshake under{' '}
-        <strong>two-party computation</strong> — it co-signs each TLS record without ever
-        seeing the plaintext. The server sees a normal TLS handshake on the wire.
+        sockets). The Verifier takes part in the whole TLS session under{' '}
+        <strong>two-party computation</strong> — from the handshake through every
+        application record — witnessing each record without ever seeing the plaintext. The
+        server sees a normal TLS connection on the wire.
       </>
     ),
     active: ['prover', 'verifier', 'server'],
@@ -122,7 +124,7 @@ const STEPS: Step[] = [
       <>
         The plugin&apos;s handlers chose which bytes to <strong>REVEAL</strong> (plaintext) and
         which to <strong>HASH</strong> (commitment only). The Prover opens just those byte
-        ranges to the Verifier; everything else stays committed but unreadable.
+        ranges to the Verifier; everything else stays committed but encrypted.
       </>
     ),
     active: ['prover', 'verifier'],
@@ -133,7 +135,7 @@ const STEPS: Step[] = [
     title: 'Verifier accepts the attestation',
     detail: (
       <>
-        The Verifier checks the disclosed bytes against the TLS transcript it co-signed back in
+        The Verifier checks the disclosed bytes against the TLS transcript it witnessed back in
         step 7 and accepts them as authentic. It never had to trust the Prover, and it never
         saw the bytes the plugin didn&apos;t reveal.
       </>
@@ -169,7 +171,7 @@ export default function ExtensionFlowDiagram(): JSX.Element {
   return (
     <div className={styles.widget}>
       <div className={styles.header}>
-        <h3 className={styles.title}>How a TLSNotary plugin makes a proof</h3>
+        <h3 className={styles.title}>How a TLSNotary plugin makes a proof (MPC mode)</h3>
         <p className={styles.subtitle}>
           Step through the flow with the buttons below (or ← / →).
         </p>
@@ -209,17 +211,13 @@ export default function ExtensionFlowDiagram(): JSX.Element {
           </div>
 
           <div className={cx(styles.actor, styles.server, isActor('server') && styles.actorActive)}>
-            <div className={styles.actorTitle}>
-              <span>Target server</span>
-            </div>
+            <div className={styles.actorLabel}>Target server</div>
             <p className={styles.actorMeta}>api.x.com · bank.com · …</p>
           </div>
 
           <div className={cx(styles.actor, styles.verifier, isActor('verifier') && styles.actorActive)}>
-            <div className={styles.actorTitle}>
-              <span>Verifier</span>
-            </div>
-            <p className={styles.actorMeta}>Co-signs TLS · checks revealed bytes</p>
+            <div className={styles.actorLabel}>Verifier</div>
+            <p className={styles.actorMeta}>runs MPC-TLS · checks revealed bytes</p>
           </div>
 
           {/* SVG arrows overlay — matches the 640×320 arch box pixel-for-pixel.
