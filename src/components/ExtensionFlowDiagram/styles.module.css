@@ -1,0 +1,350 @@
+/* ============================================================ */
+/* Widget shell                                                   */
+/* ============================================================ */
+.widget {
+  --ext-card: var(--ifm-background-color);
+  --ext-panel: var(--ifm-color-emphasis-100);
+  --ext-text: var(--ifm-font-color-base);
+  --ext-muted: var(--ifm-color-emphasis-700);
+  --ext-line: var(--ifm-color-emphasis-200);
+  --ext-line-strong: var(--ifm-color-emphasis-300);
+  --ext-accent: #0969da;
+  --ext-accent-soft: #ddf4ff;
+  --ext-accent-border: #b6e3ff;
+  --ext-warn: #9a6700;
+  --ext-warn-soft: #fff8c5;
+  --ext-warn-border: #d4a72c;
+  --ext-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  margin: 2rem auto;
+  padding: 24px 26px 20px;
+  max-width: 760px;
+  border-radius: 14px;
+  background: var(--ext-panel);
+  border: 1px solid var(--ext-line);
+  box-sizing: border-box;
+  color: var(--ext-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+:global([data-theme='dark']) .widget {
+  --ext-accent: #58a6ff;
+  --ext-accent-soft: #0a2540;
+  --ext-accent-border: #1f6feb;
+  --ext-warn: #d4a72c;
+  --ext-warn-soft: #4d3800;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-size: 12px;
+  margin: 0;
+  color: var(--ext-muted);
+}
+
+/* ============================================================ */
+/* Architecture (fixed pixel layout)                              */
+/* ============================================================ */
+.architecture {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.arch {
+  position: relative;
+  width: 640px;
+  height: 320px;
+  max-width: 100%;
+}
+
+/* Extension umbrella — drawn behind the three left-column boxes */
+.extFrame {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 290px;
+  height: 320px;
+  border-radius: 12px;
+  border: 1.5px dashed var(--ext-line-strong);
+  background: var(--ext-card);
+}
+
+.extLabel {
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  background: var(--ext-panel);
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ext-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Actor boxes: absolutely positioned. Coordinates are the geometry
+   the SVG arrows are drawn against — don't change without updating arrows. */
+.actor {
+  position: absolute;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--ext-card);
+  border: 1.5px solid var(--ext-line);
+  box-sizing: border-box;
+  transition: border-color 200ms ease, background-color 200ms ease,
+    box-shadow 200ms ease, transform 200ms ease;
+}
+
+.actorActive {
+  border-color: var(--ext-accent);
+  background: var(--ext-accent-soft);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ext-accent) 18%, transparent);
+  z-index: 2;
+}
+
+.actorTitle {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.actorBadge {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--ext-panel);
+  color: var(--ext-muted);
+  border: 1px solid var(--ext-line);
+}
+
+.actorMeta {
+  font-size: 11px;
+  margin: 0;
+  color: var(--ext-muted);
+  line-height: 1.4;
+}
+
+/* Per-actor positioning. All boxes 200×70. Coordinates referenced from the SVG
+   arrow layer — don't drift these without updating the arrow paths. */
+.sandbox  { left:  70px; top:  24px; width: 200px; height: 70px; }
+.window   { left:  70px; top: 120px; width: 200px; height: 70px; }
+.prover   { left:  70px; top: 216px; width: 200px; height: 70px; }
+.server   { left: 370px; top: 120px; width: 200px; height: 70px; }
+.verifier { left: 370px; top: 216px; width: 200px; height: 70px; }
+
+/* ============================================================ */
+/* SVG arrows overlay                                             */
+/* ============================================================ */
+.arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.line {
+  stroke: var(--ext-line-strong);
+  stroke-width: 1.5;
+  fill: none;
+  transition: stroke 200ms ease, stroke-width 200ms ease;
+}
+
+.lineDashed {
+  stroke: var(--ext-line-strong);
+  stroke-width: 1.2;
+  fill: none;
+  transition: stroke 200ms ease;
+}
+
+.lineActive {
+  stroke: var(--ext-accent);
+  stroke-width: 2.2;
+}
+
+.arrowFill { fill: var(--ext-line-strong); }
+.arrowFillActive { fill: var(--ext-accent); }
+
+.arrowLabel {
+  font-size: 10.5px;
+  fill: var(--ext-muted);
+  font-family: var(--ifm-font-family-base);
+  transition: fill 200ms ease, font-weight 200ms ease;
+}
+
+.arrowLabelActive {
+  fill: var(--ext-accent);
+  font-weight: 600;
+}
+
+/* ============================================================ */
+/* Step description card                                          */
+/* ============================================================ */
+.stepCard {
+  margin: 18px auto 0;
+  max-width: 640px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--ext-card);
+  border: 1px solid var(--ext-line);
+}
+
+.stepHead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.stepNum {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ext-accent);
+}
+
+.stepOf {
+  color: var(--ext-muted);
+  font-weight: 600;
+}
+
+.stepTitle {
+  font-size: 14px;
+  letter-spacing: -0.005em;
+}
+
+.stepDetail {
+  font-size: 13px;
+  color: var(--ext-text);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.stepDetail code {
+  font-family: var(--ext-mono);
+  font-size: 12px;
+  background: var(--ext-panel);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* ============================================================ */
+/* Controls                                                       */
+/* ============================================================ */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.navBtn {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: var(--ext-card);
+  border: 1px solid var(--ext-line);
+  color: var(--ext-text);
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+  font-family: inherit;
+}
+
+.navBtn:hover:not(:disabled) {
+  border-color: var(--ext-accent);
+  color: var(--ext-accent);
+}
+
+.navBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dot {
+  width: 26px;
+  height: 26px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid var(--ext-line);
+  background: var(--ext-card);
+  color: var(--ext-muted);
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.dot:hover {
+  border-color: var(--ext-accent);
+  color: var(--ext-accent);
+}
+
+.dotActive {
+  background: var(--ext-accent);
+  border-color: var(--ext-accent);
+  color: var(--ifm-background-color);
+}
+
+/* ============================================================ */
+/* Responsive                                                     */
+/* ============================================================ */
+@media (max-width: 700px) {
+  .widget {
+    padding: 18px 14px 16px;
+  }
+  .arch {
+    transform-origin: top left;
+    transform: scale(0.7);
+    height: 224px; /* 320 * 0.7 */
+    width: 448px; /* 640 * 0.7 */
+  }
+  .navBtn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+  .dots {
+    gap: 3px;
+  }
+  .dot {
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
+  }
+}

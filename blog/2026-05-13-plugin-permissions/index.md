@@ -4,6 +4,9 @@ authors: [tsukino]
 description: "TLSNotary needs broad browser permissions to capture authenticated HTTP traffic for cryptographic proofs. This post explains why those permissions are necessary, what four layers of safeguards constrain them, and how the new strict-mode approval flow lets you review exactly what gets proved before it leaves your device."
 ---
 
+import Figure from '@site/src/components/Figure';
+import ExtensionFlowDiagram from '@site/src/components/ExtensionFlowDiagram';
+
 If you've installed the TLSNotary browser extension, you've seen Chrome's permission warning: this extension can "read and change all your data on all websites." That sounds alarming. It is worth explaining exactly why those permissions exist, what prevents them from being misused, and what the new strict-mode approval flow gives you on top of all that.
 
 <!-- truncate -->
@@ -12,13 +15,27 @@ If you've installed the TLSNotary browser extension, you've seen Chrome's permis
 
 ## What the TLSNotary Browser Extension Actually Does
 
-TLSNotary generates cryptographic proofs that a specific HTTPS response genuinely came from a specific server and was addressed to you. To do that, it needs to see the real, authenticated HTTP exchange — the request with your actual cookies and auth headers, and the response that came back. There is no way around this. A proof of a synthetic or unauthenticated request proves nothing useful.
+Prove your bank balance to a lender without sharing your login. Prove your follower count to a third party without exposing your private DMs. Prove that yesterday's flight delay shows up in the airline's own system before claiming compensation. That is the use case a TLSNotary plugin solves — and it is what shapes the extension's permissions.
 
-The implication is that the extension needs to sit between your browser and the target server at the moment the authenticated request happens. That requirement is where the broad permissions come from.
+<ExtensionFlowDiagram />
+
+A few things in that diagram are worth pulling out before we get into permissions:
+
+- The **extension itself does not see TLS plaintext** at any point. It captures HTTP *headers* in the managed window (steps 3–4) so the plugin knows how to construct an authenticated request. The actual TLS bytes the proof is built from never touch the extension code.
+- The **Prover** is a WebAssembly engine that runs the TLS connection together with a **Verifier** under two-party computation (step 7). The server sees a normal TLS handshake; the Verifier co-signs the handshake without ever seeing the plaintext.
+- **Selective disclosure** (step 8) happens at the byte level. The plugin's handlers decide which spans of the transcript the Verifier gets to read in plaintext (`REVEAL`), which appear only as a hash commitment (`HASH`), and which are redacted entirely.
+
+The broad Chrome permissions exist because steps 2–4 require attaching a `webRequest` listener to a window that can be pointed at *any* host — and reading the auth headers Chrome would normally hide. The rest of the post is about what stops that capability from being abused.
 
 ---
 
 ## The Permissions, One by One
+
+<Figure
+  src={require('./chrome-permissions.png').default}
+  caption="What Chrome shows you when you install the extension. The rest of this section is what each permission actually allows — and the scoping the extension layers on top."
+  width={760}
+/>
 
 The extension's manifest declares five permissions and one host permission:
 
