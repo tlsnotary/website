@@ -52,3 +52,11 @@ th4s:
   socials:
     x: th4s_
     github: th4s
+
+tsukino:
+  name: tsukino
+  url: https://github.com/0xtsukino
+  image_url: https://github.com/0xtsukino.png
+  page: true
+  socials:
+    github: 0xtsukino
