@@ -1,13 +1,13 @@
 ---
 title: "TLSNotary Plugins: What They Can Access and How You Stay in Control"
 authors: [tsukino]
-description: "TLSNotary needs broad browser permissions to capture authenticated HTTP traffic for cryptographic proofs. This post explains why those permissions are necessary, what five layers of safeguards constrain them, and how the new strict-mode approval flow lets you review exactly what gets proved before it leaves your device."
+description: "TLSNotary needs broad browser permissions to capture authenticated HTTP traffic for cryptographic proofs. This post explains why those permissions are necessary, what five layers of safeguards constrain them, and how manual approval mode lets you review exactly what gets proved before it leaves your device."
 ---
 
 import Figure from '@site/src/components/Figure';
 import ExtensionFlowDiagram from '@site/src/components/ExtensionFlowDiagram';
 
-If you've installed the TLSNotary browser extension, you've seen Chrome's permission warning: this extension can **"read and change all your data on all websites."** That sounds alarming. It is worth explaining exactly why those permissions exist, what prevents them from being misused, and what the new strict-mode approval flow gives you on top of all that.
+If you've installed the TLSNotary browser extension, you've seen Chrome's permission warning: this extension can **"read and change all your data on all websites."** That sounds alarming. It is worth explaining exactly why those permissions exist, what prevents them from being misused, and what the per-call manual approval flow gives you on top of all that.
 
 <!-- truncate -->
 
@@ -27,7 +27,6 @@ But before we get to those safeguards, here is how a plugin and the extension ac
 
 A few things in that diagram are worth pulling out before we get into permissions:
 
-- The **plugin itself does not see TLS plaintext** at any point. It captures HTTP *headers* in the managed window (steps 3–4) so the plugin knows how to construct an authenticated request. The actual TLS bytes the proof is built from never touch the plugin code.
 - The **Prover** is a WebAssembly engine that runs the TLS connection together with a **Verifier** under two-party computation (step 7). The server sees a normal TLS connection; the Verifier witnesses the whole session without ever seeing the plaintext.
 - **Selective disclosure** (step 8) happens at the byte level. The plugin's handlers decide which spans of the transcript the Verifier gets to read in plaintext (`REVEAL`), which appear only as a hash commitment (`HASH`), and which are redacted entirely.
 
@@ -51,7 +50,8 @@ The extension's manifest declares five permissions and one host permission:
   "webRequest",
   "activeTab",
   "tabs",
-  "windows"],
+  "windows"
+],
 "host_permissions": ["<all_urls>"]
 ```
 
@@ -176,23 +176,31 @@ handlers: [
 
 ---
 
-## Strict Mode: You Decide Before Each Proof Sends
+## Manual Approval: You Decide Before Each Proof Is Sent
 
-The extension's approval model has three settings, controllable from the Options page:
+The approval screen that appears when a plugin starts does more than ask yes or no. It asks how much control you want over the plugin's `prove()` calls, with three choices:
 
-**`all-session`** (the current default) asks for approval once when a plugin starts. All subsequent `prove()` calls in that session run without interruption.
+**Approve each request** (`manual`, the recommended option) asks for approval before every individual `prove()` call. The user can decline any call they did not expect.
 
-**`manual`** asks for approval before every individual `prove()` call. The user can decline any call they did not expect.
+**Allow all data sharing this session** (`all-session`) approves the plugin once. All subsequent `prove()` calls in that session run without interruption.
 
-**`rejected`** blocks all `prove()` calls without review — effectively disabling proof generation while leaving other plugin functionality intact.
+**No** (`rejected`) stops the plugin from running at all.
 
-![TLSNotary plugin approval — choose how much control you want](https://github.com/user-attachments/assets/a8723c58-1ece-4fa4-8631-2ea5e5608895)
+<Figure
+  src={require('./approval-modes.png').default}
+  caption="TLSNotary plugin approval — choose how much control you want."
+  width={601}
+/>
 
 In manual mode, the per-call approval screen shows the exact target URL and method, which handlers are active (what will be revealed vs. hashed), and the verifier URL where the proof will be sent.
 
-![The per-call approval modal — exactly what will be revealed](https://github.com/user-attachments/assets/554ead29-096b-4dfc-a09f-0a2c4e93417b)
+<Figure
+  src={require('./per-call-approval.png').default}
+  caption="The per-call approval modal — exactly what will be revealed."
+  width={760}
+/>
 
-The reason manual mode matters: a plugin the user has approved might legitimately call `prove()` multiple times across a session. In `all-session` mode those run silently. In `manual` mode each one is surfaced individually, so the user retains veto power over the exact moment their authenticated data is committed to a proof and sent to a verifier.
+The reason manual mode matters: a plugin the user has approved might legitimately call `prove()` multiple times across a session. In `all-session` mode those run silently after the initial approval. In `manual` mode each one is surfaced individually, so the user retains veto power over the exact moment their authenticated data is committed to a proof and sent to a verifier.
 
 ---
 
@@ -209,7 +217,7 @@ What keeps those permissions from being abused is scoping plus five layers of co
 1. **Sandbox** — plugins run in WebAssembly with no network or filesystem access.
 2. **Declaration** — every plugin lists the exact requests it intends to make, in source.
 3. **Runtime enforcement** — `prove()` calls are checked against that list and denied by default.
-4. **User approval** — the plugin's name, permissions, and full source can be inspected before it runs. Strict mode lets users tighten this further, allowing inspection of the actual data before it is revealed.
+4. **User approval** — the plugin's name, permissions, and full source can be inspected before it runs. Manual approval mode tightens this further, surfacing every `prove()` call for inspection before any data is revealed.
 5. **Selective disclosure** — handlers give byte-level control over what ends up in the final proof.
 
 The architecture is designed so that a malicious or compromised plugin cannot exceed its declared scope, and so that a user who wants full visibility into what is being proved can have it.
@@ -217,6 +225,6 @@ The architecture is designed so that a malicious or compromised plugin cannot ex
 ## Try It Yourself
 
 - **See it in action:** try the extension at [demo.tlsnotary.org](https://demo.tlsnotary.org).
-- **Build your own plugin:** follow the [plugin tutorial](https://demo.tlsnotary.org/tutorial) — or point your favourite AI assistant at it and have it help you.
+- **Build your own plugin:** follow the [plugin tutorial](https://demo.tlsnotary.org/tutorial) — or point your favorite AI assistant at it and have it help you.
 
 For the source or to audit the permission system: [GitHub](https://github.com/tlsnotary/tlsn-extension) · [Plugin SDK docs](https://github.com/tlsnotary/tlsn-extension/blob/main/PLUGIN.md)
