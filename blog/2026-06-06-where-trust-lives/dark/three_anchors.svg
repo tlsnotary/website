@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 300" width="860" height="300" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
   <defs>
+    <marker id="ah-int" markerWidth="9" markerHeight="8" refX="6.5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#6fd6a3"/>
+    </marker>
+    <marker id="ah-priv" markerWidth="9" markerHeight="8" refX="6.5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#f0a868"/>
+    </marker>
     <style>.strong{fill:#e6eaf0}.muted{fill:#9aa6b4}</style>
   </defs>
 
+  <!-- Peer's move: both guarantees land on anchor 2 -->
+  <text x="126" y="16" text-anchor="end" font-size="10" font-weight="700" letter-spacing="1" class="muted">PEER'S MOVE</text>
+
+  <line x1="140" y1="52" x2="140" y2="118" stroke="#6fd6a3" stroke-width="2" marker-end="url(#ah-int)"/>
+  <text x="126" y="78" text-anchor="end" font-size="11.5" font-weight="700" fill="#6fd6a3">integrity: 1 &#8594; 2</text>
+  <text x="126" y="93" text-anchor="end" font-size="10.5" class="muted">an upgrade</text>
+
+  <line x1="140" y1="234" x2="140" y2="138" stroke="#f0a868" stroke-width="2" marker-end="url(#ah-priv)"/>
+  <text x="126" y="182" text-anchor="end" font-size="11.5" font-weight="700" fill="#f0a868">privacy: 3 &#8594; 2</text>
+  <text x="126" y="197" text-anchor="end" font-size="10.5" class="muted">a downgrade</text>
+
   <!-- Tier 1: operator -->
-  <rect x="40" y="20" width="556" height="64" rx="10" fill="#131820" stroke="#e06b66" stroke-width="2"/>
-  <circle cx="74" cy="52" r="15" fill="none" stroke="#e06b66" stroke-width="2"/>
-  <text x="74" y="57" text-anchor="middle" font-size="14" font-weight="700" fill="#e06b66">1</text>
-  <text x="102" y="47" font-size="14.5" font-weight="700" class="strong">An operator is honest</text>
-  <text x="102" y="67" font-size="11.5" class="muted">trust: one operator's word</text>
+  <rect x="170" y="20" width="430" height="64" rx="10" fill="#131820" stroke="#e06b66" stroke-width="2"/>
+  <circle cx="204" cy="52" r="15" fill="none" stroke="#e06b66" stroke-width="2"/>
+  <text x="204" y="57" text-anchor="middle" font-size="14" font-weight="700" fill="#e06b66">1</text>
+  <text x="232" y="47" font-size="14.5" font-weight="700" class="strong">An operator is honest</text>
+  <text x="232" y="67" font-size="11.5" class="muted">trust: one operator's word</text>
 
   <!-- Tier 2: TEE -->
-  <rect x="40" y="96" width="556" height="64" rx="10" fill="#131820" stroke="#f0a868" stroke-width="2"/>
-  <circle cx="74" cy="128" r="15" fill="none" stroke="#f0a868" stroke-width="2"/>
-  <text x="74" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#f0a868">2</text>
-  <text x="102" y="123" font-size="14.5" font-weight="700" class="strong">This exact code ran in isolated hardware</text>
-  <text x="102" y="143" font-size="11.5" class="muted">trust: a hardware vendor's signing key</text>
+  <rect x="170" y="96" width="430" height="64" rx="10" fill="#131820" stroke="#f0a868" stroke-width="2"/>
+  <circle cx="204" cy="128" r="15" fill="none" stroke="#f0a868" stroke-width="2"/>
+  <text x="204" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#f0a868">2</text>
+  <text x="232" y="123" font-size="14.5" font-weight="700" class="strong">This exact code ran in isolated hardware</text>
+  <text x="232" y="143" font-size="11.5" class="muted">trust: a hardware vendor's signing key</text>
 
-  <!-- Tier 3: math -->
-  <rect x="40" y="202" width="556" height="64" rx="10" fill="#131820" stroke="#6fd6a3" stroke-width="2"/>
-  <circle cx="74" cy="234" r="15" fill="none" stroke="#6fd6a3" stroke-width="2"/>
-  <text x="74" y="239" text-anchor="middle" font-size="14" font-weight="700" fill="#6fd6a3">3</text>
-  <text x="102" y="229" font-size="14.5" font-weight="700" class="strong">Mathematically true, whoever ran it</text>
-  <text x="102" y="249" font-size="11.5" class="muted">trust: no one; the proof is public</text>
+  <!-- Tier 3: structure -->
+  <rect x="170" y="202" width="430" height="64" rx="10" fill="#131820" stroke="#6fd6a3" stroke-width="2"/>
+  <circle cx="204" cy="234" r="15" fill="none" stroke="#6fd6a3" stroke-width="2"/>
+  <text x="204" y="239" text-anchor="middle" font-size="14" font-weight="700" fill="#6fd6a3">3</text>
+  <text x="232" y="229" font-size="14.5" font-weight="700" class="strong">It holds by construction, whoever ran it</text>
+  <text x="232" y="249" font-size="11.5" class="muted">trust: no one; there is no secret to hold</text>
 
   <!-- bracket grouping tiers 1 and 2 -->
-  <path d="M606,32 L612,32 L612,148 L606,148 M612,90 L620,90" fill="none" stroke="#5a6573" stroke-width="1.5"/>
-  <text x="628" y="86" font-size="12" font-weight="700" class="strong">Same kind of trust</text>
-  <text x="628" y="102" font-size="11" class="muted">a secret someone else holds</text>
+  <path d="M610,32 L616,32 L616,148 L610,148 M616,90 L624,90" fill="none" stroke="#5a6573" stroke-width="1.5"/>
+  <text x="632" y="86" font-size="12" font-weight="700" class="strong">Same kind of trust</text>
+  <text x="632" y="102" font-size="11" class="muted">a secret someone else holds</text>
 
   <!-- tier 3 callout -->
-  <path d="M606,234 L620,234" fill="none" stroke="#5a6573" stroke-width="1.5"/>
-  <text x="628" y="230" font-size="12" font-weight="700" fill="#6fd6a3">A different kind</text>
-  <text x="628" y="246" font-size="11" class="muted">no secret to hold</text>
+  <path d="M610,234 L624,234" fill="none" stroke="#5a6573" stroke-width="1.5"/>
+  <text x="632" y="230" font-size="12" font-weight="700" fill="#6fd6a3">A different kind</text>
+  <text x="632" y="246" font-size="11" class="muted">no secret to hold</text>
 </svg>
