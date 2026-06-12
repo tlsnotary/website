@@ -1,79 +1,35 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 
-type LayerId = 'consumer' | 'adapter' | 'contracts' | 'sdk';
+type LayerId = 'consumer' | 'adapter' | 'sdk';
 
 interface Layer {
   id: LayerId;
   title: string;
-  subtitle: string;
-  rows: string[];
   detail: React.ReactNode;
 }
 
 interface MobileFlowDiagramProps {
   /**
-   * Which platform's adapter to highlight. Default `mobile` flips the second
-   * layer to @tlsn/host-react-native. `extension` swaps it for
-   * @tlsn/host-extension. Lets the same component drive future posts.
+   * Which platform's adapter to highlight. Default `mobile` shows
+   * @tlsn/host-react-native. `extension` swaps it for @tlsn/host-extension.
+   * Lets the same component drive future posts.
    */
   platform?: 'mobile' | 'extension' | 'cli';
 }
 
-const SDK_ROW: Layer = {
-  id: 'sdk',
-  title: '@tlsn/plugin-sdk',
-  subtitle: 'protocol core — platform-agnostic',
-  rows: ['HostCore', 'Handler · DomJson · PluginConfig', 'NativeFunctionEvaluator / QuickJS sandbox'],
-  detail: (
-    <>
-      The protocol core. <code>HostCore</code> drives the plugin lifecycle: it
-      evaluates the plugin&apos;s JavaScript inside a sandbox, manages the
-      reactive <code>main()</code> loop, holds plugin state, and exposes the
-      capabilities the plugin uses (<code>prove()</code>, <code>openWindow()</code>,
-      <code>useHeaders()</code>, …). It owns every type the plugin and the host
-      pass each other — <code>Handler</code>, <code>DomJson</code>,
-      <code>PluginConfig</code>, <code>WindowMessage</code>. Nothing in here knows
-      whether it&apos;s running on a phone, in a browser, or in a Node CLI.
-    </>
-  ),
-};
-
-const CONTRACTS_ROW: Layer = {
-  id: 'contracts',
-  title: '@tlsn/host-contracts',
-  subtitle: 'adapter spec — what every platform must implement',
-  rows: ['ProverClient · WindowManager · RequestInterceptor', 'PluginRenderer · ApprovalUi', 'translateHandler (native-bridge helper)'],
-  detail: (
-    <>
-      Five interfaces that describe what a platform adapter must do — make a
-      window, intercept its headers, render the plugin&apos;s UI, ask the user
-      for approval, run a prover. <code>HostCore</code> doesn&apos;t care how
-      these work; it just calls them. That&apos;s why the same plugin runs
-      unchanged on three radically different platforms: the contract is the
-      bridge.
-    </>
-  ),
-};
-
-function adapterRow(platform: 'mobile' | 'extension' | 'cli'): Layer {
+function adapterLayer(platform: 'mobile' | 'extension' | 'cli'): Layer {
   if (platform === 'extension') {
     return {
       id: 'adapter',
       title: '@tlsn/host-extension',
-      subtitle: 'platform glue — Manifest V3',
-      rows: [
-        'WindowManager (chrome.windows + webRequest)',
-        'SessionManager + ProveManager (offscreen WASM prover)',
-        'PluginRenderer (content-script DOM)',
-      ],
       detail: (
         <>
-          Implements every contract using browser-extension primitives:
+          The Manifest-V3 adapter. Implements the host primitives using
           <code>chrome.windows</code> for managed windows,
           <code>webRequest.onBeforeRequest</code> for header interception, an
-          offscreen document hosting the tlsn-wasm prover, content-script DOM
-          for rendering the plugin&apos;s UI. The upstream TLSN extension
+          offscreen document hosting the tlsn-wasm prover, and content-script
+          DOM for rendering the plugin&apos;s UI. The upstream TLSN extension
           consumes this exact package.
         </>
       ),
@@ -83,18 +39,12 @@ function adapterRow(platform: 'mobile' | 'extension' | 'cli'): Layer {
     return {
       id: 'adapter',
       title: '@tlsn/host-cli',
-      subtitle: 'platform glue — Node + Playwright',
-      rows: [
-        'PlaywrightWindowManager (BrowserContext)',
-        'RustProverClient (spawns tlsn-prover binary)',
-        'PlaywrightDomRenderer · ClackApprovalUi',
-      ],
       detail: (
         <>
-          Implements the contracts with Playwright (windows + headers via{' '}
-          <code>page.route()</code>), a Rust prover binary built from the
-          native crate, and <code>@clack/prompts</code> for terminal-friendly
-          approval. Doubles as the cross-platform protocol test harness.
+          The Node CLI adapter. Drives Playwright for windows and headers,
+          spawns a Rust prover binary, and uses{' '}
+          <code>@clack/prompts</code> for terminal-friendly approval. Doubles
+          as the cross-platform protocol test harness.
         </>
       ),
     };
@@ -102,39 +52,31 @@ function adapterRow(platform: 'mobile' | 'extension' | 'cli'): Layer {
   return {
     id: 'adapter',
     title: '@tlsn/host-react-native',
-    subtitle: 'platform glue — Expo / React Native',
-    rows: [
-      'PluginWebView (header interception via injected JS)',
-      'NativeProver (tlsn-native Expo module wrapping Rust)',
-      'PluginRenderer (DomJson → RN primitives)',
-    ],
     detail: (
       <>
-        Implements every contract using React Native and Expo. A
-        <code>WebView</code> with injected JavaScript wraps{' '}
-        <code>fetch</code>/<code>XHR</code> to intercept headers, an Expo
-        native module hosts the Rust prover (no WASM — Hermes can&apos;t run
-        it), and React Native primitives (<code>View</code>,{' '}
-        <code>Text</code>, <code>TouchableOpacity</code>) render the
-        plugin&apos;s <code>DomJson</code> tree. The TLSN mobile app consumes
-        this exact package.
+        The mobile adapter. Ships a <code>WebView</code> with injected JS that
+        intercepts <code>fetch</code> and <code>XMLHttpRequest</code>, a
+        headless <code>&lt;NativeProver&gt;</code> wrapping the
+        <code>tlsn-native</code> Expo module (a native Rust port of the
+        TLSNotary prover — Hermes can&apos;t run the WASM build), and a{' '}
+        <code>&lt;PluginRenderer&gt;</code> that maps the plugin&apos;s
+        <code>DomJson</code> tree onto React Native primitives.
+        The TLSN mobile app consumes this exact package.
       </>
     ),
   };
 }
 
-function consumerRow(platform: 'mobile' | 'extension' | 'cli'): Layer {
+function consumerLayer(platform: 'mobile' | 'extension' | 'cli'): Layer {
   if (platform === 'extension') {
     return {
       id: 'consumer',
       title: 'Your browser extension',
-      subtitle: 'user-owned UI · manifest · plugin gallery',
-      rows: ['Popup, background service worker, content scripts', 'Plugin registry', 'Your branding + UX'],
       detail: (
         <>
-          The extension you ship. You own the manifest, the popup UI, the
-          gallery of plugins you curate, and the styling. Everything below this
-          line is the @tlsn/* stack the skill scaffolds for you.
+          The extension you ship — manifest, popup, plugin gallery, your
+          branding and UX. Everything below this line is the @tlsn/* stack
+          the skill scaffolds for you.
         </>
       ),
     };
@@ -142,53 +84,54 @@ function consumerRow(platform: 'mobile' | 'extension' | 'cli'): Layer {
   if (platform === 'cli') {
     return {
       id: 'consumer',
-      title: 'Your CLI tool / script',
-      subtitle: 'user-owned · CI / batch / local',
-      rows: ['Plugin runner script', 'Storage-state / cookie cache', 'Your prompts + logging'],
+      title: 'Your CLI tool',
       detail: (
         <>
-          The CLI you ship. A short script that wires <code>createCliAdapter()</code>
-          to your plugin list and lets users run proofs from a terminal —
-          interactively the first time, headlessly thereafter from a saved
-          Playwright storage state.
+          The script you ship — a short program that wires{' '}
+          <code>createCliAdapter()</code> to your plugin list and runs
+          proofs from a terminal.
         </>
       ),
     };
   }
   return {
     id: 'consumer',
-    title: 'Your Expo / React Native app',
-    subtitle: 'user-owned UI · screens · plugin gallery',
-    rows: ['PluginGalleryScreen, PluginRunnerScreen, SettingsScreen', 'Plugin registry + theming', 'PluginApprovalSheet · RevealApprovalSheet'],
+    title: 'Your Expo app',
     detail: (
       <>
-        The mobile app you ship. You own the screens, the gallery of plugins
-        you curate, the approval sheets your users see, and the theming.
-        Everything below this line is the @tlsn/* stack the skill scaffolds
-        for you.
+        The app you ship. You own the screens (plugin gallery, runner,
+        settings), the approval bottom sheets the user sees, and the
+        theming. Everything below this line is the @tlsn/* stack the
+        skill scaffolds for you.
       </>
     ),
   };
 }
 
+const SDK_LAYER: Layer = {
+  id: 'sdk',
+  title: '@tlsn/plugin-sdk',
+  detail: (
+    <>
+      The protocol core. <code>HostCore</code> drives the plugin lifecycle:
+      it evaluates the plugin&apos;s JavaScript inside a sandbox, manages
+      the reactive <code>main()</code> loop, and exposes the capabilities
+      a plugin uses (<code>prove()</code>, <code>openWindow()</code>,
+      <code>useHeaders()</code>, …). Owns every protocol type the plugin
+      and the host pass each other. Nothing in here knows whether it&apos;s
+      running on a phone, in a browser, or in a Node CLI.
+    </>
+  ),
+};
+
 export default function MobileFlowDiagram({ platform = 'mobile' }: MobileFlowDiagramProps) {
-  const layers: Layer[] = [
-    consumerRow(platform),
-    adapterRow(platform),
-    CONTRACTS_ROW,
-    SDK_ROW,
-  ];
+  const layers: Layer[] = [consumerLayer(platform), adapterLayer(platform), SDK_LAYER];
 
   const [activeId, setActiveId] = useState<LayerId>('adapter');
   const active = layers.find((l) => l.id === activeId) ?? layers[1];
 
   return (
     <div className={styles.widget}>
-      <div className={styles.header}>
-        <h3 className={styles.title}>How the {platformLabel(platform)} integration stacks up</h3>
-        <p className={styles.subtitle}>Tap a layer to see what lives in it.</p>
-      </div>
-
       <div className={styles.stack}>
         {layers.map((layer, idx) => (
           <React.Fragment key={layer.id}>
@@ -198,22 +141,9 @@ export default function MobileFlowDiagram({ platform = 'mobile' }: MobileFlowDia
               onClick={() => setActiveId(layer.id)}
               aria-pressed={layer.id === activeId}
             >
-              <div className={styles.layerHeader}>
-                <span className={styles.layerTitle}>{layer.title}</span>
-                <span className={styles.layerSubtitle}>{layer.subtitle}</span>
-              </div>
-              <ul className={styles.layerRows}>
-                {layer.rows.map((row) => (
-                  <li key={row}>{row}</li>
-                ))}
-              </ul>
+              <span className={styles.layerTitle}>{layer.title}</span>
             </button>
-            {idx < layers.length - 1 && (
-              <div className={styles.connector} aria-hidden="true">
-                <span className={styles.connectorLine} />
-                <span className={styles.connectorLabel}>{connectorLabel(idx)}</span>
-              </div>
-            )}
+            {idx < layers.length - 1 && <div className={styles.connector} aria-hidden="true" />}
           </React.Fragment>
         ))}
       </div>
@@ -224,19 +154,4 @@ export default function MobileFlowDiagram({ platform = 'mobile' }: MobileFlowDia
       </div>
     </div>
   );
-}
-
-function platformLabel(platform: 'mobile' | 'extension' | 'cli'): string {
-  if (platform === 'extension') return 'extension';
-  if (platform === 'cli') return 'CLI';
-  return 'mobile';
-}
-
-function connectorLabel(idx: number): string {
-  // Between consumer (0) and adapter (1) → imports.
-  // Between adapter (1) and contracts (2) → implements.
-  // Between contracts (2) and sdk (3) → built on.
-  if (idx === 0) return 'imports';
-  if (idx === 1) return 'implements';
-  return 'built on';
 }

@@ -35,7 +35,7 @@ The whole flow runs locally except for the TLS prover's outbound connection (to 
 
 ## How the app uses the libraries
 
-The mobile app is one consumer of a four-layer stack: your app on top, `@tlsn/host-react-native` underneath it, `@tlsn/host-contracts` describing what every adapter implements, and `@tlsn/plugin-sdk` at the bottom — the same protocol core the browser extension runs.
+The mobile app sits on top of a small stack: your app, `@tlsn/host-react-native` underneath it, and `@tlsn/plugin-sdk` at the bottom — the same protocol core the browser extension runs.
 
 <MobileFlowDiagram platform="mobile" />
 
