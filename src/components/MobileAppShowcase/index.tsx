@@ -3,13 +3,13 @@ import styles from './styles.module.css';
 
 /**
  * Four mockup screens of the TLSN mobile app, rendered as styled HTML —
- * no screenshot assets, no light/dark variants to maintain, no app/store
- * frames to chase. Colors and copy mirror the real React Native screens at:
+ * no screenshot assets, no light/dark variants to maintain. Colors and copy
+ * mirror the real React Native screens at:
  *
- *   app/mobile/app/(tabs)/index.tsx           → <GalleryMockup />
+ *   app/mobile/app/(tabs)/index.tsx                    → <GalleryMockup />
  *   app/mobile/components/tlsn/PluginApprovalSheet.tsx → <PluginApprovalMockup />
  *   app/mobile/components/tlsn/RevealApprovalSheet.tsx → <RevealApprovalMockup />
- *   app/mobile/app/plugin/[id].tsx (success branch)     → <SuccessMockup />
+ *   app/mobile/app/plugin/[id].tsx (success branch)    → <SuccessMockup />
  */
 
 export default function MobileAppShowcase() {
@@ -42,17 +42,53 @@ function Phone({ caption, children }: PhoneProps) {
       <div className={styles.phone}>
         <div className={styles.notch} aria-hidden="true" />
         <div className={styles.statusBar} aria-hidden="true">
-          <span>9:41</span>
-          <span className={styles.statusIcons}>
-            <span aria-hidden>●●●</span>
-            <span aria-hidden>📶</span>
-            <span aria-hidden>▮</span>
+          <span className={styles.statusTime}>9:41</span>
+          <span className={styles.statusRight}>
+            <span className={styles.signal} />
+            <span className={styles.signal} />
+            <span className={styles.signal} />
+            <span className={styles.battery} />
           </span>
         </div>
         <div className={styles.screen}>{children}</div>
       </div>
       <figcaption className={styles.caption}>{caption}</figcaption>
     </figure>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared chrome — navbar + tab bar                                            */
+/* -------------------------------------------------------------------------- */
+
+function Navbar({ title, hideBack }: { title: string; hideBack?: boolean }) {
+  return (
+    <div className={styles.navbar}>
+      {!hideBack && <span className={styles.navbarBack}>‹</span>}
+      <span className={styles.navbarTitle}>{title}</span>
+      <span className={styles.navbarSpacer} />
+    </div>
+  );
+}
+
+function TabBar({ active }: { active: 'plugins' | 'about' | 'settings' }) {
+  return (
+    <div className={styles.tabBar}>
+      <TabBarItem icon="☰" label="Plugins" isActive={active === 'plugins'} />
+      <TabBarItem icon="ⓘ" label="About" isActive={active === 'about'} />
+      <TabBarItem icon="⚙" label="Settings" isActive={active === 'settings'} />
+    </div>
+  );
+}
+
+function TabBarItem({ icon, label, isActive }: { icon: string; label: string; isActive: boolean }) {
+  return (
+    <div className={`${styles.tabBarItem} ${isActive ? styles.tabBarItemActive : ''}`}>
+      <span className={styles.tabBarIcon} aria-hidden>
+        {icon}
+      </span>
+      <span className={styles.tabBarLabel}>{label}</span>
+    </div>
   );
 }
 
@@ -64,17 +100,14 @@ const GALLERY_PLUGINS: Array<{ logo: string; name: string; description: string; 
   { logo: '🐦', name: 'Twitter', description: 'Prove your handle and follower count.' },
   { logo: '🎵', name: 'Spotify', description: 'Prove your top artist of the year.' },
   { logo: '🦉', name: 'Duolingo', description: 'Prove your current streak.' },
-  { logo: '🏦', name: 'Swiss Bank', description: 'Prove your balance is above a threshold.' },
-  { logo: '🚗', name: 'Uber', description: 'Prove your lifetime trip count.', wip: true },
+  { logo: '🏦', name: 'Swiss Bank', description: 'Prove your balance is over a threshold.' },
 ];
 
 function GalleryMockup() {
   return (
-    <div className={styles.gallery}>
-      <div className={styles.galleryHeader}>
-        <span>Plugins</span>
-      </div>
-      <div className={styles.galleryList}>
+    <div className={styles.screenColumn}>
+      <Navbar title="TLSNotary" hideBack />
+      <div className={styles.gallery}>
         {GALLERY_PLUGINS.map((p) => (
           <div key={p.name} className={styles.galleryCard}>
             <span className={styles.galleryLogo}>{p.logo}</span>
@@ -99,12 +132,18 @@ function GalleryMockup() {
 
 function PluginApprovalMockup() {
   return (
-    <div className={styles.sheetScreen}>
+    <div className={styles.screenColumn}>
+      <Navbar title="Spotify" />
+      <div className={styles.dimmedContent} aria-hidden="true">
+        <div className={styles.dimmedShape} />
+        <div className={styles.dimmedShape} />
+        <div className={styles.dimmedShape} />
+      </div>
       <div className={styles.sheetBackdrop} />
       <div className={styles.sheetCard}>
         <div className={styles.sheetHandle} />
         <div className={styles.sheetTitle}>Spotify</div>
-        <div className={styles.sheetByline}>by TLSNotary · v1.0.0</div>
+        <div className={styles.sheetByline}>TLSNotary · v1.0.0</div>
         <div className={styles.sheetBody}>
           Prove your top Spotify artist of the year without revealing your account.
         </div>
@@ -121,7 +160,7 @@ function PluginApprovalMockup() {
             api.spotify.com<span className={styles.requestPath}>/v1/me</span>
           </span>
         </div>
-        <div className={styles.sourceLink}>View source on GitHub →</div>
+        <div className={styles.sourceLink}>View source on GitHub ↗</div>
         <div className={styles.sheetActions}>
           <button type="button" className={`${styles.sheetButton} ${styles.btnReject}`}>
             Reject
@@ -144,7 +183,12 @@ function PluginApprovalMockup() {
 
 function RevealApprovalMockup() {
   return (
-    <div className={styles.sheetScreen}>
+    <div className={styles.screenColumn}>
+      <Navbar title="Spotify" />
+      <div className={styles.dimmedContent} aria-hidden="true">
+        <div className={styles.dimmedShape} />
+        <div className={styles.dimmedShape} />
+      </div>
       <div className={styles.sheetBackdrop} />
       <div className={styles.sheetCard}>
         <div className={styles.sheetHandle} />
@@ -152,17 +196,15 @@ function RevealApprovalMockup() {
         <div className={styles.sheetSubtitle}>
           Review the bytes that will be sent to the verifier.
         </div>
-        <div className={styles.revealList}>
-          <RevealRow label="Request URL" badge="REVEAL" badgeKind="reveal">
-            GET /v1/me/top/artists?limit=1&time_range=long_term HTTP/1.1
-          </RevealRow>
-          <RevealRow label="Authorization header" badge="HASH · SHA-256" badgeKind="hash" hashed>
-            Bearer ••••••••••••••••••••••••••
-          </RevealRow>
-          <RevealRow label="Response: top artist name" badge="REVEAL" badgeKind="reveal">
-            "items":[{'{'}"name":"Charli xcx"
-          </RevealRow>
-        </div>
+        <RevealRow label="Request URL" badge="REVEAL" badgeKind="reveal">
+          GET /v1/me/top/artists?limit=1
+        </RevealRow>
+        <RevealRow label="Authorization" badge="HASH · SHA-256" badgeKind="hash" hashed>
+          Bearer ••••••••••••••••
+        </RevealRow>
+        <RevealRow label="Top artist (response)" badge="REVEAL" badgeKind="reveal">
+          "items":[{'{'}"name":"Charli xcx"
+        </RevealRow>
         <div className={styles.sheetActions}>
           <button type="button" className={`${styles.sheetButton} ${styles.btnReject}`}>
             Reject
@@ -207,61 +249,40 @@ function RevealRow({ label, badge, badgeKind, hashed, children }: RevealRowProps
 /* -------------------------------------------------------------------------- */
 
 function SuccessMockup() {
+  // Spotify accent (#1db954) for both banner and key label, per the registry.
+  const accent = '#1db954';
   return (
-    <div className={styles.successScreen}>
-      <div className={styles.successBanner}>
-        <span className={styles.successLogo}>🎵</span>
-        <span className={styles.successPluginName}>Spotify</span>
-        <span className={styles.successVerifiedBadge}>VERIFIED</span>
-      </div>
-      <div className={styles.successResultCard}>
-        <div className={styles.successResultLabel}>Top Artist</div>
-        <div className={styles.successResultValue}>Charli xcx</div>
-      </div>
-      <div className={styles.successDetailCard}>
-        <div className={styles.successDetailRow}>
-          <span className={styles.successDetailKey}>Verified on</span>
-          <span className={styles.successDetailVal}>api.spotify.com</span>
+    <div className={styles.screenColumn}>
+      <Navbar title="Spotify" />
+      <div className={styles.successScrollArea}>
+        <div className={styles.successBanner} style={{ backgroundColor: accent }}>
+          <span className={styles.successLogo}>🎵</span>
+          <div className={styles.successBannerText}>
+            <span className={styles.successPluginName}>Spotify</span>
+            <span className={styles.successVerifiedBadge}>Verified</span>
+          </div>
         </div>
-        <div className={styles.successDetailRow}>
-          <span className={styles.successDetailKey}>Time</span>
-          <span className={styles.successDetailVal}>just now</span>
+        <div className={styles.successKeyCard}>
+          <div className={styles.successKeyLabel} style={{ color: accent }}>
+            TOP ARTIST
+          </div>
+          <div className={styles.successKeyValue}>Charli xcx</div>
         </div>
-      </div>
-      <div className={styles.successToggles}>
-        <button type="button" className={styles.successToggle}>
-          Show proven data ▾
+        <div className={styles.successDetailCard}>
+          <div className={styles.successDetailTitle}>VERIFIED DETAILS</div>
+          <div className={styles.successDetailRow}>api.spotify.com</div>
+          <div className={styles.successDetailRow}>Just now</div>
+        </div>
+        <div className={styles.successToggle}>▶  Show Proven Data</div>
+        <div className={styles.successToggle}>▶  Show Raw Data</div>
+        <button
+          type="button"
+          className={styles.successBackBtn}
+          style={{ backgroundColor: accent }}
+        >
+          Back to Plugins
         </button>
-        <button type="button" className={styles.successToggle}>
-          Show raw data ▾
-        </button>
       </div>
-      <button type="button" className={styles.successBackBtn}>
-        Back to Plugins
-      </button>
-    </div>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/* Shared — tab bar                                                            */
-/* -------------------------------------------------------------------------- */
-
-function TabBar({ active }: { active: 'plugins' | 'settings' | 'about' }) {
-  return (
-    <div className={styles.tabBar}>
-      <TabBarItem icon="📦" label="Plugins" isActive={active === 'plugins'} />
-      <TabBarItem icon="⚙️" label="Settings" isActive={active === 'settings'} />
-      <TabBarItem icon="ℹ️" label="About" isActive={active === 'about'} />
-    </div>
-  );
-}
-
-function TabBarItem({ icon, label, isActive }: { icon: string; label: string; isActive: boolean }) {
-  return (
-    <div className={`${styles.tabBarItem} ${isActive ? styles.tabBarItemActive : ''}`}>
-      <span aria-hidden>{icon}</span>
-      <span className={styles.tabBarLabel}>{label}</span>
     </div>
   );
 }
