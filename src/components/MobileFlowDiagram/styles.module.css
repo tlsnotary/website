@@ -1,0 +1,210 @@
+.widget {
+  --mfd-card: var(--ifm-background-color);
+  --mfd-panel: var(--ifm-color-emphasis-100);
+  --mfd-text: var(--ifm-font-color-base);
+  --mfd-muted: var(--ifm-color-emphasis-700);
+  --mfd-line: var(--ifm-color-emphasis-200);
+  --mfd-line-strong: var(--ifm-color-emphasis-300);
+  --mfd-accent: #0969da;
+  --mfd-accent-soft: #ddf4ff;
+  --mfd-accent-border: #b6e3ff;
+  --mfd-tlsn: #243f5f;
+  --mfd-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  margin: 2rem auto;
+  padding: 24px 26px 20px;
+  max-width: 720px;
+  border-radius: 14px;
+  background: var(--mfd-panel);
+  border: 1px solid var(--mfd-line);
+  box-sizing: border-box;
+  color: var(--mfd-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+:global([data-theme='dark']) .widget {
+  --mfd-accent: #58a6ff;
+  --mfd-accent-soft: #0a2540;
+  --mfd-accent-border: #1f6feb;
+  --mfd-tlsn: #6088b8;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+  color: var(--mfd-text);
+}
+
+.subtitle {
+  font-size: 13px;
+  margin: 0;
+  color: var(--mfd-muted);
+}
+
+/* ------------------------------------------------------------ */
+/* Layer stack                                                   */
+/* ------------------------------------------------------------ */
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.layer {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--mfd-card);
+  border: 1px solid var(--mfd-line-strong);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.layer:hover {
+  border-color: var(--mfd-accent-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.layer:focus-visible {
+  outline: 2px solid var(--mfd-accent);
+  outline-offset: 2px;
+}
+
+.layer.active {
+  border-color: var(--mfd-accent);
+  box-shadow: 0 0 0 3px var(--mfd-accent-soft);
+}
+
+.layer.consumer {
+  border-style: dashed;
+  border-color: var(--mfd-tlsn);
+}
+
+.layer.consumer.active {
+  border-style: solid;
+  border-color: var(--mfd-tlsn);
+  box-shadow: 0 0 0 3px var(--mfd-accent-soft);
+}
+
+.layerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.layerTitle {
+  font-family: var(--mfd-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--mfd-text);
+}
+
+.layerSubtitle {
+  font-size: 12px;
+  color: var(--mfd-muted);
+  font-style: italic;
+}
+
+.layerRows {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+}
+
+.layerRows li {
+  font-family: var(--mfd-mono);
+  font-size: 12px;
+  color: var(--mfd-muted);
+  line-height: 1.65;
+}
+
+/* ------------------------------------------------------------ */
+/* Connectors between layers                                     */
+/* ------------------------------------------------------------ */
+.connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+.connectorLine {
+  width: 1px;
+  height: 14px;
+  background: var(--mfd-line-strong);
+}
+
+.connectorLabel {
+  font-size: 11px;
+  color: var(--mfd-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------ */
+/* Detail panel                                                  */
+/* ------------------------------------------------------------ */
+.detailPanel {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: var(--mfd-card);
+  border: 1px solid var(--mfd-line);
+  border-radius: 10px;
+}
+
+.detailHeader {
+  font-family: var(--mfd-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mfd-accent);
+  margin-bottom: 6px;
+}
+
+.detailBody {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--mfd-text);
+}
+
+.detailBody code {
+  font-family: var(--mfd-mono);
+  font-size: 12.5px;
+  background: var(--mfd-panel);
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--mfd-line);
+}
+
+/* ------------------------------------------------------------ */
+/* Narrow viewport                                               */
+/* ------------------------------------------------------------ */
+@media (max-width: 540px) {
+  .widget {
+    padding: 18px 14px 14px;
+  }
+
+  .layerHeader {
+    flex-direction: column;
+    gap: 2px;
+  }
+}

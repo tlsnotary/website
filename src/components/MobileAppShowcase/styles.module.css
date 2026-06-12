@@ -1,0 +1,563 @@
+.showcase {
+  --mas-bg-light: #f0f2f5;
+  --mas-card-light: #ffffff;
+  --mas-text: #111827;
+  --mas-muted: #6b7280;
+  --mas-subtle: #374151;
+  --mas-tlsn: #243f5f;
+  --mas-divider: #e5e7eb;
+  --mas-frame: #1a1a1a;
+  --mas-frame-shine: rgba(255, 255, 255, 0.06);
+  --mas-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 18px;
+  margin: 2rem auto;
+  padding: 0;
+  max-width: 760px;
+}
+
+@media (max-width: 540px) {
+  .showcase {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* ============================================================ */
+/* Phone frame                                                    */
+/* ============================================================ */
+
+.phoneWrap {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phone {
+  position: relative;
+  width: 240px;
+  height: 460px;
+  background: var(--mas-frame);
+  border-radius: 32px;
+  padding: 4px;
+  box-shadow:
+    0 0 0 1.5px rgba(0, 0, 0, 0.5),
+    0 12px 28px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px var(--mas-frame-shine);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 18px;
+  background: var(--mas-frame);
+  border-radius: 12px;
+  z-index: 2;
+}
+
+.statusBar {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  right: 12px;
+  height: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 600;
+  color: #fff;
+  z-index: 3;
+  pointer-events: none;
+  padding: 0 18px;
+}
+
+.statusBar > span:first-child {
+  margin-left: -10px;
+}
+
+.statusIcons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 9px;
+  margin-right: -10px;
+}
+
+.screen {
+  position: relative;
+  top: 28px;
+  height: calc(100% - 32px);
+  background: var(--mas-bg-light);
+  border-radius: 26px;
+  overflow: hidden;
+  color: var(--mas-text);
+}
+
+.caption {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ifm-font-color-base);
+  font-weight: 500;
+  text-align: center;
+}
+
+:global([data-theme='dark']) .caption {
+  color: var(--ifm-font-color-base);
+}
+
+/* ============================================================ */
+/* Gallery screen                                                 */
+/* ============================================================ */
+
+.gallery {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.galleryHeader {
+  padding: 14px 16px 8px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--mas-text);
+}
+
+.galleryList {
+  flex: 1;
+  overflow: hidden;
+  padding: 4px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.galleryCard {
+  display: flex;
+  align-items: center;
+  background: var(--mas-card-light);
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.galleryLogo {
+  font-size: 24px;
+  width: 36px;
+  text-align: center;
+}
+
+.galleryBody {
+  flex: 1;
+  margin-left: 10px;
+  min-width: 0;
+}
+
+.galleryNameRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.galleryName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mas-tlsn);
+}
+
+.galleryDescription {
+  display: block;
+  font-size: 10.5px;
+  color: var(--mas-muted);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wipBadge {
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+/* Tab bar */
+.tabBar {
+  display: flex;
+  border-top: 1px solid var(--mas-divider);
+  background: var(--mas-card-light);
+  padding: 6px 0 8px;
+}
+
+.tabBarItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  color: var(--mas-muted);
+}
+
+.tabBarItemActive {
+  color: var(--mas-tlsn);
+}
+
+.tabBarLabel {
+  font-size: 9px;
+  font-weight: 500;
+}
+
+/* ============================================================ */
+/* Sheet screens (plugin approval + reveal approval)              */
+/* ============================================================ */
+
+.sheetScreen {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.sheetBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.sheetCard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--mas-card-light);
+  border-radius: 18px 18px 0 0;
+  padding: 8px 14px 12px;
+  max-height: 88%;
+  overflow: hidden;
+}
+
+.sheetHandle {
+  width: 32px;
+  height: 4px;
+  background: #d1d5db;
+  border-radius: 2px;
+  margin: 4px auto 8px;
+}
+
+.sheetTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mas-text);
+}
+
+.sheetByline {
+  font-size: 10px;
+  color: var(--mas-muted);
+  margin-top: 1px;
+  margin-bottom: 8px;
+}
+
+.sheetSubtitle {
+  font-size: 11px;
+  color: var(--mas-muted);
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
+
+.sheetBody {
+  font-size: 11px;
+  color: var(--mas-subtle);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.sectionLabel {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--mas-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.requestRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 0;
+  border-top: 1px solid var(--mas-divider);
+}
+
+.requestRow:first-of-type {
+  border-top: none;
+}
+
+.methodBadge {
+  background: #dbeafe;
+  color: #1e40af;
+  font-family: var(--mas-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.requestHost {
+  font-family: var(--mas-mono);
+  font-size: 9.5px;
+  color: var(--mas-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.requestPath {
+  color: var(--mas-muted);
+}
+
+.sourceLink {
+  font-size: 10px;
+  color: #2563eb;
+  font-weight: 500;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.sheetActions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.sheetButton {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btnReject {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btnManual {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.btnAllSession {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* ============================================================ */
+/* Reveal list                                                    */
+/* ============================================================ */
+
+.revealList {
+  max-height: 230px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.revealRow {
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.revealRowHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.revealRowLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--mas-subtle);
+}
+
+.revealBadge {
+  font-size: 8px;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
+}
+
+.badgeReveal {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badgeHash {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.revealPreview {
+  font-family: var(--mas-mono);
+  font-size: 9px;
+  color: #1f2937;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.revealHashed {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* ============================================================ */
+/* Success screen                                                 */
+/* ============================================================ */
+
+.successScreen {
+  position: absolute;
+  inset: 0;
+  background: var(--mas-bg-light);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.successBanner {
+  background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+  position: relative;
+}
+
+.successLogo {
+  font-size: 28px;
+}
+
+.successPluginName {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.successVerifiedBadge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-top: 2px;
+}
+
+.successResultCard {
+  background: var(--mas-card-light);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+
+.successResultLabel {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #1db954;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.successResultValue {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--mas-text);
+}
+
+.successDetailCard {
+  background: var(--mas-card-light);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.successDetailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 0;
+}
+
+.successDetailRow + .successDetailRow {
+  border-top: 1px solid var(--mas-divider);
+  margin-top: 1px;
+}
+
+.successDetailKey {
+  font-size: 10px;
+  color: var(--mas-muted);
+}
+
+.successDetailVal {
+  font-family: var(--mas-mono);
+  font-size: 9.5px;
+  color: var(--mas-text);
+}
+
+.successToggles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.successToggle {
+  background: var(--mas-card-light);
+  border: 1px solid var(--mas-divider);
+  border-radius: 8px;
+  padding: 7px;
+  font-size: 10px;
+  color: var(--mas-subtle);
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.successBackBtn {
+  margin-top: auto;
+  background: var(--mas-tlsn);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
