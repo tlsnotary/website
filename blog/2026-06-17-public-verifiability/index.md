@@ -66,7 +66,7 @@ In both cases someone has to play the verifier *during* the session on everyone 
 
 Most of the confusion around zkTLS is really *terminology* confusion, and two words do most of the damage. If any of this tripped you up, that's on the words, not on you.
 
-The first word is **"proof."** What you walk away with is usually not a self-contained proof at all. It's an **attestation**: a statement *signed* by whoever witnessed the session. (Sometimes a genuine zero-knowledge proof is layered on top, which we get to below.)
+The first word is **"proof."** What you walk away with is usually not a self-contained proof at all. It's an **attestation**: a statement *signed* by whoever witnessed the session. The distinction that matters is transferability: an in-session proof convinces only the witness, and signing it into an attestation is what makes that same claim portable, so anyone can check it later. (Sometimes a genuine zero-knowledge proof is layered on top, which we get to below.)
 
 The second word is **"verifier,"** which gets stretched across two completely different jobs:
 
