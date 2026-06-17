@@ -24,7 +24,7 @@ Peer's Sachin wrote up the reasoning in a clear, public [post](https://x.com/0xS
 
 ## Both roads end at a signature
 
-Start with the thing that does not change. zkTLS, TLSNotary included, is a **designated-verifier** technology: the proof convinces only the party that took part in the session, and a smart contract cannot be that party. So on-chain there is always a trusted attestor that signs a statement in lieu of a proof, and the contract checks the signature. (We unpack why an in-session witness is unavoidable, and what "publicly verifiable" really means, in a [companion post](/blog/2026/06/05/public-verifiability).)
+Start with the thing that does not change. zkTLS, TLSNotary included, is a **designated-verifier** technology: the proof convinces only the party that took part in the session, and a smart contract cannot be that party. So on-chain there is always a trusted attestor that signs a statement in lieu of a proof, and the contract checks the signature. (We unpack why an in-session witness is unavoidable, and what "publicly verifiable" really means, in a [companion post](/blog/2026/06/17/public-verifiability).)
 
 The upshot for us is simple: if your funds release on an attestor's signature, you are trusting that attestor, whether the box behind it runs MPC, a proxy, or an enclave. Which is exactly why Peer's integrity argument lands. Their prior production system was proxy-based zkTLS with a **single attestor**, and a single attestor that is compromised or colluding can sign off on a payment that never happened. Move the signing key inside a Nitro Enclave, wrap it under a KMS policy that only releases it to an enclave whose measured identity matches the published build, and now forging an attestation means breaking the hardware's isolation or subverting KMS, not just leaning on one server. As Sachin puts it, *"the trust anchor moves from 'an operator is honest' to 'this exact code ran in isolated hardware.'"*
 
@@ -124,7 +124,7 @@ So when the privacy stakes rise, the cryptographic path is right there, for Peer
 DRAFT NOTES (remove before publishing)
 - BYLINE: currently commented out / undecided. Sibling post #62 (public-verifiability) is authored by heeckhau.
 - STYLE: em-dash-free, to match the public-verifiability post's house style.
-- COORDINATION: the designated-verifier explainer is compressed and cross-links the companion post (/blog/2026/06/05/public-verifiability, PR #62). Confirm that post's final slug/date before publishing; #62 is dated 2026-06-05 so it should publish first.
+- COORDINATION: the designated-verifier explainer is compressed and cross-links the companion post (/blog/2026/06/17/public-verifiability, PR #62, merged to master and dated 2026-06-17). It publishes first; this post is dated 2026-06-19.
 - FIGURES: plaintext_boundary (where the plaintext lives) + three_anchors. Both hand-authored light/dark SVGs.
 - VERIFIED: ~30s -> <300ms / "100x" (Sachin article + @peerxyz, Jun 3 2026). npm @zkp2p/zkp2p-attestation v1.4.0 live (2026-06-05). zkp2p org has NO public Nitro enclave-source repo yet (only legacy proxy/witness forks); re-check before publish in case they push it.
 - DROPPED: the unverified "$35M+ volume" figure (not in Sachin's article). Legal/liability angle explored then dropped at author's request.
