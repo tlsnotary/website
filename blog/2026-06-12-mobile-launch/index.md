@@ -4,8 +4,7 @@ authors: [tsukino]
 description: "We just shipped TLSNotary for iOS and Android — both as a demo of selective-disclosure proofs on a phone, and as a reference implementation for developers who want to build their own TLSN-powered mobile app on top of the new @tlsn/host-react-native adapter."
 ---
 
-import MobileAppShowcase from '@site/src/components/MobileAppShowcase';
-import MobileFlowDiagram from '@site/src/components/MobileFlowDiagram';
+import Figure from '@site/src/components/Figure';
 
 A few months ago, TLSNotary was a browser extension and a protocol. Today it's also a mobile app — iOS and Android, with the same plugin gallery you know from the extension, the same selective-disclosure guarantees, and a brand-new development story for anyone who wants to ship their own TLSN-powered app.
 
@@ -17,13 +16,25 @@ The app itself is a **demo**: install it, browse the gallery, and produce a real
 
 ## A walk through the app
 
-The mobile app's flow mirrors the extension's, but reorganized for a phone-sized screen. Four states matter:
+The mobile app's flow mirrors the extension's, but reorganized for a phone-sized screen.
 
-<MobileAppShowcase />
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', margin: '2rem 0', alignItems: 'start'}}>
+  <Figure src={require('./ios-plugins.png').default} caption="1. Browse plugins" />
+  <Figure src={require('./ios-duolingo-reveal.png').default} caption="2. Approve the plugin" />
+  <Figure src={require('./ios-duolingo-login.png').default} caption="3. Log in to website" />
+  <!-- <Figure src={require('./ios-duolingo-progress.png').default} caption="4. See the verified result" /> -->
+  <Figure src={require('./ios-duolingo-prove.png').default} caption="4. Generate proof" />
+  <Figure src={require('./ios-duolingo-approve.png').default} caption="5. Approve the reveal" />
+  <Figure src={require('./ios-duolingo-result.png').default} caption="6. See the verified result" />
+</div>
 
 **Browse plugins.** Each plugin is a small piece of TypeScript that knows how to prove something specific — your Spotify top artist, your bank balance above a threshold, your Twitter handle. The gallery is curated, but a developer can swap in their own registry.
 
 **Approve the plugin.** Before any code runs, the app shows you exactly which hosts the plugin will hit, what data it will request, and asks you to choose how strictly you want to gate it: approve every reveal one-by-one, or approve everything for the session. Rejecting at this point means the plugin never executes.
+
+**Log in to the site.** If the plugin needs an authenticated session, the app opens the target site in an in-app WebView and you sign in exactly as you normally would. The injected JavaScript watches for the specific request the plugin cares about and captures its headers — your credentials stay on the device, and nothing has been proved yet.
+
+**Generate the proof.** Once the request is captured, the native prover takes over: it runs the multi-party TLS handshake with the verifier and replays the request to the target server, building the proof up to the moment of disclosure. A progress indicator walks through the phases — this is the heavy cryptographic work, and on a phone it's the step that takes the longest.
 
 **Approve the reveal.** After the prover has built the protocol up to the moment of disclosure, the app stops and shows you the actual bytes that will leave your device — every range, with REVEAL or HASH badges so you can tell what's plaintext and what's a commitment. This is the same gate the extension's strict-mode flow uses, ported to a mobile-native bottom sheet.
 
@@ -31,13 +42,18 @@ The mobile app's flow mirrors the extension's, but reorganized for a phone-sized
 
 The whole flow runs locally except for the TLS prover's outbound connection (to the target server) and its multi-party computation handshake (with the verifier). Your session cookie never leaves the device.
 
----
 
 ## How the app uses the libraries
 
 The mobile app sits on top of a small stack: your app, `@tlsn/host-react-native` underneath it, and `@tlsn/plugin-sdk` at the bottom — the same protocol core the browser extension runs.
 
-<MobileFlowDiagram platform="mobile" />
+<Figure
+  src={require('@site/diagrams/light/mobile_stack.svg').default}
+  darkSrc={require('@site/diagrams/dark/mobile_stack.svg').default}
+  alt="The mobile host-adapter stack: your Expo app builds on @tlsn/host-react-native, which builds on @tlsn/plugin-sdk."
+  caption="The mobile host-adapter stack — your app on top, the @tlsn/* packages below."
+  width={600}
+/>
 
 What that looks like in code is short. Every screen the user sees is a thin wrapper over four primitives the adapter ships. Here's how `PluginScreen.tsx` — the file that orchestrates a whole prove session — wires them together.
 

@@ -1,0 +1,30 @@
+<mxfile host="65bd71144e">
+    <diagram name="mobile-stack" id="mobile-stack-1">
+        <mxGraphModel dx="854" dy="1189" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="640" pageHeight="760" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="c1" value="&lt;b style=&#39;font-size:15px&#39;&gt;Your Expo app&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#5a6675&#39;&gt;The app you ship. You own the screens (plugin gallery, runner, settings), the approval bottom sheets the user sees, and the theming.&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;spacingBottom=10;fillColor=#ffffff;strokeColor=#0969da;strokeWidth=2;dashed=1;fontColor=#1b2733;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="40" width="520" height="87" as="geometry"/>
+                </mxCell>
+                <mxCell id="c2" value="&lt;b style=&#39;font-size:15px&#39;&gt;@tlsn/host-react-native&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#5a6675&#39;&gt;The mobile adapter. Ships a WebView with injected JS that intercepts fetch / XMLHttpRequest, a headless NativeProver wrapping the tlsn-native Expo module (a native Rust port of the prover — Hermes can&#39;t run the WASM build), and a PluginRenderer that maps the plugin&#39;s DomJson tree onto React Native primitives.&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;spacingBottom=10;fillColor=#ddf4ff;strokeColor=#0969da;strokeWidth=2;fontColor=#1b2733;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="215" width="520" height="123" as="geometry"/>
+                </mxCell>
+                <mxCell id="c3" value="&lt;b style=&#39;font-size:15px&#39;&gt;@tlsn/plugin-sdk&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#5a6675&#39;&gt;The protocol core. HostCore drives the plugin lifecycle — it evaluates the plugin&#39;s JavaScript in a sandbox, runs the reactive main() loop, and exposes the capabilities a plugin uses (prove(), openWindow(), useHeaders(), …). Owns every protocol type the plugin and host exchange, and knows nothing about whether it runs on a phone, a browser, or a Node CLI.&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;spacingBottom=10;fillColor=#f3f5f8;strokeColor=#243f5f;strokeWidth=2;fontColor=#1b2733;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="412" width="520" height="133" as="geometry"/>
+                </mxCell>
+                <mxCell id="bnd" value="&lt;i&gt;everything below is the @tlsn/* stack the skill scaffolds for you&lt;/i&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#8a93a6;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="142" width="520" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" value="builds on" style="endArrow=block;endFill=1;html=1;strokeColor=#9aa7b8;strokeWidth=2;fontColor=#5a6675;fontSize=11;labelBackgroundColor=#ffffff;" parent="1" target="c2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="320" y="128" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e2" value="builds on" style="endArrow=block;endFill=1;html=1;strokeColor=#9aa7b8;strokeWidth=2;fontColor=#5a6675;fontSize=11;labelBackgroundColor=#ffffff;" parent="1" source="c2" target="c3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
