@@ -1,0 +1,624 @@
+.showcase {
+  --mas-bg: #f0f2f5;
+  --mas-card: #ffffff;
+  --mas-text: #111827;
+  --mas-text-soft: #1a1a1a;
+  --mas-subtle: #374151;
+  --mas-muted: #6b7280;
+  --mas-faint: #9ca3af;
+  --mas-tlsn: #243f5f;
+  --mas-divider: #e5e7eb;
+  --mas-frame: #0a0a0a;
+  --mas-frame-shine: rgba(255, 255, 255, 0.08);
+  --mas-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --mas-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue',
+    sans-serif;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 24px;
+  margin: 2.5rem auto;
+  padding: 0;
+  max-width: 760px;
+}
+
+@media (max-width: 560px) {
+  .showcase {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+/* ============================================================ */
+/* Phone frame                                                    */
+/* ============================================================ */
+
+.phoneWrap {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phone {
+  position: relative;
+  width: 280px;
+  height: 580px;
+  background: var(--mas-frame);
+  border-radius: 38px;
+  padding: 5px;
+  box-shadow:
+    0 0 0 1.5px rgba(0, 0, 0, 0.55),
+    0 16px 38px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px var(--mas-frame-shine);
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: var(--mas-sans);
+}
+
+.notch {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88px;
+  height: 22px;
+  background: var(--mas-frame);
+  border-radius: 14px;
+  z-index: 4;
+}
+
+.statusBar {
+  position: absolute;
+  top: 12px;
+  left: 18px;
+  right: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.statusTime {
+  font-variant-numeric: tabular-nums;
+}
+
+.statusRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.signal {
+  display: inline-block;
+  width: 3px;
+  height: 6px;
+  border-radius: 1px;
+  background: #fff;
+  opacity: 0.95;
+}
+
+.signal:nth-child(1) {
+  height: 4px;
+}
+.signal:nth-child(2) {
+  height: 5px;
+}
+
+.battery {
+  display: inline-block;
+  width: 18px;
+  height: 8px;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  position: relative;
+  margin-left: 4px;
+}
+
+.battery::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: #fff;
+  border-radius: 1px;
+}
+
+.screen {
+  position: absolute;
+  top: 42px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background: var(--mas-bg);
+  border-radius: 32px;
+  overflow: hidden;
+  color: var(--mas-text);
+}
+
+.caption {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ifm-font-color-base);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ============================================================ */
+/* Screen shell — navbar + scrollable content + tab bar           */
+/* ============================================================ */
+
+.screenColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* iOS-style nav bar with #243f5f bg and white bold title */
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mas-tlsn);
+  color: #fff;
+  padding: 12px 16px 10px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.navbarBack {
+  position: absolute;
+  left: 14px;
+  top: 6px;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.navbarTitle {
+  font-weight: 700;
+}
+
+.navbarSpacer {
+  display: none;
+}
+
+/* ============================================================ */
+/* Tab bar                                                        */
+/* ============================================================ */
+
+.tabBar {
+  display: flex;
+  border-top: 1px solid var(--mas-divider);
+  background: var(--mas-card);
+  padding: 6px 0 10px;
+  flex-shrink: 0;
+}
+
+.tabBarItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: #999;
+  padding: 4px 0;
+}
+
+.tabBarItemActive {
+  color: var(--mas-tlsn);
+}
+
+.tabBarIcon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.tabBarLabel {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* ============================================================ */
+/* Gallery screen                                                 */
+/* ============================================================ */
+
+.gallery {
+  flex: 1;
+  overflow: hidden;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.galleryCard {
+  display: flex;
+  align-items: center;
+  background: var(--mas-card);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.galleryLogo {
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+}
+
+.galleryBody {
+  flex: 1;
+  margin-left: 10px;
+  min-width: 0;
+}
+
+.galleryNameRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.galleryName {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--mas-tlsn);
+}
+
+.galleryDescription {
+  display: block;
+  font-size: 11.5px;
+  color: #666;
+  line-height: 1.45;
+}
+
+.wipBadge {
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 8.5px;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================ */
+/* Sheet backdrop + card (plugin approval + reveal approval)      */
+/* ============================================================ */
+
+.dimmedContent {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--mas-bg);
+  position: relative;
+  z-index: 0;
+}
+
+.dimmedShape {
+  height: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.sheetBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.sheetCard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--mas-card);
+  border-radius: 16px 16px 0 0;
+  padding: 8px 16px 14px;
+  z-index: 2;
+  font-family: var(--mas-sans);
+}
+
+.sheetHandle {
+  width: 36px;
+  height: 4px;
+  background: #d1d5db;
+  border-radius: 2px;
+  margin: 4px auto 10px;
+}
+
+.sheetTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--mas-text);
+  line-height: 1.2;
+}
+
+.sheetByline {
+  font-size: 11px;
+  color: var(--mas-muted);
+  margin-top: 3px;
+}
+
+.sheetSubtitle {
+  font-size: 11px;
+  color: var(--mas-muted);
+  margin-top: 3px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.sheetBody {
+  font-size: 12px;
+  color: var(--mas-subtle);
+  line-height: 1.5;
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+
+.sectionLabel {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--mas-muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.requestRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.methodBadge {
+  font-family: var(--mas-mono);
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  min-width: 34px;
+  text-align: center;
+}
+
+.requestHost {
+  font-family: var(--mas-mono);
+  font-size: 10.5px;
+  color: var(--mas-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.requestPath {
+  color: var(--mas-muted);
+}
+
+.sourceLink {
+  font-size: 11px;
+  color: #2563eb;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.sheetActions {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding-top: 12px;
+  margin-top: 6px;
+}
+
+.sheetButton {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btnReject {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btnManual {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.btnAllSession {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* ============================================================ */
+/* Reveal rows                                                    */
+/* ============================================================ */
+
+.revealRow {
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 7px 9px;
+  margin-bottom: 5px;
+}
+
+.revealRowHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.revealRowLabel {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--mas-subtle);
+}
+
+.revealBadge {
+  font-size: 8px;
+  font-weight: 700;
+  padding: 1.5px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.badgeReveal {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badgeHash {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.revealPreview {
+  font-family: var(--mas-mono);
+  font-size: 9.5px;
+  color: #1f2937;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.revealHashed {
+  color: var(--mas-faint);
+  font-style: italic;
+}
+
+/* ============================================================ */
+/* Success screen                                                 */
+/* ============================================================ */
+
+.successScrollArea {
+  flex: 1;
+  background: var(--mas-bg);
+  padding-bottom: 20px;
+}
+
+.successBanner {
+  display: flex;
+  align-items: center;
+  padding: 22px 18px;
+}
+
+.successLogo {
+  font-size: 34px;
+  margin-right: 14px;
+}
+
+.successBannerText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.successPluginName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.successVerifiedBadge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* The key card overlaps the banner like the real app */
+.successKeyCard {
+  background: var(--mas-card);
+  margin: -14px 14px 0;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+.successKeyLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.successKeyValue {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--mas-text-soft);
+  line-height: 1.2;
+}
+
+.successDetailCard {
+  background: var(--mas-card);
+  margin: 10px 14px 0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.successDetailTitle {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #999;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.successDetailRow {
+  font-size: 12px;
+  color: var(--mas-text-soft);
+  padding: 3px 0;
+}
+
+.successToggle {
+  margin: 10px 14px 0;
+  background: transparent;
+  border: none;
+  color: var(--mas-tlsn);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 2px;
+}
+
+.successBackBtn {
+  display: block;
+  margin: 16px 14px 0;
+  background: var(--mas-tlsn);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  width: calc(100% - 28px);
+}
