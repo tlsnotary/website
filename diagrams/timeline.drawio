@@ -1,0 +1,130 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.5 Chrome/134.0.6998.205 Electron/35.3.0 Safari/537.36" version="27.0.5">
+  <diagram name="Page-1" id="wfRg5rf4xUFVBwNdkFxc">
+    <mxGraphModel dx="2083" dy="1214" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-35" value="" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#CCCCCC;labelBackgroundColor=none;fontSize=16;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="NxNsILiiWmh1yMbZMNDy-14" target="NxNsILiiWmh1yMbZMNDy-54">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="440" y="549.9999999999999" as="sourcePoint" />
+            <mxPoint x="440" y="1028" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-14" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;fillColor=none;strokeColor=#333333;fontSize=16;align=center;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="434" y="130" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-16" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.infographic.circularCallout2;dy=15;strokeColor=#10739E;labelPosition=center;align=center;fontColor=#10739E;fontStyle=1;fontSize=24;shadow=0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="200" y="160" width="246" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-17" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.infographic.circularCallout2;dy=15;strokeColor=#10739E;labelPosition=center;align=center;fontColor=#F2931E;fontStyle=1;fontSize=24;shadow=0;direction=north;flipH=1;" vertex="1" parent="1">
+          <mxGeometry x="434" y="230" width="246" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-22" value="Bitcoin Forum" style="fillColor=#10739E;strokecolor=none;rounded=1;fontColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="150" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-23" value="TLSNotary" style="fillColor=#10739E;strokecolor=none;rounded=1;fontColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="215" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-28" value="Discussion of using SSL for proof of fiat transfer to construct a P2P Bitcoin exchange." style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=middle;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="200" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-29" value="First paper and P2P implementation which supported TLS 1.0/1.1" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=middle;fontSize=12;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="450" y="270" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-36" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.infographic.circularCallout2;dy=15;strokeColor=#10739E;labelPosition=center;align=center;fontColor=#10739E;fontStyle=1;fontSize=24;shadow=0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="200" y="300" width="246" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-37" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.infographic.circularCallout2;dy=15;strokeColor=#10739E;labelPosition=center;align=center;fontColor=#F2931E;fontStyle=1;fontSize=24;shadow=0;direction=north;flipH=1;" vertex="1" parent="1">
+          <mxGeometry x="434" y="370" width="246" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-38" value="PageSigner v1" style="fillColor=#10739E;strokecolor=none;rounded=1;fontColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="290" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-39" value="TLS &amp;lt;1.2 Deprecations" style="fillColor=#10739E;strokecolor=none;rounded=1;fontColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="355" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-40" value="Browser implementation and Notary deployment in sandboxed AWS instance" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=middle;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="340" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-41" value="Major organizations announcing the deprecation of TLS versions lower than 1.2" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=middle;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="410" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-42" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.infographic.circularCallout2;dy=15;strokeColor=#10739E;labelPosition=center;align=center;fontColor=#10739E;fontStyle=1;fontSize=24;shadow=0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="200" y="440" width="246" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-43" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.infographic.circularCallout2;dy=15;strokeColor=#10739E;labelPosition=center;align=center;fontColor=#F2931E;fontStyle=1;fontSize=24;shadow=0;direction=north;flipH=1;" vertex="1" parent="1">
+          <mxGeometry x="434" y="510" width="246" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-44" value="Deco Paper" style="fillColor=#10739E;strokecolor=none;rounded=1;fontColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="430" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-45" value="PSE" style="fillColor=#10739E;strokecolor=none;rounded=1;fontColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="495" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-46" value="TLS 1.2+ support using&#xa;general-purpose MPC" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=middle;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="480" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-47" value="Project adopted by PSE, R&amp;D commenced to achieve practical efficiency" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=middle;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="550" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-48" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.infographic.circularCallout2;dy=15;strokeColor=#10739E;labelPosition=center;align=center;fontColor=#10739E;fontStyle=1;fontSize=24;shadow=0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="200" y="580" width="246" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-49" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.infographic.circularCallout2;dy=15;strokeColor=#10739E;labelPosition=center;align=center;fontColor=#F2931E;fontStyle=1;fontSize=24;shadow=0;direction=north;flipH=1;" vertex="1" parent="1">
+          <mxGeometry x="434" y="650" width="246" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-50" value="Alpha Release" style="fillColor=#10739E;strokecolor=none;rounded=1;fontColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="570" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-51" value="QuickSilver&amp;nbsp;" style="fillColor=#10739E;strokecolor=none;rounded=1;fontColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="635" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-52" value="Minimal implementation of new protocol written in Rust" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=middle;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="620" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-53" value="Practical performance for real-world use cases." style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=middle;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="690" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-54" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=0;fillColor=none;strokeColor=#333333;fontSize=16;align=center;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="434" y="840" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-56" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.infographic.circularCallout2;dy=15;strokeColor=#10739E;labelPosition=center;align=center;fontColor=#10739E;fontStyle=1;fontSize=24;shadow=0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="200" y="720" width="246" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-58" value="TLSNotary 1.0" style="fillColor=#10739E;strokecolor=none;rounded=1;fontColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="710" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-60" value="Soon™️" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=middle;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="760" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-62" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;color: rgb(16, 115, 158);&quot;&gt;2013&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot; id=&quot;docs-internal-guid-7e40dd21-7fff-bcae-9b9d-4fc4d743fc2d&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="200" y="160" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-63" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;color: rgb(16, 115, 158);&quot;&gt;2014&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot; id=&quot;docs-internal-guid-7e40dd21-7fff-bcae-9b9d-4fc4d743fc2d&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="620" y="230" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-64" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;color: rgb(16, 115, 158);&quot;&gt;2015&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot; id=&quot;docs-internal-guid-7e40dd21-7fff-bcae-9b9d-4fc4d743fc2d&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="200" y="300" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-65" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;color: rgb(16, 115, 158);&quot;&gt;2018&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot; id=&quot;docs-internal-guid-7e40dd21-7fff-bcae-9b9d-4fc4d743fc2d&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="620" y="370" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-66" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;color: rgb(16, 115, 158);&quot;&gt;2019&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot; id=&quot;docs-internal-guid-7e40dd21-7fff-bcae-9b9d-4fc4d743fc2d&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="200" y="440" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-67" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;color: rgb(16, 115, 158);&quot;&gt;2022&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot; id=&quot;docs-internal-guid-7e40dd21-7fff-bcae-9b9d-4fc4d743fc2d&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="620" y="510" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-68" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;color: rgb(16, 115, 158);&quot;&gt;2023&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot; id=&quot;docs-internal-guid-7e40dd21-7fff-bcae-9b9d-4fc4d743fc2d&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="200" y="580" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-69" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;color: rgb(16, 115, 158);&quot;&gt;2024&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot; id=&quot;docs-internal-guid-7e40dd21-7fff-bcae-9b9d-4fc4d743fc2d&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="620" y="650" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NxNsILiiWmh1yMbZMNDy-70" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;color: rgb(16, 115, 158);&quot;&gt;2025&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot; id=&quot;docs-internal-guid-7e40dd21-7fff-bcae-9b9d-4fc4d743fc2d&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="200" y="720" width="60" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
