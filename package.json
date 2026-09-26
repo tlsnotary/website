@@ -34,6 +34,9 @@
     "baseline-browser-mapping": "^2.10.0",
     "typescript": "~5.9.2"
   },
+  "overrides": {
+    "serialize-javascript": "^7.0.5"
+  },
   "browserslist": {
     "production": [
       ">0.5%",
@@ -47,6 +50,6 @@
     ]
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=20.0"
   }
 }

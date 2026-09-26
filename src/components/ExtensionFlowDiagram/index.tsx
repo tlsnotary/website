@@ -149,7 +149,7 @@ function cx(...parts: Array<string | false | null | undefined>): string {
   return parts.filter(Boolean).join(' ');
 }
 
-export default function ExtensionFlowDiagram(): JSX.Element {
+export default function ExtensionFlowDiagram(): React.JSX.Element {
   const [step, setStep] = useState(0);
   const current = STEPS[step];
 
