@@ -49,5 +49,14 @@
       "twitter": "https://x.com/usher_web3",
       "github": "https://github.com/usherlabs/verity-dp"
     }
+  },
+  {
+    "name": "ArchiveBox",
+    "description": "Verifiable self-hosted internet archives",
+    "links": {
+      "website": "https://archivebox.io",
+      "twitter": "https://x.com/ArchiveBoxApp",
+      "github": "https://github.com/ArchiveBox/ArchiveBox"
+    }
   }
 ]
