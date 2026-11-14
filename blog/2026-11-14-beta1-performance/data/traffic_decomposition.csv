@@ -1,0 +1,4 @@
+build,run_date,source,uploaded_mb,downloaded_mb,total_mb
+alpha15,2026-11-12,data/default_alpha15_native.csv + default_alpha15_wasm.csv,30.782,3.9998,34.7818
+upstream_main,2026-11-06,../tlsn-benchmarks-2026-11-06/main-baseline-2026-11-06/main-bench/*.csv,28.735,1.9499,30.6849
+main_mpz2,2026-11-12,data/default_main_native.csv + default_main_wasm.csv,29.4825,0.5969,30.0794

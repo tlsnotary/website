@@ -17,3 +17,13 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+benchmarks:
+  label: Benchmarks
+  permalink: /benchmarks
+  description: Performance benchmark results
+
+performance:
+  label: Performance
+  permalink: /performance
+  description: Performance improvements and analysis
