@@ -1,0 +1,70 @@
+# TLSNotary proxy-mode: old vs current tip
+
+## Setup
+
+- VM: `Standard_F8als_v6` (8 vCPU / 16 GB), Debian 12, Korea South
+- Old: `d50658ab973` (proxy-mode blog build)
+- Tip: `f47cca06e` (upstream `main`)
+- Proxy mode (`proxy=true`), 10 samples per point, 3 warmups excluded
+- `app_latency` left at the default 50 ms in every group
+
+## Default scenarios
+
+Parameters: 1 KB request / 2 KB response.
+
+| Scenario | Old native | Tip native | Δ native | Old browser | Tip browser | Δ browser |
+|---:|---:|---:|---:|---:|---:|---:|
+| cable  | 1.763 | 1.720 | -2.4% | 2.862 | 2.538 | -11.3% |
+| fiber  | 1.094 | 1.052 | -3.9% | 2.175 | 1.852 | -14.9% |
+| mobile_5g  | 1.676 | 1.627 | -2.9% | 2.732 | 2.406 | -11.9% |
+
+## Bandwidth sweep
+
+Parameters: 25 ms protocol latency, 1 KB request / 2 KB response.
+
+| Bandwidth | Old native | Tip native | Δ native | Old browser | Tip browser | Δ browser |
+|---:|---:|---:|---:|---:|---:|---:|
+| 5 Mbps | 4.560 | 4.524 | -0.8% | 5.669 | 5.361 | -5.4% |
+| 10 Mbps | 2.732 | 2.683 | -1.8% | 3.855 | 3.536 | -8.3% |
+| 20 Mbps | 1.873 | 1.825 | -2.6% | 2.955 | 2.622 | -11.3% |
+| 50 Mbps | 1.429 | 1.385 | -3.1% | 2.496 | 2.163 | -13.4% |
+| 100 Mbps | 1.331 | 1.285 | -3.5% | 2.393 | 2.072 | -13.4% |
+| 250 Mbps | 1.323 | 1.270 | -4.0% | 2.390 | 2.051 | -14.2% |
+| 500 Mbps | 1.317 | 1.279 | -2.8% | 2.395 | 2.057 | -14.1% |
+| 1000 Mbps | 1.309 | 1.273 | -2.8% | 2.382 | 2.054 | -13.8% |
+
+## Latency sweep
+
+Parameters: 100 Mbps, 1 KB request / 2 KB response.
+
+| Latency | Old native | Tip native | Δ native | Old browser | Tip browser | Δ browser |
+|---:|---:|---:|---:|---:|---:|---:|
+| 10 ms | 0.958 | 0.926 | -3.3% | 2.065 | 1.741 | -15.7% |
+| 25 ms | 1.337 | 1.289 | -3.6% | 2.392 | 2.075 | -13.3% |
+| 50 ms | 1.900 | 1.864 | -1.9% | 2.929 | 2.624 | -10.4% |
+| 75 ms | 2.643 | 2.554 | -3.4% | 3.565 | 3.242 | -9.1% |
+| 100 ms | 3.301 | 3.221 | -2.4% | 4.142 | 3.803 | -8.2% |
+| 150 ms | 4.774 | 4.569 | -4.3% | 5.489 | 5.135 | -6.5% |
+| 200 ms | 6.072 | 5.971 | -1.7% | 7.009 | 6.656 | -5.0% |
+
+## Response-size sweep
+
+Parameters: 100 Mbps, 25 ms protocol latency, 1 KB request.
+
+| Response size | Old native | Tip native | Δ native | Old browser | Tip browser | Δ browser |
+|---:|---:|---:|---:|---:|---:|---:|
+| 1 KB | 1.255 | 1.212 | -3.4% | 1.979 | 1.727 | -12.7% |
+| 2 KB | 1.326 | 1.276 | -3.7% | 2.391 | 2.077 | -13.1% |
+| 5 KB | 1.463 | 1.423 | -2.7% | 3.244 | 2.778 | -14.4% |
+| 10 KB | 1.673 | 1.665 | -0.5% | 3.744 | 3.385 | -9.6% |
+| 20 KB | 2.307 | 2.255 | -2.2% | 6.958 | 5.921 | -14.9% |
+| 30 KB | 2.942 | 2.892 | -1.7% | 10.298 | 8.750 | -15.0% |
+| 40 KB | 3.197 | 3.199 | +0.1% | 10.771 | 9.209 | -14.5% |
+| 50 KB | 4.503 | 4.231 | -6.0% | 17.380 | 14.574 | -16.1% |
+
+## Notes
+
+- Times are mean total runtime in seconds; deltas are `(tip - old) / old`.
+- `app_latency` defaults to 50 ms because the configs don't set it. This applies to both modes and both builds.
+- On the tip-native latency CSV, some 75–200 ms rows record ~0.59 MB uploaded instead of ~0.72 MB; old-native and both WASM runs stay constant. It looks like a proxy byte-accounting race in the tip branch, not a timing issue.
+- Both harness versions write a CSV header that starts at `time_total` instead of the full 18 columns. Data rows contain all 18 fields; the summaries parse by column position.
